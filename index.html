@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>News_92 Studio — услуги графического дизайнера</title>
+
   <meta
     name="description"
     content="Создание обложек, Premium-фото, Lite-фото и презентаций."
@@ -12,8 +13,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
     rel="stylesheet"
   >
 
@@ -39,13 +41,19 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
-      font-family: "Manrope", sans-serif;
+      min-width: 320px;
+      font-family: "Manrope", Arial, sans-serif;
       color: var(--text);
       background: var(--bg);
       line-height: 1.6;
+    }
+
+    body.menu-open {
+      overflow: hidden;
     }
 
     a {
@@ -55,8 +63,18 @@
 
     button,
     input,
-    select {
+    select,
+    textarea {
       font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
@@ -69,10 +87,10 @@
     .header {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
       background: rgba(245, 246, 248, 0.88);
-      backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(230, 231, 235, 0.8);
+      backdrop-filter: blur(14px);
     }
 
     .nav {
@@ -87,6 +105,7 @@
       display: flex;
       align-items: center;
       gap: 11px;
+      color: var(--dark);
       font-size: 18px;
       font-weight: 800;
       letter-spacing: -0.5px;
@@ -96,8 +115,9 @@
       width: 35px;
       height: 35px;
       display: grid;
+      flex-shrink: 0;
       place-items: center;
-      color: #fff;
+      color: #ffffff;
       background: var(--dark);
       border-radius: 10px;
     }
@@ -119,24 +139,48 @@
       color: var(--dark);
     }
 
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+    }
+
+    .menu-button span {
+      width: 100%;
+      height: 2px;
+      display: block;
+      margin: 5px 0;
+      background: var(--dark);
+      transition: 0.2s;
+    }
+
     .button {
+      min-height: 50px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
       padding: 0 24px;
-      color: #fff;
+      color: #ffffff;
       font-weight: 700;
+      text-align: center;
+      background: var(--accent);
       border: 0;
       border-radius: 13px;
-      background: var(--accent);
       cursor: pointer;
-      transition: 0.2s;
+      transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
     }
 
     .button:hover {
       background: var(--accent-dark);
       transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(79, 99, 255, 0.22);
     }
 
     .button-dark {
@@ -163,8 +207,7 @@
     .label {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      margin-bottom: 24px;
+      gap: 9px;margin-bottom: 24px;
       padding: 8px 13px;
       color: var(--accent);
       font-size: 12px;
@@ -179,6 +222,7 @@
       content: "";
       width: 7px;
       height: 7px;
+      flex-shrink: 0;
       background: var(--accent);
       border-radius: 50%;
     }
@@ -189,6 +233,10 @@
       font-size: clamp(42px, 6vw, 76px);
       line-height: 1.05;
       letter-spacing: -3.5px;
+    }
+
+    h1 span {
+      color: var(--accent);
     }
 
     .hero-text {
@@ -202,11 +250,13 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      flex-wrap: wrap;}
+      flex-wrap: wrap;
+    }
 
     .text-link {
-      font-weight: 700;
       padding: 12px;
+      font-weight: 700;
+      transition: color 0.2s;
     }
 
     .text-link:hover {
@@ -254,8 +304,8 @@
       background: rgba(255, 255, 255, 0.94);
       border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 21px;
-      transform: rotate(-3deg);
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+      transform: rotate(-3deg);
     }
 
     .window-top {
@@ -276,9 +326,13 @@
       display: flex;
       align-items: flex-end;
       padding: 24px;
-      color: #fff;
+      color: #ffffff;
       background:
-        linear-gradient(135deg, transparent 45%, rgba(255,255,255,.18) 45%),
+        linear-gradient(
+          135deg,
+          transparent 45%,
+          rgba(255, 255, 255, 0.18) 45%
+        ),
         linear-gradient(135deg, #4f63ff, #151824);
       border-radius: 15px;
     }
@@ -314,7 +368,7 @@
       color: var(--dark);
       font-size: 13px;
       font-weight: 700;
-      background: #fff;
+      background: #ffffff;
       border-radius: 15px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.22);
     }
@@ -325,7 +379,7 @@
       font-size: 22px;
     }
 
-    /* Секции */
+    /* Общие секции */
 
     .section {
       padding: 92px 0;
@@ -365,20 +419,21 @@
 
     .service-card {
       position: relative;
-      min-height: 300px;
+      min-height: 320px;
       display: flex;
-      flex-direction: column;
-      padding: 27px;
+      flex-direction: column;padding: 27px;
       overflow: hidden;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      transition: 0.25s;
+      transition:
+        transform 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s;
     }
 
     .service-card:hover {
       transform: translateY(-7px);
-      border-color: #ccd0ff;
       box-shadow: var(--shadow);
     }
 
@@ -417,13 +472,14 @@
     }
 
     .premium {
-      color: #fff;background: var(--dark);
+      color: #ffffff;
+      background: var(--dark);
       border-color: var(--dark);
     }
 
     .premium h3,
     .premium .price {
-      color: #fff;
+      color: #ffffff;
     }
 
     .premium p,
@@ -431,74 +487,73 @@
     .premium .price small {
       color: #aeb0b8;
     }
-/* Лёгкое выделение фонов услуг */
 
-.service-card:nth-child(1) {
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(79, 99, 255, 0.12),
-      transparent 45%
-    ),
-    #ffffff;
-  border-color: #dfe2ff;
-}
+    .services > .service-card:nth-child(1) {
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(79, 99, 255, 0.12),
+          transparent 45%
+        ),
+        #ffffff;
+      border-color: #dfe2ff;
+    }
 
-.service-card:nth-child(2) {
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(79, 99, 255, 0.45),
-      transparent 45%
-    ),
-    #101114;
-}
+    .services > .service-card:nth-child(2) {
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(79, 99, 255, 0.45),
+          transparent 45%
+        ),
+        #101114;
+      border-color: #101114;
+    }
 
-.service-card:nth-child(3) {
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(55, 181, 140, 0.12),
-      transparent 45%
-    ),
-    #ffffff;
-  border-color: #dceee8;
-}
+    .services > .service-card:nth-child(3) {
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(55, 181, 140, 0.12),
+          transparent 45%
+        ),
+        #ffffff;
+      border-color: #dceee8;
+    }
 
-.service-card:nth-child(4) {
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(245, 166, 35, 0.13),
-      transparent 45%
-    ),
-    #ffffff;
-  border-color: #f0e5d4;
-}
+    .services > .service-card:nth-child(4) {
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(245, 166, 35, 0.13),
+          transparent 45%
+        ),
+        #ffffff;
+      border-color: #f0e5d4;
+    }
 
-/* Усиление оттенка при наведении */
+    .services > .service-card:nth-child(1):hover {
+      border-color: rgba(79, 99, 255, 0.4);
+    }
 
-.service-card:nth-child(1):hover {
-  border-color: rgba(79, 99, 255, 0.4);
-}
+    .services > .service-card:nth-child(2):hover {
+      border-color: rgba(115, 130, 255, 0.7);
+    }
 
-.service-card:nth-child(2):hover {
-  border-color: rgba(115, 130, 255, 0.7);
-}
+    .services > .service-card:nth-child(3):hover {
+      border-color: rgba(55, 181, 140, 0.4);
+    }
 
-.service-card:nth-child(3):hover {
-  border-color: rgba(55, 181, 140, 0.4);
-}
+    .services > .service-card:nth-child(4):hover {
+      border-color: rgba(245, 166, 35, 0.45);
+    }
 
-.service-card:nth-child(4):hover {
-  border-color: rgba(245, 166, 35, 0.45);
-}
     .premium-badge {
       position: absolute;
       top: 22px;
       right: 20px;
       padding: 6px 10px;
-      color: #fff;
+      color: #ffffff;
       font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.7px;
@@ -527,6 +582,10 @@
       margin-bottom: 22px;
     }
 
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
     .form-group label {
       display: block;
       margin-bottom: 9px;
@@ -536,28 +595,41 @@
     }
 
     select,
-    input {
+    input,
+    textarea {
       width: 100%;
-      min-height: 54px;
-      padding: 0 16px;
       color: var(--text);
       background: #f8f8fa;
       border: 1px solid var(--line);
       border-radius: 12px;
       outline: none;
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+    }
+
+    select,
+    input {
+      min-height: 54px;
+      padding: 0 16px;
+    }
+
+    textarea {
+      min-height: 130px;
+      padding: 14px 16px;
+      resize: vertical;
     }
 
     select:focus,
-    input:focus {
+    input:focus,
+    textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(79, 99, 255, 0.1);
-    }
-
-    .calculator-total {
+    }.calculator-total {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      color: #fff;
+      color: #ffffff;
       background: var(--dark);
       border-color: var(--dark);
     }
@@ -590,7 +662,16 @@
     .advantage {
       padding: 28px;
       background: #f8f8fa;
+      border: 1px solid transparent;
       border-radius: 18px;
+      transition:
+        transform 0.2s,
+        border-color 0.2s;
+    }
+
+    .advantage:hover {
+      border-color: var(--line);
+      transform: translateY(-4px);
     }
 
     .advantage-icon {
@@ -599,7 +680,7 @@
       display: grid;
       place-items: center;
       margin-bottom: 22px;
-      color: #fff;
+      color: #ffffff;
       font-weight: 800;
       background: var(--accent);
       border-radius: 12px;
@@ -616,32 +697,114 @@
       font-size: 14px;
     }
 
+    /* Отзывы */
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .review {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .review-stars {
+      margin-bottom: 18px;
+      color: #f5a623;
+      letter-spacing: 2px;
+    }
+
+    .review blockquote {
+      margin-bottom: 25px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      flex-shrink: 0;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 800;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .review-author div {
+      display: grid;
+    }
+
+    .review-author strong {
+      color: var(--dark);
+      font-size: 14px;
+    }
+
+    .review-author small {
+      color: var(--muted);
+    }
+
     /* Контакты */
 
     .contact {
       padding: 52px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 35px;
-      color: #fff;
+      color: #ffffff;
       background:
-        radial-gradient(circle at 90% 0%, #6173ff 0, transparent 35%),
+        radial-gradient(
+          circle at 90% 0%,
+          #6173ff 0,
+          transparent 35%
+        ),
         var(--dark);
       border-radius: 30px;
     }
 
+    .contact-content {
+      max-width: 650px;
+    }
+
     .contact h2 {
-      max-width: 660px;
-      margin-bottom: 12px;
-      font-size: clamp(32px, 5vw, 54px);
+      margin-bottom: 14px;
+      font-size: clamp(31px, 4vw, 48px);
       line-height: 1.1;
       letter-spacing: -2px;
     }
 
     .contact p {
-      color: #bec0c7;
+      color: #b9bbc3;
     }
+
+    .contact .button {
+      min-width: 190px;
+      background: #ffffff;
+      color: var(--dark);
+    }
+
+    .contact .button:hover {
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    /* Подвал */
 
     .footer {
       padding: 35px 0;
@@ -651,84 +814,139 @@
 
     .footer-row {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 25px;
     }
 
-    /* Адаптивность */
+    .footer-links {
+      display: flex;
+      gap: 22px;
+    }
 
-    @media (max-width: 950px) {
-      .hero-grid,
-      .calculator {
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Адаптация */
+
+    @media (max-width: 1000px) {
+      .hero-grid {
         grid-template-columns: 1fr;
+        gap: 45px;
       }
 
       .visual {
-        min-height: 460px;
+        min-height: 500px;
       }
 
       .services {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .hero {
-        padding-top: 60px;
+      .calculator {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 760px) {
       .container {
         width: min(100% - 24px, 1160px);
-      }
-
-      .menu {
+      }.desktop-button {
         display: none;
       }
 
-      .nav .button {
-        min-height: 43px;
-        padding: 0 16px;
-        font-size: 13px;
+      .menu-button {
+        display: block;
       }
 
-      h1 {
-        letter-spacing: -2px;
+      .menu {
+        position: fixed;
+        top: 76px;
+        left: 12px;
+        right: 12px;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        padding: 14px;
+        color: var(--text);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+      }
+
+      .menu.active {
+        display: flex;
+      }
+
+      .menu a {
+        padding: 13px;
+        border-radius: 10px;
+      }
+
+      .menu a:hover {
+        background: var(--bg);
       }
 
       .hero {
-        padding: 48px 0;
+        padding: 55px 0 65px;
       }
 
-      .hero-grid {
-        gap: 40px;
+      h1 {
+        font-size: clamp(40px, 13vw, 58px);
+        letter-spacing: -2.5px;
+      }
+
+      .hero-text {
+        font-size: 16px;
       }
 
       .visual {
-        min-height: 390px;
+        min-height: 410px;
         border-radius: 24px;
-      }.design-window {
-        inset: 55px 24px;
+      }
+
+      .design-window {
+        inset: 55px 24px 70px;
+        padding: 15px;
       }
 
       .mock-image {
-        height: 180px;
+        height: 175px;
       }
 
-      .services,
-      .advantages {
-        grid-template-columns: 1fr;
+      .mock-image strong {
+        font-size: 24px;
+      }
+
+      .floating-card {
+        right: 10px;
+        bottom: 18px;
       }
 
       .section {
-        padding: 65px 0;
+        padding: 68px 0;
       }
 
       .section-heading {
         display: block;
+        margin-bottom: 30px;
       }
 
       .section-heading p {
-        margin-top: 15px;
+        margin-top: 16px;
+      }
+
+      .services,
+      .advantages,
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: 300px;
       }
 
       .calculator-form,
@@ -737,13 +955,52 @@
       }
 
       .contact {
-        padding: 35px 25px;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 32px 24px;
+        border-radius: 23px;
+      }
+
+      .contact .button {
+        width: 100%;
+      }
+
+      .footer-row {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .footer-row {
+      .footer-links {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-actions {
+        align-items: stretch;
         flex-direction: column;
+      }
+
+      .hero-actions .button,
+      .hero-actions .text-link {
+        width: 100%;
+        text-align: center;
+      }
+
+      .visual {
+        min-height: 370px;
+      }
+
+      .design-window {
+        inset: 45px 18px 65px;
+      }
+
+      .mock-image {
+        height: 150px;
+      }
+
+      .floating-card {
+        padding: 12px 15px;
       }
     }
   </style>
@@ -752,42 +1009,59 @@
 <body>
   <header class="header">
     <div class="container nav">
-      <a href="#" class="logo">
-        <span class="logo-icon">D</span>
-        Design Studio
+      <a href="#top" class="logo" aria-label="News 92 Studio">
+        <span class="logo-icon">N</span>
+        <span>News_92 Studio</span>
       </a>
 
-      <nav class="menu">
+      <nav class="menu" id="menu" aria-label="Основная навигация">
         <a href="#services">Услуги</a>
-        <a href="#calculator">Калькулятор</a>
+        <a href="#calculator">Стоимость</a>
         <a href="#advantages">Преимущества</a>
-        <a href="#contacts">Контакты</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contact">Контакты</a>
       </nav>
 
-      <a href="#contacts" class="button button-dark">Заказать</a>
+      <a href="#contact" class="button desktop-button">
+        Заказать дизайн
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <main>
+  <main id="top">
     <section class="hero">
       <div class="container hero-grid">
         <div>
           <span class="label">Графический дизайн</span>
 
-          <h1>Дизайн, который работает на ваш бизнес</h1>
+          <h1>
+            Дизайн, который помогает
+            <span>выделиться</span>
+          </h1>
 
           <p class="hero-text">
-            Создаю современные обложки, рекламные изображения и презентации.
-            Чистая композиция, деловой стиль и внимание к каждой детали.
+            Создаю современные обложки, Premium-фото,
+            Lite-фото и презентации для ваших проектов.
           </p>
 
           <div class="hero-actions">
-            <a href="#calculator" class="button">Рассчитать стоимость</a>
-            <a href="#services" class="text-link">Смотреть услуги →</a>
+            <a href="#contact" class="button">Оставить заявку</a>
+            <a href="#services" class="text-link">Посмотреть услуги →</a>
           </div>
-        </div>
-
-        <div class="visual">
+        </div><div class="visual" aria-hidden="true">
           <div class="design-window">
             <div class="window-top">
               <span></span>
@@ -796,7 +1070,7 @@
             </div>
 
             <div class="mock-image">
-              <strong>Ideas into visual impact.</strong>
+              <strong>Make your idea visible.</strong>
             </div>
 
             <div class="mock-lines">
@@ -807,8 +1081,8 @@
           </div>
 
           <div class="floating-card">
-            Дизайн обложки
-            <b>от 150 ₽</b>
+            Дизайн от
+            <b>100 ₽</b>
           </div>
         </div>
       </div>
@@ -817,10 +1091,14 @@
     <section class="section section-white" id="services">
       <div class="container">
         <div class="section-heading">
-          <h2>Услуги и цены</h2>
+          <div>
+            <span class="label">Услуги</span>
+            <h2>Выберите подходящий вариант</h2>
+          </div>
+
           <p>
-            Выберите подходящий формат. Стоимость фиксирована и известна
-            до начала работы.
+            Понятная стоимость и современное оформление
+            для ваших задач.
           </p>
         </div>
 
@@ -829,22 +1107,26 @@
             <span class="service-number">01</span>
             <h3>Фотообложка</h3>
             <p>
-              Лаконичное оформление обложки для публикации, товара или проекта.
+              Яркое оформление для публикаций, групп,
+              товаров и цифровых проектов.
             </p>
             <div class="price">
-              150 ₽ <small>/ изображение</small>
+              150 ₽
+              <small>за изображение</small>
             </div>
           </article>
 
           <article class="service-card premium">
-            <span class="premium-badge">Premium</span>
+            <span class="premium-badge">Популярное</span>
             <span class="service-number">02</span>
             <h3>Premium-фото</h3>
             <p>
-              Детальная обработка, сложная композиция и выразительный стиль.
+              Детальная обработка, сложная композиция
+              и выразительный визуальный стиль.
             </p>
             <div class="price">
-              250 ₽ <small>/ изображение</small>
+              250 ₽
+              <small>за изображение</small>
             </div>
           </article>
 
@@ -852,10 +1134,12 @@
             <span class="service-number">03</span>
             <h3>Презентация</h3>
             <p>
-              Оформление деловых, учебных и коммерческих презентаций.
+              Современное оформление деловых,
+              учебных и коммерческих презентаций.
             </p>
             <div class="price">
-              125 ₽ <small>/ слайд</small>
+              125 ₽
+              <small>за слайд</small>
             </div>
           </article>
 
@@ -863,9 +1147,12 @@
             <span class="service-number">04</span>
             <h3>Lite-фото</h3>
             <p>
-              Быстрое и аккуратное оформление в минималистичном стиле.
+              Быстрое минималистичное оформление
+              для простых и срочных задач.
             </p>
-            <div class="price">100 ₽ <small>/ слайд</small>
+            <div class="price">
+              100 ₽
+              <small>за изображение</small>
             </div>
           </article>
         </div>
@@ -875,9 +1162,13 @@
     <section class="section" id="calculator">
       <div class="container">
         <div class="section-heading">
-          <h2>Расчёт стоимости</h2>
+          <div>
+            <span class="label">Калькулятор</span>
+            <h2>Рассчитайте стоимость</h2>
+          </div>
+
           <p>
-            Укажите услугу и необходимое количество работ.
+            Выберите услугу и укажите необходимое количество.
           </p>
         </div>
 
@@ -885,33 +1176,39 @@
           <div class="calculator-form">
             <div class="form-group">
               <label for="service">Выберите услугу</label>
+
               <select id="service">
                 <option value="150">Фотообложка — 150 ₽</option>
                 <option value="250">Premium-фото — 250 ₽</option>
                 <option value="125">Презентация — 125 ₽ за слайд</option>
-                <option value="100">Lite-фото — 100 ₽ за слайд</option>
+                <option value="100">Lite-фото — 100 ₽</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="quantity">Количество изображений или слайдов</label>
+              <label for="quantity">Количество</label>
+
               <input
-                type="number"
                 id="quantity"
+                type="number"
+                value="1"
                 min="1"
                 max="100"
-                value="1"
+                inputmode="numeric"
               >
             </div>
           </div>
 
           <div class="calculator-total">
             <p>Предварительная стоимость</p>
-            <div class="total-price" id="totalPrice">150 ₽</div>
-            <p class="total-note">
-              Финальная цена может зависеть от сложности и сроков выполнения.
+
+            <div class="total-price" id="totalPrice">150 ₽</div<p class="total-note">
+              Итоговая цена может зависеть от сложности задачи.
             </p>
-            <a href="#contacts" class="button">Оформить заказ</a>
+
+            <a href="#contact" class="button" id="orderButton">
+              Заказать
+            </a>
           </div>
         </div>
       </div>
@@ -920,52 +1217,127 @@
     <section class="section section-white" id="advantages">
       <div class="container">
         <div class="section-heading">
-          <h2>Почему выбирают меня</h2>
-          <p>
-            Понятный процесс работы и визуальные решения под задачи проекта.
-          </p>
+          <div>
+            <span class="label">Преимущества</span>
+            <h2>Почему выбирают меня</h2>
+          </div>
         </div>
 
         <div class="advantages">
           <article class="advantage">
             <div class="advantage-icon">01</div>
-            <h3>Современный стиль</h3>
+            <h3>Современный дизайн</h3>
             <p>
-              Чистый и аккуратный дизайн без лишних элементов.
+              Аккуратная композиция, актуальные цвета
+              и внимание к каждой детали.
             </p>
           </article>
 
           <article class="advantage">
             <div class="advantage-icon">02</div>
-            <h3>Соблюдение сроков</h3>
+            <h3>Быстрое выполнение</h3>
             <p>
-              Заранее согласовываю сроки и остаюсь на связи во время работы.
+              Сроки обсуждаются заранее и соблюдаются
+              на каждом этапе работы.
             </p>
           </article>
 
           <article class="advantage">
             <div class="advantage-icon">03</div>
-            <h3>Правки и поддержка</h3>
+            <h3>Понятная стоимость</h3>
             <p>
-              Учитываю пожелания и довожу дизайн до согласованного результата.
+              Цена согласовывается до начала работы
+              без неожиданных доплат.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contacts">
+    <section class="section" id="reviews">
       <div class="container">
-        <div class="contact">
+        <div class="section-heading">
           <div>
-            <h2>Готовы обсудить ваш проект?</h2>
-            <p>Напишите мне — отвечу на вопросы и уточню детали заказа.</p>
+            <span class="label">Отзывы</span>
+            <h2>Что говорят клиенты</h2>
           </div>
 
-          <!-- Замените username на имя пользователя в Telegram -->
+          <p>
+            Примеры отзывов можно заменить на настоящие
+            отзывы ваших заказчиков.
+          </p>
+        </div>
+
+        <div class="reviews">
+          <article class="review">
+            <div class="review-stars">★★★★★</div>
+
+            <blockquote>
+              «Обложка получилась современной и яркой.
+              Все пожелания были учтены, работа выполнена быстро».
+            </blockquote>
+
+            <div class="review-author">
+              <span class="review-avatar">А</span>
+              <div>
+                <strong>Анна</strong>
+                <small>Фотообложка</small>
+              </div>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="review-stars">★★★★★</div>
+
+            <blockquote>
+              «Заказывал презентацию для проекта.
+              Результат выглядит аккуратно и профессионально».
+            </blockquote>
+
+            <div class="review-author">
+              <span class="review-avatar">М</span>
+              <div>
+                <strong>Михаил</strong>
+                <small>Презентация</small>
+              </div>
+            </div>
+          </article>
+
+          <article class="review">
+            <div class="review-stars">★★★★★</div>
+
+            <blockquote>
+              «Очень понравилась Premium-обработка.
+              Получилось даже лучше, чем я представляла».
+            </blockquote>
+
+            <div class="review-author">
+              <span class="review-avatar">Е</span>
+              <div>
+                <strong>Елена</strong>
+                <small>Premium-фото</small>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="contact">
+      <div class="container">
+        <div class="contact">
+          <div class="contact-content">
+            <h2>Готовы обсудить ваш проект?</h2>
+            <p>
+              Напишите мне в Telegram. Обсудим задачу,
+              сроки и подходящий вариант оформления.
+            </p>
+          </div>
+
+          <!-- Замените username на своё имя пользователя -->
           <a
-            href="https://t.me/username"
             class="button"
+            href="https://t.me/news_92"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -974,29 +1346,92 @@
         </div>
       </div>
     </section>
-  </main>
-
-  <footer class="footer">
+  </main><footer class="footer">
     <div class="container footer-row">
-      <p>© 2026 Design Studio. Все права защищены.</p>
-      <p>Графический дизайн для бизнеса и личных проектов</p>
+      <span>© 2026 News_92 Studio</span>
+
+      <div class="footer-links">
+        <a href="#services">Услуги</a>
+        <a href="#calculator">Стоимость</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contact">Контакты</a>
+      </div>
     </div>
   </footer>
 
   <script>
-    const service = document.getElementById("service");
-    const quantity = document.getElementById("quantity");
+    "use strict";
+
+    const serviceSelect = document.getElementById("service");
+    const quantityInput = document.getElementById("quantity");
     const totalPrice = document.getElementById("totalPrice");
+    const orderButton = document.getElementById("orderButton");
 
-    function calculatePrice() {
-      const price = Number(service.value);
-      const count = Math.max(1, Number(quantity.value) || 1);
-      const total = price * count;
+    const menu = document.getElementById("menu");
+    const menuButton = document.getElementById("menuButton");
 
-      totalPrice.textContent = `${total.toLocaleString("ru-RU")} ₽`;
+    function getQuantity() {
+      const value = Number.parseInt(quantityInput.value, 10);
+
+      if (Number.isNaN(value)) {
+        return 1;
+      }
+
+      return Math.min(100, Math.max(1, value));
     }
 
-    service.addEventListener("change", calculatePrice);quantity.addEventListener("input", calculatePrice);
+    function calculateTotal() {
+      const price = Number(serviceSelect.value);
+      const quantity = getQuantity();
+      const total = price * quantity;
+
+      quantityInput.value = quantity;
+
+      totalPrice.textContent =
+        total.toLocaleString("ru-RU") + " ₽";
+    }
+
+    serviceSelect.addEventListener("change", calculateTotal);
+    quantityInput.addEventListener("input", calculateTotal);
+    quantityInput.addEventListener("blur", calculateTotal);
+
+    orderButton.addEventListener("click", function () {
+      const selectedOption =
+        serviceSelect.options[serviceSelect.selectedIndex];
+
+      const serviceName = selectedOption.text
+        .split(" — ")[0];
+
+      const quantity = getQuantity();
+
+      orderButton.dataset.service = serviceName;
+      orderButton.dataset.quantity = String(quantity);
+    });
+
+    menuButton.addEventListener("click", function () {
+      const isOpen = menu.classList.toggle("active");
+
+      document.body.classList.toggle("menu-open", isOpen);
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        menu.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 760) {
+        menu.classList.remove("active");
+        document.body.classList.remove("menu-open");
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    calculateTotal();
   </script>
 </body>
 </html>
