@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Design Studio — услуги графического дизайнера</title>
+  <meta
+    name="description"
+    content="Создание обложек, Premium-фото, Lite-фото и презентаций."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --dark: #101114;
+      --text: #202228;
+      --muted: #72757e;
+      --accent: #4f63ff;
+      --accent-dark: #3c4fe5;
+      --line: #e6e7eb;
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(20, 23, 31, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Навигация */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245, 246, 248, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(230, 231, 235, 0.8);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-icon {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--dark);
+      border-radius: 10px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .menu a {
+      transition: color 0.2s;
+    }
+
+    .menu a:hover {
+      color: var(--dark);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 24px;
+      color: #fff;
+      font-weight: 700;
+      border: 0;
+      border-radius: 13px;
+      background: var(--accent);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .button-dark {
+      background: var(--dark);
+    }
+
+    .button-dark:hover {
+      background: #292b31;
+    }
+
+    /* Главный экран */
+
+    .hero {
+      padding: 86px 0 68px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 24px;
+      padding: 8px 13px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: rgba(79, 99, 255, 0.09);
+      border-radius: 100px;
+    }
+
+    .label::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      max-width: 700px;
+      color: var(--dark);
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -3.5px;
+    }
+
+    .hero-text {
+      max-width: 610px;
+      margin: 26px 0 34px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;}
+
+    .text-link {
+      font-weight: 700;
+      padding: 12px;
+    }
+
+    .text-link:hover {
+      color: var(--accent);
+    }
+
+    .visual {
+      position: relative;
+      min-height: 510px;
+      overflow: hidden;
+      background: var(--dark);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .visual::before,
+    .visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(4px);
+    }
+
+    .visual::before {
+      width: 340px;
+      height: 340px;
+      top: -90px;
+      right: -80px;
+      background: var(--accent);
+    }
+
+    .visual::after {
+      width: 260px;
+      height: 260px;
+      left: -100px;
+      bottom: -90px;
+      background: #bdc5ff;
+    }
+
+    .design-window {
+      position: absolute;
+      inset: 72px 45px;
+      z-index: 2;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 21px;
+      transform: rotate(-3deg);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .window-top {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .window-top span {
+      width: 8px;
+      height: 8px;
+      background: #d5d6da;
+      border-radius: 50%;
+    }
+
+    .mock-image {
+      height: 210px;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, transparent 45%, rgba(255,255,255,.18) 45%),
+        linear-gradient(135deg, #4f63ff, #151824);
+      border-radius: 15px;
+    }
+
+    .mock-image strong {
+      max-width: 200px;
+      font-size: 29px;
+      line-height: 1.1;
+    }
+
+    .mock-lines {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .mock-lines span {
+      height: 10px;
+      background: #e9eaed;
+      border-radius: 10px;
+    }
+
+    .mock-lines span:nth-child(2) {
+      width: 72%;
+    }
+
+    .floating-card {
+      position: absolute;
+      right: 18px;
+      bottom: 36px;
+      z-index: 3;
+      padding: 17px 21px;
+      color: var(--dark);
+      font-size: 13px;
+      font-weight: 700;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.22);
+    }
+
+    .floating-card b {
+      display: block;
+      color: var(--accent);
+      font-size: 22px;
+    }
+
+    /* Секции */
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-white {
+      background: var(--surface);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      color: var(--dark);
+      font-size: clamp(32px, 4vw, 50px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .section-heading p {
+      max-width: 430px;
+      color: var(--muted);
+    }
+
+    /* Услуги */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      padding: 27px;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: 0.25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      border-color: #ccd0ff;
+      box-shadow: var(--shadow);
+    }
+
+    .service-number {
+      margin-bottom: 48px;
+      color: #a2a4ac;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .service-card h3 {
+      color: var(--dark);
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .service-card p {
+      margin: 12px 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .price {
+      margin-top: auto;
+      color: var(--dark);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .price small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .premium {
+      color: #fff;background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .premium h3,
+    .premium .price {
+      color: #fff;
+    }
+
+    .premium p,
+    .premium .service-number,
+    .premium .price small {
+      color: #aeb0b8;
+    }
+
+    .premium-badge {
+      position: absolute;
+      top: 22px;
+      right: 20px;
+      padding: 6px 10px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      background: var(--accent);
+      border-radius: 100px;
+    }
+
+    /* Калькулятор */
+
+    .calculator {
+      display: grid;
+      grid-template-columns: 1fr 0.75fr;
+      gap: 22px;
+    }
+
+    .calculator-form,
+    .calculator-total {
+      padding: 36px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    select,
+    input {
+      width: 100%;
+      min-height: 54px;
+      padding: 0 16px;
+      color: var(--text);
+      background: #f8f8fa;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 99, 255, 0.1);
+    }
+
+    .calculator-total {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+      background: var(--dark);
+      border-color: var(--dark);
+    }
+
+    .calculator-total p {
+      color: #aeb0b8;
+    }
+
+    .total-price {
+      margin: 12px 0 25px;
+      font-size: clamp(44px, 6vw, 70px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -3px;
+    }
+
+    .total-note {
+      margin-bottom: 26px;
+      font-size: 13px;
+    }
+
+    /* Преимущества */
+
+    .advantages {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .advantage {
+      padding: 28px;
+      background: #f8f8fa;
+      border-radius: 18px;
+    }
+
+    .advantage-icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      color: #fff;
+      font-weight: 800;
+      background: var(--accent);
+      border-radius: 12px;
+    }
+
+    .advantage h3 {
+      margin-bottom: 8px;
+      color: var(--dark);
+      font-size: 18px;
+    }
+
+    .advantage p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Контакты */
+
+    .contact {
+      padding: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 35px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 90% 0%, #6173ff 0, transparent 35%),
+        var(--dark);
+      border-radius: 30px;
+    }
+
+    .contact h2 {
+      max-width: 660px;
+      margin-bottom: 12px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .contact p {
+      color: #bec0c7;
+    }
+
+    .footer {
+      padding: 35px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* Адаптивность */
+
+    @media (max-width: 950px) {
+      .hero-grid,
+      .calculator {
+        grid-template-columns: 1fr;
+      }
+
+      .visual {
+        min-height: 460px;
+      }
+
+      .services {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 24px, 1160px);
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .nav .button {
+        min-height: 43px;
+        padding: 0 16px;
+        font-size: 13px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero {
+        padding: 48px 0;
+      }
+
+      .hero-grid {
+        gap: 40px;
+      }
+
+      .visual {
+        min-height: 390px;
+        border-radius: 24px;
+      }.design-window {
+        inset: 55px 24px;
+      }
+
+      .mock-image {
+        height: 180px;
+      }
+
+      .services,
+      .advantages {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 15px;
+      }
+
+      .calculator-form,
+      .calculator-total {
+        padding: 25px;
+      }
+
+      .contact {
+        padding: 35px 25px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="logo">
+        <span class="logo-icon">D</span>
+        Design Studio
+      </a>
+
+      <nav class="menu">
+        <a href="#services">Услуги</a>
+        <a href="#calculator">Калькулятор</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <a href="#contacts" class="button button-dark">Заказать</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="label">Графический дизайн</span>
+
+          <h1>Дизайн, который работает на ваш бизнес</h1>
+
+          <p class="hero-text">
+            Создаю современные обложки, рекламные изображения и презентации.
+            Чистая композиция, деловой стиль и внимание к каждой детали.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#calculator" class="button">Рассчитать стоимость</a>
+            <a href="#services" class="text-link">Смотреть услуги →</a>
+          </div>
+        </div>
+
+        <div class="visual">
+          <div class="design-window">
+            <div class="window-top">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="mock-image">
+              <strong>Ideas into visual impact.</strong>
+            </div>
+
+            <div class="mock-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="floating-card">
+            Дизайн обложки
+            <b>от 150 ₽</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Услуги и цены</h2>
+          <p>
+            Выберите подходящий формат. Стоимость фиксирована и известна
+            до начала работы.
+          </p>
+        </div>
+
+        <div class="services">
+          <article class="service-card">
+            <span class="service-number">01</span>
+            <h3>Фотообложка</h3>
+            <p>
+              Лаконичное оформление обложки для публикации, товара или проекта.
+            </p>
+            <div class="price">
+              150 ₽ <small>/ изображение</small>
+            </div>
+          </article>
+
+          <article class="service-card premium">
+            <span class="premium-badge">Premium</span>
+            <span class="service-number">02</span>
+            <h3>Premium-фото</h3>
+            <p>
+              Детальная обработка, сложная композиция и выразительный стиль.
+            </p>
+            <div class="price">
+              250 ₽ <small>/ изображение</small>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <span class="service-number">03</span>
+            <h3>Презентация</h3>
+            <p>
+              Оформление деловых, учебных и коммерческих презентаций.
+            </p>
+            <div class="price">
+              125 ₽ <small>/ слайд</small>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <span class="service-number">04</span>
+            <h3>Lite-фото</h3>
+            <p>
+              Быстрое и аккуратное оформление в минималистичном стиле.
+            </p>
+            <div class="price">100 ₽ <small>/ слайд</small>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Расчёт стоимости</h2>
+          <p>
+            Укажите услугу и необходимое количество работ.
+          </p>
+        </div>
+
+        <div class="calculator">
+          <div class="calculator-form">
+            <div class="form-group">
+              <label for="service">Выберите услугу</label>
+              <select id="service">
+                <option value="150">Фотообложка — 150 ₽</option>
+                <option value="250">Premium-фото — 250 ₽</option>
+                <option value="125">Презентация — 125 ₽ за слайд</option>
+                <option value="100">Lite-фото — 100 ₽ за слайд</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="quantity">Количество изображений или слайдов</label>
+              <input
+                type="number"
+                id="quantity"
+                min="1"
+                max="100"
+                value="1"
+              >
+            </div>
+          </div>
+
+          <div class="calculator-total">
+            <p>Предварительная стоимость</p>
+            <div class="total-price" id="totalPrice">150 ₽</div>
+            <p class="total-note">
+              Финальная цена может зависеть от сложности и сроков выполнения.
+            </p>
+            <a href="#contacts" class="button">Оформить заказ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="advantages">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Почему выбирают меня</h2>
+          <p>
+            Понятный процесс работы и визуальные решения под задачи проекта.
+          </p>
+        </div>
+
+        <div class="advantages">
+          <article class="advantage">
+            <div class="advantage-icon">01</div>
+            <h3>Современный стиль</h3>
+            <p>
+              Чистый и аккуратный дизайн без лишних элементов.
+            </p>
+          </article>
+
+          <article class="advantage">
+            <div class="advantage-icon">02</div>
+            <h3>Соблюдение сроков</h3>
+            <p>
+              Заранее согласовываю сроки и остаюсь на связи во время работы.
+            </p>
+          </article>
+
+          <article class="advantage">
+            <div class="advantage-icon">03</div>
+            <h3>Правки и поддержка</h3>
+            <p>
+              Учитываю пожелания и довожу дизайн до согласованного результата.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <h2>Готовы обсудить ваш проект?</h2>
+            <p>Напишите мне — отвечу на вопросы и уточню детали заказа.</p>
+          </div>
+
+          <!-- Замените username на имя пользователя в Telegram -->
+          <a
+            href="https://t.me/username"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Написать в Telegram
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <p>© 2026 Design Studio. Все права защищены.</p>
+      <p>Графический дизайн для бизнеса и личных проектов</p>
+    </div>
+  </footer>
+
+  <script>
+    const service = document.getElementById("service");
+    const quantity = document.getElementById("quantity");
+    const totalPrice = document.getElementById("totalPrice");
+
+    function calculatePrice() {
+      const price = Number(service.value);
+      const count = Math.max(1, Number(quantity.value) || 1);
+      const total = price * count;
+
+      totalPrice.textContent = `${total.toLocaleString("ru-RU")} ₽`;
+    }
+
+    service.addEventListener("change", calculatePrice);quantity.addEventListener("input", calculatePrice);
+  </script>
+</body>
+</html>
