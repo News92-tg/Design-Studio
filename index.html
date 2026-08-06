@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Design Studio — услуги графического дизайнера</title>
+  <title>News_92 Studio — услуги графического дизайнера</title>
   <meta
     name="description"
     content="Создание обложек, Premium-фото, Lite-фото и презентаций."
@@ -431,7 +431,68 @@
     .premium .price small {
       color: #aeb0b8;
     }
+/* Лёгкое выделение фонов услуг */
 
+.service-card:nth-child(1) {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(79, 99, 255, 0.12),
+      transparent 45%
+    ),
+    #ffffff;
+  border-color: #dfe2ff;
+}
+
+.service-card:nth-child(2) {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(79, 99, 255, 0.45),
+      transparent 45%
+    ),
+    #101114;
+}
+
+.service-card:nth-child(3) {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(55, 181, 140, 0.12),
+      transparent 45%
+    ),
+    #ffffff;
+  border-color: #dceee8;
+}
+
+.service-card:nth-child(4) {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(245, 166, 35, 0.13),
+      transparent 45%
+    ),
+    #ffffff;
+  border-color: #f0e5d4;
+}
+
+/* Усиление оттенка при наведении */
+
+.service-card:nth-child(1):hover {
+  border-color: rgba(79, 99, 255, 0.4);
+}
+
+.service-card:nth-child(2):hover {
+  border-color: rgba(115, 130, 255, 0.7);
+}
+
+.service-card:nth-child(3):hover {
+  border-color: rgba(55, 181, 140, 0.4);
+}
+
+.service-card:nth-child(4):hover {
+  border-color: rgba(245, 166, 35, 0.45);
+}
     .premium-badge {
       position: absolute;
       top: 22px;
