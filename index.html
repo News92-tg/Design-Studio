@@ -1,0 +1,3270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>News_92 Studio — дизайн и создание сайтов</title>
+
+<meta
+name="description"
+content="News_92 Studio — создание сайтов, дизайн, оформление, домены и запуск проектов под ключ."
+>
+
+<meta name="theme-color" content="#101114">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
+
+<style>
+
+:root{
+    --bg:#f5f6f8;
+    --surface:#ffffff;
+    --dark:#101114;
+    --dark2:#181a20;
+    --text:#202228;
+    --muted:#72757e;
+    --accent:#5367ff;
+    --accent2:#7383ff;
+    --line:#e5e7eb;
+    --green:#22a06b;
+    --orange:#f59e0b;
+    --red:#ef4444;
+    --radius:22px;
+    --shadow:0 20px 60px rgba(15,18,30,.09);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Manrope",sans-serif;
+    color:var(--text);
+    background:var(--bg);
+    line-height:1.6;
+}
+
+body.modal-open{
+    overflow:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.container{
+    width:min(1160px,calc(100% - 32px));
+    margin:0 auto;
+}
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(245,246,248,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(220,222,228,.8);
+}
+
+.nav{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-weight:800;
+    letter-spacing:-.5px;
+    white-space:nowrap;
+}
+
+.logo-icon{
+    width:38px;
+    height:38px;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    background:var(--dark);
+    border-radius:11px;
+    box-shadow:0 8px 20px rgba(16,17,20,.18);
+}
+
+.menu{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    color:var(--muted);
+    font-size:13px;
+    font-weight:700;
+}
+
+.menu a{
+    transition:.2s;
+}
+
+.menu a:hover{
+    color:var(--dark);
+}
+
+.header-button,
+.button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:50px;
+    padding:0 22px;
+    border:0;
+    border-radius:13px;
+    color:#fff;
+    background:var(--accent);
+    font-weight:800;
+    transition:.2s;
+}
+
+.button:hover,
+.header-button:hover{
+    transform:translateY(-2px);
+    background:#4054ec;
+    box-shadow:0 12px 30px rgba(83,103,255,.25);
+}
+
+.button-dark{
+    background:var(--dark);
+}
+
+.button-dark:hover{
+    background:#292b31;
+}
+
+.button-light{
+    color:var(--dark);
+    background:#fff;
+}
+
+.button-light:hover{
+    background:#f1f2f4;
+}
+
+.button-outline{
+    color:var(--dark);
+    background:transparent;
+    border:1px solid var(--line);
+}
+
+.button-outline:hover{
+    background:#fff;
+}
+
+.mobile-menu{
+    display:none;
+    width:44px;
+    height:44px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#fff;
+    font-size:20px;
+}
+
+/* HERO */
+
+.hero{
+    padding:86px 0 70px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    align-items:center;
+    gap:65px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    margin-bottom:22px;
+    color:var(--accent);
+    background:rgba(83,103,255,.09);
+    border-radius:100px;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.badge-dot{
+    width:7px;
+    height:7px;
+    background:var(--accent);
+    border-radius:50%;
+}
+
+h1{
+    max-width:730px;
+    color:var(--dark);
+    font-size:clamp(42px,6vw,76px);
+    line-height:1.03;
+    letter-spacing:-4px;
+}
+
+.hero-text{
+    max-width:620px;
+    margin:26px 0 32px;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:12px;
+}
+
+.hero-note{
+    margin-top:20px;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.hero-note span{
+    color:var(--green);
+    font-weight:800;
+}
+
+.hero-visual{
+    position:relative;
+    min-height:510px;
+    overflow:hidden;
+    background:var(--dark);
+    border-radius:32px;
+    box-shadow:0 30px 80px rgba(16,17,20,.2);
+}
+
+.hero-visual:before{
+    content:"";
+    position:absolute;
+    width:340px;
+    height:340px;
+    top:-100px;
+    right:-80px;
+    background:var(--accent);
+    border-radius:50%;
+    filter:blur(5px);
+}
+
+.hero-visual:after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    left:-100px;
+    bottom:-100px;
+    background:#aeb8ff;
+    border-radius:50%;
+}
+
+.site-window{
+    position:absolute;
+    z-index:2;
+    inset:70px 42px;
+    padding:18px;
+    background:rgba(255,255,255,.95);
+    border-radius:22px;
+    transform:rotate(-3deg);
+    box-shadow:0 35px 70px rgba(0,0,0,.28);
+}
+
+.window-top{
+    display:flex;
+    gap:6px;
+    margin-bottom:15px;
+}
+
+.window-top span{
+    width:8px;
+    height:8px;
+    background:#d4d5da;
+    border-radius:50%;
+}
+
+.fake-site{
+    height:300px;
+    padding:25px;
+    overflow:hidden;
+    border-radius:16px;
+    background:
+        radial-gradient(circle at 90% 0%,#7585ff,transparent 35%),
+        linear-gradient(135deg,#151824,#30374c);
+    color:#fff;
+}
+
+.fake-site-small{
+    width:80px;
+    height:8px;
+    margin-bottom:35px;
+    background:#fff;
+    opacity:.7;
+    border-radius:20px;
+}
+
+.fake-site h3{
+    max-width:230px;
+    font-size:34px;
+    line-height:1.08;
+    letter-spacing:-1px;
+}
+
+.fake-site p{
+    max-width:250px;
+    margin-top:14px;
+    color:#d7d9e1;
+    font-size:12px;
+}
+
+.fake-button{
+    display:inline-block;
+    margin-top:20px;
+    padding:10px 15px;
+    background:#fff;
+    color:#111;
+    border-radius:9px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.floating-price{
+    position:absolute;
+    right:20px;
+    bottom:32px;
+    z-index:5;
+    padding:16px 20px;
+    background:#fff;
+    border-radius:15px;
+    box-shadow:0 18px 40px rgba(0,0,0,.25);
+    font-size:12px;
+    font-weight:700;
+}
+
+.floating-price strong{
+    display:block;
+    color:var(--accent);
+    font-size:25px;
+}
+
+/* SECTION */
+
+.section{
+    padding:90px 0;
+}
+
+.section-white{
+    background:#fff;
+}
+
+.section-heading{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:30px;
+    margin-bottom:42px;
+}
+
+.section-heading h2{
+    color:var(--dark);
+    font-size:clamp(32px,4vw,52px);
+    line-height:1.08;
+    letter-spacing:-2.5px;
+}
+
+.section-heading p{
+    max-width:470px;
+    color:var(--muted);
+}
+
+/* TABS */
+
+.tabs{
+    display:flex;
+    gap:8px;
+    padding:6px;
+    margin-bottom:32px;
+    background:#f0f1f4;
+    border-radius:15px;
+    overflow:auto;
+}
+
+.tab{
+    flex:0 0 auto;
+    min-height:44px;
+    padding:0 18px;
+    border:0;
+    border-radius:10px;
+    background:transparent;
+    color:var(--muted);
+    font-weight:800;
+}
+
+.tab.active{
+    color:#fff;
+    background:var(--dark);
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+/* SERVICES */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:17px;
+}
+
+.card{
+    position:relative;
+    padding:27px;
+    min-height:300px;
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:var(--radius);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow);
+}
+
+.card-number{
+    color:#a3a5ad;
+    font-size:12px;
+    font-weight:800;
+}
+
+.card-icon{
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    margin:32px 0 20px;
+    border-radius:14px;
+    color:#fff;
+    background:var(--accent);
+    font-size:20px;
+}
+
+.card h3{
+    color:var(--dark);
+    font-size:20px;
+    line-height:1.2;
+}
+
+.card p{
+    margin:10px 0 22px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.card-price{
+    color:var(--dark);
+    font-size:24px;
+    font-weight:800;
+}
+
+.card-price small{
+    color:var(--muted);
+    font-size:11px;
+    font-weight:600;
+}
+
+/* WEBSITE SERVICES */
+
+.website-intro{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:22px;
+}
+
+.website-highlight{
+    padding:34px;
+    color:#fff;
+    background:
+        radial-gradient(circle at 100% 0%,#6374ff,transparent 40%),
+        var(--dark);
+    border-radius:var(--radius);
+}
+
+.website-highlight h3{
+    margin-bottom:12px;
+    font-size:28px;
+    line-height:1.15;
+}
+
+.website-highlight p{
+    color:#c3c6cf;
+}
+
+.check-list{
+    display:grid;
+    gap:10px;
+    margin-top:22px;
+}
+
+.check{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#e7e9ee;
+    font-size:13px;
+}
+
+.check b{
+    width:22px;
+    height:22px;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    background:var(--green);
+    border-radius:50%;
+    font-size:11px;
+}
+
+.website-info{
+    padding:34px;
+    background:#f6f7f9;
+    border-radius:var(--radius);
+}
+
+.website-info h3{
+    margin-bottom:12px;
+    font-size:24px;
+}
+
+.website-info p{
+    color:var(--muted);
+}
+
+.website-packages{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.package{
+    position:relative;
+    padding:30px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:#fff;
+    transition:.25s;
+}
+
+.package:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.package.featured{
+    border:2px solid var(--accent);
+}
+
+.package-badge{
+    position:absolute;
+    top:18px;
+    right:18px;
+    padding:6px 9px;
+    color:#fff;
+    background:var(--accent);
+    border-radius:100px;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.package h3{
+    font-size:23px;
+}
+
+.package-description{
+    min-height:45px;
+    margin:9px 0 20px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.package-price{
+    margin-bottom:20px;
+    font-size:34px;
+    font-weight:800;
+    letter-spacing:-1.5px;
+}
+
+.package-price span{
+    color:var(--muted);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0;
+}
+
+.package ul{
+    display:grid;
+    gap:11px;
+    margin:0 0 24px;
+    list-style:none;
+}
+
+.package li{
+    position:relative;
+    padding-left:25px;
+    color:#555862;
+    font-size:13px;
+}
+
+.package li:before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    color:var(--green);
+    font-weight:900;
+}
+
+.package .button{
+    width:100%;
+}
+
+/* ADDONS */
+
+.addons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:18px;
+}
+
+.addon{
+    padding:20px;
+    border:1px solid var(--line);
+    border-radius:17px;
+    background:#fff;
+}
+
+.addon strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.addon span{
+    color:var(--accent);
+    font-weight:800;
+    font-size:14px;
+}
+
+/* CALCULATOR */
+
+.calculator{
+    display:grid;
+    grid-template-columns:1fr .75fr;
+    gap:20px;
+}
+
+.calculator-form,
+.calculator-total{
+    padding:35px;
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+}
+
+.calculator-form{
+    background:#fff;
+}
+
+.calculator-total{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+    background:var(--dark);
+    border-color:var(--dark);
+}
+
+.form-group{
+    margin-bottom:19px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    color:var(--dark);
+    font-size:13px;
+    font-weight:800;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    min-height:52px;
+    padding:0 15px;
+    color:var(--text);
+    background:#f7f8fa;
+    border:1px solid var(--line);
+    border-radius:12px;
+    outline:none;
+}
+
+textarea{
+    min-height:120px;
+    padding-top:14px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(83,103,255,.1);
+}
+
+.total-label{
+    color:#aeb1ba;
+    font-size:13px;
+    font-weight:700;
+}
+
+.total-price{
+    margin:12px 0;
+    font-size:64px;
+    line-height:1;
+    font-weight:800;
+    letter-spacing:-4px;
+}
+
+.total-details{
+    min-height:45px;
+    margin-bottom:22px;
+    color:#b8bbc4;
+    font-size:12px;
+}
+
+/* PROCESS */
+
+.process{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.step{
+    padding:28px;
+    background:#f7f8fa;
+    border-radius:20px;
+}
+
+.step-number{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    margin-bottom:22px;
+    color:#fff;
+    background:var(--dark);
+    border-radius:12px;
+    font-weight:800;
+}
+
+.step h3{
+    margin-bottom:8px;
+}
+
+.step p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* ADVANTAGES */
+
+.advantages{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.advantage{
+    padding:28px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:#fff;
+}
+
+.advantage-icon{
+    width:46px;
+    height:46px;
+    display:grid;
+    place-items:center;
+    margin-bottom:20px;
+    color:#fff;
+    background:var(--accent);
+    border-radius:13px;
+}
+
+.advantage h3{
+    margin-bottom:8px;
+    font-size:18px;
+}
+
+.advantage p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* PORTFOLIO */
+
+.portfolio{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.portfolio-card{
+    overflow:hidden;
+    border-radius:22px;
+    background:#fff;
+    border:1px solid var(--line);
+}
+
+.portfolio-preview{
+    height:220px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:25px;
+    color:#fff;
+    background:
+        radial-gradient(circle at 80% 15%,#6c7cff,transparent 35%),
+        linear-gradient(135deg,#101114,#303746);
+}
+
+.portfolio-preview:nth-child(2){
+    background:
+        radial-gradient(circle at 20% 20%,#8a96ff,transparent 30%),
+        linear-gradient(135deg,#181a20,#454c62);
+}
+
+.portfolio-title{
+    font-size:25px;
+    font-weight:800;
+}
+
+.portfolio-card-body{
+    padding:20px;
+}
+
+.portfolio-card-body p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* FAQ */
+
+.faq{
+    display:grid;
+    gap:10px;
+}
+
+.faq-item{
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.faq-question{
+    width:100%;
+    min-height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:0 20px;
+    border:0;
+    background:#fff;
+    color:var(--dark);
+    text-align:left;
+    font-weight:800;
+}
+
+.faq-question span{
+    font-size:22px;
+    color:var(--muted);
+    transition:.2s;
+}
+
+.faq-item.open .faq-question span{
+    transform:rotate(45deg);
+}
+
+.faq-answer{
+    display:none;
+    padding:0 20px 20px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.faq-item.open .faq-answer{
+    display:block;
+}
+
+/* CONTACT */
+
+.contact{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+    padding:52px;
+    color:#fff;
+    background:
+        radial-gradient(circle at 90% 0%,#6475ff,transparent 35%),
+        var(--dark);
+    border-radius:30px;
+}
+
+.contact h2{
+    max-width:650px;
+    margin-bottom:10px;
+    font-size:clamp(32px,5vw,52px);
+    line-height:1.08;
+    letter-spacing:-2px;
+}
+
+.contact p{
+    color:#bfc2ca;
+}
+
+/* FOOTER */
+
+.footer{
+    padding:35px 0;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.footer-row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:rgba(8,10,15,.68);
+    backdrop-filter:blur(8px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(560px,100%);
+    max-height:92vh;
+    overflow:auto;
+    padding:30px;
+    background:#fff;
+    border-radius:24px;
+    box-shadow:0 30px 100px rgba(0,0,0,.35);
+}
+
+.modal-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:28px;
+    line-height:1.15;
+}
+
+.close{
+    width:40px;
+    height:40px;
+    border:0;
+    background:#f1f2f4;
+    border-radius:11px;
+    font-size:22px;
+}
+
+.order-summary{
+    margin-bottom:20px;
+    padding:15px;
+    color:#555862;
+    background:#f7f8fa;
+    border-radius:13px;
+    font-size:13px;
+}
+
+.form-actions{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.form-actions .button{
+    flex:1;
+}
+
+.success{
+    display:none;
+    padding:25px;
+    text-align:center;
+}
+
+.success.show{
+    display:block;
+}
+
+.success-icon{
+    width:60px;
+    height:60px;
+    display:grid;
+    place-items:center;
+    margin:0 auto 18px;
+    color:#fff;
+    background:var(--green);
+    border-radius:50%;
+    font-size:25px;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:2000;
+    max-width:360px;
+    padding:15px 18px;
+    color:#fff;
+    background:var(--dark);
+    border-radius:14px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+    transform:translateY(120px);
+    opacity:0;
+    transition:.3s;
+    font-size:13px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .menu{
+        display:none;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .website-packages{
+        grid-template-columns:1fr;
+    }
+
+    .addons{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .process{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .calculator{
+        grid-template-columns:1fr;
+    }
+
+    .portfolio{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:700px){
+
+    .container{
+        width:min(100% - 24px,1160px);
+    }
+
+    .header-button{
+        display:none;
+    }
+
+    .hero{
+        padding:52px 0;
+    }
+
+    h1{
+        font-size:43px;
+        letter-spacing:-2.5px;
+    }
+
+    .hero-text{
+        font-size:16px;
+    }
+
+    .hero-visual{
+        min-height:390px;
+        border-radius:24px;
+    }
+
+    .site-window{
+        inset:50px 20px;
+    }
+
+    .fake-site{
+        height:250px;
+    }
+
+    .fake-site h3{
+        font-size:26px;
+    }
+
+    .section{
+        padding:65px 0;
+    }
+
+    .section-heading{
+        display:block;
+    }
+
+    .section-heading p{
+        margin-top:14px;
+    }
+
+    .cards,
+    .website-intro,
+    .advantages,
+    .portfolio,
+    .process{
+        grid-template-columns:1fr;
+    }
+
+    .addons{
+        grid-template-columns:1fr;
+    }
+
+    .calculator-form,
+    .calculator-total{
+        padding:24px;
+    }
+
+    .total-price{
+        font-size:54px;
+    }
+
+    .contact{
+        padding:34px 25px;
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .footer-row{
+        flex-direction:column;
+    }
+
+    .footer-links{
+        flex-wrap:wrap;
+    }
+
+    .modal-box{
+        padding:22px;
+    }
+
+    .form-actions{
+        flex-direction:column;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container nav">
+
+<a href="#top" class="logo">
+<span class="logo-icon">N</span>
+<span>News_92 Studio</span>
+</a>
+
+<nav class="menu">
+<a href="#services">Услуги</a>
+<a href="#websites">Сайты</a>
+<a href="#calculator">Калькулятор</a>
+<a href="#portfolio">Работы</a>
+<a href="#faq">FAQ</a>
+</nav>
+
+<button
+class="header-button"
+type="button"
+onclick="openOrder('Создание сайта')"
+>
+Заказать
+</button>
+
+<button
+class="mobile-menu"
+type="button"
+aria-label="Меню"
+onclick="scrollToSection('services')"
+>
+☰
+</button>
+
+</div>
+
+</header>
+
+
+<main id="top">
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+<span class="badge-dot"></span>
+Дизайн • сайты • запуск
+</div>
+
+<h1>
+Создаём проекты,
+которые выглядят
+дороже своей цены.
+</h1>
+
+<p class="hero-text">
+Дизайн, простые сайты, оформление и запуск под ключ.
+Без лишней сложности — понятная цена, аккуратный результат
+и помощь на каждом этапе.
+</p>
+
+<div class="hero-actions">
+
+<button
+class="button"
+type="button"
+onclick="scrollToSection('websites')"
+>
+Создание сайтов
+</button>
+
+<button
+class="button button-dark"
+type="button"
+onclick="scrollToSection('calculator')"
+>
+Рассчитать стоимость
+</button>
+
+</div>
+
+<p class="hero-note">
+<span>●</span>
+Берём небольшие проекты и делаем их аккуратно.
+</p>
+
+</div>
+
+
+<div class="hero-visual">
+
+<div class="site-window">
+
+<div class="window-top">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<div class="fake-site">
+
+<div class="fake-site-small"></div>
+
+<h3>
+Ваш сайт может выглядеть именно так.
+</h3>
+
+<p>
+Современная страница для бизнеса,
+услуги, портфолио или личного проекта.
+</p>
+
+<span class="fake-button">
+Узнать подробнее
+</span>
+
+</div>
+
+</div>
+
+<div class="floating-price">
+Сайт-визитка
+<strong>от 980 ₽</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="section section-white" id="services">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div>
+<div class="badge">Что мы делаем</div>
+<h2>Услуги Studio</h2>
+</div>
+
+<p>
+Можно заказать одну услугу или собрать полноценный
+проект: от идеи и дизайна до публикации сайта.
+</p>
+
+</div>
+
+
+<div class="tabs">
+
+<button
+class="tab active"
+data-tab="design"
+type="button"
+>
+🎨 Дизайн
+</button>
+
+<button
+class="tab"
+data-tab="web"
+type="button"
+>
+💻 Создание сайтов
+</button>
+
+<button
+class="tab"
+data-tab="launch"
+type="button"
+>
+🚀 Запуск
+</button>
+
+</div>
+
+
+<div
+class="tab-content active"
+id="tab-design"
+>
+
+<div class="cards">
+
+<div class="card">
+
+<span class="card-number">01</span>
+
+<div class="card-icon">◈</div>
+
+<h3>
+Обложка / баннер
+</h3>
+
+<p>
+Аккуратный дизайн для соцсетей,
+каналов, объявлений и проектов.
+</p>
+
+<div class="card-price">
+от 350 ₽
+</div>
+
+</div>
+
+
+<div class="card">
+
+<span class="card-number">02</span>
+
+<div class="card-icon">✦</div>
+
+<h3>
+Premium-дизайн
+</h3>
+
+<p>
+Более сложная композиция,
+ретушь, оформление и визуальный стиль.
+</p>
+
+<div class="card-price">
+от 700 ₽
+</div>
+
+</div>
+
+
+<div class="card">
+
+<span class="card-number">03</span>
+
+<div class="card-icon">▣</div>
+
+<h3>
+Презентация
+</h3>
+
+<p>
+Презентации для бизнеса,
+учёбы, проекта или продукта.
+</p>
+
+<div class="card-price">
+от 600 ₽
+</div>
+
+</div>
+
+
+<div class="card">
+
+<span class="card-number">04</span>
+
+<div class="card-icon">◎</div>
+
+<h3>
+Фирменный стиль
+</h3>
+
+<p>
+Цвета, шрифты, оформление
+и базовые правила визуального стиля.
+</p>
+
+<div class="card-price">
+от 1 500 ₽
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="tab-content"
+id="tab-web"
+>
+
+<div class="website-intro">
+
+<div class="website-highlight">
+
+<h3>
+Создание сайта под ключ
+</h3>
+
+<p>
+Простой сайт без перегруза:
+для услуги, небольшого бизнеса,
+портфолио, проекта или личного бренда.
+</p>
+
+<div class="check-list">
+
+<div class="check">
+<b>✓</b>
+Адаптация под телефон
+</div>
+
+<div class="check">
+<b>✓</b>
+Красивый современный дизайн
+</div>
+
+<div class="check">
+<b>✓</b>
+Кнопки и форма заявки
+</div>
+
+<div class="check">
+<b>✓</b>
+Публикация сайта
+</div>
+
+<div class="check">
+<b>✓</b>
+HTTPS / SSL
+</div>
+
+</div>
+
+</div>
+
+
+<div class="website-info">
+
+<h3>
+Что можно добавить?
+</h3>
+
+<p>
+Домен, подключение аналитики, дополнительные
+страницы, галерею, FAQ, каталог, форму заказа,
+интеграцию с Firebase и другие функции.
+</p>
+
+<br>
+
+<p>
+<strong>Важно:</strong> стоимость домена, платного
+хостинга и сторонних сервисов оплачивается отдельно,
+если они требуются проекту.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="website-packages">
+
+
+<div class="package">
+
+<h3>
+Старт
+</h3>
+
+<p class="package-description">
+Небольшой сайт для услуги или проекта.
+</p>
+
+<div class="package-price">
+980 ₽
+<span>от</span>
+</div>
+
+<ul>
+<li>1 страница</li>
+<li>Адаптация под телефон</li>
+<li>Современный дизайн</li>
+<li>Кнопки связи</li>
+<li>Базовая SEO-разметка</li>
+<li>Публикация</li>
+</ul>
+
+<button
+class="button"
+type="button"
+onclick="openOrder('Сайт — Старт, 980 ₽')"
+>
+Заказать
+</button>
+
+</div>
+
+
+<div class="package featured">
+
+<div class="package-badge">
+Популярный
+</div>
+
+<h3>
+Бизнес
+</h3>
+
+<p class="package-description">
+Полноценный лендинг для услуги или небольшого бизнеса.
+</p>
+
+<div class="package-price">
+2 490 ₽
+<span>от</span>
+</div>
+
+<ul>
+<li>До 5 блоков</li>
+<li>Адаптация под смартфоны</li>
+<li>Анимации</li>
+<li>Форма заявки</li>
+<li>FAQ / отзывы</li>
+<li>Базовое SEO</li>
+<li>Публикация</li>
+</ul>
+
+<button
+class="button"
+type="button"
+onclick="openOrder('Сайт — Бизнес, 2 490 ₽')"
+>
+Заказать
+</button>
+
+</div>
+
+
+<div class="package">
+
+<h3>
+Про
+</h3>
+
+<p class="package-description">
+Расширенный сайт с несколькими страницами.
+</p>
+
+<div class="package-price">
+4 990 ₽
+<span>от</span>
+</div>
+
+<ul>
+<li>До 5 страниц</li>
+<li>Уникальный дизайн</li>
+<li>Анимации</li>
+<li>Формы заявок</li>
+<li>Галерея / портфолио</li>
+<li>SEO-основа</li>
+<li>Настройка публикации</li>
+</ul>
+
+<button
+class="button"
+type="button"
+onclick="openOrder('Сайт — Про, 4 990 ₽')"
+>
+Заказать
+</button>
+
+</div>
+
+</div>
+
+
+<div class="addons">
+
+<div class="addon">
+<strong>🌐 Домен</strong>
+<span>от 990 ₽*</span>
+</div>
+
+<div class="addon">
+<strong>🔐 SSL / HTTPS</strong>
+<span>включено</span>
+</div>
+
+<div class="addon">
+<strong>📊 Аналитика</strong>
+<span>от 300 ₽</span>
+</div>
+
+<div class="addon">
+<strong>🛠 Поддержка</strong>
+<span>от 500 ₽/мес.</span>
+</div>
+
+</div>
+
+<p
+style="margin-top:15px;color:#888;font-size:11px"
+>
+* Цена домена зависит от доменной зоны и регистратора.
+Сам домен оплачивается отдельно.
+</p>
+
+</div>
+
+
+<div
+class="tab-content"
+id="tab-launch"
+>
+
+<div class="cards">
+
+<div class="card">
+<span class="card-number">01</span>
+<div class="card-icon">🌐</div>
+<h3>Домен</h3>
+<p>
+Поможем выбрать доменное имя и пройти
+регистрацию.
+</p>
+<div class="card-price">
+от 990 ₽
+</div>
+</div>
+
+<div class="card">
+<span class="card-number">02</span>
+<div class="card-icon">🚀</div>
+<h3>Публикация</h3>
+<p>
+Подготовка проекта и публикация
+на выбранном хостинге.
+</p>
+<div class="card-price">
+от 300 ₽
+</div>
+</div>
+
+<div class="card">
+<span class="card-number">03</span>
+<div class="card-icon">🔒</div>
+<h3>HTTPS</h3>
+<p>
+Подключение защищённого соединения
+для сайта.
+</p>
+<div class="card-price">
+включено
+</div>
+</div>
+
+<div class="card">
+<span class="card-number">04</span>
+<div class="card-icon">🛠</div>
+<h3>Поддержка</h3>
+<p>
+Мелкие изменения и помощь после
+запуска проекта.
+</p>
+<div class="card-price">
+от 500 ₽
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section class="section" id="calculator">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div>
+<div class="badge">Калькулятор</div>
+<h2>Соберите свой проект</h2>
+</div>
+
+<p>
+Выберите нужные функции и получите примерную
+стоимость. Финальная цена зависит от задачи.
+</p>
+
+</div>
+
+
+<div class="calculator">
+
+<div class="calculator-form">
+
+<div class="form-group">
+
+<label for="siteType">
+Тип проекта
+</label>
+
+<select id="siteType">
+
+<option value="980">
+Сайт-визитка — 980 ₽
+</option>
+
+<option value="2490">
+Бизнес-лендинг — 2 490 ₽
+</option>
+
+<option value="4990">
+Расширенный сайт — 4 990 ₽
+</option>
+
+<option value="1500">
+Интернет-каталог — от 1 500 ₽
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="pages">
+Количество дополнительных страниц
+</label>
+
+<select id="pages">
+
+<option value="0">
+Без дополнительных страниц
+</option>
+
+<option value="500">
++1 страница — 500 ₽
+</option>
+
+<option value="900">
++2 страницы — 900 ₽
+</option>
+
+<option value="1500">
++3 страницы — 1 500 ₽
+</option>
+
+<option value="2200">
++5 страниц — 2 200 ₽
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="domain">
+Домен
+</label>
+
+<select id="domain">
+
+<option value="0">
+Не нужен
+</option>
+
+<option value="990">
+Регистрация домена — от 990 ₽
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="analytics">
+Дополнительные функции
+</label>
+
+<select id="analytics">
+
+<option value="0">
+Не нужны
+</option>
+
+<option value="300">
+Аналитика — 300 ₽
+</option>
+
+<option value="700">
+Анимации + аналитика — 700 ₽
+</option>
+
+<option value="1200">
+Расширенная форма + аналитика — 1 200 ₽
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="calculator-total">
+
+<span class="total-label">
+Примерная стоимость
+</span>
+
+<div
+class="total-price"
+id="totalPrice"
+>
+980 ₽
+</div>
+
+<div
+class="total-details"
+id="totalDetails"
+>
+Сайт-визитка
+</div>
+
+<button
+class="button"
+type="button"
+onclick="orderCalculator()"
+>
+Заказать такой проект
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROCESS -->
+
+<section class="section section-white">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div>
+<div class="badge">Как работаем</div>
+<h2>От идеи до запуска</h2>
+</div>
+
+<p>
+Простой процесс без лишней бюрократии.
+</p>
+
+</div>
+
+
+<div class="process">
+
+<div class="step">
+
+<div class="step-number">
+01
+</div>
+
+<h3>
+Обсуждаем
+</h3>
+
+<p>
+Вы рассказываете, что нужно сделать.
+Определяем задачи и бюджет.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+02
+</div>
+
+<h3>
+Создаём
+</h3>
+
+<p>
+Собираем дизайн, структуру и нужные
+функции проекта.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+03
+</div>
+
+<h3>
+Проверяем
+</h3>
+
+<p>
+Проверяем отображение на телефоне,
+компьютере и основные кнопки.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+04
+</div>
+
+<h3>
+Запускаем
+</h3>
+
+<p>
+Публикуем готовый проект и передаём
+его заказчику.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ADVANTAGES -->
+
+<section class="section" id="advantages">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div>
+<div class="badge">Почему мы</div>
+<h2>Небольшая команда,<br>большое внимание к деталям.</h2>
+</div>
+
+<p>
+Мы не обещаем невозможного. Сначала разбираемся
+в задаче, затем предлагаем подходящий вариант.
+</p>
+
+</div>
+
+
+<div class="advantages">
+
+<div class="advantage">
+<div class="advantage-icon">✓</div>
+<h3>Честная цена</h3>
+<p>
+Показываем базовую стоимость заранее,
+а дополнительные работы согласовываем.
+</p>
+</div>
+
+
+<div class="advantage">
+<div class="advantage-icon">⌁</div>
+<h3>Адаптивность</h3>
+<p>
+Сайт должен нормально выглядеть не только
+на компьютере, но и на смартфоне.
+</p>
+</div>
+
+
+<div class="advantage">
+<div class="advantage-icon">🔒</div>
+<h3>Безопасный подход</h3>
+<p>
+Не храним пароли и секретные ключи в коде
+сайта. Пользовательские данные не выводятся
+через HTML.
+</p>
+</div>
+
+
+<div class="advantage">
+<div class="advantage-icon">⚡</div>
+<h3>Быстрый старт</h3>
+<p>
+Для простых проектов не требуется сложная
+инфраструктура.
+</p>
+</div>
+
+
+<div class="advantage">
+<div class="advantage-icon">◈</div>
+<h3>Современный дизайн</h3>
+<p>
+Чистая типографика, аккуратные блоки,
+анимации и понятная структура.
+</p>
+</div>
+
+
+<div class="advantage">
+<div class="advantage-icon">♡</div>
+<h3>Поддержка</h3>
+<p>
+После запуска можно заказать изменения
+и дополнительное развитие сайта.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PORTFOLIO -->
+
+<section class="section section-white" id="portfolio">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div>
+<div class="badge">Портфолио</div>
+<h2>Примеры направлений</h2>
+</div>
+
+<p>
+Так может выглядеть структура проекта.
+Конкретный дизайн создаётся под задачу клиента.
+</p>
+
+</div>
+
+
+<div class="portfolio">
+
+<div class="portfolio-card">
+
+<div class="portfolio-preview">
+<span class="portfolio-title">
+Business
+</span>
+</div>
+
+<div class="portfolio-card-body">
+<strong>Сайт услуги</strong>
+<p>
+Главный экран, преимущества,
+услуги, отзывы и форма заявки.
+</p>
+</div>
+
+</div>
+
+
+<div class="portfolio-card">
+
+<div class="portfolio-preview">
+<span class="portfolio-title">
+Portfolio
+</span>
+</div>
+
+<div class="portfolio-card-body">
+<strong>Портфолио</strong>
+<p>
+Работы, описание навыков,
+контакты и проекты.
+</p>
+</div>
+
+</div>
+
+
+<div class="portfolio-card">
+
+<div class="portfolio-preview">
+<span class="portfolio-title">
+StartUp
+</span>
+</div>
+
+<div class="portfolio-card-body">
+<strong>Лендинг продукта</strong>
+<p>
+Презентация продукта, преимущества,
+тарифы и CTA.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section" id="faq">
+
+<div class="container">
+
+<div class="section-heading">
+
+<div>
+<div class="badge">FAQ</div>
+<h2>Частые вопросы</h2>
+</div>
+
+<p>
+Если вашего вопроса здесь нет — просто
+опишите задачу при заказе.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+<div class="faq-item">
+
+<button
+class="faq-question"
+type="button"
+>
+Сколько стоит простой сайт?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+Базовый сайт-визитка начинается от 980 ₽.
+Финальная стоимость зависит от количества страниц
+и дополнительных функций.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button
+class="faq-question"
+type="button"
+>
+Входит ли домен в стоимость?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+Нет. Домен оплачивается отдельно, потому что его
+цена зависит от доменной зоны и конкретного
+регистратора. Мы можем помочь с регистрацией
+под ключ.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button
+class="faq-question"
+type="button"
+>
+Можно ли подключить свой домен?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+Да. Если домен уже куплен, его можно подключить
+к готовому сайту при наличии доступа к настройкам
+DNS у регистратора.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button
+class="faq-question"
+type="button"
+>
+Будет ли сайт работать на телефоне?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+Да. Адаптивность является частью базовой разработки.
+Мы проверяем основные размеры экранов.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button
+class="faq-question"
+type="button"
+>
+Можно ли потом изменить сайт?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+Да. После запуска можно заказать новые блоки,
+страницы, изменения дизайна или дополнительные
+функции.
+</div>
+
+</div>
+
+
+<div class="faq-item">
+
+<button
+class="faq-question"
+type="button"
+>
+Можно ли сделать сайт с Firebase?
+<span>+</span>
+</button>
+
+<div class="faq-answer">
+Да. Для подходящих проектов можно подключить
+Firebase Authentication, Firestore, Hosting и
+другие необходимые сервисы. Секретные ключи
+и пароли не должны размещаться в клиентском коде.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="section" id="contacts">
+
+<div class="container">
+
+<div class="contact">
+
+<div>
+
+<h2>
+Есть идея?
+Давайте превратим её в сайт.
+</h2>
+
+<p>
+Опишите задачу, примерный бюджет и желаемый результат.
+</p>
+
+</div>
+
+<button
+class="button button-light"
+type="button"
+onclick="openOrder('Индивидуальный проект')"
+>
+Обсудить проект
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+<div class="container footer-row">
+
+<div>
+© <span id="year"></span> News_92 Studio
+</div>
+
+<div class="footer-links">
+<a href="#services">Услуги</a>
+<a href="#websites">Сайты</a>
+<a href="#faq">FAQ</a>
+<a href="#contacts">Контакты</a>
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- ORDER MODAL -->
+
+<div
+class="modal"
+id="orderModal"
+role="dialog"
+aria-modal="true"
+aria-labelledby="orderTitle"
+>
+
+<div class="modal-box">
+
+<div class="modal-header">
+
+<div>
+<h2 id="orderTitle">
+Заявка на проект
+</h2>
+</div>
+
+<button
+class="close"
+type="button"
+aria-label="Закрыть"
+onclick="closeOrder()"
+>
+×
+</button>
+
+</div>
+
+
+<div
+class="order-summary"
+id="orderSummary"
+>
+Выберите услугу и оставьте контакты.
+</div>
+
+
+<form id="orderForm">
+
+<div class="form-group">
+
+<label for="clientName">
+Ваше имя
+</label>
+
+<input
+id="clientName"
+name="name"
+type="text"
+maxlength="60"
+autocomplete="name"
+placeholder="Например, Алексей"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="clientContact">
+Контакт для связи
+</label>
+
+<input
+id="clientContact"
+name="contact"
+type="text"
+maxlength="120"
+autocomplete="email"
+placeholder="Telegram, телефон или email"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="clientMessage">
+Что нужно сделать?
+</label>
+
+<textarea
+id="clientMessage"
+name="message"
+maxlength="1000"
+placeholder="Коротко опишите ваш проект..."
+required
+></textarea>
+
+</div>
+
+
+<div class="form-actions">
+
+<button
+class="button button-outline"
+type="button"
+onclick="closeOrder()"
+>
+Отмена
+</button>
+
+<button
+class="button"
+type="submit"
+>
+Отправить заявку
+</button>
+
+</div>
+
+</form>
+
+
+<div
+class="success"
+id="successBlock"
+>
+
+<div class="success-icon">
+✓
+</div>
+
+<h3>
+Заявка подготовлена
+</h3>
+
+<p style="margin-top:8px;color:#72757e;font-size:13px">
+Сейчас подключена безопасная демонстрационная
+форма. Для реальной отправки подключим Firebase
+или серверный обработчик.
+</p>
+
+<br>
+
+<button
+class="button"
+type="button"
+onclick="closeOrder()"
+>
+Готово
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="toast"
+id="toast"
+>
+Готово
+</div>
+
+
+<script>
+
+/* ================================
+   BASIC
+================================ */
+
+const yearElement = document.getElementById("year");
+
+if(yearElement){
+    yearElement.textContent = new Date().getFullYear();
+}
+
+
+/* ================================
+   SCROLL
+================================ */
+
+function scrollToSection(id){
+
+    const element = document.getElementById(id);
+
+    if(!element){
+        return;
+    }
+
+    element.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+}
+
+
+/* ================================
+   TABS
+================================ */
+
+const tabs = document.querySelectorAll(".tab");
+
+tabs.forEach(function(tab){
+
+    tab.addEventListener("click",function(){
+
+        tabs.forEach(function(item){
+            item.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+
+        document.querySelectorAll(".tab-content")
+        .forEach(function(content){
+            content.classList.remove("active");
+        });
+
+        const target =
+            document.getElementById(
+                "tab-" + tab.dataset.tab
+            );
+
+        if(target){
+            target.classList.add("active");
+        }
+
+    });
+
+});
+
+
+/* ================================
+   WEBSITE ANCHOR
+================================ */
+
+function openWebsiteTab(){
+
+    scrollToSection("services");
+
+    const webTab =
+        document.querySelector(
+            '.tab[data-tab="web"]'
+        );
+
+    if(webTab){
+        webTab.click();
+    }
+
+}
+
+
+/* ================================
+   CALCULATOR
+================================ */
+
+const siteType =
+    document.getElementById("siteType");
+
+const pages =
+    document.getElementById("pages");
+
+const domain =
+    document.getElementById("domain");
+
+const analytics =
+    document.getElementById("analytics");
+
+const totalPrice =
+    document.getElementById("totalPrice");
+
+const totalDetails =
+    document.getElementById("totalDetails");
+
+
+function calculate(){
+
+    if(
+        !siteType ||
+        !pages ||
+        !domain ||
+        !analytics
+    ){
+        return;
+    }
+
+    const base =
+        Number(siteType.value) || 0;
+
+    const extraPages =
+        Number(pages.value) || 0;
+
+    const domainPrice =
+        Number(domain.value) || 0;
+
+    const extraFunctions =
+        Number(analytics.value) || 0;
+
+    const total =
+        base +
+        extraPages +
+        domainPrice +
+        extraFunctions;
+
+    if(totalPrice){
+
+        totalPrice.textContent =
+            total.toLocaleString("ru-RU")
+            + " ₽";
+
+    }
+
+    if(totalDetails){
+
+        const baseName =
+            siteType.options[
+                siteType.selectedIndex
+            ].textContent.trim();
+
+        const parts = [
+            baseName
+        ];
+
+        if(extraPages > 0){
+            parts.push(
+                "+" +
+                extraPages.toLocaleString("ru-RU") +
+                " ₽ за страницы"
+            );
+        }
+
+        if(domainPrice > 0){
+            parts.push(
+                "+ домен"
+            );
+        }
+
+        if(extraFunctions > 0){
+            parts.push(
+                "+ дополнительные функции"
+            );
+        }
+
+        totalDetails.textContent =
+            parts.join(" • ");
+
+    }
+
+}
+
+
+[
+    siteType,
+    pages,
+    domain,
+    analytics
+].forEach(function(element){
+
+    if(element){
+        element.addEventListener(
+            "change",
+            calculate
+        );
+    }
+
+});
+
+calculate();
+
+
+/* ================================
+   ORDER MODAL
+================================ */
+
+const modal =
+    document.getElementById("orderModal");
+
+const orderSummary =
+    document.getElementById("orderSummary");
+
+const orderForm =
+    document.getElementById("orderForm");
+
+const successBlock =
+    document.getElementById("successBlock");
+
+
+function openOrder(service){
+
+    if(!modal){
+        return;
+    }
+
+    if(orderSummary){
+
+        /*
+          textContent используется намеренно:
+          данные пользователя не интерпретируются
+          как HTML.
+        */
+
+        orderSummary.textContent =
+            "Вы выбрали: " + service;
+
+    }
+
+    if(orderForm){
+        orderForm.style.display = "block";
+    }
+
+    if(successBlock){
+        successBlock.classList.remove("show");
+    }
+
+    modal.classList.add("show");
+
+    document.body.classList.add("modal-open");
+
+    setTimeout(function(){
+
+        const name =
+            document.getElementById("clientName");
+
+        if(name){
+            name.focus();
+        }
+
+    },100);
+
+}
+
+
+function closeOrder(){
+
+    if(modal){
+        modal.classList.remove("show");
+    }
+
+    document.body.classList.remove("modal-open");
+
+}
+
+
+if(modal){
+
+    modal.addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === modal){
+                closeOrder();
+            }
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+            closeOrder();
+        }
+
+    }
+);
+
+
+/* ================================
+   ORDER FORM
+================================ */
+
+if(orderForm){
+
+    orderForm.addEventListener(
+        "submit",
+        function(event){
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById(
+                    "clientName"
+                ).value.trim();
+
+            const contact =
+                document.getElementById(
+                    "clientContact"
+                ).value.trim();
+
+            const message =
+                document.getElementById(
+                    "clientMessage"
+                ).value.trim();
+
+            if(
+                name.length < 2 ||
+                contact.length < 3 ||
+                message.length < 5
+            ){
+
+                showToast(
+                    "Проверьте заполнение формы."
+                );
+
+                return;
+            }
+
+
+            /*
+              Здесь намеренно нет отправки на сторонний
+              адрес и нет сохранения персональных данных.
+
+              Когда Firebase будет подключаться,
+              отправку можно сделать через Cloud Functions
+              или другой серверный обработчик.
+            */
+
+            orderForm.style.display = "none";
+
+            if(successBlock){
+                successBlock.classList.add("show");
+            }
+
+            showToast(
+                "Заявка заполнена."
+            );
+
+        }
+    );
+
+}
+
+
+/* ================================
+   CALCULATOR ORDER
+================================ */
+
+function orderCalculator(){
+
+    const price =
+        totalPrice
+        ? totalPrice.textContent
+        : "980 ₽";
+
+    const details =
+        totalDetails
+        ? totalDetails.textContent
+        : "Создание сайта";
+
+    openOrder(
+        "Создание сайта — " +
+        price +
+        " • " +
+        details
+    );
+
+}
+
+
+/* ================================
+   FAQ
+================================ */
+
+const faqButtons =
+    document.querySelectorAll(
+        ".faq-question"
+    );
+
+faqButtons.forEach(function(button){
+
+    button.addEventListener(
+        "click",
+        function(){
+
+            const item =
+                button.closest(".faq-item");
+
+            if(!item){
+                return;
+            }
+
+            const alreadyOpen =
+                item.classList.contains("open");
+
+
+            document.querySelectorAll(
+                ".faq-item"
+            ).forEach(function(other){
+
+                other.classList.remove("open");
+
+            });
+
+
+            if(!alreadyOpen){
+                item.classList.add("open");
+            }
+
+        }
+    );
+
+});
+
+
+/* ================================
+   TOAST
+================================ */
+
+let toastTimer = null;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    if(!toast){
+        return;
+    }
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },3000);
+
+}
+
+
+/* ================================
+   SIMPLE FORM PROTECTION
+================================ */
+
+function limitInputLength(){
+
+    document.querySelectorAll(
+        "input, textarea"
+    ).forEach(function(element){
+
+        element.addEventListener(
+            "input",
+            function(){
+
+                if(
+                    element.maxLength > 0 &&
+                    element.value.length >
+                    element.maxLength
+                ){
+
+                    element.value =
+                        element.value.slice(
+                            0,
+                            element.maxLength
+                        );
+
+                }
+
+            }
+        );
+
+    });
+
+}
+
+limitInputLength();
+
+
+/* ================================
+   SAFE EXTERNAL LINK BEHAVIOUR
+================================ */
+
+document.querySelectorAll(
+    'a[target="_blank"]'
+).forEach(function(link){
+
+    link.setAttribute(
+        "rel",
+        "noopener noreferrer"
+    );
+
+});
+
+
+/* ================================
+   ACTIVE HEADER LINK
+================================ */
+
+const sections =
+    document.querySelectorAll(
+        "main section[id]"
+    );
+
+const navLinks =
+    document.querySelectorAll(
+        ".menu a"
+    );
+
+const observer =
+    new IntersectionObserver(
+        function(entries){
+
+            entries.forEach(function(entry){
+
+                if(!entry.isIntersecting){
+                    return;
+                }
+
+                navLinks.forEach(
+                    function(link){
+
+                        link.style.color = "";
+
+                        if(
+                            link.getAttribute(
+                                "href"
+                            ) ===
+                            "#" + entry.target.id
+                        ){
+
+                            link.style.color =
+                                "var(--dark)";
+
+                        }
+
+                    }
+                );
+
+            });
+
+        },
+        {
+            rootMargin:"-35% 0px -55% 0px"
+        }
+    );
+
+
+sections.forEach(function(section){
+    observer.observe(section);
+});
+
+
+/* ================================
+   PREVENT ACCIDENTAL SUBMIT
+================================ */
+
+document.querySelectorAll(
+    "button"
+).forEach(function(button){
+
+    if(
+        !button.getAttribute("type")
+    ){
+        button.setAttribute(
+            "type",
+            "button"
+        );
+    }
+
+});
+
+
+/* ================================
+   FINAL
+================================ */
+
+console.log(
+    "News_92 Studio loaded successfully."
+);
+
+</script>
+
+</body>
+</html>
