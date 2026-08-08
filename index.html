@@ -8,10 +8,10 @@
 
 <meta
 name="description"
-content="News_92 Studio — создание сайтов, дизайн, оформление, домены и запуск проектов под ключ."
+content="News_92 Studio — доступный дизайн, создание сайтов и запуск проектов."
 >
 
-<meta name="theme-color" content="#101114">
+<meta name="theme-color" content="#0d0f14">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,17 +24,17 @@ rel="stylesheet"
 <style>
 
 :root{
-    --bg:#f5f6f8;
+    --bg:#f4f5f7;
     --surface:#ffffff;
-    --dark:#101114;
-    --dark2:#181a20;
-    --text:#202228;
-    --muted:#72757e;
-    --accent:#5367ff;
-    --accent2:#7383ff;
+    --dark:#0d0f14;
+    --dark2:#171a22;
+    --text:#20232b;
+    --muted:#737783;
+    --accent:#5b6cff;
+    --accent2:#7c8aff;
     --line:#e5e7eb;
-    --green:#22a06b;
-    --orange:#f59e0b;
+    --green:#20a66a;
+    --yellow:#f5b942;
     --red:#ef4444;
     --radius:22px;
     --shadow:0 20px 60px rgba(15,18,30,.09);
@@ -82,11 +82,15 @@ button{
     margin:0 auto;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header{
     position:sticky;
     top:0;
     z-index:100;
-    background:rgba(245,246,248,.88);
+    background:rgba(244,245,247,.88);
     backdrop-filter:blur(18px);
     border-bottom:1px solid rgba(220,222,228,.8);
 }
@@ -109,14 +113,14 @@ button{
 }
 
 .logo-icon{
-    width:38px;
-    height:38px;
+    width:40px;
+    height:40px;
     display:grid;
     place-items:center;
     color:#fff;
-    background:var(--dark);
-    border-radius:11px;
-    box-shadow:0 8px 20px rgba(16,17,20,.18);
+    background:linear-gradient(135deg,var(--accent),#313fff);
+    border-radius:12px;
+    box-shadow:0 8px 22px rgba(91,108,255,.28);
 }
 
 .menu{
@@ -154,8 +158,8 @@ button{
 .button:hover,
 .header-button:hover{
     transform:translateY(-2px);
-    background:#4054ec;
-    box-shadow:0 12px 30px rgba(83,103,255,.25);
+    background:#4859ee;
+    box-shadow:0 12px 30px rgba(91,108,255,.25);
 }
 
 .button-dark{
@@ -163,7 +167,7 @@ button{
 }
 
 .button-dark:hover{
-    background:#292b31;
+    background:#292d37;
 }
 
 .button-light{
@@ -172,7 +176,7 @@ button{
 }
 
 .button-light:hover{
-    background:#f1f2f4;
+    background:#f0f1f4;
 }
 
 .button-outline{
@@ -195,7 +199,9 @@ button{
     font-size:20px;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     padding:86px 0 70px;
@@ -215,7 +221,7 @@ button{
     padding:8px 13px;
     margin-bottom:22px;
     color:var(--accent);
-    background:rgba(83,103,255,.09);
+    background:rgba(91,108,255,.09);
     border-radius:100px;
     font-size:11px;
     font-weight:800;
@@ -262,6 +268,10 @@ h1{
     color:var(--green);
     font-weight:800;
 }
+
+/* =========================
+   HERO VISUAL
+========================= */
 
 .hero-visual{
     position:relative;
@@ -383,7 +393,9 @@ h1{
     font-size:25px;
 }
 
-/* SECTION */
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
     padding:90px 0;
@@ -413,7 +425,9 @@ h1{
     color:var(--muted);
 }
 
-/* TABS */
+/* =========================
+   TABS
+========================= */
 
 .tabs{
     display:flex;
@@ -449,7 +463,9 @@ h1{
     display:block;
 }
 
-/* SERVICES */
+/* =========================
+   SERVICE CARDS
+========================= */
 
 .cards{
     display:grid;
@@ -514,7 +530,9 @@ h1{
     font-weight:600;
 }
 
-/* WEBSITE SERVICES */
+/* =========================
+   WEBSITE INTRO
+========================= */
 
 .website-intro{
     display:grid;
@@ -581,6 +599,10 @@ h1{
 .website-info p{
     color:var(--muted);
 }
+
+/* =========================
+   PACKAGES
+========================= */
 
 .website-packages{
     display:grid;
@@ -670,7 +692,9 @@ h1{
     width:100%;
 }
 
-/* ADDONS */
+/* =========================
+   ADDONS
+========================= */
 
 .addons{
     display:grid;
@@ -697,7 +721,9 @@ h1{
     font-size:14px;
 }
 
-/* CALCULATOR */
+/* =========================
+   CALCULATOR
+========================= */
 
 .calculator{
     display:grid;
@@ -784,7 +810,9 @@ textarea:focus{
     font-size:12px;
 }
 
-/* PROCESS */
+/* =========================
+   PROCESS
+========================= */
 
 .process{
     display:grid;
@@ -819,7 +847,9 @@ textarea:focus{
     font-size:13px;
 }
 
-/* ADVANTAGES */
+/* =========================
+   ADVANTAGES
+========================= */
 
 .advantages{
     display:grid;
@@ -855,7 +885,9 @@ textarea:focus{
     font-size:13px;
 }
 
-/* PORTFOLIO */
+/* =========================
+   PORTFOLIO
+========================= */
 
 .portfolio{
     display:grid;
@@ -902,7 +934,9 @@ textarea:focus{
     font-size:13px;
 }
 
-/* FAQ */
+/* =========================
+   FAQ
+========================= */
 
 .faq{
     display:grid;
@@ -952,7 +986,9 @@ textarea:focus{
     display:block;
 }
 
-/* CONTACT */
+/* =========================
+   CONTACT
+========================= */
 
 .contact{
     display:flex;
@@ -979,7 +1015,9 @@ textarea:focus{
     color:#bfc2ca;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
     padding:35px 0;
@@ -998,7 +1036,9 @@ textarea:focus{
     gap:20px;
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
     position:fixed;
@@ -1089,7 +1129,9 @@ textarea:focus{
     font-size:25px;
 }
 
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
 
 .toast{
     position:fixed;
@@ -1113,7 +1155,9 @@ textarea:focus{
     opacity:1;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:1000px){
 
@@ -1293,7 +1337,6 @@ onclick="scrollToSection('services')"
 
 </header>
 
-
 <main id="top">
 
 <section class="hero">
@@ -1308,15 +1351,16 @@ onclick="scrollToSection('services')"
 </div>
 
 <h1>
-Создаём проекты,
-которые выглядят
-дороже своей цены.
+Красивый сайт
+без космического
+ценника.
 </h1>
 
 <p class="hero-text">
-Дизайн, простые сайты, оформление и запуск под ключ.
-Без лишней сложности — понятная цена, аккуратный результат
-и помощь на каждом этапе.
+Создаём аккуратные сайты, дизайн и оформление
+для небольших проектов. Понятные цены,
+без ненужных переплат и с бесплатной базовой
+поддержкой после запуска.
 </p>
 
 <div class="hero-actions">
@@ -1324,7 +1368,7 @@ onclick="scrollToSection('services')"
 <button
 class="button"
 type="button"
-onclick="scrollToSection('websites')"
+onclick="openWebsiteTab()"
 >
 Создание сайтов
 </button>
@@ -1341,11 +1385,10 @@ onclick="scrollToSection('calculator')"
 
 <p class="hero-note">
 <span>●</span>
-Берём небольшие проекты и делаем их аккуратно.
+Поддержка после запуска — бесплатно.
 </p>
 
 </div>
-
 
 <div class="hero-visual">
 
@@ -1371,7 +1414,7 @@ onclick="scrollToSection('calculator')"
 </p>
 
 <span class="fake-button">
-Узнать подробнее
+Посмотреть
 </span>
 
 </div>
@@ -1380,7 +1423,7 @@ onclick="scrollToSection('calculator')"
 
 <div class="floating-price">
 Сайт-визитка
-<strong>от 980 ₽</strong>
+<strong>от 690 ₽</strong>
 </div>
 
 </div>
@@ -1389,1100 +1432,1138 @@ onclick="scrollToSection('calculator')"
 
 </section>
 
+<!-- ЧАСТЬ 2 ПРОДОЛЖИТ ЗДЕСЬ -->        <div class="package">
+          <div class="package-top">
+            <span class="package-number">02</span>
+            <span class="package-label">Популярный</span>
+          </div>
+
+          <h3>Сайт для бизнеса</h3>
+
+          <p class="package-description">
+            Аккуратный лендинг для услуги, небольшого бизнеса,
+            проекта или личного бренда.
+          </p>
+
+          <div class="package-price">
+            1 990 ₽
+            <small>разово</small>
+          </div>
+
+          <ul class="package-list">
+            <li>До 6 основных блоков</li>
+            <li>Адаптация под телефон</li>
+            <li>Форма заявки</li>
+            <li>Кнопки Telegram / WhatsApp</li>
+            <li>Простые анимации</li>
+            <li>Базовая SEO-настройка</li>
+            <li>Публикация сайта</li>
+            <li>Бесплатные мелкие правки после запуска</li>
+          </ul>
+
+          <button
+            class="button package-button"
+            type="button"
+            onclick="openOrder('Сайт для бизнеса — 1 990 ₽')"
+          >
+            Заказать
+          </button>
+        </div>
+
+
+        <!-- PACKAGE 3 -->
+
+        <div class="package">
+          <div class="package-top">
+            <span class="package-number">03</span>
+            <span class="package-label package-label-dark">
+              Расширенный
+            </span>
+          </div>
+
+          <h3>Сайт PRO</h3>
+
+          <p class="package-description">
+            Более большой проект с несколькими страницами,
+            портфолио, дополнительными блоками и функциями.
+          </p>
+
+          <div class="package-price">
+            3 490 ₽
+            <small>разово</small>
+          </div>
+
+          <ul class="package-list">
+            <li>До 5 страниц</li>
+            <li>Индивидуальное оформление</li>
+            <li>Адаптация под телефон и ПК</li>
+            <li>Формы и кнопки связи</li>
+            <li>Галерея / портфолио</li>
+            <li>FAQ / отзывы</li>
+            <li>Базовое SEO</li>
+            <li>Публикация сайта</li>
+            <li>Бесплатная поддержка</li>
+          </ul>
+
+          <button
+            class="button package-button"
+            type="button"
+            onclick="openOrder('Сайт PRO — 3 490 ₽')"
+          >
+            Обсудить проект
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ -->
+
+      <div class="mini-title">
+        Дополнительные услуги
+      </div>
+
+      <div class="addons">
+
+        <div class="addon">
+          <div class="addon-icon">🎨</div>
+          <div>
+            <strong>Дизайн</strong>
+            <span>от 200 ₽</span>
+          </div>
+          <p>
+            Баннеры, обложки, карточки,
+            оформление социальных сетей.
+          </p>
+        </div>
+
+
+        <div class="addon">
+          <div class="addon-icon">🖼️</div>
+          <div>
+            <strong>Обложка</strong>
+            <span>от 250 ₽</span>
+          </div>
+          <p>
+            Аккуратная обложка для канала,
+            сообщества или проекта.
+          </p>
+        </div>
+
+
+        <div class="addon">
+          <div class="addon-icon">✨</div>
+          <div>
+            <strong>Premium-дизайн</strong>
+            <span>от 500 ₽</span>
+          </div>
+          <p>
+            Более детальная работа с композицией,
+            эффектами и визуальным стилем.
+          </p>
+        </div>
+
+
+        <div class="addon">
+          <div class="addon-icon">📱</div>
+          <div>
+            <strong>Доп. страница</strong>
+            <span>от 300 ₽</span>
+          </div>
+          <p>
+            Новая страница для услуг,
+            контактов, портфолио или информации.
+          </p>
+        </div>
+
+
+        <div class="addon">
+          <div class="addon-icon">🌐</div>
+          <div>
+            <strong>Домен</strong>
+            <span>по цене регистратора</span>
+          </div>
+          <p>
+            Поможем подобрать и зарегистрировать
+            домен под ваш проект.
+          </p>
+        </div>
+
+
+        <div class="addon">
+          <div class="addon-icon">🚀</div>
+          <div>
+            <strong>Публикация</strong>
+            <span>бесплатно*</span>
+          </div>
+          <p>
+            Поможем разместить готовый сайт
+            и проверить его работу.
+          </p>
+        </div>
+
+
+        <div class="addon">
+          <div class="addon-icon">📊</div>
+          <div>
+            <strong>Аналитика</strong>
+            <span>от 200 ₽</span>
+          </div>
+          <p>
+            Подключение базовой статистики
+            посещений сайта.
+          </p>
+        </div>
+
 
-<!-- SERVICES -->
+        <div class="addon">
+          <div class="addon-icon">🛠️</div>
+          <div>
+            <strong>Поддержка</strong>
+            <span>БЕСПЛАТНО</span>
+          </div>
+          <p>
+            Небольшие исправления и помощь
+            после запуска без абонентской платы.
+          </p>
+        </div>
 
-<section class="section section-white" id="services">
+      </div>
 
-<div class="container">
+      <div class="price-note">
+        * Бесплатная поддержка включает небольшие изменения,
+        исправления текста, кнопок и мелкие правки.
+        Крупная переработка сайта может рассчитываться отдельно.
+        Домен и платные сторонние сервисы оплачиваются отдельно.
+      </div>
 
-<div class="section-heading">
+    </div>
 
-<div>
-<div class="badge">Что мы делаем</div>
-<h2>Услуги Studio</h2>
-</div>
+  </section>
 
-<p>
-Можно заказать одну услугу или собрать полноценный
-проект: от идеи и дизайна до публикации сайта.
-</p>
 
-</div>
+  <!-- CALCULATOR -->
 
+  <section class="section" id="calculator">
 
-<div class="tabs">
+    <div class="container">
 
-<button
-class="tab active"
-data-tab="design"
-type="button"
->
-🎨 Дизайн
-</button>
+      <div class="section-heading">
 
-<button
-class="tab"
-data-tab="web"
-type="button"
->
-💻 Создание сайтов
-</button>
+        <div>
+          <div class="badge">Калькулятор</div>
 
-<button
-class="tab"
-data-tab="launch"
-type="button"
->
-🚀 Запуск
-</button>
+          <h2>
+            Соберите свой сайт
+          </h2>
+        </div>
 
-</div>
+        <p>
+          Выберите нужные услуги и сразу увидите
+          примерную стоимость проекта.
+        </p>
 
+      </div>
 
-<div
-class="tab-content active"
-id="tab-design"
->
 
-<div class="cards">
+      <div class="calculator">
 
-<div class="card">
+        <div class="calculator-form">
 
-<span class="card-number">01</span>
+          <div class="form-group">
 
-<div class="card-icon">◈</div>
+            <label for="siteType">
+              Основа сайта
+            </label>
 
-<h3>
-Обложка / баннер
-</h3>
+            <select id="siteType">
 
-<p>
-Аккуратный дизайн для соцсетей,
-каналов, объявлений и проектов.
-</p>
+              <option value="990">
+                Сайт-визитка — 990 ₽
+              </option>
 
-<div class="card-price">
-от 350 ₽
-</div>
+              <option value="1990">
+                Сайт для бизнеса — 1 990 ₽
+              </option>
 
-</div>
+              <option value="3490">
+                Сайт PRO — 3 490 ₽
+              </option>
 
+            </select>
 
-<div class="card">
+          </div>
 
-<span class="card-number">02</span>
 
-<div class="card-icon">✦</div>
+          <div class="form-group">
 
-<h3>
-Premium-дизайн
-</h3>
+            <label for="pages">
+              Дополнительные страницы
+            </label>
 
-<p>
-Более сложная композиция,
-ретушь, оформление и визуальный стиль.
-</p>
+            <select id="pages">
 
-<div class="card-price">
-от 700 ₽
-</div>
+              <option value="0">
+                Не нужны — 0 ₽
+              </option>
 
-</div>
+              <option value="300">
+                +1 страница — 300 ₽
+              </option>
 
+              <option value="600">
+                +2 страницы — 600 ₽
+              </option>
 
-<div class="card">
+              <option value="900">
+                +3 страницы — 900 ₽
+              </option>
 
-<span class="card-number">03</span>
+              <option value="1200">
+                +4 страницы — 1 200 ₽
+              </option>
 
-<div class="card-icon">▣</div>
+            </select>
 
-<h3>
-Презентация
-</h3>
+          </div>
 
-<p>
-Презентации для бизнеса,
-учёбы, проекта или продукта.
-</p>
 
-<div class="card-price">
-от 600 ₽
-</div>
+          <div class="form-group">
 
-</div>
+            <label for="design">
+              Дизайн
+            </label>
 
+            <select id="design">
 
-<div class="card">
+              <option value="0">
+                Базовый — включён
+              </option>
 
-<span class="card-number">04</span>
+              <option value="200">
+                Доп. оформление — 200 ₽
+              </option>
 
-<div class="card-icon">◎</div>
+              <option value="500">
+                Premium-дизайн — 500 ₽
+              </option>
 
-<h3>
-Фирменный стиль
-</h3>
+            </select>
 
-<p>
-Цвета, шрифты, оформление
-и базовые правила визуального стиля.
-</p>
+          </div>
 
-<div class="card-price">
-от 1 500 ₽
-</div>
 
-</div>
+          <div class="form-group">
 
-</div>
+            <label for="features">
+              Дополнительные функции
+            </label>
 
-</div>
+            <select id="features">
 
+              <option value="0">
+                Не нужны — 0 ₽
+              </option>
 
-<div
-class="tab-content"
-id="tab-web"
->
+              <option value="200">
+                Аналитика — 200 ₽
+              </option>
 
-<div class="website-intro">
+              <option value="400">
+                Галерея / портфолио — 400 ₽
+              </option>
 
-<div class="website-highlight">
+              <option value="600">
+                Расширенная форма — 600 ₽
+              </option>
 
-<h3>
-Создание сайта под ключ
-</h3>
+              <option value="800">
+                Аналитика + галерея — 800 ₽
+              </option>
 
-<p>
-Простой сайт без перегруза:
-для услуги, небольшого бизнеса,
-портфолио, проекта или личного бренда.
-</p>
+            </select>
 
-<div class="check-list">
+          </div>
 
-<div class="check">
-<b>✓</b>
-Адаптация под телефон
-</div>
 
-<div class="check">
-<b>✓</b>
-Красивый современный дизайн
-</div>
+          <div class="calculator-info">
 
-<div class="check">
-<b>✓</b>
-Кнопки и форма заявки
-</div>
+            <span>✓</span>
 
-<div class="check">
-<b>✓</b>
-Публикация сайта
-</div>
+            <p>
+              Поддержка после запуска —
+              <strong>бесплатно</strong>.
+            </p>
 
-<div class="check">
-<b>✓</b>
-HTTPS / SSL
-</div>
+          </div>
 
-</div>
+        </div>
 
-</div>
 
+        <div class="calculator-total">
 
-<div class="website-info">
+          <span class="total-label">
+            Примерная стоимость
+          </span>
 
-<h3>
-Что можно добавить?
-</h3>
+          <div
+            class="total-price"
+            id="totalPrice"
+          >
+            990 ₽
+          </div>
 
-<p>
-Домен, подключение аналитики, дополнительные
-страницы, галерею, FAQ, каталог, форму заказа,
-интеграцию с Firebase и другие функции.
-</p>
+          <div
+            class="total-details"
+            id="totalDetails"
+          >
+            Сайт-визитка
+          </div>
 
-<br>
+          <button
+            class="button button-light"
+            type="button"
+            onclick="orderCalculator()"
+          >
+            Заказать проект
+          </button>
 
-<p>
-<strong>Важно:</strong> стоимость домена, платного
-хостинга и сторонних сервисов оплачивается отдельно,
-если они требуются проекту.
-</p>
+          <div class="total-note">
+            Финальная цена согласовывается
+            до начала работы.
+          </div>
 
-</div>
+        </div>
 
-</div>
+      </div>
 
+    </div>
 
-<div class="website-packages">
+  </section>
 
 
-<div class="package">
+  <!-- PROCESS -->
 
-<h3>
-Старт
-</h3>
+  <section class="section section-white">
 
-<p class="package-description">
-Небольшой сайт для услуги или проекта.
-</p>
+    <div class="container">
 
-<div class="package-price">
-980 ₽
-<span>от</span>
-</div>
+      <div class="section-heading">
 
-<ul>
-<li>1 страница</li>
-<li>Адаптация под телефон</li>
-<li>Современный дизайн</li>
-<li>Кнопки связи</li>
-<li>Базовая SEO-разметка</li>
-<li>Публикация</li>
-</ul>
+        <div>
+          <div class="badge">Как это работает</div>
 
-<button
-class="button"
-type="button"
-onclick="openOrder('Сайт — Старт, 980 ₽')"
->
-Заказать
-</button>
+          <h2>
+            Просто и понятно
+          </h2>
+        </div>
 
-</div>
+        <p>
+          Не нужно разбираться в коде, хостинге
+          и настройках самостоятельно.
+        </p>
 
+      </div>
 
-<div class="package featured">
 
-<div class="package-badge">
-Популярный
-</div>
+      <div class="process">
 
-<h3>
-Бизнес
-</h3>
+        <div class="step">
 
-<p class="package-description">
-Полноценный лендинг для услуги или небольшого бизнеса.
-</p>
+          <div class="step-number">
+            01
+          </div>
 
-<div class="package-price">
-2 490 ₽
-<span>от</span>
-</div>
+          <h3>
+            Вы рассказываете
+          </h3>
 
-<ul>
-<li>До 5 блоков</li>
-<li>Адаптация под смартфоны</li>
-<li>Анимации</li>
-<li>Форма заявки</li>
-<li>FAQ / отзывы</li>
-<li>Базовое SEO</li>
-<li>Публикация</li>
-</ul>
+          <p>
+            Пишете, какой сайт или дизайн
+            вам нужен и для чего он будет использоваться.
+          </p>
 
-<button
-class="button"
-type="button"
-onclick="openOrder('Сайт — Бизнес, 2 490 ₽')"
->
-Заказать
-</button>
+        </div>
 
-</div>
 
+        <div class="step">
 
-<div class="package">
+          <div class="step-number">
+            02
+          </div>
 
-<h3>
-Про
-</h3>
+          <h3>
+            Согласовываем
+          </h3>
 
-<p class="package-description">
-Расширенный сайт с несколькими страницами.
-</p>
+          <p>
+            Обсуждаем внешний вид, функции,
+            сроки и итоговую стоимость.
+          </p>
 
-<div class="package-price">
-4 990 ₽
-<span>от</span>
-</div>
+        </div>
 
-<ul>
-<li>До 5 страниц</li>
-<li>Уникальный дизайн</li>
-<li>Анимации</li>
-<li>Формы заявок</li>
-<li>Галерея / портфолио</li>
-<li>SEO-основа</li>
-<li>Настройка публикации</li>
-</ul>
 
-<button
-class="button"
-type="button"
-onclick="openOrder('Сайт — Про, 4 990 ₽')"
->
-Заказать
-</button>
+        <div class="step">
 
-</div>
+          <div class="step-number">
+            03
+          </div>
 
-</div>
+          <h3>
+            Создаём
+          </h3>
 
+          <p>
+            Собираем дизайн и кодируем проект,
+            после чего проверяем его на разных устройствах.
+          </p>
 
-<div class="addons">
+        </div>
 
-<div class="addon">
-<strong>🌐 Домен</strong>
-<span>от 990 ₽*</span>
-</div>
 
-<div class="addon">
-<strong>🔐 SSL / HTTPS</strong>
-<span>включено</span>
-</div>
+        <div class="step">
 
-<div class="addon">
-<strong>📊 Аналитика</strong>
-<span>от 300 ₽</span>
-</div>
+          <div class="step-number">
+            04
+          </div>
 
-<div class="addon">
-<strong>🛠 Поддержка</strong>
-<span>от 500 ₽/мес.</span>
-</div>
+          <h3>
+            Запускаем
+          </h3>
 
-</div>
+          <p>
+            Помогаем опубликовать проект
+            и остаёмся на связи после запуска.
+          </p>
 
-<p
-style="margin-top:15px;color:#888;font-size:11px"
->
-* Цена домена зависит от доменной зоны и регистратора.
-Сам домен оплачивается отдельно.
-</p>
+        </div>
 
-</div>
+      </div>
 
+    </div>
 
-<div
-class="tab-content"
-id="tab-launch"
->
+  </section>
 
-<div class="cards">
 
-<div class="card">
-<span class="card-number">01</span>
-<div class="card-icon">🌐</div>
-<h3>Домен</h3>
-<p>
-Поможем выбрать доменное имя и пройти
-регистрацию.
-</p>
-<div class="card-price">
-от 990 ₽
-</div>
-</div>
+  <!-- ADVANTAGES -->
 
-<div class="card">
-<span class="card-number">02</span>
-<div class="card-icon">🚀</div>
-<h3>Публикация</h3>
-<p>
-Подготовка проекта и публикация
-на выбранном хостинге.
-</p>
-<div class="card-price">
-от 300 ₽
-</div>
-</div>
+  <section
+    class="section"
+    id="advantages"
+  >
 
-<div class="card">
-<span class="card-number">03</span>
-<div class="card-icon">🔒</div>
-<h3>HTTPS</h3>
-<p>
-Подключение защищённого соединения
-для сайта.
-</p>
-<div class="card-price">
-включено
-</div>
-</div>
+    <div class="container">
 
-<div class="card">
-<span class="card-number">04</span>
-<div class="card-icon">🛠</div>
-<h3>Поддержка</h3>
-<p>
-Мелкие изменения и помощь после
-запуска проекта.
-</p>
-<div class="card-price">
-от 500 ₽
-</div>
-</div>
+      <div class="section-heading">
 
-</div>
+        <div>
 
-</div>
+          <div class="badge">
+            Почему News_92
+          </div>
 
-</div>
+          <h2>
+            Без огромных цен
+            и лишней сложности.
+          </h2>
 
-</section>
+        </div>
 
+        <p>
+          Мы делаем доступные решения для небольших
+          проектов, начинающих предпринимателей,
+          авторов и тех, кто только начинает.
+        </p>
 
-<!-- CALCULATOR -->
+      </div>
 
-<section class="section" id="calculator">
 
-<div class="container">
+      <div class="advantages">
 
-<div class="section-heading">
+        <div class="advantage">
 
-<div>
-<div class="badge">Калькулятор</div>
-<h2>Соберите свой проект</h2>
-</div>
+          <div class="advantage-icon">
+            ₽
+          </div>
 
-<p>
-Выберите нужные функции и получите примерную
-стоимость. Финальная цена зависит от задачи.
-</p>
+          <h3>
+            Адекватные цены
+          </h3>
 
-</div>
+          <p>
+            Не пытаемся продавать простой лендинг
+            за десятки тысяч рублей.
+          </p>
 
+        </div>
 
-<div class="calculator">
 
-<div class="calculator-form">
+        <div class="advantage">
 
-<div class="form-group">
+          <div class="advantage-icon">
+            ✓
+          </div>
 
-<label for="siteType">
-Тип проекта
-</label>
+          <h3>
+            Поддержка бесплатно
+          </h3>
 
-<select id="siteType">
+          <p>
+            После запуска можно обратиться
+            с небольшими правками без ежемесячной платы.
+          </p>
 
-<option value="980">
-Сайт-визитка — 980 ₽
-</option>
+        </div>
 
-<option value="2490">
-Бизнес-лендинг — 2 490 ₽
-</option>
 
-<option value="4990">
-Расширенный сайт — 4 990 ₽
-</option>
+        <div class="advantage">
 
-<option value="1500">
-Интернет-каталог — от 1 500 ₽
-</option>
+          <div class="advantage-icon">
+            📱
+          </div>
 
-</select>
+          <h3>
+            Телефон тоже важен
+          </h3>
 
-</div>
+          <p>
+            Сайт адаптируется под смартфоны,
+            планшеты и компьютеры.
+          </p>
 
+        </div>
 
-<div class="form-group">
 
-<label for="pages">
-Количество дополнительных страниц
-</label>
+        <div class="advantage">
 
-<select id="pages">
+          <div class="advantage-icon">
+            ⚡
+          </div>
 
-<option value="0">
-Без дополнительных страниц
-</option>
+          <h3>
+            Без лишнего
+          </h3>
 
-<option value="500">
-+1 страница — 500 ₽
-</option>
+          <p>
+            Если функции не нужны — мы не будем
+            добавлять их только ради увеличения цены.
+          </p>
 
-<option value="900">
-+2 страницы — 900 ₽
-</option>
+        </div>
 
-<option value="1500">
-+3 страницы — 1 500 ₽
-</option>
 
-<option value="2200">
-+5 страниц — 2 200 ₽
-</option>
+        <div class="advantage">
 
-</select>
+          <div class="advantage-icon">
+            🎨
+          </div>
 
-</div>
+          <h3>
+            Красивое оформление
+          </h3>
 
+          <p>
+            Даже небольшой проект получает
+            аккуратный современный внешний вид.
+          </p>
 
-<div class="form-group">
+        </div>
 
-<label for="domain">
-Домен
-</label>
 
-<select id="domain">
+        <div class="advantage">
 
-<option value="0">
-Не нужен
-</option>
+          <div class="advantage-icon">
+            ♡
+          </div>
 
-<option value="990">
-Регистрация домена — от 990 ₽
-</option>
+          <h3>
+            По-человечески
+          </h3>
 
-</select>
+          <p>
+            Объясняем простыми словами,
+            что именно мы делаем и за что вы платите.
+          </p>
 
-</div>
+        </div>
 
+      </div>
 
-<div class="form-group">
+    </div>
 
-<label for="analytics">
-Дополнительные функции
-</label>
+  </section>
 
-<select id="analytics">
 
-<option value="0">
-Не нужны
-</option>
+  <!-- PORTFOLIO -->
 
-<option value="300">
-Аналитика — 300 ₽
-</option>
+  <section
+    class="section section-white"
+    id="portfolio"
+  >
 
-<option value="700">
-Анимации + аналитика — 700 ₽
-</option>
+    <div class="container">
 
-<option value="1200">
-Расширенная форма + аналитика — 1 200 ₽
-</option>
+      <div class="section-heading">
 
-</select>
+        <div>
 
-</div>
+          <div class="badge">
+            Направления
+          </div>
 
-</div>
+          <h2>
+            Что можно сделать
+          </h2>
 
+        </div>
 
-<div class="calculator-total">
+        <p>
+          Каждый проект оформляется индивидуально.
+          Ниже — примеры задач, которые можно реализовать.
+        </p>
 
-<span class="total-label">
-Примерная стоимость
-</span>
+      </div>
 
-<div
-class="total-price"
-id="totalPrice"
->
-980 ₽
-</div>
 
-<div
-class="total-details"
-id="totalDetails"
->
-Сайт-визитка
-</div>
+      <div class="portfolio">
 
-<button
-class="button"
-type="button"
-onclick="orderCalculator()"
->
-Заказать такой проект
-</button>
+        <div class="portfolio-card">
 
-</div>
+          <div class="portfolio-preview portfolio-one">
 
-</div>
+            <span class="preview-tag">
+              BUSINESS
+            </span>
 
-</div>
+            <strong>
+              Сайт услуги
+            </strong>
 
-</section>
+          </div>
 
+          <div class="portfolio-card-body">
 
-<!-- PROCESS -->
+            <strong>
+              Лендинг бизнеса
+            </strong>
 
-<section class="section section-white">
+            <p>
+              Услуги, преимущества, цены,
+              отзывы и кнопка связи.
+            </p>
 
-<div class="container">
+          </div>
 
-<div class="section-heading">
+        </div>
 
-<div>
-<div class="badge">Как работаем</div>
-<h2>От идеи до запуска</h2>
-</div>
 
-<p>
-Простой процесс без лишней бюрократии.
-</p>
+        <div class="portfolio-card">
 
-</div>
+          <div class="portfolio-preview portfolio-two">
 
+            <span class="preview-tag">
+              PORTFOLIO
+            </span>
 
-<div class="process">
+            <strong>
+              Портфолио
+            </strong>
 
-<div class="step">
+          </div>
 
-<div class="step-number">
-01
-</div>
+          <div class="portfolio-card-body">
 
-<h3>
-Обсуждаем
-</h3>
+            <strong>
+              Сайт специалиста
+            </strong>
 
-<p>
-Вы рассказываете, что нужно сделать.
-Определяем задачи и бюджет.
-</p>
+            <p>
+              Информация о человеке,
+              работы, навыки и контакты.
+            </p>
 
-</div>
+          </div>
 
+        </div>
 
-<div class="step">
 
-<div class="step-number">
-02
-</div>
+        <div class="portfolio-card">
 
-<h3>
-Создаём
-</h3>
+          <div class="portfolio-preview portfolio-three">
 
-<p>
-Собираем дизайн, структуру и нужные
-функции проекта.
-</p>
+            <span class="preview-tag">
+              PROJECT
+            </span>
 
-</div>
+            <strong>
+              Проект / продукт
+            </strong>
 
+          </div>
 
-<div class="step">
+          <div class="portfolio-card-body">
 
-<div class="step-number">
-03
-</div>
+            <strong>
+              Презентационный сайт
+            </strong>
 
-<h3>
-Проверяем
-</h3>
+            <p>
+              Рассказать о продукте,
+              проекте или собственной идее.
+            </p>
 
-<p>
-Проверяем отображение на телефоне,
-компьютере и основные кнопки.
-</p>
+          </div>
 
-</div>
+        </div>
 
+      </div>
 
-<div class="step">
+    </div>
 
-<div class="step-number">
-04
-</div>
+  </section>
 
-<h3>
-Запускаем
-</h3>
 
-<p>
-Публикуем готовый проект и передаём
-его заказчику.
-</p>
+  <!-- FAQ -->
 
-</div>
+  <section
+    class="section"
+    id="faq"
+  >
 
-</div>
+    <div class="container">
 
-</div>
+      <div class="section-heading">
 
-</section>
+        <div>
 
+          <div class="badge">
+            FAQ
+          </div>
 
-<!-- ADVANTAGES -->
+          <h2>
+            Частые вопросы
+          </h2>
 
-<section class="section" id="advantages">
+        </div>
 
-<div class="container">
+        <p>
+          Остались вопросы? Их можно задать
+          непосредственно при оформлении заявки.
+        </p>
 
-<div class="section-heading">
+      </div>
 
-<div>
-<div class="badge">Почему мы</div>
-<h2>Небольшая команда,<br>большое внимание к деталям.</h2>
-</div>
 
-<p>
-Мы не обещаем невозможного. Сначала разбираемся
-в задаче, затем предлагаем подходящий вариант.
-</p>
+      <div class="faq">
 
-</div>
 
+        <div class="faq-item">
 
-<div class="advantages">
+          <button
+            class="faq-question"
+            type="button"
+          >
 
-<div class="advantage">
-<div class="advantage-icon">✓</div>
-<h3>Честная цена</h3>
-<p>
-Показываем базовую стоимость заранее,
-а дополнительные работы согласовываем.
-</p>
-</div>
+            <span>
+              Почему сайт стоит так недорого?
+            </span>
 
+            <b>+</b>
 
-<div class="advantage">
-<div class="advantage-icon">⌁</div>
-<h3>Адаптивность</h3>
-<p>
-Сайт должен нормально выглядеть не только
-на компьютере, но и на смартфоне.
-</p>
-</div>
+          </button>
 
+          <div class="faq-answer">
 
-<div class="advantage">
-<div class="advantage-icon">🔒</div>
-<h3>Безопасный подход</h3>
-<p>
-Не храним пароли и секретные ключи в коде
-сайта. Пользовательские данные не выводятся
-через HTML.
-</p>
-</div>
+            Мы ориентируемся прежде всего на простые
+            сайты и небольшие проекты. Поэтому не включаем
+            в цену ненужные функции и сложную инфраструктуру.
 
+          </div>
 
-<div class="advantage">
-<div class="advantage-icon">⚡</div>
-<h3>Быстрый старт</h3>
-<p>
-Для простых проектов не требуется сложная
-инфраструктура.
-</p>
-</div>
+        </div>
 
 
-<div class="advantage">
-<div class="advantage-icon">◈</div>
-<h3>Современный дизайн</h3>
-<p>
-Чистая типографика, аккуратные блоки,
-анимации и понятная структура.
-</p>
-</div>
+        <div class="faq-item">
 
+          <button
+            class="faq-question"
+            type="button"
+          >
 
-<div class="advantage">
-<div class="advantage-icon">♡</div>
-<h3>Поддержка</h3>
-<p>
-После запуска можно заказать изменения
-и дополнительное развитие сайта.
-</p>
-</div>
+            <span>
+              Поддержка действительно бесплатная?
+            </span>
 
-</div>
+            <b>+</b>
 
-</div>
+          </button>
 
-</section>
+          <div class="faq-answer">
 
+            Да. Небольшие исправления текста, кнопок,
+            ссылок и другие мелкие правки после запуска
+            входят в бесплатную поддержку.
 
-<!-- PORTFOLIO -->
+          </div>
 
-<section class="section section-white" id="portfolio">
+        </div>
 
-<div class="container">
 
-<div class="section-heading">
+        <div class="faq-item">
 
-<div>
-<div class="badge">Портфолио</div>
-<h2>Примеры направлений</h2>
-</div>
+          <button
+            class="faq-question"
+            type="button"
+          >
 
-<p>
-Так может выглядеть структура проекта.
-Конкретный дизайн создаётся под задачу клиента.
-</p>
+            <span>
+              Что входит в 990 ₽?
+            </span>
 
-</div>
+            <b>+</b>
 
+          </button>
 
-<div class="portfolio">
+          <div class="faq-answer">
 
-<div class="portfolio-card">
+            Одностраничный сайт-визитка с адаптивным
+            оформлением, базовыми блоками, кнопками связи,
+            базовой SEO-разметкой и публикацией.
 
-<div class="portfolio-preview">
-<span class="portfolio-title">
-Business
-</span>
-</div>
+          </div>
 
-<div class="portfolio-card-body">
-<strong>Сайт услуги</strong>
-<p>
-Главный экран, преимущества,
-услуги, отзывы и форма заявки.
-</p>
-</div>
+        </div>
 
-</div>
 
+        <div class="faq-item">
 
-<div class="portfolio-card">
+          <button
+            class="faq-question"
+            type="button"
+          >
 
-<div class="portfolio-preview">
-<span class="portfolio-title">
-Portfolio
-</span>
-</div>
+            <span>
+              Домен входит в стоимость?
+            </span>
 
-<div class="portfolio-card-body">
-<strong>Портфолио</strong>
-<p>
-Работы, описание навыков,
-контакты и проекты.
-</p>
-</div>
+            <b>+</b>
 
-</div>
+          </button>
 
+          <div class="faq-answer">
 
-<div class="portfolio-card">
+            Сам домен оплачивается отдельно, потому что
+            стоимость зависит от доменной зоны и регистратора.
+            При необходимости поможем подобрать и зарегистрировать
+            его.
 
-<div class="portfolio-preview">
-<span class="portfolio-title">
-StartUp
-</span>
-</div>
+          </div>
 
-<div class="portfolio-card-body">
-<strong>Лендинг продукта</strong>
-<p>
-Презентация продукта, преимущества,
-тарифы и CTA.
-</p>
-</div>
+        </div>
 
-</div>
 
-</div>
+        <div class="faq-item">
 
-</div>
+          <button
+            class="faq-question"
+            type="button"
+          >
 
-</section>
+            <span>
+              Можно ли потом изменить сайт?
+            </span>
 
+            <b>+</b>
 
-<!-- FAQ -->
+          </button>
 
-<section class="section" id="faq">
+          <div class="faq-answer">
 
-<div class="container">
+            Конечно. Небольшие изменения можно сделать
+            в рамках поддержки. Крупные новые разделы или
+            полноценная переделка оцениваются отдельно.
 
-<div class="section-heading">
+          </div>
 
-<div>
-<div class="badge">FAQ</div>
-<h2>Частые вопросы</h2>
-</div>
+        </div>
 
-<p>
-Если вашего вопроса здесь нет — просто
-опишите задачу при заказе.
-</p>
 
-</div>
+        <div class="faq-item">
 
+          <button
+            class="faq-question"
+            type="button"
+          >
 
-<div class="faq">
+            <span>
+              Можно подключить мой домен?
+            </span>
 
-<div class="faq-item">
+            <b>+</b>
 
-<button
-class="faq-question"
-type="button"
->
-Сколько стоит простой сайт?
-<span>+</span>
-</button>
+          </button>
 
-<div class="faq-answer">
-Базовый сайт-визитка начинается от 980 ₽.
-Финальная стоимость зависит от количества страниц
-и дополнительных функций.
-</div>
+          <div class="faq-answer">
 
-</div>
+            Да. Если домен уже куплен, мы можем помочь
+            подключить его к сайту через DNS-настройки.
 
+          </div>
 
-<div class="faq-item">
+        </div>
 
-<button
-class="faq-question"
-type="button"
->
-Входит ли домен в стоимость?
-<span>+</span>
-</button>
 
-<div class="faq-answer">
-Нет. Домен оплачивается отдельно, потому что его
-цена зависит от доменной зоны и конкретного
-регистратора. Мы можем помочь с регистрацией
-под ключ.
-</div>
+        <div class="faq-item">
 
-</div>
+          <button
+            class="faq-question"
+            type="button"
+          >
 
+            <span>
+              Можно сделать сайт с Firebase?
+            </span>
 
-<div class="faq-item">
+            <b>+</b>
 
-<button
-class="faq-question"
-type="button"
->
-Можно ли подключить свой домен?
-<span>+</span>
-</button>
+          </button>
 
-<div class="faq-answer">
-Да. Если домен уже куплен, его можно подключить
-к готовому сайту при наличии доступа к настройкам
-DNS у регистратора.
-</div>
+          <div class="faq-answer">
 
-</div>
+            Да. Firebase можно использовать для подходящих
+            проектов: авторизации, базы данных, хранения
+            данных и других функций. Секретные ключи при этом
+            нельзя размещать непосредственно в клиентском HTML.
 
+          </div>
 
-<div class="faq-item">
+        </div>
 
-<button
-class="faq-question"
-type="button"
->
-Будет ли сайт работать на телефоне?
-<span>+</span>
-</button>
+      </div>
 
-<div class="faq-answer">
-Да. Адаптивность является частью базовой разработки.
-Мы проверяем основные размеры экранов.
-</div>
+    </div>
 
-</div>
+  </section>
 
 
-<div class="faq-item">
+  <!-- CONTACT -->
 
-<button
-class="faq-question"
-type="button"
->
-Можно ли потом изменить сайт?
-<span>+</span>
-</button>
+  <section
+    class="section"
+    id="contacts"
+  >
 
-<div class="faq-answer">
-Да. После запуска можно заказать новые блоки,
-страницы, изменения дизайна или дополнительные
-функции.
-</div>
+    <div class="container">
 
-</div>
+      <div class="contact">
 
+        <div class="contact-content">
 
-<div class="faq-item">
+          <span class="contact-label">
+            NEWS_92 STUDIO
+          </span>
 
-<button
-class="faq-question"
-type="button"
->
-Можно ли сделать сайт с Firebase?
-<span>+</span>
-</button>
+          <h2>
+            Есть идея?
+            Давайте сделаем её сайтом.
+          </h2>
 
-<div class="faq-answer">
-Да. Для подходящих проектов можно подключить
-Firebase Authentication, Firestore, Hosting и
-другие необходимые сервисы. Секретные ключи
-и пароли не должны размещаться в клиентском коде.
-</div>
+          <p>
+            Даже если вы пока не знаете,
+            какой именно сайт вам нужен —
+            просто расскажите о своей задумке.
+          </p>
 
-</div>
+        </div>
 
-</div>
 
-</div>
+        <div class="contact-actions">
 
-</section>
+          <button
+            class="button button-light"
+            type="button"
+            onclick="openOrder('Индивидуальный проект')"
+          >
+            Обсудить проект
+          </button>
 
+          <button
+            class="button button-transparent"
+            type="button"
+            onclick="scrollToSection('calculator')"
+          >
+            Посмотреть цены
+          </button>
 
-<!-- CONTACT -->
+        </div>
 
-<section class="section" id="contacts">
+      </div>
 
-<div class="container">
+    </div>
 
-<div class="contact">
-
-<div>
-
-<h2>
-Есть идея?
-Давайте превратим её в сайт.
-</h2>
-
-<p>
-Опишите задачу, примерный бюджет и желаемый результат.
-</p>
-
-</div>
-
-<button
-class="button button-light"
-type="button"
-onclick="openOrder('Индивидуальный проект')"
->
-Обсудить проект
-</button>
-
-</div>
-
-</div>
-
-</section>
+  </section>
 
 </main>
 
 
 <footer class="footer">
 
-<div class="container footer-row">
+  <div class="container footer-row">
 
-<div>
-© <span id="year"></span> News_92 Studio
-</div>
+    <div class="footer-brand">
 
-<div class="footer-links">
-<a href="#services">Услуги</a>
-<a href="#websites">Сайты</a>
-<a href="#faq">FAQ</a>
-<a href="#contacts">Контакты</a>
-</div>
+      <div class="footer-logo">
+        <span class="logo-icon">N</span>
+        <strong>News_92 Studio</strong>
+      </div>
 
-</div>
+      <p>
+        Дизайн и создание сайтов
+        по доступной цене.
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="#services">
+        Услуги
+      </a>
+
+      <a href="#calculator">
+        Цены
+      </a>
+
+      <a href="#portfolio">
+        Работы
+      </a>
+
+      <a href="#faq">
+        FAQ
+      </a>
+
+      <a href="#contacts">
+        Контакты
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="container footer-bottom">
+
+    <span>
+      © <span id="year"></span> News_92 Studio
+    </span>
+
+    <span>
+      Сделано с вниманием к деталям
+    </span>
+
+  </div>
 
 </footer>
 
@@ -2490,248 +2571,1123 @@ onclick="openOrder('Индивидуальный проект')"
 <!-- ORDER MODAL -->
 
 <div
-class="modal"
-id="orderModal"
-role="dialog"
-aria-modal="true"
-aria-labelledby="orderTitle"
+  class="modal"
+  id="orderModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="orderTitle"
 >
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<div class="modal-header">
+    <div class="modal-header">
 
-<div>
-<h2 id="orderTitle">
-Заявка на проект
-</h2>
-</div>
+      <div>
 
-<button
-class="close"
-type="button"
-aria-label="Закрыть"
-onclick="closeOrder()"
->
-×
-</button>
+        <span class="modal-label">
+          NEWS_92 STUDIO
+        </span>
+
+        <h2 id="orderTitle">
+          Заявка на проект
+        </h2>
+
+        <p>
+          Расскажите немного о своей задаче.
+        </p>
+
+      </div>
+
+      <button
+        class="close"
+        type="button"
+        aria-label="Закрыть"
+        onclick="closeOrder()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="order-summary"
+      id="orderSummary"
+    >
+      Выберите услугу и оставьте контакты.
+    </div>
+
+
+    <form id="orderForm">
+
+      <div class="form-group">
+
+        <label for="clientName">
+          Ваше имя
+        </label>
+
+        <input
+          id="clientName"
+          name="name"
+          type="text"
+          maxlength="60"
+          autocomplete="name"
+          placeholder="Например, Алексей"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="clientContact">
+          Контакт для связи
+        </label>
+
+        <input
+          id="clientContact"
+          name="contact"
+          type="text"
+          maxlength="120"
+          autocomplete="email"
+          placeholder="Telegram, телефон или email"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="clientMessage">
+          Что нужно сделать?
+        </label>
+
+        <textarea
+          id="clientMessage"
+          name="message"
+          maxlength="1000"
+          placeholder="Например: нужен небольшой сайт для моей услуги..."
+          required
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-actions">
+
+        <button
+          class="button button-outline"
+          type="button"
+          onclick="closeOrder()"
+        >
+          Отмена
+        </button>
+
+        <button
+          class="button"
+          type="submit"
+        >
+          Отправить заявку
+        </button>
+
+      </div>
+
+    </form>
+
+
+    <div
+      class="success"
+      id="successBlock"
+    >
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h3>
+        Заявка заполнена
+      </h3>
+
+      <p>
+        Спасибо! Форма готова.
+        Когда подключишь Firebase или серверный
+        обработчик, заявки можно будет отправлять
+        автоматически.
+      </p>
+
+      <button
+        class="button"
+        type="button"
+        onclick="closeOrder()"
+      >
+        Готово
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
 
 <div
-class="order-summary"
-id="orderSummary"
+  class="toast"
+  id="toast"
 >
-Выберите услугу и оставьте контакты.
-</div>
-
-
-<form id="orderForm">
-
-<div class="form-group">
-
-<label for="clientName">
-Ваше имя
-</label>
-
-<input
-id="clientName"
-name="name"
-type="text"
-maxlength="60"
-autocomplete="name"
-placeholder="Например, Алексей"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label for="clientContact">
-Контакт для связи
-</label>
-
-<input
-id="clientContact"
-name="contact"
-type="text"
-maxlength="120"
-autocomplete="email"
-placeholder="Telegram, телефон или email"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label for="clientMessage">
-Что нужно сделать?
-</label>
-
-<textarea
-id="clientMessage"
-name="message"
-maxlength="1000"
-placeholder="Коротко опишите ваш проект..."
-required
-></textarea>
-
-</div>
-
-
-<div class="form-actions">
-
-<button
-class="button button-outline"
-type="button"
-onclick="closeOrder()"
->
-Отмена
-</button>
-
-<button
-class="button"
-type="submit"
->
-Отправить заявку
-</button>
-
-</div>
-
-</form>
-
-
-<div
-class="success"
-id="successBlock"
->
-
-<div class="success-icon">
-✓
-</div>
-
-<h3>
-Заявка подготовлена
-</h3>
-
-<p style="margin-top:8px;color:#72757e;font-size:13px">
-Сейчас подключена безопасная демонстрационная
-форма. Для реальной отправки подключим Firebase
-или серверный обработчик.
-</p>
-
-<br>
-
-<button
-class="button"
-type="button"
-onclick="closeOrder()"
->
-Готово
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div
-class="toast"
-id="toast"
->
-Готово
+  Готово
 </div>
 
 
 <script>
 
+/* =========================================
+   YEAR
+========================================= */
+
+const yearElement =
+  document.getElementById("year");
+
+if(yearElement){
+
+  yearElement.textContent =
+    new Date().getFullYear();
+
+}
+
+
+/* =========================================
+   SCROLL
+========================================= */
+
+function scrollToSection(id){
+
+  const element =
+    document.getElementById(id);
+
+  if(!element){
+    return;
+  }
+
+  element.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* =========================================
+   TABS
+========================================= */
+
+const tabs =
+  document.querySelectorAll(".tab");
+
+tabs.forEach(function(tab){
+
+  tab.addEventListener("click",function(){
+
+    tabs.forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+
+    tab.classList.add("active");
+
+
+    document
+      .querySelectorAll(".tab-content")
+      .forEach(function(content){
+
+        content.classList.remove("active");
+
+      });
+
+
+    const target =
+      document.getElementById(
+        "tab-" + tab.dataset.tab
+      );
+
+
+    if(target){
+
+      target.classList.add("active");
+
+    }
+
+  });
+
+});
+
+
+/* =========================================
+   WEBSITE TAB
+========================================= */
+
+function openWebsiteTab(){
+
+  const serviceSection =
+    document.getElementById("services");
+
+  if(serviceSection){
+
+    serviceSection.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  }
+
+
+  const webTab =
+    document.querySelector(
+      '.tab[data-tab="web"]'
+    );
+
+
+  if(webTab){
+
+    setTimeout(function(){
+
+      webTab.click();
+
+    },250);
+
+  }
+
+}
+
+
+/* =========================================
+   CALCULATOR
+========================================= */
+
+const siteType =
+  document.getElementById("siteType");
+
+const pages =
+  document.getElementById("pages");
+
+const design =
+  document.getElementById("design");
+
+const features =
+  document.getElementById("features");
+
+const totalPrice =
+  document.getElementById("totalPrice");
+
+const totalDetails =
+  document.getElementById("totalDetails");
+
+
+function calculate(){
+
+  if(
+    !siteType ||
+    !pages ||
+    !design ||
+    !features
+  ){
+
+    return;
+
+  }
+
+
+  const base =
+    Number(siteType.value) || 0;
+
+  const pagesPrice =
+    Number(pages.value) || 0;
+
+  const designPrice =
+    Number(design.value) || 0;
+
+  const featuresPrice =
+    Number(features.value) || 0;
+
+
+  const total =
+    base +
+    pagesPrice +
+    designPrice +
+    featuresPrice;
+
+
+  if(totalPrice){
+
+    totalPrice.textContent =
+      total.toLocaleString("ru-RU")
+      + " ₽";
+
+  }
+
+
+  if(totalDetails){
+
+    const baseName =
+      siteType
+        .options[
+          siteType.selectedIndex
+        ]
+        .textContent
+        .trim();
+
+
+    const details = [
+      baseName
+    ];
+
+
+    if(pagesPrice > 0){
+
+      details.push(
+        "+" +
+        pagesPrice.toLocaleString("ru-RU") +
+        " ₽ страницы"
+      );
+
+    }
+
+
+    if(designPrice > 0){
+
+      details.push(
+        "+" +
+        designPrice.toLocaleString("ru-RU") +
+        " ₽ дизайн"
+      );
+
+    }
+
+
+    if(featuresPrice > 0){
+
+      details.push(
+        "+" +
+        featuresPrice.toLocaleString("ru-RU") +
+        " ₽ функции"
+      );
+
+    }
+
+
+    details.push(
+      "поддержка бесплатно"
+    );
+
+
+    totalDetails.textContent =
+      details.join(" • ");
+
+  }
+
+}
+
+
+[
+  siteType,
+  pages,
+  design,
+  features
+].forEach(function(element){
+
+  if(element){
+
+    element.addEventListener(
+      "change",
+      calculate
+    );
+
+  }
+
+});
+
+
+calculate();
+
+
+/* =========================================
+   ORDER MODAL
+========================================= */
+
+const modal =
+  document.getElementById("orderModal");
+
+const orderSummary =
+  document.getElementById("orderSummary");
+
+const orderForm =
+  document.getElementById("orderForm");
+
+const successBlock =
+  document.getElementById("successBlock");
+
+
+function openOrder(service){
+
+  if(!modal){
+    return;
+  }
+
+
+  if(orderSummary){
+
+    orderSummary.textContent =
+      "Вы выбрали: " + service;
+
+  }
+
+
+  if(orderForm){
+
+    orderForm.style.display =
+      "block";
+
+  }
+
+
+  if(successBlock){
+
+    successBlock.classList.remove(
+      "show"
+    );
+
+  }
+
+
+  modal.classList.add("show");
+
+  document.body.classList.add(
+    "modal-open"
+  );
+
+
+  setTimeout(function(){
+
+    const name =
+      document.getElementById(
+        "clientName"
+      );
+
+
+    if(name){
+
+      name.focus();
+
+    }
+
+  },100);
+
+}
+
+
+function closeOrder(){
+
+  if(modal){
+
+    modal.classList.remove("show");
+
+  }
+
+
+  document.body.classList.remove(
+    "modal-open"
+  );
+
+}
+
+
+if(modal){
+
+  modal.addEventListener(
+    "click",
+    function(event){
+
+      if(event.target === modal){
+
+        closeOrder();
+
+      }
+
+    }
+  );
+
+}
+
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      closeOrder();
+
+    }
+
+  }
+);
+
+
+/* =========================================
+   ORDER FORM
+========================================= */
+
+if(orderForm){
+
+  orderForm.addEventListener(
+    "submit",
+    function(event){
+
+      event.preventDefault();
+
+
+      const name =
+        document
+          .getElementById("clientName")
+          .value
+          .trim();
+
+
+      const contact =
+        document
+          .getElementById("clientContact")
+          .value
+          .trim();
+
+
+      const message =
+        document
+          .getElementById("clientMessage")
+          .value
+          .trim();
+
+
+      if(
+        name.length < 2 ||
+        contact.length < 3 ||
+        message.length < 5
+      ){
+
+        showToast(
+          "Пожалуйста, заполните форму."
+        );
+
+        return;
+
+      }
+
+
+      orderForm.style.display =
+        "none";
+
+
+      if(successBlock){
+
+        successBlock.classList.add(
+          "show"
+        );
+
+      }
+
+
+      showToast(
+        "Заявка заполнена."
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   CALCULATOR ORDER
+========================================= */
+
+function orderCalculator(){
+
+  const price =
+    totalPrice
+      ? totalPrice.textContent
+      : "990 ₽";
+
+
+  const details =
+    totalDetails
+      ? totalDetails.textContent
+      : "Создание сайта";
+
+
+  openOrder(
+    "Создание сайта — " +
+    price +
+    " • " +
+    details
+  );
+
+}
+
+
+/* =========================================
+   FAQ
+========================================= */
+
+const faqButtons =
+  document.querySelectorAll(
+    ".faq-question"
+  );
+
+
+faqButtons.forEach(function(button){
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      const item =
+        button.closest(
+          ".faq-item"
+        );
+
+
+      if(!item){
+        return;
+      }
+
+
+      const wasOpen =
+        item.classList.contains(
+          "open"
+        );
+
+
+      document
+        .querySelectorAll(
+          ".faq-item"
+        )
+        .forEach(function(other){
+
+          other.classList.remove(
+            "open"
+          );
+
+        });
+
+
+      if(!wasOpen){
+
+        item.classList.add(
+          "open"
+        );
+
+      }
+
+    }
+  );
+
+});
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+let toastTimer = null;
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  if(!toast){
+    return;
+  }
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(function(){
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },3000);
+
+}
+
+
+/* =========================================
+   INPUT LIMITS
+========================================= */
+
+document
+  .querySelectorAll(
+    "input, textarea"
+  )
+  .forEach(function(element){
+
+    element.addEventListener(
+      "input",
+      function(){
+
+        if(
+          element.maxLength > 0 &&
+          element.value.length >
+          element.maxLength
+        ){
+
+          element.value =
+            element.value.slice(
+              0,
+              element.maxLength
+            );
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =========================================
+   BUTTON DEFAULT TYPE
+========================================= */
+
+document
+  .querySelectorAll("button")
+  .forEach(function(button){
+
+    if(
+      !button.getAttribute("type")
+    ){
+
+      button.setAttribute(
+        "type",
+        "button"
+      );
+
+    }
+
+  });
+
+
+/* =========================================
+   ACTIVE NAVIGATION
+========================================= */
+
+const sections =
+  document.querySelectorAll(
+    "main section[id]"
+  );
+
+
+const navLinks =
+  document.querySelectorAll(
+    ".menu a"
+  );
+
+
+if(
+  sections.length &&
+  navLinks.length &&
+  "IntersectionObserver" in window
+){
+
+  const observer =
+    new IntersectionObserver(
+      function(entries){
+
+        entries.forEach(
+          function(entry){
+
+            if(
+              !entry.isIntersecting
+            ){
+
+              return;
+
+            }
+
+
+            navLinks.forEach(
+              function(link){
+
+                link.classList.remove(
+                  "current"
+                );
+
+
+                if(
+                  link.getAttribute(
+                    "href"
+                  ) ===
+                  "#" +
+                  entry.target.id
+                ){
+
+                  link.classList.add(
+                    "current"
+                  );
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      },
+      {
+        rootMargin:
+          "-35% 0px -55% 0px"
+      }
+    );
+
+
+  sections.forEach(
+    function(section){
+
+      observer.observe(
+        section
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================
+   CLOSE MODAL AFTER SUCCESS
+========================================= */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    document.body.classList.add(
+      "loaded"
+    );
+
+  }
+);
+
+
+/* =========================================
+   CONSOLE
+========================================= */
+
+console.log(
+  "News_92 Studio — сайт загружен."
+);
+
+</script>
+
+</body>
+    </html><!-- =========================
+     ЧАСТЬ 3/3 — JS + ЗАКРЫТИЕ HTML
+     ========================= -->
+
+<script>
+
 /* ================================
-   BASIC
+   ГОД В FOOTER
 ================================ */
 
 const yearElement = document.getElementById("year");
 
-if(yearElement){
+if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
 }
 
 
 /* ================================
-   SCROLL
+   ПЛАВНЫЙ СКРОЛЛ
 ================================ */
 
-function scrollToSection(id){
+function scrollToSection(id) {
 
     const element = document.getElementById(id);
 
-    if(!element){
+    if (!element) {
         return;
     }
 
     element.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+        behavior: "smooth",
+        block: "start"
     });
 }
+
+
+/* ================================
+   МОБИЛЬНОЕ МЕНЮ
+================================ */
+
+const mobileMenuButton =
+    document.querySelector(".mobile-menu");
+
+const mobileMenu =
+    document.querySelector(".menu");
+
+if (mobileMenuButton && mobileMenu) {
+
+    mobileMenuButton.addEventListener(
+        "click",
+        function () {
+
+            mobileMenu.classList.toggle("mobile-open");
+
+        }
+    );
+
+}
+
+
+/* ================================
+   ЗАКРЫТИЕ МОБИЛЬНОГО МЕНЮ
+================================ */
+
+document.querySelectorAll(".menu a").forEach(
+    function (link) {
+
+        link.addEventListener(
+            "click",
+            function () {
+
+                if (mobileMenu) {
+                    mobileMenu.classList.remove(
+                        "mobile-open"
+                    );
+                }
+
+            }
+        );
+
+    }
+);
 
 
 /* ================================
    TABS
 ================================ */
 
-const tabs = document.querySelectorAll(".tab");
+const tabs =
+    document.querySelectorAll(".tab");
 
-tabs.forEach(function(tab){
+const tabContents =
+    document.querySelectorAll(".tab-content");
 
-    tab.addEventListener("click",function(){
+tabs.forEach(function (tab) {
 
-        tabs.forEach(function(item){
-            item.classList.remove("active");
-        });
+    tab.addEventListener(
+        "click",
+        function () {
 
-        tab.classList.add("active");
+            const target =
+                tab.dataset.tab;
 
-        document.querySelectorAll(".tab-content")
-        .forEach(function(content){
-            content.classList.remove("active");
-        });
+            tabs.forEach(function (item) {
 
-        const target =
-            document.getElementById(
-                "tab-" + tab.dataset.tab
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+            tabContents.forEach(
+                function (content) {
+
+                    content.classList.remove(
+                        "active"
+                    );
+
+                }
             );
 
-        if(target){
-            target.classList.add("active");
-        }
+            tab.classList.add("active");
 
-    });
+            const targetContent =
+                document.getElementById(
+                    "tab-" + target
+                );
+
+            if (targetContent) {
+
+                targetContent.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
 
 });
 
 
 /* ================================
-   WEBSITE ANCHOR
+   ОТКРЫТЬ ВКЛАДКУ САЙТОВ
 ================================ */
 
-function openWebsiteTab(){
+function openWebsiteTab() {
 
-    scrollToSection("services");
+    const services =
+        document.getElementById(
+            "services"
+        );
+
+    if (services) {
+
+        services.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
 
     const webTab =
         document.querySelector(
             '.tab[data-tab="web"]'
         );
 
-    if(webTab){
-        webTab.click();
+    if (webTab) {
+
+        setTimeout(
+            function () {
+                webTab.click();
+            },
+            350
+        );
+
     }
 
 }
@@ -2742,200 +3698,302 @@ function openWebsiteTab(){
 ================================ */
 
 const siteType =
-    document.getElementById("siteType");
+    document.getElementById(
+        "siteType"
+    );
 
 const pages =
-    document.getElementById("pages");
+    document.getElementById(
+        "pages"
+    );
 
 const domain =
-    document.getElementById("domain");
+    document.getElementById(
+        "domain"
+    );
 
-const analytics =
-    document.getElementById("analytics");
+const extras =
+    document.getElementById(
+        "analytics"
+    );
 
 const totalPrice =
-    document.getElementById("totalPrice");
+    document.getElementById(
+        "totalPrice"
+    );
 
 const totalDetails =
-    document.getElementById("totalDetails");
+    document.getElementById(
+        "totalDetails"
+    );
 
 
-function calculate(){
+function calculatePrice() {
 
-    if(
+    if (
         !siteType ||
         !pages ||
         !domain ||
-        !analytics
-    ){
+        !extras
+    ) {
         return;
     }
 
     const base =
         Number(siteType.value) || 0;
 
-    const extraPages =
+    const pagePrice =
         Number(pages.value) || 0;
 
     const domainPrice =
         Number(domain.value) || 0;
 
-    const extraFunctions =
-        Number(analytics.value) || 0;
+    const extraPrice =
+        Number(extras.value) || 0;
 
     const total =
         base +
-        extraPages +
+        pagePrice +
         domainPrice +
-        extraFunctions;
+        extraPrice;
 
-    if(totalPrice){
+
+    if (totalPrice) {
 
         totalPrice.textContent =
-            total.toLocaleString("ru-RU")
-            + " ₽";
+            total.toLocaleString(
+                "ru-RU"
+            ) + " ₽";
 
     }
 
-    if(totalDetails){
 
-        const baseName =
+    if (totalDetails) {
+
+        const selectedSite =
             siteType.options[
                 siteType.selectedIndex
-            ].textContent.trim();
+            ];
 
-        const parts = [
-            baseName
-        ];
+        const selectedPages =
+            pages.options[
+                pages.selectedIndex
+            ];
 
-        if(extraPages > 0){
-            parts.push(
-                "+" +
-                extraPages.toLocaleString("ru-RU") +
-                " ₽ за страницы"
+        const selectedDomain =
+            domain.options[
+                domain.selectedIndex
+            ];
+
+        const selectedExtras =
+            extras.options[
+                extras.selectedIndex
+            ];
+
+
+        const details = [];
+
+        if (selectedSite) {
+
+            details.push(
+                selectedSite.textContent.trim()
             );
+
         }
 
-        if(domainPrice > 0){
-            parts.push(
-                "+ домен"
+        if (
+            pagePrice > 0 &&
+            selectedPages
+        ) {
+
+            details.push(
+                selectedPages.textContent.trim()
             );
+
         }
 
-        if(extraFunctions > 0){
-            parts.push(
-                "+ дополнительные функции"
+        if (
+            domainPrice > 0 &&
+            selectedDomain
+        ) {
+
+            details.push(
+                "домен"
             );
+
+        }
+
+        if (
+            extraPrice > 0 &&
+            selectedExtras
+        ) {
+
+            details.push(
+                selectedExtras.textContent.trim()
+            );
+
         }
 
         totalDetails.textContent =
-            parts.join(" • ");
+            details.join(" • ");
 
     }
 
 }
 
+
+/* ================================
+   ОБНОВЛЕНИЕ КАЛЬКУЛЯТОРА
+================================ */
 
 [
     siteType,
     pages,
     domain,
-    analytics
-].forEach(function(element){
+    extras
+].forEach(function (element) {
 
-    if(element){
-        element.addEventListener(
-            "change",
-            calculate
-        );
-    }
-
-});
-
-calculate();
-
-
-/* ================================
-   ORDER MODAL
-================================ */
-
-const modal =
-    document.getElementById("orderModal");
-
-const orderSummary =
-    document.getElementById("orderSummary");
-
-const orderForm =
-    document.getElementById("orderForm");
-
-const successBlock =
-    document.getElementById("successBlock");
-
-
-function openOrder(service){
-
-    if(!modal){
+    if (!element) {
         return;
     }
 
-    if(orderSummary){
+    element.addEventListener(
+        "change",
+        calculatePrice
+    );
 
-        /*
-          textContent используется намеренно:
-          данные пользователя не интерпретируются
-          как HTML.
-        */
+});
+
+
+calculatePrice();
+
+
+/* ================================
+   MODAL
+================================ */
+
+const modal =
+    document.getElementById(
+        "orderModal"
+    );
+
+const orderForm =
+    document.getElementById(
+        "orderForm"
+    );
+
+const orderSummary =
+    document.getElementById(
+        "orderSummary"
+    );
+
+const successBlock =
+    document.getElementById(
+        "successBlock"
+    );
+
+
+let selectedService =
+    "Индивидуальный проект";
+
+
+function openOrder(service) {
+
+    if (!modal) {
+        return;
+    }
+
+    selectedService =
+        service || "Индивидуальный проект";
+
+
+    if (orderSummary) {
 
         orderSummary.textContent =
-            "Вы выбрали: " + service;
+            "Выбранная услуга: " +
+            selectedService;
 
     }
 
-    if(orderForm){
-        orderForm.style.display = "block";
+
+    if (orderForm) {
+
+        orderForm.style.display =
+            "block";
+
     }
 
-    if(successBlock){
-        successBlock.classList.remove("show");
+
+    if (successBlock) {
+
+        successBlock.classList.remove(
+            "show"
+        );
+
     }
+
 
     modal.classList.add("show");
 
-    document.body.classList.add("modal-open");
+    document.body.classList.add(
+        "modal-open"
+    );
 
-    setTimeout(function(){
 
-        const name =
-            document.getElementById("clientName");
+    setTimeout(
+        function () {
 
-        if(name){
-            name.focus();
-        }
+            const nameInput =
+                document.getElementById(
+                    "clientName"
+                );
 
-    },100);
+            if (nameInput) {
+
+                nameInput.focus();
+
+            }
+
+        },
+        100
+    );
 
 }
 
 
-function closeOrder(){
+function closeOrder() {
 
-    if(modal){
-        modal.classList.remove("show");
+    if (!modal) {
+        return;
     }
 
-    document.body.classList.remove("modal-open");
+    modal.classList.remove(
+        "show"
+    );
+
+    document.body.classList.remove(
+        "modal-open"
+    );
 
 }
 
 
-if(modal){
+/* ================================
+   ЗАКРЫТИЕ MODAL ПО ФОНУ
+================================ */
+
+if (modal) {
 
     modal.addEventListener(
         "click",
-        function(event){
+        function (event) {
 
-            if(event.target === modal){
+            if (
+                event.target === modal
+            ) {
+
                 closeOrder();
+
             }
 
         }
@@ -2944,12 +4002,20 @@ if(modal){
 }
 
 
+/* ================================
+   ESC
+================================ */
+
 document.addEventListener(
     "keydown",
-    function(event){
+    function (event) {
 
-        if(event.key === "Escape"){
+        if (
+            event.key === "Escape"
+        ) {
+
             closeOrder();
+
         }
 
     }
@@ -2957,64 +4023,197 @@ document.addEventListener(
 
 
 /* ================================
-   ORDER FORM
+   TOAST
 ================================ */
 
-if(orderForm){
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+let toastTimer = null;
+
+
+function showToast(message) {
+
+    if (!toast) {
+        return;
+    }
+
+    toast.textContent =
+        message;
+
+    toast.classList.add(
+        "show"
+    );
+
+    clearTimeout(
+        toastTimer
+    );
+
+    toastTimer =
+        setTimeout(
+            function () {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3200
+        );
+
+}
+
+
+/* ================================
+   FORM
+================================ */
+
+if (orderForm) {
 
     orderForm.addEventListener(
         "submit",
-        function(event){
+        function (event) {
 
             event.preventDefault();
 
-            const name =
+
+            const nameInput =
                 document.getElementById(
                     "clientName"
-                ).value.trim();
-
-            const contact =
-                document.getElementById(
-                    "clientContact"
-                ).value.trim();
-
-            const message =
-                document.getElementById(
-                    "clientMessage"
-                ).value.trim();
-
-            if(
-                name.length < 2 ||
-                contact.length < 3 ||
-                message.length < 5
-            ){
-
-                showToast(
-                    "Проверьте заполнение формы."
                 );
 
+            const contactInput =
+                document.getElementById(
+                    "clientContact"
+                );
+
+            const messageInput =
+                document.getElementById(
+                    "clientMessage"
+                );
+
+
+            const name =
+                nameInput
+                    ? nameInput.value.trim()
+                    : "";
+
+            const contact =
+                contactInput
+                    ? contactInput.value.trim()
+                    : "";
+
+            const message =
+                messageInput
+                    ? messageInput.value.trim()
+                    : "";
+
+
+            if (
+                name.length < 2
+            ) {
+
+                showToast(
+                    "Введите имя."
+                );
+
+                if (nameInput) {
+                    nameInput.focus();
+                }
+
                 return;
+
+            }
+
+
+            if (
+                contact.length < 3
+            ) {
+
+                showToast(
+                    "Укажите контакт для связи."
+                );
+
+                if (contactInput) {
+                    contactInput.focus();
+                }
+
+                return;
+
+            }
+
+
+            if (
+                message.length < 5
+            ) {
+
+                showToast(
+                    "Коротко опишите проект."
+                );
+
+                if (messageInput) {
+                    messageInput.focus();
+                }
+
+                return;
+
             }
 
 
             /*
-              Здесь намеренно нет отправки на сторонний
-              адрес и нет сохранения персональных данных.
+             * Сейчас форма работает локально.
+             *
+             * Это специально:
+             * секреты Firebase, Telegram-бота,
+             * API-ключи и пароли нельзя
+             * помещать непосредственно
+             * в этот HTML-файл.
+             *
+             * Когда серверная часть подключена,
+             * именно сюда можно отправить
+             * данные через безопасный API.
+             */
 
-              Когда Firebase будет подключаться,
-              отправку можно сделать через Cloud Functions
-              или другой серверный обработчик.
-            */
 
-            orderForm.style.display = "none";
+            if (orderForm) {
 
-            if(successBlock){
-                successBlock.classList.add("show");
+                orderForm.style.display =
+                    "none";
+
             }
 
+
+            if (successBlock) {
+
+                successBlock.classList.add(
+                    "show"
+                );
+
+            }
+
+
             showToast(
-                "Заявка заполнена."
+                "Заявка успешно подготовлена!"
             );
+
+
+            /*
+             * Очищаем поля после отправки.
+             */
+
+            if (nameInput) {
+                nameInput.value = "";
+            }
+
+            if (contactInput) {
+                contactInput.value = "";
+            }
+
+            if (messageInput) {
+                messageInput.value = "";
+            }
 
         }
     );
@@ -3023,23 +4222,25 @@ if(orderForm){
 
 
 /* ================================
-   CALCULATOR ORDER
+   ЗАКАЗ ИЗ КАЛЬКУЛЯТОРА
 ================================ */
 
-function orderCalculator(){
+function orderCalculator() {
 
     const price =
         totalPrice
-        ? totalPrice.textContent
-        : "980 ₽";
+            ? totalPrice.textContent
+            : "980 ₽";
+
 
     const details =
         totalDetails
-        ? totalDetails.textContent
-        : "Создание сайта";
+            ? totalDetails.textContent
+            : "Сайт";
+
 
     openOrder(
-        "Создание сайта — " +
+        "Сайт — " +
         price +
         " • " +
         details
@@ -3052,100 +4253,81 @@ function orderCalculator(){
    FAQ
 ================================ */
 
-const faqButtons =
+const faqItems =
     document.querySelectorAll(
-        ".faq-question"
+        ".faq-item"
     );
 
-faqButtons.forEach(function(button){
+faqItems.forEach(
+    function (item) {
 
-    button.addEventListener(
-        "click",
-        function(){
+        const question =
+            item.querySelector(
+                ".faq-question"
+            );
 
-            const item =
-                button.closest(".faq-item");
-
-            if(!item){
-                return;
-            }
-
-            const alreadyOpen =
-                item.classList.contains("open");
-
-
-            document.querySelectorAll(
-                ".faq-item"
-            ).forEach(function(other){
-
-                other.classList.remove("open");
-
-            });
-
-
-            if(!alreadyOpen){
-                item.classList.add("open");
-            }
-
+        if (!question) {
+            return;
         }
-    );
-
-});
 
 
-/* ================================
-   TOAST
-================================ */
+        question.addEventListener(
+            "click",
+            function () {
 
-let toastTimer = null;
+                const wasOpen =
+                    item.classList.contains(
+                        "open"
+                    );
 
-function showToast(message){
 
-    const toast =
-        document.getElementById("toast");
+                faqItems.forEach(
+                    function (other) {
 
-    if(!toast){
-        return;
+                        other.classList.remove(
+                            "open"
+                        );
+
+                    }
+                );
+
+
+                if (!wasOpen) {
+
+                    item.classList.add(
+                        "open"
+                    );
+
+                }
+
+            }
+        );
+
     }
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer =
-        setTimeout(function(){
-
-            toast.classList.remove("show");
-
-        },3000);
-
-}
+);
 
 
 /* ================================
-   SIMPLE FORM PROTECTION
+   INPUT LIMIT
 ================================ */
 
-function limitInputLength(){
-
-    document.querySelectorAll(
-        "input, textarea"
-    ).forEach(function(element){
+document.querySelectorAll(
+    "input, textarea"
+).forEach(
+    function (element) {
 
         element.addEventListener(
             "input",
-            function(){
+            function () {
 
-                if(
+                if (
                     element.maxLength > 0 &&
                     element.value.length >
                     element.maxLength
-                ){
+                ) {
 
                     element.value =
-                        element.value.slice(
+                        element.value.substring(
                             0,
                             element.maxLength
                         );
@@ -3155,34 +4337,15 @@ function limitInputLength(){
             }
         );
 
-    });
-
-}
-
-limitInputLength();
+    }
+);
 
 
 /* ================================
-   SAFE EXTERNAL LINK BEHAVIOUR
+   HEADER ACTIVE LINK
 ================================ */
 
-document.querySelectorAll(
-    'a[target="_blank"]'
-).forEach(function(link){
-
-    link.setAttribute(
-        "rel",
-        "noopener noreferrer"
-    );
-
-});
-
-
-/* ================================
-   ACTIVE HEADER LINK
-================================ */
-
-const sections =
+const pageSections =
     document.querySelectorAll(
         "main section[id]"
     );
@@ -3192,79 +4355,700 @@ const navLinks =
         ".menu a"
     );
 
-const observer =
-    new IntersectionObserver(
-        function(entries){
 
-            entries.forEach(function(entry){
+if (
+    "IntersectionObserver"
+    in window
+) {
 
-                if(!entry.isIntersecting){
-                    return;
-                }
+    const sectionObserver =
+        new IntersectionObserver(
+            function (entries) {
 
-                navLinks.forEach(
-                    function(link){
+                entries.forEach(
+                    function (entry) {
 
-                        link.style.color = "";
-
-                        if(
-                            link.getAttribute(
-                                "href"
-                            ) ===
-                            "#" + entry.target.id
-                        ){
-
-                            link.style.color =
-                                "var(--dark)";
-
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
                         }
+
+
+                        navLinks.forEach(
+                            function (link) {
+
+                                const href =
+                                    link.getAttribute(
+                                        "href"
+                                    );
+
+
+                                link.classList.remove(
+                                    "active-link"
+                                );
+
+
+                                if (
+                                    href ===
+                                    "#" +
+                                    entry.target.id
+                                ) {
+
+                                    link.classList.add(
+                                        "active-link"
+                                    );
+
+                                }
+
+                            }
+                        );
 
                     }
                 );
 
-            });
+            },
+            {
+                rootMargin:
+                    "-35% 0px -55% 0px"
+            }
+        );
 
-        },
-        {
-            rootMargin:"-35% 0px -55% 0px"
+
+    pageSections.forEach(
+        function (section) {
+
+            sectionObserver.observe(
+                section
+            );
+
         }
     );
 
-
-sections.forEach(function(section){
-    observer.observe(section);
-});
+}
 
 
 /* ================================
-   PREVENT ACCIDENTAL SUBMIT
+   КНОПКИ
 ================================ */
 
 document.querySelectorAll(
     "button"
-).forEach(function(button){
+).forEach(
+    function (button) {
 
-    if(
-        !button.getAttribute("type")
-    ){
-        button.setAttribute(
-            "type",
-            "button"
-        );
+        if (
+            !button.hasAttribute(
+                "type"
+            )
+        ) {
+
+            button.setAttribute(
+                "type",
+                "button"
+            );
+
+        }
+
     }
-
-});
+);
 
 
 /* ================================
-   FINAL
+   ССЫЛКИ
+================================ */
+
+document.querySelectorAll(
+    'a[target="_blank"]'
+).forEach(
+    function (link) {
+
+        link.setAttribute(
+            "rel",
+            "noopener noreferrer"
+        );
+
+    }
+);
+
+
+/* ================================
+   ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
+   ЕСЛИ ДОБАВИШЬ КНОПКУ THEME
+================================ */
+
+const themeButton =
+    document.getElementById(
+        "themeButton"
+    );
+
+
+if (themeButton) {
+
+    themeButton.addEventListener(
+        "click",
+        function () {
+
+            document.body.classList.toggle(
+                "dark-mode"
+            );
+
+
+            const dark =
+                document.body.classList.contains(
+                    "dark-mode"
+                );
+
+
+            localStorage.setItem(
+                "news92-theme",
+                dark
+                    ? "dark"
+                    : "light"
+            );
+
+        }
+    );
+
+}
+
+
+const savedTheme =
+    localStorage.getItem(
+        "news92-theme"
+    );
+
+
+if (
+    savedTheme === "dark"
+) {
+
+    document.body.classList.add(
+        "dark-mode"
+    );
+
+}
+
+
+/* ================================
+   ПОДСВЕТКА КАРТОЧЕК
+================================ */
+
+document.querySelectorAll(
+    ".package, .card, .advantage"
+).forEach(
+    function (card) {
+
+        card.addEventListener(
+            "mouseenter",
+            function () {
+
+                card.style.setProperty(
+                    "--mouse-active",
+                    "1"
+                );
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            function () {
+
+                card.style.setProperty(
+                    "--mouse-active",
+                    "0"
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* ================================
+   ЗАЩИТА ОТ ДВОЙНОГО КЛИКА
+================================ */
+
+let lastClickTime = 0;
+
+
+document.querySelectorAll(
+    ".button"
+).forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const now =
+                    Date.now();
+
+
+                if (
+                    now -
+                    lastClickTime <
+                    150
+                ) {
+
+                    return;
+
+                }
+
+
+                lastClickTime =
+                    now;
+
+            }
+        );
+
+    }
+);
+
+
+/* ================================
+   ПРОВЕРКА DOM
+================================ */
+
+function checkRequiredElements() {
+
+    const required = [
+        "services",
+        "calculator",
+        "orderModal",
+        "orderForm"
+    ];
+
+
+    const missing = [];
+
+
+    required.forEach(
+        function (id) {
+
+            if (
+                !document.getElementById(id)
+            ) {
+
+                missing.push(id);
+
+            }
+
+        }
+    );
+
+
+    if (
+        missing.length > 0
+    ) {
+
+        console.warn(
+            "News_92 Studio: отсутствуют элементы:",
+            missing
+        );
+
+    }
+
+}
+
+
+checkRequiredElements();
+
+
+/* ================================
+   ПРОСТАЯ АНИМАЦИЯ ПРИ ПОЯВЛЕНИИ
+================================ */
+
+if (
+    "IntersectionObserver"
+    in window
+) {
+
+    const revealElements =
+        document.querySelectorAll(
+            ".card, .package, .advantage, .step, .portfolio-card"
+        );
+
+
+    const revealObserver =
+        new IntersectionObserver(
+            function (entries, observer) {
+
+                entries.forEach(
+                    function (entry) {
+
+                        if (
+                            !entry.isIntersecting
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+                );
+
+            },
+            {
+                threshold:0.08
+            }
+        );
+
+
+    revealElements.forEach(
+        function (element) {
+
+            element.classList.add(
+                "reveal"
+            );
+
+            revealObserver.observe(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+/* ================================
+   ДИНАМИЧЕСКАЯ ИНФОРМАЦИЯ
+================================ */
+
+const currentYear =
+    new Date().getFullYear();
+
+
+if (yearElement) {
+
+    yearElement.textContent =
+        currentYear;
+
+}
+
+
+/* ================================
+   ГОРЯЧАЯ КЛАВИША C
+   ОТКРЫВАЕТ КОНТАКТЫ
+================================ */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key.toLowerCase() === "c" &&
+            !event.ctrlKey &&
+            !event.metaKey &&
+            !event.altKey &&
+            document.activeElement.tagName !==
+            "INPUT" &&
+            document.activeElement.tagName !==
+            "TEXTAREA"
+        ) {
+
+            const contacts =
+                document.getElementById(
+                    "contacts"
+                );
+
+
+            if (contacts) {
+
+                contacts.scrollIntoView({
+                    behavior:"smooth"
+                });
+
+            }
+
+        }
+
+    }
+);
+
+
+/* ================================
+   ПОДТВЕРЖДЕНИЕ ЗАГРУЗКИ
 ================================ */
 
 console.log(
-    "News_92 Studio loaded successfully."
+    "%cNews_92 Studio",
+    "font-size:22px;font-weight:800;"
+);
+
+console.log(
+    "Сайт успешно загружен."
+);
+
+console.log(
+    "Создание сайтов от 980 ₽."
 );
 
 </script>
 
+
+<!-- ==========================================
+     ДОПОЛНИТЕЛЬНЫЙ CSS ДЛЯ АНИМАЦИЙ
+========================================== -->
+
+<style>
+
+/* Плавное появление карточек */
+
+.reveal {
+
+    opacity:0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity .55s ease,
+        transform .55s ease;
+
+}
+
+
+.reveal.visible {
+
+    opacity:1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* Активная ссылка меню */
+
+.menu a.active-link {
+
+    color:
+        var(--dark);
+
+}
+
+
+/* Мобильное меню */
+
+@media(max-width:1000px){
+
+    .menu.mobile-open {
+
+        position:absolute;
+
+        left:12px;
+        right:12px;
+
+        top:70px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:0;
+
+        padding:10px;
+
+        background:#fff;
+
+        border:1px solid var(--line);
+
+        border-radius:18px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(0,0,0,.12);
+
+    }
+
+
+    .menu.mobile-open a {
+
+        padding:14px;
+
+        border-radius:11px;
+
+    }
+
+
+    .menu.mobile-open a:hover {
+
+        background:#f3f4f6;
+
+    }
+
+}
+
+
+/* Небольшое улучшение кнопок */
+
+.button,
+.header-button {
+
+    user-select:none;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+.button:active,
+.header-button:active {
+
+    transform:
+        translateY(0)
+        scale(.98);
+
+}
+
+
+/* Улучшение полей */
+
+input::placeholder,
+textarea::placeholder {
+
+    color:#a3a6ae;
+
+}
+
+
+/* Карточки */
+
+.card,
+.package,
+.advantage,
+.portfolio-card {
+
+    will-change:
+        transform;
+
+}
+
+
+/* Улучшение скроллбара */
+
+::-webkit-scrollbar {
+
+    width:9px;
+
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:#f0f1f3;
+
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:#c8cad1;
+
+    border-radius:20px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:#9ea1aa;
+
+}
+
+
+/* Выделение текста */
+
+::selection {
+
+    color:#fff;
+
+    background:
+        var(--accent);
+
+}
+
+
+/* Фокус клавиатуры */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+
+    outline:
+        3px solid
+        rgba(83,103,255,.35);
+
+    outline-offset:2px;
+
+}
+
+
+/* На мобильном чуть компактнее */
+
+@media(max-width:700px){
+
+    .reveal {
+
+        transform:
+            translateY(12px);
+
+    }
+
+}
+
+
+/* Уважение к настройке уменьшенной анимации */
+
+@media(prefers-reduced-motion:reduce){
+
+    html {
+
+        scroll-behavior:auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        transition-duration:.01ms !important;
+
+    }
+
+}
+
+</style>
+
+
+<!-- ==========================================
+     КОНЕЦ САЙТА
+========================================== -->
+
 </body>
-</html>
+    </html>
