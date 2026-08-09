@@ -1810,7 +1810,758 @@ select:focus-visible{
         transition-duration:.01ms !important;
     }
 }
+/* =====================================================
+   NEWS_92 STUDIO — FINAL MOBILE/UI FIX
+   ===================================================== */
 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button,
+.button,
+.header-button,
+.tab,
+.mobile-menu,
+.close {
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: "Manrope", sans-serif;
+}
+
+.button,
+.header-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: auto;
+    min-width: 150px;
+    min-height: 48px;
+
+    padding: 0 20px !important;
+
+    border: 0 !important;
+    border-radius: 14px !important;
+
+    background: #5367ff !important;
+    color: #fff !important;
+
+    font-size: 14px !important;
+    font-weight: 800 !important;
+
+    line-height: 1 !important;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.button:hover,
+.header-button:hover {
+    transform: translateY(-2px);
+    background: #4358ee !important;
+    box-shadow: 0 12px 30px rgba(83,103,255,.25);
+}
+
+.button:active,
+.header-button:active {
+    transform: translateY(0);
+}
+
+.button-dark {
+    background: #101114 !important;
+}
+
+.button-dark:hover {
+    background: #272930 !important;
+}
+
+.button-light {
+    background: #fff !important;
+    color: #101114 !important;
+}
+
+.button-outline {
+    background: transparent !important;
+    color: #101114 !important;
+    border: 1px solid #dfe1e7 !important;
+}
+
+.button-outline:hover {
+    background: #f5f6f8 !important;
+    box-shadow: none;
+}
+
+/* =========================
+   MOBILE HEADER
+   ========================= */
+
+.mobile-menu {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    padding: 0 !important;
+
+    border: 1px solid #e1e3e8 !important;
+    border-radius: 15px !important;
+
+    background: #fff !important;
+    color: #101114 !important;
+
+    font-size: 27px !important;
+    line-height: 1 !important;
+}
+
+/* =========================
+   SECTION SPACING
+   ========================= */
+
+.section {
+    padding: 70px 0 !important;
+}
+
+.hero {
+    padding: 55px 0 65px !important;
+}
+
+.section-heading {
+    margin-bottom: 30px !important;
+}
+
+/* =========================
+   SERVICE TABS
+   ========================= */
+
+.tabs {
+    display: flex !important;
+    width: 100%;
+    gap: 8px;
+
+    padding: 5px !important;
+
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    background: #eef0f5 !important;
+    border-radius: 15px;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    flex: 0 0 auto;
+
+    min-height: 44px !important;
+    padding: 0 17px !important;
+
+    border: 0 !important;
+    border-radius: 11px !important;
+
+    background: transparent !important;
+    color: #72757e !important;
+
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+.tab.active {
+    background: #101114 !important;
+    color: #fff !important;
+}
+
+/* =========================
+   SERVICE CARDS
+   ========================= */
+
+.cards {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px !important;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 330px !important;
+
+    padding: 23px !important;
+
+    border: 1px solid #e3e5ea !important;
+    border-radius: 22px !important;
+
+    background: #fff !important;
+
+    overflow: hidden;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(15,18,30,.10);
+}
+
+.card-number {
+    color: #a0a3ab !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+}
+
+.card-icon {
+    width: 48px !important;
+    height: 48px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    margin: 25px 0 18px !important;
+
+    border-radius: 14px !important;
+
+    background: #5367ff !important;
+    color: #fff !important;
+
+    font-size: 20px !important;
+}
+
+.card h3 {
+    margin: 0 !important;
+
+    color: #101114 !important;
+
+    font-size: 19px !important;
+    line-height: 1.2 !important;
+}
+
+.card p {
+    margin: 9px 0 18px !important;
+
+    color: #72757e !important;
+
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+}
+
+.card-price {
+    margin-top: auto;
+
+    color: #101114 !important;
+
+    font-size: 23px !important;
+    font-weight: 800 !important;
+}
+
+/* =========================
+   WEBSITE PACKAGES
+   ========================= */
+
+.website-packages {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px !important;
+}
+
+.package {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px !important;
+
+    border: 1px solid #e2e4e9 !important;
+    border-radius: 22px !important;
+
+    background: #fff !important;
+}
+
+.package.featured {
+    border: 2px solid #5367ff !important;
+}
+
+.package h3 {
+    color: #101114 !important;
+    font-size: 22px !important;
+}
+
+.package-description {
+    min-height: 45px;
+    color: #72757e !important;
+    font-size: 13px !important;
+}
+
+.package-price {
+    color: #101114 !important;
+    font-size: 32px !important;
+}
+
+.package ul {
+    margin-top: 5px !important;
+}
+
+.package li {
+    color: #555862 !important;
+}
+
+.package .button {
+    width: 100% !important;
+    margin-top: auto;
+}
+
+/* =========================
+   DESIGN PRODUCTS
+   ========================= */
+
+/*
+   Если у карточки есть картинка,
+   она автоматически получает красивый блок.
+*/
+
+.product-image,
+.design-image,
+.card-image,
+.service-image {
+    width: 100%;
+    height: 170px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    overflow: hidden;
+
+    border-radius: 17px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #7787ff,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #11131a,
+            #353b50
+        );
+}
+
+.product-image img,
+.design-image img,
+.card-image img,
+.service-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/* =========================
+   ADDONS
+   ========================= */
+
+.addons {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px !important;
+}
+
+.addon {
+    padding: 18px !important;
+
+    border: 1px solid #e2e4e9 !important;
+    border-radius: 16px !important;
+
+    background: #fff !important;
+}
+
+.addon strong {
+    font-size: 13px;
+}
+
+.addon span {
+    font-size: 13px;
+}
+
+/* =========================
+   CALCULATOR
+   ========================= */
+
+.calculator {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 18px !important;
+}
+
+.calculator-form,
+.calculator-total {
+    border-radius: 22px !important;
+}
+
+.calculator-form {
+    padding: 28px !important;
+    background: #fff !important;
+}
+
+.calculator-total {
+    padding: 28px !important;
+}
+
+.form-group {
+    margin-bottom: 17px !important;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    margin-bottom: 7px !important;
+    font-size: 13px !important;
+}
+
+input,
+select,
+textarea {
+    width: 100% !important;
+
+    min-height: 50px !important;
+
+    padding: 0 14px !important;
+
+    border: 1px solid #e1e3e8 !important;
+    border-radius: 12px !important;
+
+    background: #f7f8fa !important;
+
+    font-size: 14px !important;
+}
+
+textarea {
+    min-height: 110px !important;
+    padding-top: 13px !important;
+}
+
+.total-price {
+    font-size: 52px !important;
+    letter-spacing: -3px !important;
+}
+
+/* =========================
+   REVIEW FORM
+   ========================= */
+
+.review-form,
+.review-section,
+.profile-form {
+    width: 100%;
+}
+
+.review-form input,
+.review-form textarea,
+.profile-form input {
+    display: block;
+    width: 100% !important;
+}
+
+.review-form textarea {
+    min-height: 130px !important;
+}
+
+.rating {
+    display: flex;
+    gap: 6px;
+    margin: 8px 0 18px;
+}
+
+.rating button {
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #e0e2e8;
+    border-radius: 10px;
+
+    background: #fff;
+
+    font-size: 20px;
+}
+
+/* =========================
+   PROFILE
+   ========================= */
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 16px;
+
+    margin-bottom: 20px;
+
+    border-radius: 17px;
+
+    background: #f5f6f8;
+}
+
+.profile-avatar {
+    width: 52px;
+    height: 52px;
+
+    flex: 0 0 52px;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #5367ff;
+    color: #fff;
+
+    font-weight: 800;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================
+   MODALS
+   ========================= */
+
+.modal {
+    padding: 14px !important;
+}
+
+.modal-box {
+    width: min(560px, 100%) !important;
+
+    padding: 25px !important;
+
+    border-radius: 22px !important;
+}
+
+.modal-box input,
+.modal-box textarea,
+.modal-box select {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.form-actions {
+    display: flex !important;
+    gap: 10px !important;
+}
+
+.form-actions .button {
+    flex: 1;
+}
+
+/* =========================
+   FAQ
+   ========================= */
+
+.faq-question {
+    min-height: 60px !important;
+    padding: 0 18px !important;
+}
+
+.faq-answer {
+    line-height: 1.6;
+}
+
+/* =========================
+   CONTACT
+   ========================= */
+
+.contact {
+    padding: 38px !important;
+    border-radius: 25px !important;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .website-packages {
+        grid-template-columns: 1fr !important;
+    }
+
+    .addons {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .calculator {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: calc(100% - 28px) !important;
+    }
+
+    .hero {
+        padding: 38px 0 45px !important;
+    }
+
+    .section {
+        padding: 48px 0 !important;
+    }
+
+    h1 {
+        font-size: 42px !important;
+        letter-spacing: -2px !important;
+    }
+
+    .section-heading h2 {
+        font-size: 34px !important;
+        letter-spacing: -1.7px !important;
+    }
+
+    .hero-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-actions .button {
+        width: 100% !important;
+    }
+
+    .cards {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .card {
+        min-height: 0 !important;
+        padding: 20px !important;
+    }
+
+    .card-icon {
+        margin-top: 20px !important;
+    }
+
+    .addons {
+        grid-template-columns: 1fr !important;
+    }
+
+    .calculator-form,
+    .calculator-total {
+        padding: 21px !important;
+    }
+
+    .total-price {
+        font-size: 46px !important;
+    }
+
+    .contact {
+        padding: 28px 21px !important;
+    }
+
+    .contact .button {
+        width: 100% !important;
+    }
+
+    .form-actions {
+        flex-direction: column !important;
+    }
+
+    .form-actions .button {
+        width: 100% !important;
+    }
+
+    .modal-box {
+        max-height: 90vh;
+        padding: 20px !important;
+    }
+
+    .portfolio {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* =========================
+   REMOVE UGLY DEFAULT LISTS
+   ========================= */
+
+.card ul,
+.package ul,
+.service-card ul,
+.design-card ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+}
+
+.card li,
+.package li,
+.service-card li,
+.design-card li {
+    list-style: none !important;
+}
+
+/* =========================
+   PREVENT HORIZONTAL BUGS
+   ========================= */
+
+img,
+video {
+    max-width: 100%;
+}
+
+button {
+    white-space: normal;
+}
+
+section {
+    max-width: 100%;
+    overflow: hidden;
+    }
 </style>
 </head>
 
