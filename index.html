@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>News_92 Studio — дизайн и создание сайтов</title>
-<meta name="description" content="News_92 Studio — доступный дизайн, создание сайтов, бесплатная поддержка, отзывы, аккаунт и заявки.">
+<meta name="description" content="News_92 Studio — доступный дизайн, создание сайтов, лёгкие 2D-игры на заказ, отзывы, аккаунт и заявки.">
 <meta name="theme-color" content="#111216">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,6 +132,53 @@ img{
     font-size:18px;
     font-weight:900
 }
+
+.logo-icon{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    animation:news92-logo-float 4s ease-in-out infinite;
+}
+
+.logo-icon::before{
+    content:"";
+    position:absolute;
+    inset:-40%;
+    background:conic-gradient(from 0deg,transparent 0 28%,rgba(255,255,255,.34) 36%,transparent 44% 100%);
+    animation:news92-logo-sheen 3.6s linear infinite;
+    z-index:-1;
+}
+
+.logo-icon::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.22);
+    pointer-events:none;
+}
+
+.logo-icon span{
+    position:relative;
+    z-index:2;
+    transform:translateZ(0);
+    text-shadow:0 2px 8px rgba(0,0,0,.22);
+}
+
+@keyframes news92-logo-float{
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-2px) rotate(-2deg)}
+}
+
+@keyframes news92-logo-sheen{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+@media (prefers-reduced-motion:reduce){
+    .logo-icon,.logo-icon::before{animation:none!important}
+}
+
 
 .menu{
     display:flex;
@@ -443,6 +490,16 @@ img{
     background:#292c36
 }
 
+.button-games{
+    background:linear-gradient(135deg,#6f7dff,#8b5cf6);
+    box-shadow:0 10px 25px rgba(111,125,255,.24);
+}
+
+.button-games:hover{
+    background:linear-gradient(135deg,#596cff,#7644e8);
+    box-shadow:0 14px 32px rgba(111,125,255,.32);
+}
+
 .button-outline{
     background:#fff;
     color:var(--dark);
@@ -453,6 +510,44 @@ img{
 .button-outline:hover{
     background:#f7f8fa;
     box-shadow:none
+}
+
+
+/* FINAL POLISH */
+.header.scrolled{
+    box-shadow:0 10px 35px rgba(17,18,22,.08);
+}
+
+.service-card,
+.website-card,
+.portfolio-item,
+.review-card,
+.step-card{
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+
+.service-card:hover,
+.website-card:hover,
+.portfolio-item:hover,
+.review-card:hover,
+.step-card:hover{
+    border-color:#d1d5e8;
+    box-shadow:0 18px 50px rgba(17,18,22,.09);
+}
+
+.section-title h2,.section-heading h2{
+    letter-spacing:-2.2px;
+}
+
+@media (max-width:700px){
+    .game-actions{
+        grid-template-columns:1fr;
+    }
+
+    .games-hero{
+        padding:20px;
+        border-radius:22px;
+    }
 }
 
 /* HERO */
@@ -672,7 +767,7 @@ img{
 
 .quick-links{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:12px;
     margin-top:30px
 }
@@ -727,7 +822,7 @@ img{
 /* SECTIONS */
 
 .section{
-    padding:90px 0
+    padding:70px 0
 }
 
 .section-white{
@@ -828,6 +923,281 @@ img{
 .service-card:hover{
     transform:translateY(-3px);
     box-shadow:var(--shadow)
+}
+
+/* 2D GAMES */
+.games-section{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 10% 20%,rgba(89,108,255,.10),transparent 30%),
+        linear-gradient(180deg,#f7f8fb 0%,#eef1ff 100%);
+}
+
+.games-hero{
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    gap:24px;
+    align-items:center;
+    margin-bottom:24px;
+    padding:28px;
+    border:1px solid #dfe3f0;
+    border-radius:26px;
+    background:rgba(255,255,255,.82);
+    box-shadow:0 18px 45px rgba(17,18,22,.06);
+}
+
+.games-hero h3{
+    margin-top:12px;
+    color:var(--dark);
+    font-size:clamp(28px,4vw,46px);
+    line-height:1.04;
+    letter-spacing:-2px;
+}
+
+.games-hero p{
+    max-width:640px;
+    margin-top:14px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.65;
+}
+
+.games-note{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:16px;
+    padding:9px 12px;
+    border-radius:999px;
+    background:#fff;
+    border:1px solid var(--line);
+    color:var(--dark);
+    font-size:11px;
+    font-weight:900;
+}
+
+.game-scene{
+    min-height:210px;
+    position:relative;
+    overflow:hidden;
+    display:grid;
+    place-items:center;
+    border-radius:22px;
+    background:
+        radial-gradient(circle at 70% 20%,rgba(141,152,255,.85),transparent 30%),
+        linear-gradient(135deg,#11131a,#30364f);
+    box-shadow:0 20px 40px rgba(17,18,22,.18);
+}
+
+.game-scene:before,
+.game-scene:after{
+    content:"";
+    position:absolute;
+    border-radius:18px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.game-scene:before{
+    width:120px;
+    height:120px;
+    transform:rotate(16deg) translate(-25px,-10px);
+}
+
+.game-scene:after{
+    width:72px;
+    height:72px;
+    transform:rotate(-14deg) translate(85px,50px);
+}
+
+.game-scene-window{
+    position:relative;
+    z-index:2;
+    width:min(270px,80%);
+    padding:14px;
+    border-radius:18px;
+    background:#fff;
+    color:var(--dark);
+    box-shadow:0 18px 35px rgba(0,0,0,.24);
+}
+
+.game-scene-top{
+    display:flex;
+    gap:5px;
+    margin-bottom:12px;
+}
+
+.game-scene-top i{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#d7d9df;
+}
+
+.game-scene-grid{
+    display:grid;
+    grid-template-columns:1.4fr .6fr;
+    gap:8px;
+}
+
+.game-scene-main{
+    min-height:115px;
+    padding:12px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#ecefff,#d7ddff);
+    display:grid;
+    align-content:space-between;
+}
+
+.game-scene-main strong{
+    font-size:22px;
+    line-height:1;
+    letter-spacing:-.8px;
+}
+
+.game-scene-main span{
+    color:#596cff;
+    font-size:10px;
+    font-weight:900;
+}
+
+.game-scene-side{
+    min-height:115px;
+    border-radius:14px;
+    background:linear-gradient(180deg,#171a25,#2d3653);
+}
+
+.games-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+}
+
+.game-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    border:1px solid #dfe3f0;
+    border-radius:24px;
+    background:#fff;
+    box-shadow:0 12px 35px rgba(17,18,22,.06);
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+
+.game-card:hover{
+    transform:translateY(-4px);
+    border-color:#cbd1ff;
+    box-shadow:0 22px 55px rgba(17,18,22,.12);
+}
+
+.game-card.featured{
+    border:2px solid var(--accent);
+}
+
+.game-visual{
+    min-height:175px;
+    padding:18px;
+    position:relative;
+    display:grid;
+    place-items:center;
+    background:
+        radial-gradient(circle at 75% 20%,#8b98ff,transparent 35%),
+        linear-gradient(135deg,#11131a,#343b55);
+}
+
+.game-visual.arcade{
+    background:
+        radial-gradient(circle at 25% 20%,#9bd6ff,transparent 28%),
+        linear-gradient(135deg,#11131a,#2e485e);
+}
+
+.game-visual.custom{
+    background:
+        radial-gradient(circle at 80% 18%,#f0b6e6,transparent 30%),
+        linear-gradient(135deg,#18151d,#463650);
+}
+
+.game-tag{
+    position:absolute;
+    top:14px;
+    left:14px;
+    z-index:3;
+    padding:7px 9px;
+    border-radius:999px;
+    background:rgba(255,255,255,.92);
+    color:var(--dark);
+    font-size:10px;
+    font-weight:900;
+}
+
+.game-price{
+    color:var(--accent);
+    font-size:20px;
+    font-weight:900;
+}
+
+.game-price small{
+    display:block;
+    margin-top:2px;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:800;
+}
+
+.game-content{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    padding:22px;
+}
+
+.game-content h3{
+    color:var(--dark);
+    font-size:21px;
+    line-height:1.15;
+}
+
+.game-content p{
+    margin:9px 0 15px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.55;
+}
+
+.game-online{
+    margin-bottom:16px;
+    padding:10px 12px;
+    border-radius:13px;
+    background:#f4f5ff;
+    color:#404aa1;
+    font-size:11px;
+    font-weight:900;
+}
+
+.game-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:auto;
+}
+
+.game-actions .service-button{
+    margin-top:0;
+    min-height:46px;
+    padding:0 10px;
+    font-size:11px;
+}
+
+@media (max-width:900px){
+    .games-hero{
+        grid-template-columns:1fr;
+    }
+
+    .games-grid{
+        grid-template-columns:1fr;
+    }
 }
 
 .service-card.popular{
@@ -2195,6 +2565,26 @@ img{
     font-size:13px
 }
 
+
+.account-auth-box{
+    padding:16px;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:#f8f9fc;
+    display:grid;
+    gap:10px;
+}
+.account-auth-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+.account-auth-head strong{color:var(--dark);font-size:13px}
+.account-auth-head span{color:var(--muted);font-size:11px}
+.google-signin-button{min-height:40px;display:flex;align-items:center}
+.account-auth-note{color:var(--muted);font-size:11px}
+
 /* ACCOUNT */
 
 .account-layout{
@@ -2902,7 +3292,16 @@ textarea:focus{
         border-radius:15px
     }
 }
+
+.section-title p{max-width:620px}
+.games-section{padding-top:55px;padding-bottom:55px}
+.website-hero,.support-box{padding:22px}
+.account-side{gap:10px}
+.review-login-warning{margin-bottom:16px}
+
 </style>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
@@ -2919,6 +3318,7 @@ textarea:focus{
             <a href="#top">Главная</a>
             <a href="#design">Дизайн</a>
             <a href="#websites">Сайты</a>
+            <a href="#games">2D-игры</a>
             <a href="#calculator">Цены</a>
             <a href="#portfolio">Работы</a>
             <a href="#reviews">Отзывы</a>
@@ -3069,6 +3469,19 @@ textarea:focus{
             <button
                 class="search-result"
                 type="button"
+                data-search="2d игры игры на заказ онлайн игра раннер кликер"
+                onclick="closeSearch();scrollToSection('games')"
+            >
+                <span class="search-result-icon">🎮</span>
+                <span class="search-result-content">
+                    <span class="search-result-title">2D-игры на заказ</span>
+                    <span class="search-result-description">Лёгкие игры от 350 ₽, онлайн +200 ₽</span>
+                </span>
+            </button>
+
+            <button
+                class="search-result"
+                type="button"
                 data-search="цены стоимость тарифы"
                 onclick="closeSearch();scrollToSection('calculator')"
             >
@@ -3136,7 +3549,7 @@ textarea:focus{
 
             <div class="eyebrow">
                 <span class="badge-dot"></span>
-                Дизайн • сайты • запуск
+                Дизайн • сайты • 2D-игры • запуск
             </div>
 
             <h1>
@@ -3166,6 +3579,14 @@ textarea:focus{
                     onclick="scrollToSection('design')"
                 >
                     🎨 Заказать дизайн
+                </button>
+
+                <button
+                    class="button button-games"
+                    type="button"
+                    onclick="scrollToSection('games')"
+                >
+                    🎮 Заказать игру
                 </button>
 
             </div>
@@ -3258,6 +3679,18 @@ textarea:focus{
             <button
                 class="quick-link"
                 type="button"
+                onclick="scrollToSection('games')"
+            >
+                <span class="quick-link-icon">🎮</span>
+                <span>
+                    <span class="quick-link-title">2D-игры</span>
+                    <span class="quick-link-text">От 350 ₽ · онлайн +200 ₽</span>
+                </span>
+            </button>
+
+            <button
+                class="quick-link"
+                type="button"
                 onclick="scrollToSection('calculator')"
             >
                 <span class="quick-link-icon">🧮</span>
@@ -3301,26 +3734,6 @@ textarea:focus{
                 Карточки товаров, презентации, баннеры и обложки —
                 с понятными ценами и мини-превью.
             </p>
-
-        </div>
-
-        <div class="service-tabs">
-
-            <button
-                class="service-tab active"
-                type="button"
-                data-service-tab="design"
-            >
-                🎨 Дизайн
-            </button>
-
-            <button
-                class="service-tab"
-                type="button"
-                data-service-tab="web"
-            >
-                💻 Сайты
-            </button>
 
         </div>
 
@@ -3572,769 +3985,9 @@ textarea:focus{
 
         </div>
 
-        <div class="service-panel" id="web-panel">
-
-            <div class="service-grid">
-
-                <article
-                    class="service-card"
-                    data-service="Баннер"
-                    data-price="100"
-                >
-
-                    <div class="service-image lite-image">
-
-                        <div class="browser">
-                            <div class="browser-top">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                            </div>
-
-                            <div class="browser-content">
-                                <div class="mock-logo">N</div>
-                                <strong>YOUR BRAND</strong>
-                                <small>Современный баннер</small>
-                                <button>Подробнее</button>
-                            </div>
-                        </div>
-
-                        <span class="image-label">
-                            BANNER
-                        </span>
-
-                    </div>
-
-                    <div class="service-card-content">
-
-                        <div class="service-card-top">
-                            <span class="service-number">01</span>
-                            <span class="price">100 ₽</span>
-                        </div>
-
-                        <h3>
-                            Баннер
-                        </h3>
-
-                        <p>
-                            Яркий и понятный баннер
-                            для соцсетей, сайта или рекламы.
-                        </p>
-
-                        <ul class="service-list">
-                            <li>Заголовок</li>
-                            <li>Изображение</li>
-                            <li>Призыв к действию</li>
-                            <li>Подготовка к публикации</li>
-                        </ul>
-
-                        <button
-                            class="service-button"
-                            type="button"
-                            onclick="openOrder('Баннер',100)"
-                        >
-                            Заказать
-                        </button>
-
-                    </div>
-
-                </article>
-
-                <article
-                    class="service-card"
-                    data-service="Обложка"
-                    data-price="120"
-                >
-
-                    <div class="service-image normal-image">
-
-                        <div class="landing-mock">
-
-                            <div class="landing-header">
-                                NEWS_92
-                            </div>
-
-                            <div class="landing-main">
-                                <small>NEW PROJECT</small>
-                                <strong>
-                                    YOUR<br>
-                                    STORY
-                                </strong>
-                                <div class="landing-button">
-                                    START
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <span class="image-label">
-                            COVER
-                        </span>
-
-                    </div>
-
-                    <div class="service-card-content">
-
-                        <div class="service-card-top">
-                            <span class="service-number">02</span>
-                            <span class="price">120 ₽</span>
-                        </div>
-
-                        <h3>
-                            Обложка
-                        </h3>
-
-                        <p>
-                            Стильная обложка для канала,
-                            группы, профиля или проекта.
-                        </p>
-
-                        <ul class="service-list">
-                            <li>Выразительный заголовок</li>
-                            <li>Композиция</li>
-                            <li>Работа с изображением</li>
-                            <li>Готовый размер</li>
-                        </ul>
-
-                        <button
-                            class="service-button"
-                            type="button"
-                            onclick="openOrder('Обложка',120)"
-                        >
-                            Заказать
-                        </button>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </div>
-
-        <div class="design-calculator" id="calculator">
-
-            <div>
-
-                <h3>
-                    Быстрый расчёт дизайна
-                </h3>
-
-                <p>
-                    Выберите тип работы и количество —
-                    калькулятор автоматически посчитает стоимость.
-                </p>
-
-            </div>
-
-            <div class="design-calc-controls">
-
-                <label>
-                    Тип работы
-
-                    <select id="designType">
-                        <option value="100">Карточка Lite — 100 ₽</option>
-                        <option value="150">Карточка — 150 ₽</option>
-                        <option value="250">Карточка Premium — 250 ₽</option>
-                        <option value="125">Презентация — 125 ₽ / слайд</option>
-                        <option value="100">Баннер — 100 ₽</option>
-                        <option value="120">Обложка — 120 ₽</option>
-                    </select>
-
-                </label>
-
-                <label>
-                    Количество
-
-                    <input
-                        id="designQuantity"
-                        type="number"
-                        min="1"
-                        max="100"
-                        value="1"
-                    >
-
-                </label>
-
-                <div class="design-total">
-                    <span>Итого</span>
-                    <strong id="designTotal">100 ₽</strong>
-                </div>
-
-                <button
-                    class="button"
-                    type="button"
-                    onclick="openCalculatorOrder()"
-                >
-                    Заказать расчёт
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
 </section>
 
-<section class="section" id="websites">
 
-    <div class="container">
-
-        <div class="section-title">
-
-            <span class="eyebrow">💻 Сайты</span>
-
-            <h2>
-                Сайт под задачу, а не ради галочки.
-            </h2>
-
-            <p>
-                Визитки, лендинги и полноценные сайты
-                с адаптацией под смартфоны.
-            </p>
-
-        </div>
-
-        <div class="website-hero">
-
-            <div>
-
-                <h3>
-                    Простой старт для проекта.
-                </h3>
-
-                <p>
-                    Подойдёт для специалиста, небольшого бизнеса,
-                    магазина, портфолио или личной страницы.
-                    Поможем подобрать формат и подготовить структуру.
-                </p>
-
-            </div>
-
-            <div class="suitcase-preview">
-
-                <div class="suitcase">
-
-                    <div class="suitcase-handle"></div>
-
-                    <div class="suitcase-body">
-                        WEBSITE
-                    </div>
-
-                    <div class="suitcase-lock"></div>
-
-                </div>
-
-                <div class="suitcase-price">
-                    Сайты от 350 ₽
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="website-grid">
-
-            <article class="website-card website-featured">
-
-                <div class="website-badge">
-                    Лучший старт
-                </div>
-
-                <div class="website-visual visitka-visual">
-
-                    <div class="browser">
-
-                        <div class="browser-top">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="browser-content">
-
-                            <div class="mock-logo">N</div>
-
-                            <strong>
-                                YOUR PAGE
-                            </strong>
-
-                            <small>
-                                Контакты и услуги
-                            </small>
-
-                            <button>
-                                Связаться
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="website-content">
-
-                    <div class="website-top">
-                        <span>01</span>
-                        <strong>350 ₽</strong>
-                    </div>
-
-                    <h3>
-                        Сайт-визитка
-                    </h3>
-
-                    <p>
-                        Небольшой сайт о вас, услугах,
-                        контактах или проекте.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>1 основная страница</li>
-                        <li>Адаптация под телефон</li>
-                        <li>Контакты</li>
-                        <li>Кнопки связи</li>
-                    </ul>
-
-                    <button
-                        class="service-button"
-                        type="button"
-                        onclick="openOrder('Сайт-визитка',350)"
-                    >
-                        Заказать
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article class="website-card">
-
-                <div class="website-visual landing-visual">
-
-                    <div class="landing-mock">
-
-                        <div class="landing-header">
-                            NEWS_92
-                        </div>
-
-                        <div class="landing-main">
-
-                            <small>
-                                LANDING PAGE
-                            </small>
-
-                            <strong>
-                                SELL<br>
-                                MORE
-                            </strong>
-
-                            <div class="landing-button">
-                                ORDER
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="website-content">
-
-                    <div class="website-top">
-                        <span>02</span>
-                        <strong>700 ₽</strong>
-                    </div>
-
-                    <h3>
-                        Лендинг
-                    </h3>
-
-                    <p>
-                        Одностраничный сайт,
-                        который помогает рассказать
-                        о продукте и получить заявку.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>Структура блоков</li>
-                        <li>Продающий первый экран</li>
-                        <li>Преимущества</li>
-                        <li>Форма или контакты</li>
-                    </ul>
-
-                    <button
-                        class="service-button"
-                        type="button"
-                        onclick="openOrder('Лендинг',700)"
-                    >
-                        Заказать
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article class="website-card">
-
-                <div class="website-visual fullsite-visual">
-
-                    <div class="fullsite-mock">
-
-                        <aside>
-                            <b>N</b>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </aside>
-
-                        <main>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <section></section>
-                        </main>
-
-                    </div>
-
-                </div>
-
-                <div class="website-content">
-
-                    <div class="website-top">
-                        <span>03</span>
-                        <strong>от 1 200 ₽</strong>
-                    </div>
-
-                    <h3>
-                        Полноценный сайт
-                    </h3>
-
-                    <p>
-                        Несколько страниц,
-                        расширенная структура и
-                        индивидуальное оформление.
-                    </p>
-
-                    <ul class="service-list">
-                        <li>Несколько страниц</li>
-                        <li>Индивидуальный дизайн</li>
-                        <li>Адаптация</li>
-                        <li>Формы и дополнительные блоки</li>
-                    </ul>
-
-                    <button
-                        class="service-button"
-                        type="button"
-                        onclick="openOrder('Полноценный сайт',1200)"
-                    >
-                        Обсудить проект
-                    </button>
-
-                </div>
-
-            </article>
-
-        </div>
-
-        <div class="support-note">
-
-            <div class="support-icon">
-                ✓
-            </div>
-
-            <p>
-                После заказа поможем с запуском и ответим
-                на вопросы по работе сайта. Поддержка
-                по проекту доступна без дополнительной платы.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section class="section section-white">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-                <span class="eyebrow">
-                    🚀 Как работаем
-                </span>
-
-                <h2>
-                    Четыре простых шага.
-                </h2>
-            </div>
-
-            <p>
-                Без сложных процессов и непонятных этапов.
-                Сначала определяем задачу, затем делаем,
-                показываем и доводим проект до готового результата.
-            </p>
-
-        </div>
-
-        <div class="steps-grid">
-
-            <article class="step-card">
-                <span class="step-number">01</span>
-                <div class="step-icon">💬</div>
-                <h3>Обсуждение</h3>
-                <p>
-                    Вы рассказываете, что нужно сделать,
-                    отправляете материалы и пожелания.
-                </p>
-            </article>
-
-            <article class="step-card">
-                <span class="step-number">02</span>
-                <div class="step-icon">🧩</div>
-                <h3>Структура</h3>
-                <p>
-                    Определяем состав блоков,
-                    стиль, формат и основные акценты.
-                </p>
-            </article>
-
-            <article class="step-card">
-                <span class="step-number">03</span>
-                <div class="step-icon">🎨</div>
-                <h3>Создание</h3>
-                <p>
-                    Собираем дизайн или сайт,
-                    проверяем отображение и детали.
-                </p>
-            </article>
-
-            <article class="step-card">
-                <span class="step-number">04</span>
-                <div class="step-icon">🚀</div>
-                <h3>Готово</h3>
-                <p>
-                    Передаём результат и помогаем
-                    разобраться с дальнейшими действиями.
-                </p>
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section class="section" id="portfolio">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <div>
-                <span class="eyebrow">
-                    🖼️ Портфолио
-                </span>
-
-                <h2>
-                    Примеры направления.
-                </h2>
-            </div>
-
-            <p>
-                Визуальные концепции показывают,
-                в каком стиле можно собрать ваш проект.
-            </p>
-
-        </div>
-
-        <div class="portfolio-grid">
-
-            <article class="portfolio-item">
-
-                <div class="portfolio-art portfolio-art-one">
-
-                    <div class="portfolio-browser">
-
-                        <div class="browser-dots">
-                            <i></i>
-                            <i></i>
-                            <i></i>
-                        </div>
-
-                        <div class="portfolio-hero-text">
-                            <small>STUDIO</small>
-                            <strong>
-                                MODERN<br>
-                                DIGITAL
-                            </strong>
-                            <span>
-                                Design & websites
-                            </span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="portfolio-info">
-
-                    <div>
-                        <span>WEB</span>
-                        <h3>Digital Studio</h3>
-                    </div>
-
-                    <button
-                        type="button"
-                        onclick="openPortfolio('Digital Studio','Концепция современного сайта студии')"
-                    >
-                        →
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article class="portfolio-item">
-
-                <div class="portfolio-art portfolio-art-two">
-
-                    <div class="product-card-demo">
-
-                        <span class="demo-tag">
-                            NEW
-                        </span>
-
-                        <div class="demo-product">
-                            PRODUCT
-                        </div>
-
-                        <strong>
-                            YOUR<br>
-                            PRODUCT
-                        </strong>
-
-                        <small>
-                            PREMIUM PRESENTATION
-                        </small>
-
-                    </div>
-
-                </div>
-
-                <div class="portfolio-info">
-
-                    <div>
-                        <span>DESIGN</span>
-                        <h3>Product Card</h3>
-                    </div>
-
-                    <button
-                        type="button"
-                        onclick="openPortfolio('Product Card','Концепция карточки товара')"
-                    >
-                        →
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article class="portfolio-item">
-
-                <div class="portfolio-art portfolio-art-three">
-
-                    <div class="presentation-demo">
-
-                        <span>
-                            PRESENTATION
-                        </span>
-
-                        <strong>
-                            IDEA
-                        </strong>
-
-                        <small>
-                            2026 / NEWS_92
-                        </small>
-
-                    </div>
-
-                </div>
-
-                <div class="portfolio-info">
-
-                    <div>
-                        <span>SLIDES</span>
-                        <h3>Presentation</h3>
-                    </div>
-
-                    <button
-                        type="button"
-                        onclick="openPortfolio('Presentation','Концепция презентации')"
-                    >
-                        →
-                    </button>
-
-                </div>
-
-            </article>
-
-            <article class="portfolio-item">
-
-                <div class="portfolio-art portfolio-art-four">
-
-                    <div class="mobile-demo">
-
-                        <div class="mobile-top">
-                            NEWS_92
-                        </div>
-
-                        <div class="mobile-circle"></div>
-
-                        <strong>
-                            MOBILE<br>
-                            FIRST
-                        </strong>
-
-                        <span>
-                            OPEN PROJECT →
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <div class="portfolio-info">
-
-                    <div>
-                        <span>MOBILE</span>
-                        <h3>Mobile Page</h3>
-                    </div>
-
-                    <button
-                        type="button"
-                        onclick="openPortfolio('Mobile Page','Концепция мобильной страницы')"
-                    >
-                        →
-                    </button>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section> <!-- =========================
-     ЧАСТЬ 2 / 2
-     News_92 Studio
-     Продолжение HTML
-========================= -->
 
                             </article>
 
@@ -4597,6 +4250,9 @@ textarea:focus{
                             <option value="250">Карточка товара Premium — 250 ₽</option>
                             <option value="125">Презентация — 125 ₽ / слайд</option>
                             <option value="350">Сайт-визитка — 350 ₽</option>
+                            <option value="350">Лёгкая 2D-игра — 350 ₽</option>
+                            <option value="650">2D Arcade — 650 ₽</option>
+                            <option value="900">Игра под свой вкус — 900 ₽</option>
                             <option value="700">Лендинг — 700 ₽</option>
                             <option value="1200">Полноценный сайт — 1200 ₽</option>
                         </select>
@@ -4624,6 +4280,7 @@ textarea:focus{
                             <option value="50">Срочное выполнение — +50 ₽</option>
                             <option value="100">Дополнительная правка — +100 ₽</option>
                             <option value="150">Дополнительный блок — +150 ₽</option>
+                            <option value="200">Онлайн-режим для 2D-игры — +200 ₽</option>
                         </select>
                     </label>
 
@@ -4643,7 +4300,129 @@ textarea:focus{
     </section>
 
 
-    <!-- =========================
+    
+
+<section class="section games-section" id="games">
+    <div class="container">
+
+        <div class="games-hero">
+            <div>
+                <span class="eyebrow">🎮 2D-игры на заказ</span>
+                <h3>Небольшая игра с вашей идеей — без бюджета большой студии.</h3>
+                <p>
+                    Делаем лёгкие 2D-игры под браузер и ПК: кликеры, раннеры,
+                    простые платформеры, аркады, мини-игры и собственные идеи.
+                    Онлайн-режим подключается отдельно и добавляет 200 ₽.
+                </p>
+                <div class="games-note">⚡ Быстрый формат · понятная цена · онлайн +200 ₽</div>
+            </div>
+
+            <div class="game-scene" aria-hidden="true">
+                <div class="game-scene-window">
+                    <div class="game-scene-top">
+                        <i></i><i></i><i></i>
+                    </div>
+                    <div class="game-scene-grid">
+                        <div class="game-scene-main">
+                            <span>NEWS_92 ARCADE</span>
+                            <strong>PLAY<br>YOUR<br>IDEA</strong>
+                            <span>2D • READY</span>
+                        </div>
+                        <div class="game-scene-side"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="games-grid">
+
+            <article class="game-card">
+                <div class="game-visual">
+                    <span class="game-tag">СТАРТ</span>
+                    <div class="game-price">350 ₽<small>офлайн</small></div>
+                </div>
+                <div class="game-content">
+                    <h3>Лёгкая 2D-игра</h3>
+                    <p>
+                        Кликер, раннер, лабиринт, простая аркада или другая
+                        понятная мини-игра на одну основную механику.
+                    </p>
+                    <ul class="service-list">
+                        <li>1 основная механика</li>
+                        <li>Простой интерфейс</li>
+                        <li>Счёт и базовые экраны</li>
+                        <li>Адаптация под ПК</li>
+                    </ul>
+                    <div class="game-online">🌐 Онлайн-режим: +200 ₽</div>
+                    <div class="game-actions">
+                        <button class="service-button" type="button"
+                            onclick="openOrder('Лёгкая 2D-игра — офлайн',350)">Офлайн · 350 ₽</button>
+                        <button class="service-button" type="button"
+                            onclick="openOrder('Лёгкая 2D-игра — онлайн',550)">Онлайн · 550 ₽</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="game-card featured">
+                <div class="game-visual arcade">
+                    <span class="game-tag">ПОПУЛЯРНОЕ</span>
+                    <div class="game-price">650 ₽<small>офлайн</small></div>
+                </div>
+                <div class="game-content">
+                    <h3>2D Arcade</h3>
+                    <p>
+                        Более насыщенная мини-игра с несколькими механиками,
+                        уровнями, противниками или дополнительными режимами.
+                    </p>
+                    <ul class="service-list">
+                        <li>До 3 механик</li>
+                        <li>Уровни или раунды</li>
+                        <li>Очки, победа и поражение</li>
+                        <li>Меню и повторный запуск</li>
+                    </ul>
+                    <div class="game-online">🌐 Онлайн-режим: +200 ₽</div>
+                    <div class="game-actions">
+                        <button class="service-button" type="button"
+                            onclick="openOrder('2D Arcade — офлайн',650)">Офлайн · 650 ₽</button>
+                        <button class="service-button" type="button"
+                            onclick="openOrder('2D Arcade — онлайн',850)">Онлайн · 850 ₽</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="game-card">
+                <div class="game-visual custom">
+                    <span class="game-tag">СВОЯ ИДЕЯ</span>
+                    <div class="game-price">900 ₽<small>офлайн</small></div>
+                </div>
+                <div class="game-content">
+                    <h3>Игра под свой вкус</h3>
+                    <p>
+                        Придумаем механику вместе или реализуем вашу идею:
+                        персонажи, несколько сцен, разные цели и собственный стиль.
+                    </p>
+                    <ul class="service-list">
+                        <li>Индивидуальная механика</li>
+                        <li>Несколько игровых сцен</li>
+                        <li>Собственный визуальный стиль</li>
+                        <li>Более гибкая структура игры</li>
+                    </ul>
+                    <div class="game-online">🌐 Онлайн-режим: +200 ₽</div>
+                    <div class="game-actions">
+                        <button class="service-button" type="button"
+                            onclick="openOrder('Игра под свой вкус — офлайн',900)">Офлайн · 900 ₽</button>
+                        <button class="service-button" type="button"
+                            onclick="openOrder('Игра под свой вкус — онлайн',1100)">Онлайн · 1100 ₽</button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
          САЙТЫ
     ========================== -->
 
@@ -5569,6 +5348,16 @@ textarea:focus{
                     </div>
 
 
+                    <div class="account-auth-box">
+                        <div class="account-auth-head">
+                            <strong>Вход для отзывов</strong>
+                            <span id="googleAuthStatus">Вход не выполнен</span>
+                        </div>
+                        <div id="googleSignInButton" class="google-signin-button"></div>
+                        <button id="googleSignOutButton" class="button button-outline hidden" type="button">Выйти</button>
+                        <p class="account-auth-note">Один Google-аккаунт = один отзыв.</p>
+                    </div>
+
                     <div class="account-preview">
 
                         <div class="account-avatar large">
@@ -5955,8 +5744,8 @@ textarea:focus{
 
 
         <div class="review-login-warning">
-            Отзыв сохраняется локально в браузере.
-            Для настоящего общего хранилища потребуется серверная база данных.
+            Для публикации отзыва войдите через Google.
+            Один Google-аккаунт может оставить только один отзыв.
         </div>
 
 
@@ -6428,90 +6217,143 @@ function closeModal(id) {
 
 
 /* =========================================
-   ORDER FORM
+   GOOGLE AUTH + SERVER REVIEWS
 ========================================= */
+
+const GOOGLE_CLIENT_ID =
+    "ВСТАВЬ_СЮДА_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+
+let googleCredential = null;
+let googleUser = null;
+
+function googleAuthCallback(response){
+    googleCredential = response?.credential || null;
+    if(!googleCredential) return;
+    try{
+        const payload = JSON.parse(atob(googleCredential.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+        googleUser = {
+            sub: payload.sub,
+            name: payload.name || 'Пользователь',
+            email: payload.email || '',
+            picture: payload.picture || ''
+        };
+        updateGoogleAuthUI();
+        loadServerReviews();
+    }catch(e){
+        console.error('Google auth parse error',e);
+        showToast('Ошибка входа','Не удалось обработать Google-вход.');
+    }
+}
+
+function initGoogleAuth(){
+    if(!window.google?.accounts?.id) return;
+    if(!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID.includes('ВСТАВЬ_СЮДА')) return;
+    google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: googleAuthCallback,
+        auto_select: false,
+        cancel_on_tap_outside: true
+    });
+    const holder = document.getElementById('googleSignInButton');
+    if(holder){
+        holder.innerHTML='';
+        google.accounts.id.renderButton(holder,{
+            theme:'outline',
+            size:'large',
+            width:260,
+            text:'signin_with',
+            shape:'pill'
+        });
+    }
+    const signout = document.getElementById('googleSignOutButton');
+    if(signout){
+        signout.onclick=()=>{
+            googleCredential=null;
+            googleUser=null;
+            if(window.google?.accounts?.id){ google.accounts.id.disableAutoSelect(); }
+            updateGoogleAuthUI();
+        };
+    }
+}
+
+function updateGoogleAuthUI(){
+    const status=document.getElementById('googleAuthStatus');
+    const holder=document.getElementById('googleSignInButton');
+    const signout=document.getElementById('googleSignOutButton');
+    if(status) status.textContent=googleUser ? `Вошли как ${googleUser.name}` : 'Не выполнен';
+    if(holder) holder.classList.toggle('hidden',!!googleUser);
+    if(signout) signout.classList.toggle('hidden',!googleUser);
+}
+
+window.addEventListener('load',()=>setTimeout(initGoogleAuth,700));
+
+/* =========================================
+   ORDER FORM — GOOGLE APPS SCRIPT + ANTI-SPAM
+========================================= */
+
+const NEWS92_ORDER_ENDPOINT =
+    "https://script.google.com/macros/s/AKfycbyZKFzHjfIk4gEIJIcs2zgDd5ggbbFgGb36LzDvDIhIWGyPjSlPUbrWWKazqvWtTvon/exec";
 
 const orderForm = $("#orderForm");
 
-if (orderForm) {
+if(orderForm){
+    orderForm.addEventListener("submit", async event=>{
+        event.preventDefault();
 
-    orderForm.addEventListener(
-        "submit",
-        event => {
+        const name=$("#orderName")?.value.trim();
+        const contact=$("#orderContact")?.value.trim();
+        const message=$("#orderMessage")?.value.trim();
 
-            event.preventDefault();
+        if(!name || !contact || !message){
+            showToast("Заполните форму","Пожалуйста, заполните все поля.");
+            return;
+        }
 
-            const name =
-                $("#orderName")?.value.trim();
+        const lockKey='news92_order_cooldown';
+        const last=Number(localStorage.getItem(lockKey)||0);
+        if(Date.now()-last < 60000){
+            showToast("Подождите минуту","Слишком частые заявки. Попробуйте снова через минуту.");
+            return;
+        }
 
-            const contact =
-                $("#orderContact")?.value.trim();
+        const order={
+            id:Date.now(),
+            service:selectedOrderService || "Не указана",
+            price:selectedOrderPrice || "Не указана",
+            name,contact,message,
+            createdAt:new Date().toISOString(),
+            source:"news92-studio"
+        };
 
-            const message =
-                $("#orderMessage")?.value.trim();
+        const button=orderForm.querySelector('button[type="submit"]');
+        const original=button?.textContent || "Отправить заявку";
+        if(button){button.disabled=true;button.textContent="Отправляем...";}
 
+        try{
+            const response=await fetch(NEWS92_ORDER_ENDPOINT,{
+                method:"POST",
+                headers:{"Content-Type":"text/plain;charset=utf-8"},
+                body:JSON.stringify(order)
+            });
+            const result=await response.json();
+            if(!result.ok) throw new Error(result.error || "Сервер отклонил заявку");
 
-            if (!name || !contact || !message) {
-
-                showToast(
-                    "Заполните форму",
-                    "Пожалуйста, заполните все поля."
-                );
-
-                return;
-            }
-
-
-            const order = {
-
-                id:
-                    Date.now(),
-
-                service:
-                    selectedOrderService,
-
-                price:
-                    selectedOrderPrice,
-
-                name,
-                contact,
-                message,
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
-
-
-            const orders =
-                getStorage(
-                    "news92_orders",
-                    []
-                );
-
-            orders.push(order);
-
-            saveStorage(
-                "news92_orders",
-                orders
-            );
-
+            localStorage.setItem(lockKey,String(Date.now()));
+            const orders=getStorage("news92_orders",[]);
+            orders.push({...order,serverId:result.order?.id||null});
+            saveStorage("news92_orders",orders);
 
             closeModal("orderModal");
-
             orderForm.reset();
-
-
-            showToast(
-                "Заявка сохранена",
-                "Спасибо! Данные заявки сохранены в браузере."
-            );
-
+            showToast("Заявка отправлена","Заявка принята. Мы получили её и свяжемся с вами.");
+        }catch(error){
+            console.error("ORDER SEND ERROR:",error);
+            showToast("Не удалось отправить",error.message || "Проверьте соединение и попробуйте ещё раз.");
+        }finally{
+            if(button){button.disabled=false;button.textContent=original;}
         }
-    );
-
+    });
 }
-
 
 /* =========================================
    CALCULATOR
@@ -6662,365 +6504,130 @@ function toggleFaq(button) {
 
 
 /* =========================================
-   REVIEWS
+   REVIEWS — GOOGLE AUTH + SERVER
 ========================================= */
 
-let selectedRating = 5;
+let selectedRating=5;
 
-
-function openReview() {
-
+function openReview(){
+    if(!googleUser || !googleCredential){
+        showToast("Нужен вход","Сначала войдите через Google в разделе «Аккаунт».");
+        scrollToSection('account');
+        return;
+    }
     setRating(5);
-
     openModal("reviewModal");
 }
 
-
-function setRating(rating) {
-
-    selectedRating =
-        Math.max(
-            1,
-            Math.min(
-                5,
-                Number(rating) || 5
-            )
-        );
-
-
-    const hidden =
-        $("#reviewRating");
-
-    if (hidden) {
-        hidden.value =
-            selectedRating;
-    }
-
-
-    $$("#starPicker button")
-        .forEach(button => {
-
-            const value =
-                Number(
-                    button.dataset.rating
-                );
-
-            button.classList.toggle(
-                "selected",
-                value <= selectedRating
-            );
-
-        });
-
-}
-
-
-$$("#starPicker button")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                setRating(
-                    button.dataset.rating
-                );
-
-            }
-        );
-
+function setRating(rating){
+    selectedRating=Math.max(1,Math.min(5,Number(rating)||5));
+    const hidden=$("#reviewRating");
+    if(hidden) hidden.value=selectedRating;
+    $$("#starPicker button").forEach(button=>{
+        const value=Number(button.dataset.rating);
+        button.classList.toggle("selected",value<=selectedRating);
     });
-
-
-function getReviews() {
-
-    return getStorage(
-        "news92_reviews",
-        []
-    );
-
 }
 
+$$("#starPicker button").forEach(button=>button.addEventListener("click",()=>setRating(button.dataset.rating)));
 
-function renderReviews() {
-
-    const grid =
-        $("#reviewsGrid");
-
-    const empty =
-        $("#reviewsEmpty");
-
-    const reviews =
-        getReviews();
-
-
-    if (!grid) return;
-
-
-    if (!reviews.length) {
-
-        if (empty) {
-            empty.style.display =
-                "grid";
-        }
-
-        updateRating(
-            []
-        );
-
+function renderReviewsFromList(reviews){
+    const grid=$("#reviewsGrid");
+    const empty=$("#reviewsEmpty");
+    if(!grid) return;
+    if(!reviews.length){
+        if(empty) empty.style.display="grid";
+        updateRating([]);
         return;
     }
-
-
-    if (empty) {
-        empty.style.display =
-            "none";
-    }
-
-
-    grid.innerHTML = "";
-
-
-    reviews
-        .slice()
-        .reverse()
-        .forEach(review => {
-
-            const card =
-                document.createElement(
-                    "article"
-                );
-
-            card.className =
-                "review-card";
-
-            const stars =
-                "★".repeat(
-                    review.rating
-                ) +
-                "☆".repeat(
-                    5 - review.rating
-                );
-
-
-            const date =
-                new Date(
-                    review.createdAt
-                );
-
-
-            const dateText =
-                isNaN(date.getTime())
-                    ? ""
-                    : date.toLocaleDateString(
-                        "ru-RU"
-                    );
-
-
-            card.innerHTML = `
-
-                <div class="review-top">
-
-                    <div class="review-user">
-
-                        <div class="review-avatar">
-                            ${escapeHtml(
-                                getInitial(
-                                    review.name
-                                )
-                            )}
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                ${escapeHtml(
-                                    review.name
-                                )}
-                            </strong>
-
-                            <small>
-                                ${escapeHtml(
-                                    dateText
-                                )}
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="review-stars">
-                        ${stars}
-                    </div>
-
-                </div>
-
-
-                <p>
-                    ${escapeHtml(
-                        review.text
-                    )}
-                </p>
-
-            `;
-
-
-            grid.appendChild(card);
-
-        });
-
-
+    if(empty) empty.style.display="none";
+    grid.innerHTML="";
+    reviews.slice().reverse().forEach(review=>{
+        const card=document.createElement("article");
+        card.className="review-card";
+        const rating=Math.max(1,Math.min(5,Number(review.rating)||5));
+        const stars="★".repeat(rating)+"☆".repeat(5-rating);
+        const date=new Date(review.createdAt);
+        const dateText=isNaN(date.getTime())?"":date.toLocaleDateString("ru-RU");
+        card.innerHTML=`<div class="review-top"><div class="review-user"><div class="review-avatar">${escapeHtml(getInitial(review.name))}</div><div><strong>${escapeHtml(review.name)}</strong><small>${escapeHtml(dateText)}</small></div></div><div class="review-stars">${stars}</div></div><p>${escapeHtml(review.text)}</p>`;
+        grid.appendChild(card);
+    });
     updateRating(reviews);
 }
 
-
-function updateRating(reviews) {
-
-    const number =
-        $("#ratingNumber");
-
-    const count =
-        $("#ratingCount");
-
-
-    if (!reviews.length) {
-
-        if (number) {
-            number.textContent =
-                "5.0";
-        }
-
-        if (count) {
-            count.textContent =
-                "Пока нет опубликованных отзывов";
-        }
-
+function updateRating(reviews){
+    const number=$("#ratingNumber");
+    const count=$("#ratingCount");
+    if(!reviews.length){
+        if(number) number.textContent="5.0";
+        if(count) count.textContent="Пока нет опубликованных отзывов";
         return;
     }
-
-
-    const average =
-        reviews.reduce(
-            (sum, review) =>
-                sum + Number(review.rating),
-            0
-        ) / reviews.length;
-
-
-    if (number) {
-
-        number.textContent =
-            average.toFixed(1);
-
-    }
-
-
-    if (count) {
-
-        const word =
-            pluralize(
-                reviews.length,
-                "отзыв",
-                "отзыва",
-                "отзывов"
-            );
-
-        count.textContent =
-            `${reviews.length} ${word}`;
-
-    }
-
+    const average=reviews.reduce((sum,r)=>sum+Number(r.rating||0),0)/reviews.length;
+    if(number) number.textContent=average.toFixed(1);
+    if(count) count.textContent=`${reviews.length} ${pluralize(reviews.length,"отзыв","отзыва","отзывов")}`;
 }
 
-
-const reviewForm =
-    $("#reviewForm");
-
-
-if (reviewForm) {
-
-    reviewForm.addEventListener(
-        "submit",
-        event => {
-
-            event.preventDefault();
-
-
-            const name =
-                $("#reviewName")
-                    ?.value
-                    .trim();
-
-            const text =
-                $("#reviewText")
-                    ?.value
-                    .trim();
-
-
-            if (!name || !text) {
-
-                showToast(
-                    "Не удалось отправить",
-                    "Заполните имя и текст отзыва."
-                );
-
-                return;
-            }
-
-
-            const review = {
-
-                id:
-                    Date.now(),
-
-                name,
-
-                text,
-
-                rating:
-                    selectedRating,
-
-                createdAt:
-                    new Date().toISOString()
-
-            };
-
-
-            const reviews =
-                getReviews();
-
-            reviews.push(review);
-
-
-            saveStorage(
-                "news92_reviews",
-                reviews
-            );
-
-
-            renderReviews();
-
-            closeModal("reviewModal");
-
-            reviewForm.reset();
-
-            setRating(5);
-
-
-            showToast(
-                "Отзыв добавлен",
-                "Он сохранён в этом браузере."
-            );
-
+async function loadServerReviews(){
+    try{
+        const response=await fetch(NEWS92_ORDER_ENDPOINT+"?action=reviews",{cache:"no-store"});
+        const result=await response.json();
+        if(result.ok){
+            renderReviewsFromList(result.reviews||[]);
         }
-    );
-
+    }catch(error){
+        console.error("REVIEWS LOAD ERROR",error);
+        renderReviewsFromList(getStorage("news92_reviews",[]));
+    }
 }
 
+const reviewForm=$("#reviewForm");
+if(reviewForm){
+    reviewForm.addEventListener("submit",async event=>{
+        event.preventDefault();
+        if(!googleUser || !googleCredential){
+            showToast("Нужен вход","Войдите через Google, чтобы оставить отзыв.");
+            return;
+        }
+        const name=$("#reviewName")?.value.trim() || googleUser.name || "Пользователь";
+        const text=$("#reviewText")?.value.trim();
+        if(!text){
+            showToast("Не удалось отправить","Напишите текст отзыва.");
+            return;
+        }
+        const button=reviewForm.querySelector('button[type="submit"]');
+        const original=button?.textContent || "Опубликовать";
+        if(button){button.disabled=true;button.textContent="Публикуем...";}
+        try{
+            const response=await fetch(NEWS92_ORDER_ENDPOINT,{
+                method:"POST",
+                headers:{"Content-Type":"text/plain;charset=utf-8"},
+                body:JSON.stringify({
+                    action:"review",
+                    idToken:googleCredential,
+                    name,
+                    text,
+                    rating:selectedRating,
+                    createdAt:new Date().toISOString()
+                })
+            });
+            const result=await response.json();
+            if(!result.ok) throw new Error(result.error || "Не удалось опубликовать отзыв");
+            renderReviewsFromList(result.reviews||[]);
+            closeModal("reviewModal");
+            reviewForm.reset();
+            setRating(5);
+            showToast("Отзыв опубликован","Спасибо! Один отзыв на Google-аккаунт.");
+        }catch(error){
+            console.error("REVIEW SEND ERROR",error);
+            showToast("Не удалось опубликовать",error.message || "Попробуйте ещё раз.");
+        }finally{
+            if(button){button.disabled=false;button.textContent=original;}
+        }
+    });
+}
 
-renderReviews();
-
+renderReviewsFromList(getStorage("news92_reviews",[]));
 
 /* =========================================
    TOAST
