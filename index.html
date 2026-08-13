@@ -1,4 +1,4 @@
-=<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -6292,7 +6292,7 @@ window.addEventListener('load',()=>setTimeout(initGoogleAuth,700));
 ========================================= */
 
 const NEWS92_ORDER_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbyZKFzHjfIk4gEIJIcs2zgDd5ggbbFgGb36LzDvDIhIWGyPjSlPUbrWWKazqvWtTvon/exec";
+    "https://script.google.com/macros/s/AKfycbyxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec";
 
 const orderForm = $("#orderForm");
 
@@ -6317,12 +6317,16 @@ if(orderForm){
         }
 
         const order={
+            type:"site_order",
+            source:"news92-studio",
             id:Date.now(),
             service:selectedOrderService || "Не указана",
             price:selectedOrderPrice || "Не указана",
-            name,contact,message,
-            createdAt:new Date().toISOString(),
-            source:"news92-studio"
+            name:name,
+            contact:contact,
+            email:"",
+            message:message,
+            createdAt:new Date().toISOString()
         };
 
         const button=orderForm.querySelector('button[type="submit"]');
@@ -6333,10 +6337,21 @@ if(orderForm){
             const response=await fetch(NEWS92_ORDER_ENDPOINT,{
                 method:"POST",
                 headers:{"Content-Type":"text/plain;charset=utf-8"},
-                body:JSON.stringify(order)
+                body:JSON.stringify(order),
+                cache:"no-store"
             });
-            const result=await response.json();
-            if(!result.ok) throw new Error(result.error || "Сервер отклонил заявку");
+
+            const raw=await response.text();
+            let result;
+            try{
+                result=JSON.parse(raw);
+            }catch(_){
+                throw new Error("Apps Script вернул некорректный ответ.");
+            }
+
+            if(!result.ok){
+                throw new Error(result.error || "Сервер отклонил заявку");
+            }
 
             localStorage.setItem(lockKey,String(Date.now()));
             const orders=getStorage("news92_orders",[]);
@@ -6345,7 +6360,7 @@ if(orderForm){
 
             closeModal("orderModal");
             orderForm.reset();
-            showToast("Заявка отправлена","Заявка принята. Мы получили её и свяжемся с вами.");
+            showToast("Заявка отправлена","Заявка принята сервером. Мы свяжемся с вами.");
         }catch(error){
             console.error("ORDER SEND ERROR:",error);
             showToast("Не удалось отправить",error.message || "Проверьте соединение и попробуйте ещё раз.");
@@ -7054,7 +7069,7 @@ console.log(
 );
 
 console.log(
-    "Сайт успешно загружен."
+    "Сайт успешно загружен. News_92 v4 — order endpoint connected."
 );
 
 </script>
