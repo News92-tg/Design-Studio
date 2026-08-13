@@ -6292,12 +6292,241 @@ window.addEventListener('load',()=>setTimeout(initGoogleAuth,700));
 ========================================= */
 
 const NEWS92_ORDER_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec"
+    "https://script.google.com/macros/s/AKfycbyxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec";
 
-const orderForm = $("#orderForm");
+const orderForm = document.getElementById("orderForm");
 
-if(orderForm){
-    orderForm.addEventListener("submit", async event=>{
+if (orderForm) {
+
+    orderForm.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("orderName")?.value.trim() || "";
+
+        const contact =
+            document.getElementById("orderContact")?.value.trim() || "";
+
+        const message =
+            document.getElementById("orderMessage")?.value.trim() || "";
+
+        if (!name || !contact || !message) {
+            showToast(
+                "Заполните форму",
+                "Пожалуйста, заполните все поля."
+            );
+            return;
+        }
+
+        /* =========================================
+           АНТИСПАМ
+        ========================================= */
+
+        const lockKey = "news92_order_cooldown";
+
+        const lastOrder =
+            Number(localStorage.getItem(lockKey) || 0);
+
+        const cooldown = 60 * 1000;
+
+        if (Date.now() - lastOrder < cooldown) {
+
+            const seconds = Math.ceil(
+                (cooldown - (Date.now() - lastOrder)) / 1000
+            );
+
+            showToast(
+                "Подождите немного",
+                `Следующую заявку можно отправить через ${seconds} сек.`
+            );
+
+            return;
+        }
+
+        /* =========================================
+           ДАННЫЕ ЗАЯВКИ
+        ========================================= */
+
+        const order = {
+
+            type: "site_order",
+
+            source: "news92-studio",
+
+            id: Date.now(),
+
+            service:
+                typeof selectedOrderService !== "undefined"
+                    ? selectedOrderService
+                    : "Не указана",
+
+            price:
+                typeof selectedOrderPrice !== "undefined"
+                    ? selectedOrderPrice
+                    : "Не указана",
+
+            name: name,
+
+            contact: contact,
+
+            email: "",
+
+            message: message,
+
+            createdAt:
+                new Date().toISOString()
+        };
+
+        /* =========================================
+           КНОПКА
+        ========================================= */
+
+        const button =
+            orderForm.querySelector(
+                'button[type="submit"]'
+            );
+
+        const originalText =
+            button?.textContent ||
+            "Отправить заявку";
+
+        if (button) {
+
+            button.disabled = true;
+
+            button.textContent =
+                "Отправляем...";
+        }
+
+        try {
+
+            const payload =
+                JSON.stringify(order);
+
+            /*
+             * ВАЖНО:
+             * no-cors позволяет GitHub Pages
+             * отправить POST в Google Apps Script
+             * без блокировки CORS.
+             */
+
+            await fetch(
+                NEWS92_ORDER_ENDPOINT,
+                {
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    headers: {
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
+
+                    body: payload,
+
+                    keepalive: true
+                }
+            );
+
+            /*
+             * Считаем отправку выполненной.
+             * В режиме no-cors браузер не позволяет
+             * прочитать ответ Apps Script.
+             */
+
+            localStorage.setItem(
+                lockKey,
+                String(Date.now())
+            );
+
+            /* =========================================
+               ЛОКАЛЬНОЕ СОХРАНЕНИЕ
+            ========================================= */
+
+            let orders = [];
+
+            try {
+
+                orders =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "news92_orders"
+                        ) || "[]"
+                    );
+
+                if (!Array.isArray(orders)) {
+                    orders = [];
+                }
+
+            } catch (e) {
+
+                orders = [];
+            }
+
+            orders.push({
+                ...order,
+                pending: true
+            });
+
+            localStorage.setItem(
+                "news92_orders",
+                JSON.stringify(orders)
+            );
+
+            /* =========================================
+               ЗАКРЫВАЕМ ОКНО
+            ========================================= */
+
+            if (typeof closeModal === "function") {
+
+                closeModal("orderModal");
+
+            } else {
+
+                const modal =
+                    document.getElementById(
+                        "orderModal"
+                    );
+
+                if (modal) {
+                    modal.classList.remove("active");
+                }
+            }
+
+            orderForm.reset();
+
+            showToast(
+                "Заявка отправлена",
+                "Заявка передана. Мы свяжемся с вами."
+            );
+
+        } catch (error) {
+
+            console.error(
+                "NEWS92 ORDER ERROR:",
+                error
+            );
+
+            showToast(
+                "Ошибка отправки",
+                "Не удалось отправить заявку. Попробуйте ещё раз."
+            );
+
+        } finally {
+
+            if (button) {
+
+                button.disabled = false;
+
+                button.textContent =
+                    originalText;
+            }
+        }
+
+    });
+
+}
         event.preventDefault();
 
         const name=$("#orderName")?.value.trim();
