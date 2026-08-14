@@ -88,6 +88,165 @@ img{
     display:none!important
 }
 
+
+/* 3D AURORA BACKGROUND */
+body{
+    position:relative;
+    overflow-x:hidden;
+    background:
+        radial-gradient(circle at 8% 12%,rgba(127,143,255,.22),transparent 28%),
+        radial-gradient(circle at 92% 6%,rgba(255,191,231,.18),transparent 26%),
+        linear-gradient(180deg,#f8f9ff 0%,#eef2ff 44%,#f7f8fb 100%);
+}
+
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    z-index:-2;
+    pointer-events:none;
+}
+
+body::before{
+    inset:0;
+    background-image:
+        linear-gradient(rgba(89,108,255,.055) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(89,108,255,.055) 1px,transparent 1px);
+    background-size:46px 46px;
+    mask-image:linear-gradient(180deg,rgba(0,0,0,.82),transparent 72%);
+    transform:perspective(900px) rotateX(58deg) translateY(-22%);
+    transform-origin:top center;
+}
+
+body::after{
+    width:520px;
+    height:520px;
+    right:-180px;
+    top:140px;
+    border-radius:44% 56% 52% 48%;
+    background:linear-gradient(135deg,rgba(89,108,255,.24),rgba(255,255,255,.08),rgba(255,183,219,.20));
+    filter:blur(2px);
+    animation:news92-orb-drift 12s ease-in-out infinite;
+}
+
+@keyframes news92-orb-drift{
+    0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+    50%{transform:translate3d(-34px,28px,0) rotate(8deg)}
+}
+
+.section,
+.hero{
+    position:relative;
+}
+
+.header{
+    background:rgba(255,255,255,.72);
+}
+
+.hero{
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 20% 8%,rgba(89,108,255,.18),transparent 28%),
+        radial-gradient(circle at 76% 12%,rgba(255,205,236,.24),transparent 24%),
+        linear-gradient(180deg,rgba(255,255,255,.84) 0%,rgba(245,247,255,.64) 100%);
+}
+
+.hero::before,
+.hero::after{
+    content:"";
+    position:absolute;
+    pointer-events:none;
+}
+
+.hero::before{
+    width:170px;
+    height:170px;
+    left:min(6vw,80px);
+    top:110px;
+    border-radius:34px;
+    background:linear-gradient(135deg,rgba(255,255,255,.74),rgba(122,137,255,.22));
+    box-shadow:22px 28px 70px rgba(89,108,255,.18),inset -12px -14px 28px rgba(89,108,255,.12);
+    transform:rotate(14deg) translateZ(0);
+    opacity:.55;
+}
+
+.hero::after{
+    width:118px;
+    height:118px;
+    right:9vw;
+    bottom:92px;
+    border-radius:50%;
+    background:radial-gradient(circle at 32% 28%,#fff,rgba(139,151,255,.52) 42%,rgba(89,108,255,.16) 70%);
+    box-shadow:0 30px 80px rgba(89,108,255,.26);
+    opacity:.76;
+}
+
+.hero-visual,
+.service-card,
+.website-card,
+.portfolio-item,
+.review-card,
+.step-card,
+.quick-link,
+.account-card,
+.account-feature{
+    transform-style:preserve-3d;
+}
+
+.hero-visual{
+    perspective:1100px;
+    background:
+        radial-gradient(circle at 72% 18%,rgba(148,161,255,.95),transparent 28%),
+        radial-gradient(circle at 18% 80%,rgba(255,196,232,.42),transparent 24%),
+        linear-gradient(135deg,#0d1018,#30395d 54%,#151822);
+}
+
+.site-window{
+    transform:rotateX(8deg) rotateY(-12deg) translateZ(28px);
+}
+
+.floating-price,
+.hero-tag{
+    transform:translateZ(46px);
+}
+
+.service-card:hover,
+.website-card:hover,
+.portfolio-item:hover,
+.review-card:hover,
+.step-card:hover,
+.quick-link:hover{
+    transform:translateY(-6px) rotateX(1deg);
+}
+
+.button,
+.service-button,
+.telegram-button{
+    position:relative;
+    overflow:hidden;
+}
+
+.button::after,
+.service-button::after,
+.telegram-button::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(115deg,transparent 0 35%,rgba(255,255,255,.34) 48%,transparent 62% 100%);
+    transform:translateX(-120%);
+    transition:transform .55s ease;
+}
+
+.button:hover::after,
+.service-button:hover::after,
+.telegram-button:hover::after{
+    transform:translateX(120%);
+}
+
+@media (prefers-reduced-motion:reduce){
+    body::after{animation:none!important}
+}
+
 /* HEADER */
 
 .header{
@@ -3299,6 +3458,23 @@ textarea:focus{
 .account-side{gap:10px}
 .review-login-warning{margin-bottom:16px}
 
+/* 3D overrides after base section styles */
+.header{background:rgba(255,255,255,.72)}
+.hero{
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 20% 8%,rgba(89,108,255,.18),transparent 28%),
+        radial-gradient(circle at 76% 12%,rgba(255,205,236,.24),transparent 24%),
+        linear-gradient(180deg,rgba(255,255,255,.84) 0%,rgba(245,247,255,.64) 100%);
+}
+.hero-visual{
+    perspective:1100px;
+    background:
+        radial-gradient(circle at 72% 18%,rgba(148,161,255,.95),transparent 28%),
+        radial-gradient(circle at 18% 80%,rgba(255,196,232,.42),transparent 24%),
+        linear-gradient(135deg,#0d1018,#30395d 54%,#151822);
+}
+
 </style>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -4300,7 +4476,7 @@ textarea:focus{
     </section>
 
 
-    
+
 
 <section class="section games-section" id="games">
     <div class="container">
@@ -6292,309 +6468,119 @@ window.addEventListener('load',()=>setTimeout(initGoogleAuth,700));
 ========================================= */
 
 const NEWS92_ORDER_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbyxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec";
+    "https://script.google.com/macros/s/AKfycbxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec";
 
 const orderForm = document.getElementById("orderForm");
 
+function saveOrderLocally(order, extra = {}) {
+    const orders = getStorage("news92_orders", []);
+    orders.push({
+        ...order,
+        ...extra
+    });
+    saveStorage("news92_orders", orders);
+}
+
 if (orderForm) {
-
-    orderForm.addEventListener("submit", async function(event) {
-
+    orderForm.addEventListener("submit", async event => {
         event.preventDefault();
 
-        const name =
-            document.getElementById("orderName")?.value.trim() || "";
-
-        const contact =
-            document.getElementById("orderContact")?.value.trim() || "";
-
-        const message =
-            document.getElementById("orderMessage")?.value.trim() || "";
+        const name = $("#orderName")?.value.trim() || "";
+        const contact = $("#orderContact")?.value.trim() || "";
+        const message = $("#orderMessage")?.value.trim() || "";
 
         if (!name || !contact || !message) {
-            showToast(
-                "Заполните форму",
-                "Пожалуйста, заполните все поля."
-            );
+            showToast("Заполните форму", "Пожалуйста, заполните все поля.");
             return;
         }
 
-        /* =========================================
-           АНТИСПАМ
-        ========================================= */
-
         const lockKey = "news92_order_cooldown";
-
-        const lastOrder =
-            Number(localStorage.getItem(lockKey) || 0);
-
+        const lastOrder = Number(localStorage.getItem(lockKey) || 0);
         const cooldown = 60 * 1000;
 
         if (Date.now() - lastOrder < cooldown) {
-
-            const seconds = Math.ceil(
-                (cooldown - (Date.now() - lastOrder)) / 1000
-            );
-
-            showToast(
-                "Подождите немного",
-                `Следующую заявку можно отправить через ${seconds} сек.`
-            );
-
+            const seconds = Math.ceil((cooldown - (Date.now() - lastOrder)) / 1000);
+            showToast("Подождите немного", `Следующую заявку можно отправить через ${seconds} сек.`);
             return;
         }
 
-        /* =========================================
-           ДАННЫЕ ЗАЯВКИ
-        ========================================= */
-
         const order = {
-
+            action: "order",
             type: "site_order",
-
             source: "news92-studio",
-
             id: Date.now(),
-
-            service:
-                typeof selectedOrderService !== "undefined"
-                    ? selectedOrderService
-                    : "Не указана",
-
-            price:
-                typeof selectedOrderPrice !== "undefined"
-                    ? selectedOrderPrice
-                    : "Не указана",
-
-            name: name,
-
-            contact: contact,
-
+            service: selectedOrderService || "Не указана",
+            price: selectedOrderPrice ?? "Не указана",
+            name,
+            contact,
             email: "",
-
-            message: message,
-
-            createdAt:
-                new Date().toISOString()
+            message,
+            createdAt: new Date().toISOString()
         };
 
-        /* =========================================
-           КНОПКА
-        ========================================= */
-
-        const button =
-            orderForm.querySelector(
-                'button[type="submit"]'
-            );
-
-        const originalText =
-            button?.textContent ||
-            "Отправить заявку";
+        const button = orderForm.querySelector('button[type="submit"]');
+        const originalText = button?.textContent || "Отправить заявку";
 
         if (button) {
-
             button.disabled = true;
-
-            button.textContent =
-                "Отправляем...";
+            button.textContent = "Отправляем...";
         }
 
         try {
-
-            const payload =
-                JSON.stringify(order);
-
-            /*
-             * ВАЖНО:
-             * no-cors позволяет GitHub Pages
-             * отправить POST в Google Apps Script
-             * без блокировки CORS.
-             */
-
-            await fetch(
-                NEWS92_ORDER_ENDPOINT,
-                {
-                    method: "POST",
-
-                    mode: "no-cors",
-
-                    headers: {
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
-                    },
-
-                    body: payload,
-
-                    keepalive: true
-                }
-            );
-
-            /*
-             * Считаем отправку выполненной.
-             * В режиме no-cors браузер не позволяет
-             * прочитать ответ Apps Script.
-             */
-
-            localStorage.setItem(
-                lockKey,
-                String(Date.now())
-            );
-
-            /* =========================================
-               ЛОКАЛЬНОЕ СОХРАНЕНИЕ
-            ========================================= */
-
-            let orders = [];
-
-            try {
-
-                orders =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "news92_orders"
-                        ) || "[]"
-                    );
-
-                if (!Array.isArray(orders)) {
-                    orders = [];
-                }
-
-            } catch (e) {
-
-                orders = [];
-            }
-
-            orders.push({
-                ...order,
-                pending: true
+            const response = await fetch(NEWS92_ORDER_ENDPOINT, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(order),
+                cache: "no-store"
             });
 
-            localStorage.setItem(
-                "news92_orders",
-                JSON.stringify(orders)
-            );
+            const raw = await response.text();
+            let result = {};
 
-            /* =========================================
-               ЗАКРЫВАЕМ ОКНО
-            ========================================= */
-
-            if (typeof closeModal === "function") {
-
-                closeModal("orderModal");
-
-            } else {
-
-                const modal =
-                    document.getElementById(
-                        "orderModal"
-                    );
-
-                if (modal) {
-                    modal.classList.remove("active");
+            if (raw) {
+                try {
+                    result = JSON.parse(raw);
+                } catch (error) {
+                    throw new Error("Apps Script вернул некорректный ответ.");
                 }
             }
 
-            orderForm.reset();
-
-            showToast(
-                "Заявка отправлена",
-                "Заявка передана. Мы свяжемся с вами."
-            );
-
-        } catch (error) {
-
-            console.error(
-                "NEWS92 ORDER ERROR:",
-                error
-            );
-
-            showToast(
-                "Ошибка отправки",
-                "Не удалось отправить заявку. Попробуйте ещё раз."
-            );
-
-        } finally {
-
-            if (button) {
-
-                button.disabled = false;
-
-                button.textContent =
-                    originalText;
-            }
-        }
-
-    });
-
-}
-        event.preventDefault();
-
-        const name=$("#orderName")?.value.trim();
-        const contact=$("#orderContact")?.value.trim();
-        const message=$("#orderMessage")?.value.trim();
-
-        if(!name || !contact || !message){
-            showToast("Заполните форму","Пожалуйста, заполните все поля.");
-            return;
-        }
-
-        const lockKey='news92_order_cooldown';
-        const last=Number(localStorage.getItem(lockKey)||0);
-        if(Date.now()-last < 60000){
-            showToast("Подождите минуту","Слишком частые заявки. Попробуйте снова через минуту.");
-            return;
-        }
-
-        const order={
-            type:"site_order",
-            source:"news92-studio",
-            id:Date.now(),
-            service:selectedOrderService || "Не указана",
-            price:selectedOrderPrice || "Не указана",
-            name:name,
-            contact:contact,
-            email:"",
-            message:message,
-            createdAt:new Date().toISOString()
-        };
-
-        const button=orderForm.querySelector('button[type="submit"]');
-        const original=button?.textContent || "Отправить заявку";
-        if(button){button.disabled=true;button.textContent="Отправляем...";}
-
-        try{
-            const response=await fetch(NEWS92_ORDER_ENDPOINT,{
-                method:"POST",
-                headers:{"Content-Type":"text/plain;charset=utf-8"},
-                body:JSON.stringify(order),
-                cache:"no-store"
-            });
-
-            const raw=await response.text();
-            let result;
-            try{
-                result=JSON.parse(raw);
-            }catch(_){
-                throw new Error("Apps Script вернул некорректный ответ.");
-            }
-
-            if(!result.ok){
+            if (response.ok === false || result.ok === false) {
                 throw new Error(result.error || "Сервер отклонил заявку");
             }
 
-            localStorage.setItem(lockKey,String(Date.now()));
-            const orders=getStorage("news92_orders",[]);
-            orders.push({...order,serverId:result.order?.id||null});
-            saveStorage("news92_orders",orders);
+            localStorage.setItem(lockKey, String(Date.now()));
+            saveOrderLocally(order, { serverId: result.order?.id || null, pending: false });
 
             closeModal("orderModal");
             orderForm.reset();
-            showToast("Заявка отправлена","Заявка принята сервером. Мы свяжемся с вами.");
-        }catch(error){
-            console.error("ORDER SEND ERROR:",error);
-            showToast("Не удалось отправить",error.message || "Проверьте соединение и попробуйте ещё раз.");
-        }finally{
-            if(button){button.disabled=false;button.textContent=original;}
+            showToast("Заявка отправлена", "Заявка принята ботом. Мы свяжемся с вами в Telegram.");
+        } catch (error) {
+            console.error("ORDER SEND ERROR:", error);
+
+            try {
+                await fetch(NEWS92_ORDER_ENDPOINT, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify(order),
+                    keepalive: true
+                });
+
+                localStorage.setItem(lockKey, String(Date.now()));
+                saveOrderLocally(order, { pending: true });
+                closeModal("orderModal");
+                orderForm.reset();
+                showToast("Заявка отправлена", "Запрос передан в Apps Script. Если ответа нет — напишите @news_92.");
+            } catch (fallbackError) {
+                console.error("ORDER FALLBACK ERROR:", fallbackError);
+                showToast("Не удалось отправить", "Проверьте Apps Script URL или напишите напрямую @news_92.");
+            }
+        } finally {
+            if (button) {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
         }
     });
 }
