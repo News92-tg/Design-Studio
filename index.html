@@ -94,61 +94,44 @@ body{
     position:relative;
     overflow-x:hidden;
     background:
-        radial-gradient(circle at 8% 12%,rgba(127,143,255,.22),transparent 28%),
-        radial-gradient(circle at 92% 6%,rgba(255,191,231,.18),transparent 26%),
+        radial-gradient(circle at 8% 12%,rgba(127,143,255,.18),transparent 28%),
+        radial-gradient(circle at 92% 6%,rgba(255,191,231,.16),transparent 26%),
         linear-gradient(180deg,#f8f9ff 0%,#eef2ff 44%,#f7f8fb 100%);
 }
 
-body::before,
-body::after{
+body::before{
     content:"";
     position:fixed;
+    inset:0;
     z-index:-2;
     pointer-events:none;
-}
-
-body::before{
-    inset:0;
     background-image:
         linear-gradient(rgba(89,108,255,.055) 1px,transparent 1px),
         linear-gradient(90deg,rgba(89,108,255,.055) 1px,transparent 1px);
     background-size:46px 46px;
-    mask-image:linear-gradient(180deg,rgba(0,0,0,.82),transparent 72%);
+    mask-image:linear-gradient(180deg,rgba(0,0,0,.78),transparent 72%);
     transform:perspective(900px) rotateX(58deg) translateY(-22%);
     transform-origin:top center;
 }
 
 body::after{
+    content:"";
+    position:fixed;
     width:520px;
     height:520px;
     right:-180px;
     top:140px;
+    z-index:-2;
     border-radius:44% 56% 52% 48%;
-    background:linear-gradient(135deg,rgba(89,108,255,.24),rgba(255,255,255,.08),rgba(255,183,219,.20));
+    background:linear-gradient(135deg,rgba(89,108,255,.22),rgba(255,255,255,.08),rgba(255,183,219,.18));
     filter:blur(2px);
+    pointer-events:none;
     animation:news92-orb-drift 12s ease-in-out infinite;
 }
 
 @keyframes news92-orb-drift{
     0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
     50%{transform:translate3d(-34px,28px,0) rotate(8deg)}
-}
-
-.section,
-.hero{
-    position:relative;
-}
-
-.header{
-    background:rgba(255,255,255,.72);
-}
-
-.hero{
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 20% 8%,rgba(89,108,255,.18),transparent 28%),
-        radial-gradient(circle at 76% 12%,rgba(255,205,236,.24),transparent 24%),
-        linear-gradient(180deg,rgba(255,255,255,.84) 0%,rgba(245,247,255,.64) 100%);
 }
 
 .hero::before,
@@ -191,14 +174,6 @@ body::after{
 .account-card,
 .account-feature{
     transform-style:preserve-3d;
-}
-
-.hero-visual{
-    perspective:1100px;
-    background:
-        radial-gradient(circle at 72% 18%,rgba(148,161,255,.95),transparent 28%),
-        radial-gradient(circle at 18% 80%,rgba(255,196,232,.42),transparent 24%),
-        linear-gradient(135deg,#0d1018,#30395d 54%,#151822);
 }
 
 .site-window{
@@ -4476,7 +4451,7 @@ textarea:focus{
     </section>
 
 
-
+    
 
 <section class="section games-section" id="games">
     <div class="container">
