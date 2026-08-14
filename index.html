@@ -88,7 +88,6 @@ img{
     display:none!important
 }
 
-
 /* HEADER */
 
 .header{
@@ -3301,214 +3300,325 @@ textarea:focus{
 .review-login-warning{margin-bottom:16px}
 
 
-/* ===== INTERACTIVE BACKGROUND ===== */
+/* ===== News_92 visual refresh: animated background only, never over text ===== */
+:root{
+  --page-bg:#edf1ff;
+  --glass:rgba(255,255,255,.68);
+  --glass-strong:rgba(255,255,255,.82);
+}
+html,body{background:var(--page-bg)!important;}
 body{
-    position:relative;
-    isolation:isolate;
-    overflow-x:hidden;
+  position:relative;
+  overflow-x:hidden;
+  background:
+    radial-gradient(700px 420px at 8% 6%,rgba(102,118,255,.22),transparent 65%),
+    radial-gradient(620px 430px at 88% 12%,rgba(164,105,255,.18),transparent 62%),
+    radial-gradient(700px 520px at 55% 92%,rgba(67,194,255,.12),transparent 66%),
+    linear-gradient(145deg,#f1f4ff 0%,#e9edff 48%,#f4efff 100%)!important;
+}
+body::before,body::after{
+  content:"";position:fixed;inset:auto;z-index:0;pointer-events:none;border-radius:999px;filter:blur(70px);opacity:.48;
+}
+body::before{width:340px;height:340px;left:-90px;top:36vh;background:rgba(98,120,255,.30);animation:news92BlobA 16s ease-in-out infinite alternate;}
+body::after{width:300px;height:300px;right:-80px;top:58vh;background:rgba(170,100,255,.24);animation:news92BlobB 19s ease-in-out infinite alternate;}
+@keyframes news92BlobA{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(70px,-55px,0) scale(1.16)}}
+@keyframes news92BlobB{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-60px,50px,0) scale(1.1)}}
+.news92-3d-bg{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;z-index:0!important;pointer-events:none!important;display:block!important;opacity:.95;}
+.header,.hero,main,section,footer,.modal,.search-overlay,.mobile-drawer{position:relative;z-index:1;}
+.section-white{background:rgba(255,255,255,.18)!important;}
+.account-card,.quick-link,.service-card,.website-card,.game-card,.review-card,.step-card,.account-auth-box,.account-preview,.design-calculator,.website-hero,.games-hero,.search-panel,.modal-card{
+  background:var(--glass)!important;
+  backdrop-filter:blur(18px) saturate(125%);
+  -webkit-backdrop-filter:blur(18px) saturate(125%);
+  border-color:rgba(255,255,255,.72)!important;
+  box-shadow:0 18px 55px rgba(54,66,135,.10)!important;
+}
+.account-cover{box-shadow:0 22px 60px rgba(71,88,180,.18);}
+
+/* ===== Account/Auth ===== */
+.account-auth-box{gap:14px;}
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.auth-input{width:100%;min-height:48px;padding:0 14px;border:1px solid rgba(121,130,170,.22);border-radius:13px;background:rgba(255,255,255,.72);color:var(--dark);outline:none;}
+.auth-input:focus{border-color:rgba(89,108,255,.65);box-shadow:0 0 0 4px rgba(89,108,255,.10);}
+.auth-actions{display:flex;flex-wrap:wrap;gap:8px;}
+.auth-actions .button{flex:1;min-width:140px;}
+.auth-divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px;font-weight:800;}
+.auth-divider::before,.auth-divider::after{content:"";height:1px;flex:1;background:rgba(121,130,170,.18);}
+.auth-small{color:var(--muted);font-size:11px;line-height:1.5;}
+.firebase-profile{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.55);border:1px solid rgba(121,130,170,.16);}
+.firebase-profile-avatar{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#596cff,#a08cff);color:#fff;font-weight:900;overflow:hidden;}
+.firebase-profile-avatar img{width:100%;height:100%;object-fit:cover;}
+.auth-status{font-size:11px;font-weight:800;color:var(--muted);}
+.turnstile-slot{min-height:65px;display:flex;align-items:center;}
+@media(max-width:700px){.auth-grid{grid-template-columns:1fr}.auth-actions{display:grid;grid-template-columns:1fr}.auth-actions .button{width:100%;}.news92-3d-bg{opacity:.82}}
+@media(prefers-reduced-motion:reduce){body::before,body::after{animation:none}.news92-3d-bg{display:none!important}}
+
+/* ===== Deep aurora background: animation stays behind all content ===== */
+html,body{background:#070a18!important;}
+body{
+  color:#eef2ff;
+  background:
+    radial-gradient(900px 520px at 8% -5%, rgba(92,108,255,.30), transparent 62%),
+    radial-gradient(800px 500px at 92% 8%, rgba(172,96,255,.24), transparent 60%),
+    radial-gradient(900px 600px at 50% 105%, rgba(43,168,255,.16), transparent 68%),
+    linear-gradient(145deg,#070a18 0%,#0b1024 44%,#100a1e 100%) !important;
+}
+.hero,.section,.section-white,.section-soft,.games-section{background:transparent!important;}
+.header{background:rgba(8,11,28,.74)!important;border-bottom-color:rgba(255,255,255,.10)!important;}
+.logo{color:#fff!important}
+.menu a{color:rgba(241,244,255,.72)!important}
+.menu a:hover{color:#9ca9ff!important}
+.header-icon-button,.mobile-menu{background:rgba(255,255,255,.08)!important;color:#fff!important;border-color:rgba(255,255,255,.12)!important}
+.section-title h2,.section-heading h2,.hero h1,.games-hero h3,.website-hero h3,.service-card h3,.game-content h3,.account-info h3{color:#fff!important}
+.section-title p,.section-heading p,.hero-text,.games-hero p,.website-hero p,.service-card p,.game-content p,.account-info p,.account-auth-note,.auth-small,.auth-status{color:rgba(231,236,255,.70)!important}
+.account-card,.quick-link,.service-card,.website-card,.game-card,.review-card,.step-card,.account-auth-box,.account-preview,.design-calculator,.website-hero,.games-hero,.search-panel,.modal-card{
+  background:rgba(255,255,255,.075)!important;
+  border-color:rgba(255,255,255,.14)!important;
+  box-shadow:0 22px 80px rgba(0,0,0,.24)!important;
+  backdrop-filter:blur(22px) saturate(135%);
+  -webkit-backdrop-filter:blur(22px) saturate(135%);
+}
+.account-auth-head strong,.firebase-profile strong{color:#fff!important}
+.auth-input{background:rgba(6,9,24,.46)!important;color:#fff!important;border-color:rgba(255,255,255,.12)!important}
+.auth-input::placeholder{color:rgba(232,237,255,.45)!important}
+.auth-divider{color:rgba(232,237,255,.55)!important}
+.auth-divider::before,.auth-divider::after{background:rgba(255,255,255,.12)!important}
+.firebase-profile{background:rgba(255,255,255,.075)!important;border-color:rgba(255,255,255,.10)!important}
+.button-outline{background:rgba(255,255,255,.08)!important;color:#fff!important;border-color:rgba(255,255,255,.14)!important}
+.button-outline:hover{background:rgba(255,255,255,.14)!important}
+.section-title .eyebrow{background:rgba(95,111,255,.16)!important;color:#aab4ff!important}
+
+/* ===== FINAL DARK AURORA + READABLE TEXT OVERRIDE ===== */
+html, body {
+  background:
+    radial-gradient(900px 560px at 10% 0%, rgba(87, 105, 255, .26), transparent 62%),
+    radial-gradient(850px 540px at 90% 12%, rgba(166, 92, 255, .20), transparent 60%),
+    radial-gradient(900px 620px at 52% 100%, rgba(38, 166, 255, .13), transparent 68%),
+    linear-gradient(145deg, #070a18 0%, #0b1128 48%, #120b23 100%) !important;
+  color: #f5f7ff !important;
 }
 
-#ambient-bg{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100%;
-    z-index:-2;
-    pointer-events:none;
-    opacity:.72;
+body::before,
+body::after {
+  opacity: .32 !important;
+  filter: blur(90px) !important;
 }
 
-.ambient-glow{
-    position:fixed;
-    width:520px;
-    height:520px;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:-1;
-    filter:blur(80px);
-    opacity:.18;
-    background:radial-gradient(circle, var(--accent) 0%, transparent 68%);
-    transform:translate3d(-50%,-50%,0);
-    transition:opacity .35s ease;
+/* 3D is visual background only. No transforms/animations on text. */
+.news92-3d-bg {
+  opacity: .50 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
 }
 
-.ambient-glow.one{top:12%;left:18%;animation:ambientFloat1 16s ease-in-out infinite alternate}
-.ambient-glow.two{top:70%;left:82%;width:430px;height:430px;opacity:.13;animation:ambientFloat2 19s ease-in-out infinite alternate}
-
-@keyframes ambientFloat1{
-    0%{transform:translate3d(-50%,-50%,0) scale(1)}
-    100%{transform:translate3d(-35%,-42%,0) scale(1.18)}
-}
-@keyframes ambientFloat2{
-    0%{transform:translate3d(-50%,-50%,0) scale(1)}
-    100%{transform:translate3d(-62%,-58%,0) scale(1.22)}
-}
-
-/* лёгкое стеклянное движение у основных поверхностей */
 .header,
-.card,
-.service-card,
-.review-card,
-.faq-item,
-.calculator,
-.modal,
-footer{
-    position:relative;
+.hero,
+.section,
+.section-white,
+.games-section,
+footer {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
 }
 
-@media (prefers-reduced-motion: reduce){
-    #ambient-bg,.ambient-glow{animation:none!important}
-    html{scroll-behavior:auto}
+.header {
+  background: rgba(5, 8, 22, .72) !important;
+  border-bottom: 1px solid rgba(255,255,255,.10) !important;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+/* Glass cards: dark enough to separate content from the animated background. */
+.account-card,
+.quick-link,
+.service-card,
+.website-card,
+.game-card,
+.review-card,
+.step-card,
+.portfolio-item,
+.account-auth-box,
+.account-preview,
+.design-calculator,
+.website-hero,
+.games-hero,
+.search-panel,
+.modal-card,
+.faq-item,
+.support-box {
+  background: rgba(16, 21, 47, .78) !important;
+  border-color: rgba(150, 164, 255, .18) !important;
+  box-shadow: 0 24px 70px rgba(0,0,0,.28) !important;
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
+}
+
+/* Main typography */
+.hero h1,
+.section-title h2,
+.section-heading h2,
+.games-hero h3,
+.website-hero h3,
+.service-card h3,
+.game-content h3,
+.account-info h3,
+.step-card h3,
+.portfolio-item h3,
+.review-card h3,
+.faq-question,
+.modal-card h2,
+.modal-card h3 {
+  color: #f8f9ff !important;
+  text-shadow: 0 1px 14px rgba(0,0,0,.16);
+}
+
+.hero-text,
+.section-title p,
+.section-heading p,
+.games-hero p,
+.website-hero p,
+.service-card p,
+.game-content p,
+.account-info p,
+.step-card p,
+.portfolio-item p,
+.review-card p,
+.faq-answer,
+.support-note p,
+.auth-small,
+.account-auth-note,
+.auth-status,
+.service-list li {
+  color: rgba(224, 230, 255, .78) !important;
+}
+
+/* The exact section from the screenshot */
+.step-card {
+  min-height: 255px;
+}
+
+.step-card h3 {
+  margin-top: 2px;
+  color: #ffffff !important;
+  font-weight: 850 !important;
+}
+
+.step-card p {
+  color: rgba(221, 227, 255, .78) !important;
+  line-height: 1.65 !important;
+}
+
+.step-number {
+  background: rgba(5, 8, 20, .90) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.step-icon {
+  background: linear-gradient(135deg, #eef1ff, #d9ddff) !important;
+  color: #18204a !important;
+}
+
+/* Other cards / labels */
+.service-number,
+.price,
+.game-price,
+.image-label,
+.popular-label,
+.website-badge {
+  color: #b9c2ff !important;
+}
+
+.service-list li::before {
+  color: #61e0a4 !important;
+}
+
+.eyebrow {
+  background: rgba(89,108,255,.16) !important;
+  border: 1px solid rgba(142,151,255,.16);
+  color: #b9c3ff !important;
+}
+
+.quick-link-title,
+.quick-link-text {
+  color: #fff !important;
+}
+
+.quick-link-text {
+  color: rgba(220,226,255,.70) !important;
+}
+
+/* Inputs and auth block */
+.auth-input,
+.search-input,
+.design-calc-controls input,
+.design-calc-controls select,
+input,
+textarea,
+select {
+  color: #f5f7ff !important;
+}
+
+.auth-input,
+.design-calc-controls input,
+.design-calc-controls select,
+textarea,
+.search-input-wrap {
+  background: rgba(7, 10, 25, .62) !important;
+  border-color: rgba(160,174,255,.18) !important;
+}
+
+.auth-input::placeholder,
+textarea::placeholder,
+.search-input::placeholder {
+  color: rgba(220,226,255,.42) !important;
+}
+
+.button-outline {
+  color: #ffffff !important;
+  background: rgba(255,255,255,.07) !important;
+  border-color: rgba(255,255,255,.16) !important;
+}
+
+.button-outline:hover {
+  background: rgba(255,255,255,.13) !important;
+}
+
+/* Do not animate text itself. */
+h1,h2,h3,h4,h5,h6,p,span,a,li,button,input,textarea,select,label {
+  transform: none !important;
+  animation: none !important;
+}
+
+@media (max-width: 700px) {
+  .news92-3d-bg { opacity: .28 !important; }
+  .account-card,
+  .quick-link,
+  .service-card,
+  .website-card,
+  .game-card,
+  .review-card,
+  .step-card,
+  .portfolio-item,
+  .account-auth-box,
+  .account-preview,
+  .design-calculator,
+  .website-hero,
+  .games-hero {
+    backdrop-filter: blur(16px) saturate(125%);
+    -webkit-backdrop-filter: blur(16px) saturate(125%);
+  }
 }
 
 </style>
 
-<script src="https://accounts.google.com/gsi/client" async defer>
-
-/* =========================================
-   INTERACTIVE AMBIENT BACKGROUND
-   Лёгкие точки + линии + реакция на курсор
-========================================= */
-(function initAmbientBackground(){
-    const canvas = document.getElementById('ambient-bg');
-    if(!canvas) return;
-
-    const ctx = canvas.getContext('2d', { alpha:true });
-    if(!ctx) return;
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const coarse = window.matchMedia('(pointer: coarse)').matches;
-    const particles = [];
-    const mouse = { x:-9999, y:-9999, tx:-9999, ty:-9999 };
-    let width = 0, height = 0, dpr = 1, raf = 0;
-
-    function resize(){
-        width = window.innerWidth;
-        height = window.innerHeight;
-        dpr = Math.min(window.devicePixelRatio || 1, 1.6);
-        canvas.width = Math.floor(width*dpr);
-        canvas.height = Math.floor(height*dpr);
-        canvas.style.width = width+'px';
-        canvas.style.height = height+'px';
-        ctx.setTransform(dpr,0,0,dpr,0,0);
-
-        const count = Math.max(24, Math.min(70, Math.floor(width*height/26000)));
-        particles.length = 0;
-        for(let i=0;i<count;i++){
-            particles.push({
-                x:Math.random()*width,
-                y:Math.random()*height,
-                vx:(Math.random()-.5)*.22,
-                vy:(Math.random()-.5)*.22,
-                r:Math.random()*1.6+.55,
-                phase:Math.random()*Math.PI*2,
-                speed:.4+Math.random()*.8
-            });
-        }
-    }
-
-    function movePointer(x,y){
-        mouse.tx=x; mouse.ty=y;
-    }
-
-    if(!coarse){
-        window.addEventListener('pointermove',e=>movePointer(e.clientX,e.clientY),{passive:true});
-        window.addEventListener('pointerleave',()=>movePointer(-9999,-9999),{passive:true});
-    }
-
-    window.addEventListener('resize',resize,{passive:true});
-    resize();
-
-    function frame(time){
-        const t=time*.001;
-        mouse.x += (mouse.tx-mouse.x)*.045;
-        mouse.y += (mouse.ty-mouse.y)*.045;
-        ctx.clearRect(0,0,width,height);
-
-        const accent=getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#596cff';
-        const rgb = hexToRgb(accent);
-
-        // очень тонкая сетка
-        ctx.lineWidth=.5;
-        ctx.strokeStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},.035)`;
-        const grid=64;
-        for(let x=(t*4)%grid;x<width;x+=grid){
-            ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,height); ctx.stroke();
-        }
-        for(let y=(t*3)%grid;y<height;y+=grid){
-            ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(width,y); ctx.stroke();
-        }
-
-        for(let i=0;i<particles.length;i++){
-            const p=particles[i];
-            p.x+=p.vx;
-            p.y+=p.vy;
-            if(p.x<-20)p.x=width+20;
-            if(p.x>width+20)p.x=-20;
-            if(p.y<-20)p.y=height+20;
-            if(p.y>height+20)p.y=-20;
-
-            if(!reduceMotion && mouse.x>-1000){
-                const dx=p.x-mouse.x, dy=p.y-mouse.y;
-                const dist=Math.hypot(dx,dy);
-                if(dist<150){
-                    const force=(150-dist)/150*.018;
-                    p.x+=dx*force;
-                    p.y+=dy*force;
-                }
-            }
-
-            const pulse=.72+Math.sin(t*p.speed+p.phase)*.18;
-            ctx.beginPath();
-            ctx.arc(p.x,p.y,p.r*pulse,0,Math.PI*2);
-            ctx.fillStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},.24)`;
-            ctx.fill();
-
-            for(let j=i+1;j<particles.length;j++){
-                const q=particles[j];
-                const dx=p.x-q.x, dy=p.y-q.y;
-                const dist2=dx*dx+dy*dy;
-                if(dist2<105*105){
-                    const alpha=(1-Math.sqrt(dist2)/105)*.075;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x,p.y);
-                    ctx.lineTo(q.x,q.y);
-                    ctx.strokeStyle=`rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})`;
-                    ctx.stroke();
-                }
-            }
-        }
-
-        if(!reduceMotion && mouse.x>-1000){
-            const g=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,190);
-            g.addColorStop(0,`rgba(${rgb.r},${rgb.g},${rgb.b},.10)`);
-            g.addColorStop(1,`rgba(${rgb.r},${rgb.g},${rgb.b},0)`);
-            ctx.fillStyle=g;
-            ctx.fillRect(mouse.x-190,mouse.y-190,380,380);
-        }
-
-        raf=requestAnimationFrame(frame);
-    }
-
-    function hexToRgb(hex){
-        const m=hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
-        if(!m) return {r:89,g:108,b:255};
-        return {r:parseInt(m[1],16),g:parseInt(m[2],16),b:parseInt(m[3],16)};
-    }
-
-    raf=requestAnimationFrame(frame);
-})();
-
-</script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
-
-<!-- Interactive ambient background -->
-<canvas id="ambient-bg" aria-hidden="true"></canvas>
-<div class="ambient-glow one" aria-hidden="true"></div>
-<div class="ambient-glow two" aria-hidden="true"></div>
-
+<canvas class="news92-3d-bg" id="news92-3d-bg" aria-hidden="true"></canvas>
 
 <header class="header">
     <div class="container nav">
@@ -4504,7 +4614,7 @@ footer{
     </section>
 
 
-
+    
 
 <section class="section games-section" id="games">
     <div class="container">
@@ -5552,14 +5662,50 @@ footer{
                     </div>
 
 
-                    <div class="account-auth-box">
+                    <div class="account-auth-box" id="accountAuthBox">
+                        <div class="account-auth-head">
+                            <strong>Личный аккаунт</strong>
+                            <span id="firebaseAuthStatus">Не выполнен</span>
+                        </div>
+
+                        <div id="firebaseSignedUser" class="firebase-profile hidden">
+                            <div class="firebase-profile-avatar" id="firebaseAvatar">N</div>
+                            <div>
+                                <strong id="firebaseUserName">Пользователь</strong>
+                                <div class="auth-status" id="firebaseUserEmail"></div>
+                            </div>
+                        </div>
+
+                        <div id="firebaseAuthForms">
+                            <div class="auth-grid">
+                                <input class="auth-input" id="firebaseName" type="text" autocomplete="name" placeholder="Имя">
+                                <input class="auth-input" id="firebaseEmail" type="email" autocomplete="email" placeholder="Email">
+                            </div>
+                            <input class="auth-input" id="firebasePassword" type="password" minlength="6" autocomplete="new-password" placeholder="Пароль (минимум 6 символов)">
+                            <div class="turnstile-slot"><div id="news92Turnstile"></div></div>
+                            <div class="auth-actions">
+                                <button id="firebaseRegister" class="button" type="button">Зарегистрироваться</button>
+                                <button id="firebaseLogin" class="button button-outline" type="button">Войти</button>
+                            </div>
+                            <div class="auth-divider">или</div>
+                            <button id="firebaseGoogle" class="button button-outline" type="button">Продолжить с Google</button>
+                            <button id="firebaseReset" class="button button-outline" type="button">Сбросить пароль</button>
+                        </div>
+
+                        <div id="firebaseSignedActions" class="auth-actions hidden">
+                            <button id="firebaseLogout" class="button button-outline" type="button">Выйти</button>
+                        </div>
+
+                        <div class="auth-divider">отдельно для отзывов</div>
                         <div class="account-auth-head">
                             <strong>Вход для отзывов</strong>
-                            <span id="googleAuthStatus">Вход не выполнен</span>
+                            <span id="googleAuthStatus">Не выполнен</span>
                         </div>
                         <div id="googleSignInButton" class="google-signin-button"></div>
-                        <button id="googleSignOutButton" class="button button-outline hidden" type="button">Выйти</button>
-                        <p class="account-auth-note">Один Google-аккаунт = один отзыв.</p>
+                        <button id="googleSignOutButton" class="button button-outline hidden" type="button">Выйти из Google</button>
+                        <p class="account-auth-note">Google-вход здесь оставлен специально, чтобы текущая система отзывов и правило «один аккаунт — один отзыв» продолжили работать без изменения Apps Script.</p>
+
+                        <p class="account-auth-note">Аккаунт — Firebase. Защита регистрации/входа — Cloudflare Turnstile. Telegram/Apps Script не меняются.</p>
                     </div>
 
                     <div class="account-preview">
@@ -6496,119 +6642,309 @@ window.addEventListener('load',()=>setTimeout(initGoogleAuth,700));
 ========================================= */
 
 const NEWS92_ORDER_ENDPOINT =
-    "https://script.google.com/macros/s/AKfycbxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec";
+    "https://script.google.com/macros/s/AKfycbyxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec";
 
 const orderForm = document.getElementById("orderForm");
 
-function saveOrderLocally(order, extra = {}) {
-    const orders = getStorage("news92_orders", []);
-    orders.push({
-        ...order,
-        ...extra
-    });
-    saveStorage("news92_orders", orders);
-}
-
 if (orderForm) {
-    orderForm.addEventListener("submit", async event => {
+
+    orderForm.addEventListener("submit", async function(event) {
+
         event.preventDefault();
 
-        const name = $("#orderName")?.value.trim() || "";
-        const contact = $("#orderContact")?.value.trim() || "";
-        const message = $("#orderMessage")?.value.trim() || "";
+        const name =
+            document.getElementById("orderName")?.value.trim() || "";
+
+        const contact =
+            document.getElementById("orderContact")?.value.trim() || "";
+
+        const message =
+            document.getElementById("orderMessage")?.value.trim() || "";
 
         if (!name || !contact || !message) {
-            showToast("Заполните форму", "Пожалуйста, заполните все поля.");
+            showToast(
+                "Заполните форму",
+                "Пожалуйста, заполните все поля."
+            );
             return;
         }
 
+        /* =========================================
+           АНТИСПАМ
+        ========================================= */
+
         const lockKey = "news92_order_cooldown";
-        const lastOrder = Number(localStorage.getItem(lockKey) || 0);
+
+        const lastOrder =
+            Number(localStorage.getItem(lockKey) || 0);
+
         const cooldown = 60 * 1000;
 
         if (Date.now() - lastOrder < cooldown) {
-            const seconds = Math.ceil((cooldown - (Date.now() - lastOrder)) / 1000);
-            showToast("Подождите немного", `Следующую заявку можно отправить через ${seconds} сек.`);
+
+            const seconds = Math.ceil(
+                (cooldown - (Date.now() - lastOrder)) / 1000
+            );
+
+            showToast(
+                "Подождите немного",
+                `Следующую заявку можно отправить через ${seconds} сек.`
+            );
+
             return;
         }
 
+        /* =========================================
+           ДАННЫЕ ЗАЯВКИ
+        ========================================= */
+
         const order = {
-            action: "order",
+
             type: "site_order",
+
             source: "news92-studio",
+
             id: Date.now(),
-            service: selectedOrderService || "Не указана",
-            price: selectedOrderPrice ?? "Не указана",
-            name,
-            contact,
+
+            service:
+                typeof selectedOrderService !== "undefined"
+                    ? selectedOrderService
+                    : "Не указана",
+
+            price:
+                typeof selectedOrderPrice !== "undefined"
+                    ? selectedOrderPrice
+                    : "Не указана",
+
+            name: name,
+
+            contact: contact,
+
             email: "",
-            message,
-            createdAt: new Date().toISOString()
+
+            message: message,
+
+            createdAt:
+                new Date().toISOString()
         };
 
-        const button = orderForm.querySelector('button[type="submit"]');
-        const originalText = button?.textContent || "Отправить заявку";
+        /* =========================================
+           КНОПКА
+        ========================================= */
+
+        const button =
+            orderForm.querySelector(
+                'button[type="submit"]'
+            );
+
+        const originalText =
+            button?.textContent ||
+            "Отправить заявку";
 
         if (button) {
+
             button.disabled = true;
-            button.textContent = "Отправляем...";
+
+            button.textContent =
+                "Отправляем...";
         }
 
         try {
-            const response = await fetch(NEWS92_ORDER_ENDPOINT, {
-                method: "POST",
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify(order),
-                cache: "no-store"
+
+            const payload =
+                JSON.stringify(order);
+
+            /*
+             * ВАЖНО:
+             * no-cors позволяет GitHub Pages
+             * отправить POST в Google Apps Script
+             * без блокировки CORS.
+             */
+
+            await fetch(
+                NEWS92_ORDER_ENDPOINT,
+                {
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    headers: {
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
+
+                    body: payload,
+
+                    keepalive: true
+                }
+            );
+
+            /*
+             * Считаем отправку выполненной.
+             * В режиме no-cors браузер не позволяет
+             * прочитать ответ Apps Script.
+             */
+
+            localStorage.setItem(
+                lockKey,
+                String(Date.now())
+            );
+
+            /* =========================================
+               ЛОКАЛЬНОЕ СОХРАНЕНИЕ
+            ========================================= */
+
+            let orders = [];
+
+            try {
+
+                orders =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "news92_orders"
+                        ) || "[]"
+                    );
+
+                if (!Array.isArray(orders)) {
+                    orders = [];
+                }
+
+            } catch (e) {
+
+                orders = [];
+            }
+
+            orders.push({
+                ...order,
+                pending: true
             });
 
-            const raw = await response.text();
-            let result = {};
+            localStorage.setItem(
+                "news92_orders",
+                JSON.stringify(orders)
+            );
 
-            if (raw) {
-                try {
-                    result = JSON.parse(raw);
-                } catch (error) {
-                    throw new Error("Apps Script вернул некорректный ответ.");
+            /* =========================================
+               ЗАКРЫВАЕМ ОКНО
+            ========================================= */
+
+            if (typeof closeModal === "function") {
+
+                closeModal("orderModal");
+
+            } else {
+
+                const modal =
+                    document.getElementById(
+                        "orderModal"
+                    );
+
+                if (modal) {
+                    modal.classList.remove("active");
                 }
             }
 
-            if (response.ok === false || result.ok === false) {
+            orderForm.reset();
+
+            showToast(
+                "Заявка отправлена",
+                "Заявка передана. Мы свяжемся с вами."
+            );
+
+        } catch (error) {
+
+            console.error(
+                "NEWS92 ORDER ERROR:",
+                error
+            );
+
+            showToast(
+                "Ошибка отправки",
+                "Не удалось отправить заявку. Попробуйте ещё раз."
+            );
+
+        } finally {
+
+            if (button) {
+
+                button.disabled = false;
+
+                button.textContent =
+                    originalText;
+            }
+        }
+
+    });
+
+}
+        event.preventDefault();
+
+        const name=$("#orderName")?.value.trim();
+        const contact=$("#orderContact")?.value.trim();
+        const message=$("#orderMessage")?.value.trim();
+
+        if(!name || !contact || !message){
+            showToast("Заполните форму","Пожалуйста, заполните все поля.");
+            return;
+        }
+
+        const lockKey='news92_order_cooldown';
+        const last=Number(localStorage.getItem(lockKey)||0);
+        if(Date.now()-last < 60000){
+            showToast("Подождите минуту","Слишком частые заявки. Попробуйте снова через минуту.");
+            return;
+        }
+
+        const order={
+            type:"site_order",
+            source:"news92-studio",
+            id:Date.now(),
+            service:selectedOrderService || "Не указана",
+            price:selectedOrderPrice || "Не указана",
+            name:name,
+            contact:contact,
+            email:"",
+            message:message,
+            createdAt:new Date().toISOString()
+        };
+
+        const button=orderForm.querySelector('button[type="submit"]');
+        const original=button?.textContent || "Отправить заявку";
+        if(button){button.disabled=true;button.textContent="Отправляем...";}
+
+        try{
+            const response=await fetch(NEWS92_ORDER_ENDPOINT,{
+                method:"POST",
+                headers:{"Content-Type":"text/plain;charset=utf-8"},
+                body:JSON.stringify(order),
+                cache:"no-store"
+            });
+
+            const raw=await response.text();
+            let result;
+            try{
+                result=JSON.parse(raw);
+            }catch(_){
+                throw new Error("Apps Script вернул некорректный ответ.");
+            }
+
+            if(!result.ok){
                 throw new Error(result.error || "Сервер отклонил заявку");
             }
 
-            localStorage.setItem(lockKey, String(Date.now()));
-            saveOrderLocally(order, { serverId: result.order?.id || null, pending: false });
+            localStorage.setItem(lockKey,String(Date.now()));
+            const orders=getStorage("news92_orders",[]);
+            orders.push({...order,serverId:result.order?.id||null});
+            saveStorage("news92_orders",orders);
 
             closeModal("orderModal");
             orderForm.reset();
-            showToast("Заявка отправлена", "Заявка принята ботом. Мы свяжемся с вами в Telegram.");
-        } catch (error) {
-            console.error("ORDER SEND ERROR:", error);
-
-            try {
-                await fetch(NEWS92_ORDER_ENDPOINT, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: { "Content-Type": "text/plain;charset=utf-8" },
-                    body: JSON.stringify(order),
-                    keepalive: true
-                });
-
-                localStorage.setItem(lockKey, String(Date.now()));
-                saveOrderLocally(order, { pending: true });
-                closeModal("orderModal");
-                orderForm.reset();
-                showToast("Заявка отправлена", "Запрос передан в Apps Script. Если ответа нет — напишите @news_92.");
-            } catch (fallbackError) {
-                console.error("ORDER FALLBACK ERROR:", fallbackError);
-                showToast("Не удалось отправить", "Проверьте Apps Script URL или напишите напрямую @news_92.");
-            }
-        } finally {
-            if (button) {
-                button.disabled = false;
-                button.textContent = originalText;
-            }
+            showToast("Заявка отправлена","Заявка принята сервером. Мы свяжемся с вами.");
+        }catch(error){
+            console.error("ORDER SEND ERROR:",error);
+            showToast("Не удалось отправить",error.message || "Проверьте соединение и попробуйте ещё раз.");
+        }finally{
+            if(button){button.disabled=false;button.textContent=original;}
         }
     });
 }
@@ -7317,5 +7653,197 @@ console.log(
 
 </script>
 
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+/* ====== Firebase + Cloudflare Turnstile CONFIG ======
+   Replace the values below with your Firebase Web App config and Turnstile sitekey.
+   NEVER put the Turnstile secret key or Firebase Admin credentials in this file.
+*/
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyCip07gpc7L-h77YRKk4387FFuCB0MZ9Q",
+  authDomain: "news92ord.firebaseapp.com",
+  projectId: "news92ord",
+  storageBucket: "news92ord.firebasestorage.app",
+  messagingSenderId: "831201832782",
+  appId: "1:831201832782:web:7cd7eccad10bb6cb81f81f"
+};
+const TURNSTILE_SITE_KEY = "0x4AAAAAAEPu88DBEplG1LgT";
+
+let firebaseApp = null;
+let firebaseAuth = null;
+let turnstileToken = "";
+let turnstileWidgetId = null;
+
+function firebaseConfigured(){
+  return FIREBASE_CONFIG.apiKey && !FIREBASE_CONFIG.apiKey.startsWith("YOUR_") &&
+         FIREBASE_CONFIG.projectId && !FIREBASE_CONFIG.projectId.startsWith("YOUR_");
+}
+
+function setFirebaseStatus(text){
+  const el = document.getElementById("firebaseAuthStatus");
+  if(el) el.textContent = text;
+}
+
+function setAuthLoading(loading){
+  ["firebaseRegister","firebaseLogin","firebaseGoogle","firebaseReset"].forEach(id=>{
+    const btn=document.getElementById(id);
+    if(btn) btn.disabled=loading;
+  });
+}
+
+function showFirebaseUser(user){
+  const forms=document.getElementById("firebaseAuthForms");
+  const signed=document.getElementById("firebaseSignedUser");
+  const actions=document.getElementById("firebaseSignedActions");
+  const name=document.getElementById("firebaseUserName");
+  const email=document.getElementById("firebaseUserEmail");
+  const avatar=document.getElementById("firebaseAvatar");
+  const reset=document.getElementById("firebaseReset");
+  if(!user){
+    forms?.classList.remove("hidden"); signed?.classList.add("hidden"); actions?.classList.add("hidden"); reset?.classList.add("hidden");
+    setFirebaseStatus("Не выполнен"); return;
+  }
+  forms?.classList.add("hidden"); signed?.classList.remove("hidden"); actions?.classList.remove("hidden");
+  name.textContent=user.displayName || "Пользователь";
+  email.textContent=user.email || "";
+  if(user.photoURL){ avatar.innerHTML=`<img src="${user.photoURL}" alt="">`; } else { avatar.textContent=(user.displayName||user.email||"N").charAt(0).toUpperCase(); }
+  setFirebaseStatus("Выполнен");
+}
+
+function mapFirebaseError(error){
+  const code=error?.code||"";
+  const map={
+    "auth/email-already-in-use":"Этот email уже зарегистрирован.",
+    "auth/invalid-email":"Введите корректный email.",
+    "auth/weak-password":"Пароль слишком слабый. Используйте минимум 6 символов.",
+    "auth/invalid-credential":"Неверный email или пароль.",
+    "auth/user-not-found":"Пользователь не найден.",
+    "auth/wrong-password":"Неверный пароль.",
+    "auth/popup-closed-by-user":"Окно Google было закрыто.",
+    "auth/popup-blocked":"Браузер заблокировал окно Google. Разрешите всплывающие окна.",
+    "auth/too-many-requests":"Слишком много попыток. Попробуйте позже."
+  };
+  return map[code] || error?.message || "Не удалось выполнить действие.";
+}
+
+function resetTurnstile(){
+  turnstileToken="";
+  if(turnstileWidgetId!==null && window.turnstile){
+    try{ window.turnstile.reset(turnstileWidgetId); }catch{}
+  }
+}
+
+function renderTurnstile(){
+  if(!TURNSTILE_SITE_KEY || TURNSTILE_SITE_KEY.startsWith("YOUR_")) return;
+  if(!window.turnstile) return setTimeout(renderTurnstile,500);
+  const holder=document.getElementById("news92Turnstile");
+  if(!holder || turnstileWidgetId!==null) return;
+  turnstileWidgetId=window.turnstile.render(holder,{sitekey:TURNSTILE_SITE_KEY,theme:"light",callback:t=>{turnstileToken=t;},"expired-callback":()=>{turnstileToken="";},"error-callback":()=>{turnstileToken="";}});
+}
+
+async function requireHuman(){
+  if(!TURNSTILE_SITE_KEY || TURNSTILE_SITE_KEY.startsWith("YOUR_")) return true;
+  if(!turnstileToken){
+    showToast("Подтвердите, что вы человек","Пройдите проверку Cloudflare Turnstile.");
+    return false;
+  }
+  /* The token must be verified server-side before it is considered a security control.
+     Use your existing backend/Worker for Siteverify, not the client. */
+  return true;
+}
+
+async function initFirebaseAuth(){
+  if(!firebaseConfigured()){
+    setFirebaseStatus("Настройте Firebase");
+    return;
+  }
+  firebaseApp=initializeApp(FIREBASE_CONFIG);
+  firebaseAuth=getAuth(firebaseApp);
+  onAuthStateChanged(firebaseAuth,user=>showFirebaseUser(user));
+  renderTurnstile();
+
+  document.getElementById("firebaseRegister")?.addEventListener("click",async()=>{
+    const name=document.getElementById("firebaseName")?.value.trim()||"";
+    const email=document.getElementById("firebaseEmail")?.value.trim()||"";
+    const password=document.getElementById("firebasePassword")?.value||"";
+    if(!name||!email||password.length<6){showToast("Проверьте данные","Укажите имя, корректный email и пароль от 6 символов.");return;}
+    if(!(await requireHuman())) return;
+    setAuthLoading(true);
+    try{
+      const cred=await createUserWithEmailAndPassword(firebaseAuth,email,password);
+      if(name) await updateProfile(cred.user,{displayName:name});
+      showToast("Аккаунт создан","Регистрация прошла успешно.");
+      resetTurnstile();
+    }catch(e){showToast("Не удалось зарегистрировать"," "+mapFirebaseError(e));}finally{setAuthLoading(false);}
+  });
+
+  document.getElementById("firebaseLogin")?.addEventListener("click",async()=>{
+    const email=document.getElementById("firebaseEmail")?.value.trim()||"";
+    const password=document.getElementById("firebasePassword")?.value||"";
+    if(!email||!password){showToast("Проверьте данные","Введите email и пароль.");return;}
+    if(!(await requireHuman())) return;
+    setAuthLoading(true);
+    try{await signInWithEmailAndPassword(firebaseAuth,email,password);showToast("Вы вошли","Добро пожаловать в News_92 Studio.");resetTurnstile();}
+    catch(e){showToast("Не удалось войти",mapFirebaseError(e));}
+    finally{setAuthLoading(false);}
+  });
+
+  document.getElementById("firebaseGoogle")?.addEventListener("click",async()=>{
+    if(!(await requireHuman())) return;
+    setAuthLoading(true);
+    try{await signInWithPopup(firebaseAuth,new GoogleAuthProvider());showToast("Google подключён","Аккаунт авторизован.");resetTurnstile();}
+    catch(e){showToast("Ошибка Google",mapFirebaseError(e));}
+    finally{setAuthLoading(false);}
+  });
+
+  document.getElementById("firebaseReset")?.addEventListener("click",async()=>{
+    const email=document.getElementById("firebaseEmail")?.value.trim()||"";
+    if(!email){showToast("Введите email","Укажите email, на который отправить ссылку.");return;}
+    try{await sendPasswordResetEmail(firebaseAuth,email);showToast("Письмо отправлено","Проверьте почту и перейдите по ссылке для смены пароля.");}
+    catch(e){showToast("Не удалось отправить письмо",mapFirebaseError(e));}
+  });
+
+  document.getElementById("firebaseLogout")?.addEventListener("click",async()=>{try{await signOut(firebaseAuth);showToast("Вы вышли","Сессия завершена.");}catch(e){console.error(e);}});
+
+  document.getElementById("accountAuthBox")?.addEventListener?.("keydown",e=>{if(e.key==="Enter") document.getElementById("firebaseLogin")?.click();});
+}
+
+window.addEventListener("load",initFirebaseAuth);
+</script>
+
+<script>
+/* ===== Background 3D: visual only, never transforms page text ===== */
+(()=>{
+  const canvas=document.getElementById('news92-3d-bg'); if(!canvas) return;
+  const ctx=canvas.getContext('2d',{alpha:true});
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced) return;
+  let dpr=1,w=0,h=0,raf=0;
+  const pointer={x:0.5,y:0.5,tx:0.5,ty:0.5};
+  const shapes=[];
+  const count=()=>window.innerWidth<700?18:32;
+  function resize(){dpr=Math.min(window.devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
+  function seed(){shapes.length=0;for(let i=0;i<count();i++)shapes.push({x:Math.random()*w,y:Math.random()*h,z:.35+Math.random()*.65,size:10+Math.random()*34,rot:Math.random()*Math.PI*2,spin:(Math.random()-.5)*.006,alpha:.08+Math.random()*.12,kind:i%3});}
+  function poly(cx,cy,r,a,n=4){ctx.beginPath();for(let i=0;i<n;i++){const t=a+i*Math.PI*2/n;const x=cx+Math.cos(t)*r,y=cy+Math.sin(t)*r; i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.closePath();}
+  function frame(t){ctx.clearRect(0,0,w,h);pointer.x+=(pointer.tx-pointer.x)*.03;pointer.y+=(pointer.ty-pointer.y)*.03;for(const s of shapes){s.rot+=s.spin*(.55+s.z);s.y-=.05*s.z;if(s.y<-50)s.y=h+50;const px=s.x+(pointer.x-.5)*24*(1-s.z),py=s.y+(pointer.y-.5)*18*(1-s.z),r=s.size*(.6+.55*s.z);ctx.save();ctx.translate(px,py);ctx.rotate(s.rot);ctx.strokeStyle=`rgba(89,108,255,${s.alpha*(.6+s.z)})`;ctx.lineWidth=1;poly(0,0,r,0,4);ctx.stroke();if(s.kind===1){ctx.globalAlpha=.5;poly(0,0,r*.72,Math.PI/4,4);ctx.stroke();}if(s.kind===2){ctx.beginPath();ctx.arc(0,0,r*.7,0,Math.PI*2);ctx.stroke();}ctx.restore();}raf=requestAnimationFrame(frame);}
+  addEventListener('resize',()=>{resize();seed()},{passive:true});
+  addEventListener('pointermove',e=>{pointer.tx=e.clientX/w;pointer.ty=e.clientY/h},{passive:true});
+  resize();seed();raf=requestAnimationFrame(frame);
+})();
+</script>
+
 </body>
-</html>
+    </html>
