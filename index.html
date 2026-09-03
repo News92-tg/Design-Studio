@@ -25,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 
 <script type="application/ld+json">
 {
@@ -83,7 +83,39 @@ a{text-decoration:none;color:inherit}
 .user-chip img{width:26px;height:26px;border-radius:50%;display:block}
 .user-chip span{font-size:11px;font-weight:800;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .user-chip button{background:transparent;border:0;color:var(--muted);font-size:13px;padding:2px 3px}
-#gButtonSlotHeader{display:flex;align-items:center}
+.auth-actions{display:flex;align-items:center;gap:6px}
+.auth-link{width:auto;padding:9px 12px;font-size:12px;font-weight:800;color:var(--muted)}
+.auth-link:hover{color:#fff;background:#161c38}
+.auth-reg{min-height:38px;padding:0 14px}
+
+/* модалки авторизации и профиля */
+.auth-modal{width:min(420px,100%)}
+.auth-pane{animation:authIn .25s cubic-bezier(.2,.8,.2,1)}
+@keyframes authIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.auth-msg{padding:10px 12px;border-radius:11px;font-size:11px;line-height:1.5}
+.auth-msg.err{background:rgba(255,107,122,.12);border:1px solid rgba(255,107,122,.35);color:#ffb3ba}
+.auth-msg.ok{background:rgba(63,207,148,.12);border:1px solid rgba(63,207,148,.35);color:#bdf3dd}
+.auth-links{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:2px}
+.auth-links button{background:none;border:0;color:var(--muted);font-size:11px;font-weight:800;padding:4px 0}
+.auth-links button:hover{color:#fff;text-decoration:underline}
+.google-btn{gap:9px}
+.google-btn:before{content:'';width:16px;height:16px;flex:none;background:#fff;border-radius:50%;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 11v3.4h5.6c-.25 1.4-1.7 4.1-5.6 4.1-3.4 0-6.1-2.8-6.1-6.2S8.6 6.1 12 6.1c1.9 0 3.2.8 3.9 1.5l2.6-2.5C16.9 3.6 14.7 2.7 12 2.7 6.9 2.7 2.8 6.8 2.8 12S6.9 21.3 12 21.3c5.5 0 9.1-3.9 9.1-9.3 0-.6-.1-1.1-.2-1.6H12z'/></svg>") center/contain no-repeat;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 11v3.4h5.6c-.25 1.4-1.7 4.1-5.6 4.1-3.4 0-6.1-2.8-6.1-6.2S8.6 6.1 12 6.1c1.9 0 3.2.8 3.9 1.5l2.6-2.5C16.9 3.6 14.7 2.7 12 2.7 6.9 2.7 2.8 6.8 2.8 12S6.9 21.3 12 21.3c5.5 0 9.1-3.9 9.1-9.3 0-.6-.1-1.1-.2-1.6H12z'/></svg>") center/contain no-repeat}
+
+/* профиль */
+.profile-top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.avatar-lg{width:64px;height:64px;border-radius:50%;flex:none;object-fit:cover;display:block}
+.avatar-fallback{width:64px;height:64px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:26px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--a),var(--a2))}
+.profile-top h4{font-size:18px}
+.profile-top .p-mail{font-size:11px;color:var(--muted);margin-top:3px;word-break:break-all}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:16px}
+.p-stat{padding:12px;border:1px solid var(--line);border-radius:12px;text-align:center}
+.p-stat b{display:block;font-size:19px}
+.p-stat span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.profile-actions{display:grid;gap:8px}
+.avatar-pick{position:relative;overflow:hidden}
+.avatar-pick input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
 
 /* кнопки */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:46px;padding:0 18px;border:0;border-radius:13px;background:var(--a);color:#fff;font-weight:900;font-size:12px;box-shadow:0 14px 30px rgba(101,117,255,.28);transition:.18s cubic-bezier(.2,.8,.2,1)}
@@ -189,7 +221,7 @@ a{text-decoration:none;color:inherit}
 .gate-card{max-width:460px;margin:26px auto 0;padding:26px;border:1px solid var(--line);border-radius:var(--r-lg);background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.015));text-align:center;box-shadow:var(--shadow)}
 .gate-card h3{font-size:18px;margin-bottom:8px}
 .gate-card p{font-size:12px;color:var(--muted);margin-bottom:16px}
-#gButtonSlotReviews{display:flex;justify-content:center;margin-top:6px}
+.gate-card .btn{margin-top:6px}
 .review-form-wrap{max-width:520px;margin:26px auto 0}
 .review-form-wrap .card{text-align:left}
 .review-author{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -427,7 +459,10 @@ a{text-decoration:none;color:inherit}
     <button type="button" data-tab="orders" id="navOrders" class="hidden">Мои заказы</button>
   </nav>
   <div class="actions">
-    <div id="gButtonSlotHeader"></div>
+    <div class="auth-actions" id="authActions">
+      <button class="icon-btn auth-link" type="button" data-auth-open="login">Войти</button>
+      <button class="btn dark auth-reg" type="button" data-auth-open="register">Регистрация</button>
+    </div>
     <div class="user-chip hidden" id="userChip"></div>
     <button class="icon-btn" type="button" data-search-open aria-label="Поиск">🔎</button>
     <button class="icon-btn mobile-btn" type="button" data-menu aria-label="Меню">☰</button>
@@ -553,13 +588,16 @@ a{text-decoration:none;color:inherit}
       </article>
       <!-- Чтобы добавить работу: замените содержимое .work-shot на <img src="works/имя-файла.jpg" alt="">
            и впишите название с описанием ниже. Файлы кладите в папку works/ в репозитории. -->
-      <article class="work work-empty">
-        <div class="work-shot">Здесь появится следующая работа</div>
-        <div class="work-body"><h4>Свободное место</h4><p>Добавьте сюда скриншот выполненного заказа — это самое сильное доказательство качества.</p></div>
+      <!-- Как добавить работу: положите скриншот в папку works/ и замените содержимое
+           .work-shot на <img src="works/имя-файла.jpg" alt="">, а ниже впишите название
+           и одну строку о задаче. Три-четыре примера работают сильнее любого текста о себе. -->
+      <article class="work">
+        <div class="work-shot" style="background:linear-gradient(135deg,#1a1430,#2a1d3f)"><b style="font-size:17px;color:#fff">WARMED</b></div>
+        <div class="work-body"><h4>Браузерная игра WARMED</h4><p>Постапокалиптическая survival-игра: экономика, крафт, бои, сохранения. Один HTML-файл.</p></div>
       </article>
-      <article class="work work-empty">
-        <div class="work-shot">Здесь появится следующая работа</div>
-        <div class="work-body"><h4>Свободное место</h4><p>Три-четыре примера работ повышают доверие сильнее, чем любой текст о себе.</p></div>
+      <article class="work">
+        <div class="work-shot" style="background:linear-gradient(135deg,#12203a,#16344a)"><b style="font-size:17px;color:#fff">3D-витрина</b></div>
+        <div class="work-body"><h4>Интерактивный барабан услуг</h4><p>3D-карусель на чистом CSS и JS: вращение мышью и свайпом, разворот карточек, без библиотек.</p></div>
       </article>
     </div>
   </div></section>
@@ -711,7 +749,7 @@ a{text-decoration:none;color:inherit}
     <div class="gate-card hidden" id="reviewGate">
       <h3>Войдите, чтобы оставить отзыв</h3>
       <p>Вход нужен, чтобы один человек мог оставить только один отзыв.</p>
-      <div id="gButtonSlotReviews"></div>
+      <button class="btn grad full" type="button" data-auth-open="login">Войти</button>
     </div>
 
     <div class="review-form-wrap hidden" id="reviewFormWrap"></div>
@@ -728,9 +766,10 @@ a{text-decoration:none;color:inherit}
   </section>
   <div class="container">
     <div class="gate-card hidden" id="ordersGate">
-      <h3>Войдите, чтобы видеть свои заказы</h3>
-      <p>Заявки привязываются к Google-аккаунту, с которого вы их оформили.</p>
-      <div id="gButtonSlotOrders"></div>
+      <h3>Войдите, чтобы видеть свои заявки</h3>
+      <p>Заявки привязываются к аккаунту, с которого вы их оформили.</p>
+      <button class="btn grad full" type="button" data-auth-open="login">Войти</button>
+      <button class="btn ghost full" type="button" data-auth-open="register" style="margin-top:8px">Создать аккаунт</button>
     </div>
     <div class="grid" id="ordersList"></div>
   </div>
@@ -767,19 +806,71 @@ a{text-decoration:none;color:inherit}
   <div class="my-orders hidden" id="myOrders"></div>
 </div></div>
 
+<div class="overlay" id="authOverlay"><div class="modal auth-modal">
+  <div class="modal-head"><h3 id="authTitle">Вход</h3><button class="close" type="button" data-close="authOverlay">×</button></div>
+
+  <!-- ВХОД -->
+  <form class="form-grid auth-pane" id="paneLogin" novalidate>
+    <div class="field"><label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" required></div>
+    <div class="field"><label for="loginPass">Пароль</label><input id="loginPass" type="password" autocomplete="current-password" required></div>
+    <div class="auth-msg hidden" id="loginMsg"></div>
+    <button class="btn grad full" type="submit" id="loginBtn">Войти</button>
+    <button class="btn ghost full google-btn" type="button" data-google>Войти через Google</button>
+    <div class="auth-links">
+      <button type="button" data-auth-open="reset">Забыли пароль?</button>
+      <button type="button" data-auth-open="register">Создать аккаунт</button>
+    </div>
+  </form>
+
+  <!-- РЕГИСТРАЦИЯ -->
+  <form class="form-grid auth-pane hidden" id="paneRegister" novalidate>
+    <div class="field"><label for="regName">Имя</label><input id="regName" autocomplete="nickname" required></div>
+    <div class="field"><label for="regEmail">Email</label><input id="regEmail" type="email" autocomplete="email" required></div>
+    <div class="field"><label for="regPass">Пароль</label><input id="regPass" type="password" autocomplete="new-password" required><span class="hint">минимум 6 символов</span></div>
+    <div class="field"><label for="regPass2">Повторите пароль</label><input id="regPass2" type="password" autocomplete="new-password" required></div>
+    <div class="auth-msg hidden" id="regMsg"></div>
+    <button class="btn grad full" type="submit" id="regBtn">Создать аккаунт</button>
+    <button class="btn ghost full google-btn" type="button" data-google>Войти через Google</button>
+    <div class="auth-links"><button type="button" data-auth-open="login">Уже есть аккаунт? Войти</button></div>
+  </form>
+
+  <!-- ВОССТАНОВЛЕНИЕ ПАРОЛЯ -->
+  <form class="form-grid auth-pane hidden" id="paneReset" novalidate>
+    <p class="muted" style="font-size:12px">Укажите почту — пришлём ссылку для создания нового пароля.</p>
+    <div class="field"><label for="resetEmail">Email</label><input id="resetEmail" type="email" autocomplete="email" required></div>
+    <div class="auth-msg hidden" id="resetMsg"></div>
+    <button class="btn grad full" type="submit" id="resetBtn">Отправить письмо</button>
+    <div class="auth-links"><button type="button" data-auth-open="login">Вернуться ко входу</button></div>
+  </form>
+</div></div>
+
+<div class="overlay" id="profileOverlay"><div class="modal">
+  <div class="modal-head"><h3>Профиль</h3><button class="close" type="button" data-close="profileOverlay">×</button></div>
+  <div id="profileBody"></div>
+</div></div>
+
 <div class="toast" id="toast"><strong id="toastTitle"></strong><span id="toastText"></span></div>
 
 <script>
 'use strict';
 
-/* ================== НАСТРОЙКИ (заполните после деплоя — см. SETUP.md) ================== */
+/* ================== НАСТРОЙКИ ==================
+   Сюда вставляются ТОЛЬКО публичные значения. Публичные — значит их и так видит
+   любой посетитель в исходнике страницы, и это нормально: доступ к данным закрывает
+   не секретность ключа, а политики RLS в Supabase.
+
+   ❗ НИКОГДА не вставляйте сюда: service_role key, Google Client Secret, токен Telegram-бота.
+   Подробнее — в SETUP.md. */
 const CONFIG = {
-  // URL веб-приложения Google Apps Script (Code.gs). Обрабатывает заявки и отзывы, шлёт их в Telegram.
-  ORDER_ENDPOINT: 'ВСТАВЬТЕ_URL_APPS_SCRIPT_СЮДА',
-  // Client ID из Google Cloud Console (OAuth 2.0 → Web application).
-  GOOGLE_CLIENT_ID: 'ВСТАВЬТЕ_GOOGLE_CLIENT_ID_СЮДА.apps.googleusercontent.com'
+  // 1) Supabase → Project Settings → API → Project URL
+  SUPABASE_URL: 'ВСТАВЬТЕ_SUPABASE_URL',
+  // 2) Supabase → Project Settings → API → Project API keys → anon / public
+  SUPABASE_ANON_KEY: 'ВСТАВЬТЕ_SUPABASE_ANON_KEY',
+  // 3) URL веб-приложения Google Apps Script — нужен только для уведомления в Telegram
+  ORDER_ENDPOINT: 'ВСТАВЬТЕ_URL_APPS_SCRIPT_СЮДА'
 };
 function isConfigured(v){ return !!v && !/ВСТАВЬТЕ/.test(v); }
+const SUPABASE_READY = () => isConfigured(CONFIG.SUPABASE_URL) && isConfigured(CONFIG.SUPABASE_ANON_KEY);
 
 /* ================== мелкие утилиты ================== */
 const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
@@ -795,8 +886,8 @@ function showTab(name){
   $$('#mainMenu [data-tab]').forEach(b=>b.classList.toggle('is-active', b.dataset.tab===name));
   document.body.dataset.tab=name;
   $('#drawer').classList.remove('show');
-  if(name==='reviews'){ renderAuthState(); loadReviews(true); }
-  if(name==='orders'){ renderAuthState(); loadMyOrders(); }
+  if(name==='reviews'){ updateAuthUI(); loadReviews(); }
+  if(name==='orders'){ updateAuthUI(); loadMyOrders(); }
   window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
 }
 $$('[data-tab]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();showTab(b.dataset.tab)}));
@@ -986,6 +1077,23 @@ async function flushPending(){
 window.addEventListener('online',flushPending);
 window.addEventListener('load',()=>setTimeout(flushPending,1200));
 
+/* Сохраняем заявку в историю пользователя. Гостю аккаунт не нужен — для него
+   ничего не меняется, заявка просто уходит в Telegram, как и раньше. */
+async function saveOrderToSupabase(payload){
+  const sb=initSupabase(), user=getUser();
+  if(!sb || !user) return null;
+  const price = Number(String(payload.price).replace(/[^\d.]/g,'')) || null;
+  const { data, error } = await sb.from('orders').insert({
+    user_id: user.sub,
+    service: payload.service,
+    description: payload.message,
+    price,
+    status: 'new'                       // менять статус может только владелец сайта
+  }).select('id').maybeSingle();
+  if(error){ console.warn('[orders]', error); return null; }
+  return data;
+}
+
 /* ================== кулдаун и история заявок ================== */
 function orderLog(){ try { return JSON.parse(localStorage.getItem('news92_orderlog') || '[]'); } catch { return []; } }
 function pushOrderLog(entry){
@@ -1042,9 +1150,14 @@ $('#orderForm').addEventListener('submit',async e=>{
   if(cooldownLeft()>0){toast('Подождите немного','Новая заявка будет доступна через '+fmtLeft(cooldownLeft())+'. Это защита от спама.',true);return}
   if(ordersToday()>=DAILY_LIMIT){toast('Лимит на сегодня','Можно отправить не больше '+DAILY_LIMIT+' заявок в сутки. Напишите в Telegram, если нужно срочно.',true);return}
   const selected=JSON.parse(localStorage.getItem('news92_selected')||'{}');
-  const payload={type:'site_order',source:'news92-studio',id:Date.now(),service:selected.service||'Индивидуальный проект',price:selected.price||'',promo:activePromo||'',name,contact,message,credential:getCred()||'',createdAt:new Date().toISOString()};
+  const user=getUser();
+  const payload={type:'site_order',source:'news92-studio',id:Date.now(),service:selected.service||'Индивидуальный проект',price:selected.price||'',promo:activePromo||'',name,contact,message,account:user?user.email:'',createdAt:new Date().toISOString()};
   const old='Отправить заявку'; btn.disabled=true; btn.textContent='Отправляем...';
+
+  /* Заявка всегда уходит в Telegram — это основной канал и он работает и для гостей.
+     Авторизованному пользователю она дополнительно сохраняется в его историю. */
   const result=await sendToBackend(payload);
+  await saveOrderToSupabase(payload);
   localStorage.setItem('news92_order_cooldown',String(Date.now()));
   pushOrderLog({ at: Date.now(), service: payload.service });
   renderMyOrders();
@@ -1060,90 +1173,298 @@ $('#orderForm').addEventListener('submit',async e=>{
   btn.textContent=old; tickCooldown();
 });
 
-/* ================== вход через Google ================== */
-function decodeJwt(token){
-  try{
-    const base=token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
-    const json=decodeURIComponent(atob(base).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-    return JSON.parse(json);
-  }catch(e){ return null; }
+/* ================== АККАУНТЫ: Supabase (email+пароль, Google, профиль) ==================
+   Единственный клиент на весь сайт. Пока ключи не вписаны в CONFIG, сайт работает
+   как раньше: гость спокойно листает страницы и отправляет заявки. */
+let SB = null;            // клиент Supabase
+let AUTH_USER = null;     // текущий пользователь auth.users
+let PROFILE = null;       // строка из таблицы profiles
+
+function initSupabase(){
+  if(SB) return SB;
+  if(!SUPABASE_READY()) return null;
+  if(!window.supabase || !window.supabase.createClient){ console.warn('[auth] библиотека Supabase не загрузилась'); return null; }
+  SB = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY, {
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+  });
+  return SB;
 }
-function getUser(){ try{return JSON.parse(localStorage.getItem('news92_user')||'null')}catch{return null} }
-/* Google-токен живёт около часа. Держим его отдельно и проверяем срок:
-   сервер принимает только живой токен, поэтому подделать чужой аккаунт нельзя. */
-function getCred(){
-  const u=getUser(), c=localStorage.getItem('news92_cred');
-  if(!u||!c) return null;
-  if(!u.exp || u.exp < Date.now()+30000) return null;
-  return c;
+
+/* Человеческие тексты вместо технических ошибок Supabase */
+function authErrorText(err){
+  const m = String(err && (err.message || err) || '').toLowerCase();
+  if(m.includes('invalid login credentials')) return 'Неверная почта или пароль.';
+  if(m.includes('email not confirmed')) return 'Почта не подтверждена — проверьте письмо от Supabase.';
+  if(m.includes('user already registered') || m.includes('already been registered')) return 'Аккаунт с такой почтой уже есть. Попробуйте войти.';
+  if(m.includes('password should be at least')) return 'Пароль слишком короткий — минимум 6 символов.';
+  if(m.includes('invalid email')) return 'Проверьте адрес почты.';
+  if(m.includes('rate limit') || m.includes('too many')) return 'Слишком много попыток. Подождите минуту.';
+  if(m.includes('failed to fetch') || m.includes('networkerror')) return 'Нет связи с сервером. Проверьте интернет.';
+  console.warn('[auth]', err);                       // техническая часть остаётся в консоли
+  return 'Что-то пошло не так. Попробуйте ещё раз.';
 }
-function credExpired(){ const u=getUser(); return !!u && (!u.exp || u.exp < Date.now()+30000); }
-function refreshAuth(){
-  if(window.google && google.accounts && google.accounts.id){
-    try{ google.accounts.id.prompt(); }catch(e){}
+function authMsg(el, text, kind){
+  const box = $(el); if(!box) return;
+  if(!text){ box.classList.add('hidden'); box.textContent=''; return; }
+  box.textContent = text;
+  box.className = 'auth-msg ' + (kind === 'ok' ? 'ok' : 'err');
+}
+function busy(btnSel, on, label){
+  const b = $(btnSel); if(!b) return;
+  if(on){ b.dataset.label = b.dataset.label || b.textContent; b.disabled = true; b.textContent = label; }
+  else { b.disabled = false; b.textContent = b.dataset.label || b.textContent; }
+}
+
+/* --- модалка авторизации --- */
+function openAuthModal(mode){
+  if(!SUPABASE_READY()){
+    toast('Аккаунты ещё настраиваются','Вход появится, как только администратор закончит подключение.',true);
+    return;
   }
+  const titles = { login:'Вход', register:'Регистрация', reset:'Восстановление пароля' };
+  $('#authTitle').textContent = titles[mode] || 'Вход';
+  ['login','register','reset'].forEach(m=>{
+    $('#pane'+m[0].toUpperCase()+m.slice(1)).classList.toggle('hidden', m !== mode);
+  });
+  ['#loginMsg','#regMsg','#resetMsg'].forEach(s=>authMsg(s,''));
+  open('authOverlay');
+  setTimeout(()=>{ const f=$('#pane'+mode[0].toUpperCase()+mode.slice(1)).querySelector('input'); f && f.focus(); },90);
 }
-function handleCredentialResponse(resp){
-  const payload=decodeJwt(resp.credential); if(!payload) return;
-  const user={sub:payload.sub,name:payload.name||'Гость',email:payload.email||'',picture:payload.picture||'',exp:(Number(payload.exp)||0)*1000};
-  localStorage.setItem('news92_user',JSON.stringify(user));
-  localStorage.setItem('news92_cred',resp.credential);
-  renderAuthState();
-  if(document.body.dataset.tab==='orders') loadMyOrders();
-  toast('Добро пожаловать',`Вы вошли как ${user.name}`);
-}
-function signOut(){
-  localStorage.removeItem('news92_user');
-  localStorage.removeItem('news92_cred');
-  if(window.google && google.accounts) google.accounts.id.disableAutoSelect();
-  renderAuthState();
-  if(document.body.dataset.tab==='orders') showTab('home');
+const openLoginModal = () => openAuthModal('login');
+const openRegisterModal = () => openAuthModal('register');
+$$('[data-auth-open]').forEach(b=>b.addEventListener('click',()=>openAuthModal(b.dataset.authOpen)));
+
+/* --- регистрация --- */
+$('#paneRegister').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const name=$('#regName').value.trim(), email=$('#regEmail').value.trim(),
+        p1=$('#regPass').value, p2=$('#regPass2').value;
+  if(name.length<2) return authMsg('#regMsg','Укажите имя — хотя бы 2 символа.');
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return authMsg('#regMsg','Проверьте адрес почты.');
+  if(p1.length<6) return authMsg('#regMsg','Пароль должен быть не короче 6 символов.');
+  if(p1!==p2) return authMsg('#regMsg','Пароли не совпадают.');
+  const sb=initSupabase(); if(!sb) return authMsg('#regMsg','Сервис входа сейчас недоступен.');
+  authMsg('#regMsg',''); busy('#regBtn', true, 'Регистрация...');
+  const { data, error } = await sb.auth.signUp({
+    email, password: p1, options: { data: { username: name }, emailRedirectTo: location.origin + location.pathname }
+  });
+  busy('#regBtn', false);
+  if(error) return authMsg('#regMsg', authErrorText(error));
+  if(data && data.session){ close('authOverlay'); toast('Аккаунт создан', `Добро пожаловать, ${name}!`); }
+  else authMsg('#regMsg','Аккаунт создан. Проверьте почту для подтверждения — после этого сможете войти.','ok');
+});
+
+/* --- вход --- */
+$('#paneLogin').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const email=$('#loginEmail').value.trim(), pass=$('#loginPass').value;
+  if(!email || !pass) return authMsg('#loginMsg','Заполните почту и пароль.');
+  const sb=initSupabase(); if(!sb) return authMsg('#loginMsg','Сервис входа сейчас недоступен.');
+  authMsg('#loginMsg',''); busy('#loginBtn', true, 'Входим...');
+  const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+  busy('#loginBtn', false);
+  if(error) return authMsg('#loginMsg', authErrorText(error));
+  close('authOverlay');
+});
+
+/* --- восстановление пароля --- */
+$('#paneReset').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const email=$('#resetEmail').value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return authMsg('#resetMsg','Проверьте адрес почты.');
+  const sb=initSupabase(); if(!sb) return authMsg('#resetMsg','Сервис входа сейчас недоступен.');
+  busy('#resetBtn', true, 'Отправляем...');
+  await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
+  busy('#resetBtn', false);
+  /* Ответ одинаковый в любом случае — чтобы нельзя было проверять, есть ли такой аккаунт. */
+  authMsg('#resetMsg','Если такая почта зарегистрирована, письмо для восстановления уже отправлено.','ok');
+});
+
+/* --- Google через Supabase OAuth (Client Secret живёт только в Supabase) --- */
+$$('[data-google]').forEach(b=>b.addEventListener('click', async ()=>{
+  const sb=initSupabase(); if(!sb) return;
+  const { error } = await sb.auth.signInWithOAuth({
+    provider:'google',
+    options:{ redirectTo: location.origin + location.pathname }
+  });
+  if(error) toast('Google не отвечает', authErrorText(error), true);
+}));
+
+/* --- выход --- */
+async function logout(){
+  const sb=initSupabase(); if(sb) await sb.auth.signOut();
+  close('profileOverlay');
   toast('Вы вышли','До встречи!');
 }
-function renderAuthState(){
-  const user=getUser(), chip=$('#userChip'), headerSlot=$('#gButtonSlotHeader');
+const signOut = logout;   // старое имя оставлено, чтобы не ломать прежние вызовы
+
+/* --- состояние сессии --- */
+function getUser(){
+  if(!AUTH_USER) return null;
+  const meta = AUTH_USER.user_metadata || {};
+  return {
+    sub: AUTH_USER.id,
+    email: AUTH_USER.email || '',
+    name: (PROFILE && PROFILE.username) || meta.username || meta.full_name || (AUTH_USER.email || 'Гость').split('@')[0],
+    picture: (PROFILE && PROFILE.avatar_url) || meta.avatar_url || ''
+  };
+}
+async function loadProfileRow(){
+  const sb=initSupabase(); if(!sb || !AUTH_USER){ PROFILE=null; return; }
+  const { data } = await sb.from('profiles').select('*').eq('id', AUTH_USER.id).maybeSingle();
+  PROFILE = data || null;
+  /* если триггер ещё не отработал — создаём профиль сами */
+  if(!PROFILE){
+    const meta = AUTH_USER.user_metadata || {};
+    const { data: ins } = await sb.from('profiles').insert({
+      id: AUTH_USER.id,
+      username: meta.username || meta.full_name || (AUTH_USER.email||'').split('@')[0],
+      avatar_url: meta.avatar_url || null
+    }).select().maybeSingle();
+    PROFILE = ins || null;
+  }
+}
+async function initAuth(){
+  const sb=initSupabase();
+  if(!sb){ updateAuthUI(); return; }
+  const { data:{ session } } = await sb.auth.getSession();
+  AUTH_USER = session ? session.user : null;
+  if(AUTH_USER) await loadProfileRow();
+  updateAuthUI();
+  loadReviews();
+
+  sb.auth.onAuthStateChange(async (event, session)=>{
+    const wasId = AUTH_USER && AUTH_USER.id;
+    AUTH_USER = session ? session.user : null;
+    if(AUTH_USER) await loadProfileRow(); else PROFILE = null;
+    updateAuthUI();
+    if(event === 'SIGNED_IN' && AUTH_USER && AUTH_USER.id !== wasId){
+      close('authOverlay');
+      toast('Добро пожаловать', `Вы вошли как ${getUser().name}`);
+    }
+    if(event === 'SIGNED_OUT' && document.body.dataset.tab === 'orders') showTab('home');
+    if(document.body.dataset.tab === 'orders') loadMyOrders();
+    loadReviews();
+  });
+}
+function updateAuthUI(){
+  const user=getUser(), chip=$('#userChip'), actions=$('#authActions');
   if(user){
-    chip.innerHTML=`${user.picture?`<img src="${esc(user.picture)}" alt="">`:''}<span>${esc(user.name.split(' ')[0])}</span><button type="button" data-signout title="Выйти">⏻</button>`;
-    chip.classList.remove('hidden'); headerSlot.classList.add('hidden');
-    chip.querySelector('[data-signout]')?.addEventListener('click',signOut);
+    const initial = (user.name || '?').trim().charAt(0).toUpperCase();
+    chip.innerHTML = `${user.picture
+        ? `<img src="${esc(user.picture)}" alt="">`
+        : `<span class="avatar-fallback" style="width:26px;height:26px;font-size:12px">${esc(initial)}</span>`}
+      <span>${esc(user.name.split(' ')[0])}</span>
+      <button type="button" data-profile title="Профиль">▾</button>`;
+    chip.classList.remove('hidden'); actions.classList.add('hidden');
+    chip.querySelector('[data-profile]').addEventListener('click', openProfile);
   } else {
-    chip.classList.add('hidden'); headerSlot.classList.remove('hidden');
+    chip.classList.add('hidden');
+    actions.classList.toggle('hidden', !SUPABASE_READY());
   }
   $('#navOrders')?.classList.toggle('hidden',!user);
   $('#drawerOrders')?.classList.toggle('hidden',!user);
   renderReviewGate();
 }
-function initGoogleAuth(){
-  if(!isConfigured(CONFIG.GOOGLE_CLIENT_ID)) return;
-  let tries=0;
-  const t=setInterval(()=>{
-    if(window.google && google.accounts && google.accounts.id){
-      clearInterval(t);
-      google.accounts.id.initialize({client_id:CONFIG.GOOGLE_CLIENT_ID, callback:handleCredentialResponse, auto_select:false});
-      const headerSlot=$('#gButtonSlotHeader'), reviewsSlot=$('#gButtonSlotReviews'), ordersSlot=$('#gButtonSlotOrders');
-      if(headerSlot) google.accounts.id.renderButton(headerSlot,{theme:'filled_black',size:'medium',shape:'pill',text:'signin',locale:'ru'});
-      if(reviewsSlot) google.accounts.id.renderButton(reviewsSlot,{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',locale:'ru'});
-      if(ordersSlot) google.accounts.id.renderButton(ordersSlot,{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',locale:'ru'});
-      renderAuthState();
-      /* если пользователь уже входил, но токен протух — тихо обновляем сессию */
-      if(credExpired()) refreshAuth();
-    } else if(++tries>60){ clearInterval(t); }
-  },100);
+const renderAuthState = updateAuthUI;   // прежнее имя функции продолжает работать
+
+/* --- профиль --- */
+async function openProfile(){
+  open('profileOverlay');
+  const body=$('#profileBody');
+  body.innerHTML='<p class="muted" style="font-size:12px">Загружаем профиль…</p>';
+  await loadProfile();
+}
+async function loadProfile(){
+  const body=$('#profileBody'); if(!body) return;
+  const sb=initSupabase(), user=getUser();
+  if(!sb || !user){ body.innerHTML='<p class="muted" style="font-size:12px">Войдите, чтобы увидеть профиль.</p>'; return; }
+
+  const [{ count: reviewsCount }, { count: ordersCount }] = await Promise.all([
+    sb.from('reviews').select('id', { count:'exact', head:true }).eq('user_id', user.sub),
+    sb.from('orders').select('id', { count:'exact', head:true }).eq('user_id', user.sub)
+  ]);
+  const created = PROFILE && PROFILE.created_at ? new Date(PROFILE.created_at).toLocaleDateString('ru-RU') : '—';
+  const initial = (user.name || '?').trim().charAt(0).toUpperCase();
+
+  body.innerHTML = `
+    <div class="profile-top">
+      ${user.picture ? `<img class="avatar-lg" src="${esc(user.picture)}" alt="">`
+                     : `<div class="avatar-fallback">${esc(initial)}</div>`}
+      <div>
+        <h4>${esc(user.name)}</h4>
+        <div class="p-mail">${esc(user.email)}</div>
+      </div>
+    </div>
+    <div class="profile-stats">
+      <div class="p-stat"><b>${reviewsCount ?? 0}</b><span>отзывов</span></div>
+      <div class="p-stat"><b>${ordersCount ?? 0}</b><span>заявок</span></div>
+      <div class="p-stat"><b>${esc(created)}</b><span>с нами с</span></div>
+    </div>
+    <div class="auth-msg hidden" id="profMsg"></div>
+    <div class="profile-actions">
+      <div class="field"><label for="profName">Имя</label><input id="profName" value="${esc(user.name)}"></div>
+      <button class="btn full" type="button" id="profSave">Сохранить имя</button>
+      <button class="btn dark full avatar-pick" type="button">Изменить аватар
+        <input type="file" id="profAvatar" accept="image/png,image/jpeg,image/webp">
+      </button>
+      <button class="btn ghost full" type="button" id="profOrders">Мои заявки</button>
+      <button class="btn ghost full" type="button" id="profLogout">Выйти</button>
+    </div>`;
+
+  $('#profSave').addEventListener('click', saveProfileName);
+  $('#profAvatar').addEventListener('change', e=>{ if(e.target.files[0]) uploadAvatar(e.target.files[0]); });
+  $('#profOrders').addEventListener('click', ()=>{ close('profileOverlay'); showTab('orders'); });
+  $('#profLogout').addEventListener('click', logout);
+}
+async function saveProfileName(){
+  const sb=initSupabase(), name=$('#profName').value.trim();
+  if(name.length<2) return authMsg('#profMsg','Имя должно быть хотя бы из 2 символов.');
+  busy('#profSave', true, 'Сохраняем...');
+  const { error } = await sb.from('profiles').update({ username:name }).eq('id', AUTH_USER.id);
+  busy('#profSave', false);
+  if(error) return authMsg('#profMsg', authErrorText(error));
+  await loadProfileRow(); updateAuthUI(); loadProfile();
+  toast('Готово','Имя обновлено.');
+}
+async function uploadAvatar(file){
+  const sb=initSupabase(); if(!sb || !AUTH_USER) return;
+  if(!/^image\/(png|jpe?g|webp)$/.test(file.type)) return authMsg('#profMsg','Подойдёт картинка PNG, JPG или WEBP.');
+  if(file.size > 2*1024*1024) return authMsg('#profMsg','Файл больше 2 МБ — выберите поменьше.');
+  authMsg('#profMsg','Загружаем аватар…','ok');
+  const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+  const path = `${AUTH_USER.id}/avatar.${ext}`;
+  const { error: upErr } = await sb.storage.from('avatars').upload(path, file, { upsert:true, contentType:file.type });
+  if(upErr) return authMsg('#profMsg', authErrorText(upErr));
+  const { data:{ publicUrl } } = sb.storage.from('avatars').getPublicUrl(path);
+  const url = publicUrl + '?v=' + Date.now();
+  const { error } = await sb.from('profiles').update({ avatar_url:url }).eq('id', AUTH_USER.id);
+  if(error) return authMsg('#profMsg', authErrorText(error));
+  await loadProfileRow(); updateAuthUI(); loadProfile();
+  toast('Готово','Аватар обновлён.');
 }
 
 /* ================== отзывы: вкладка, лимит 1 на аккаунт, сервер + локальный кэш ================== */
-function hasReviewed(sub){ return !!localStorage.getItem('news92_reviewed_'+sub); }
-function markReviewed(sub){ localStorage.setItem('news92_reviewed_'+sub,'1'); }
+let MY_REVIEW = null;      // отзыв текущего пользователя (виден ему даже до модерации)
+
+const REVIEW_SERVICES = ['Дизайн','Сайт','2D-игра','Программирование','Быстрая услуга','Другое'];
 
 function reviewFormTemplate(user){
+  const initial=(user.name||'?').trim().charAt(0).toUpperCase();
   return `<article class="card">
-    <div class="review-author">${user.picture?`<img src="${esc(user.picture)}" alt="">`:''}<b>${esc(user.name)}</b></div>
+    <div class="review-author">${user.picture
+      ? `<img src="${esc(user.picture)}" alt="">`
+      : `<span class="avatar-fallback" style="width:34px;height:34px;font-size:15px">${esc(initial)}</span>`}<b>${esc(user.name)}</b></div>
     <form id="reviewForm" class="form-grid">
       <div class="field"><label>Оценка</label><div class="stars-input" id="starsInput">
         ${[1,2,3,4,5].map(n=>`<button type="button" data-star="${n}">★</button>`).join('')}
       </div></div>
+      <div class="field"><label for="reviewService">Услуга</label><select id="reviewService">
+        ${REVIEW_SERVICES.map(s=>`<option>${s}</option>`).join('')}
+      </select></div>
       <div class="field"><label for="reviewText">Отзыв</label><textarea id="reviewText" required placeholder="Расскажите, как прошла работа"></textarea></div>
-      <button class="btn grad" type="submit">Отправить отзыв</button>
+      <div class="auth-msg hidden" id="reviewMsg"></div>
+      <button class="btn grad" type="submit" id="reviewBtn">Отправить отзыв</button>
     </form>
   </article>`;
 }
@@ -1153,70 +1474,84 @@ function bindReviewForm(user){
   function paintStars(){ $$('#starsInput [data-star]').forEach(b=>b.classList.toggle('on', Number(b.dataset.star)<=rating)); }
   paintStars();
   starsWrap.addEventListener('click',e=>{const b=e.target.closest('[data-star]'); if(!b)return; rating=Number(b.dataset.star); paintStars();});
-  $('#reviewForm').addEventListener('submit', async e=>{
-    e.preventDefault();
-    const text=$('#reviewText').value.trim();
-    if(!text){ toast('Заполните отзыв','Напишите пару слов о работе.',true); return; }
-    const cred=getCred();
-    if(!cred){ toast('Сессия истекла','Войдите через Google ещё раз — и отзыв отправится.',true); refreshAuth(); renderReviewGate(); return; }
-    const btn=e.target.querySelector('button[type="submit"]'); const old=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...';
-    /* имя и аккаунт сервер берёт из проверенного токена, а не из этого запроса */
-    const payload={type:'review',credential:cred,rating,text,createdAt:new Date().toISOString()};
-    const result=await sendToBackend(payload);
-    btn.disabled=false; btn.textContent=old;
-    if(result.error==='auth_required'){ toast('Нужен повторный вход','Google-сессия устарела, войдите ещё раз.',true); refreshAuth(); return; }
-    if(result.ok || result.error==='already_submitted'){
-      markReviewed(user.sub);
-      addLocalReviewCache({name:user.name,picture:user.picture,rating,text,createdAt:payload.createdAt});
-      renderReviewGate();
-      loadReviews();
-      localStorage.setItem('news92_promo','OTZYV10');
-      activePromo='OTZYV10';
-      if($('#promoInput')) $('#promoInput').value='OTZYV10';
-      recalc();
-      toast('Спасибо за отзыв!','Ваш промокод OTZYV10 на −10% уже применён в калькуляторе.');
-    } else if(result.error==='not_configured'){
-      toast('Отзывы скоро заработают','Приём отзывов ещё настраивается администратором сайта.',true);
-    } else {
-      toast('Не удалось отправить','Попробуйте ещё раз чуть позже.',true);
-    }
+  $('#reviewForm').addEventListener('submit', e=>{ e.preventDefault(); submitReview(rating); });
+}
+async function submitReview(rating){
+  const sb=initSupabase(), user=getUser();
+  if(!sb || !user){ authMsg('#reviewMsg','Чтобы оставить отзыв, войдите в аккаунт.'); return; }
+  const text=$('#reviewText').value.trim();
+  const service=$('#reviewService') ? $('#reviewService').value : null;
+  if(text.length<3){ authMsg('#reviewMsg','Напишите пару слов о работе.'); return; }
+
+  authMsg('#reviewMsg',''); busy('#reviewBtn', true, 'Отправляем...');
+  const { error } = await sb.from('reviews').insert({
+    user_id: user.sub, username: user.name, avatar_url: user.picture || null,
+    rating, text, service, approved: false        // approved ставит только владелец сайта
   });
+  busy('#reviewBtn', false);
+
+  if(error){
+    if(String(error.message||'').includes('duplicate') || error.code === '23505'){
+      authMsg('#reviewMsg','Вы уже оставляли отзыв — спасибо!','ok');
+      await loadMyReview(); renderReviewGate(); return;
+    }
+    authMsg('#reviewMsg', authErrorText(error)); return;
+  }
+
+  /* уведомление владельцу сайта в Telegram (необязательно) */
+  sendToBackend({ type:'review_notify', name:user.name, rating, text, service });
+
+  await loadMyReview(); renderReviewGate(); loadReviews();
+  localStorage.setItem('news92_promo','OTZYV10');
+  activePromo='OTZYV10';
+  if($('#promoInput')) $('#promoInput').value='OTZYV10';
+  recalc();
+  toast('Отзыв отправлен на модерацию','Опубликую его после проверки. Промокод OTZYV10 на −10% уже применён.');
+}
+async function loadMyReview(){
+  const sb=initSupabase(), user=getUser();
+  if(!sb || !user){ MY_REVIEW=null; return; }
+  const { data } = await sb.from('reviews').select('*').eq('user_id', user.sub).maybeSingle();
+  MY_REVIEW = data || null;
 }
 function renderReviewGate(){
   const gate=$('#reviewGate'), formWrap=$('#reviewFormWrap'); if(!gate||!formWrap) return;
-  if(!isConfigured(CONFIG.GOOGLE_CLIENT_ID)){
-    gate.innerHTML='<h3>Вход через Google скоро будет доступен</h3><p>Пока отзывы можно только посмотреть ниже.</p>';
+  if(!SUPABASE_READY()){
+    gate.innerHTML='<h3>Отзывы скоро можно будет оставлять</h3><p>Приём отзывов ещё настраивается. Пока их можно посмотреть ниже.</p>';
     gate.classList.remove('hidden'); formWrap.classList.add('hidden'); return;
   }
   const user=getUser();
   if(!user){
-    gate.innerHTML='<h3>Войдите, чтобы оставить отзыв</h3><p>Вход нужен, чтобы один человек мог оставить только один отзыв.</p><div id="gButtonSlotReviews"></div>';
+    gate.innerHTML=`<h3>Войдите, чтобы оставить отзыв</h3>
+      <p>Вход нужен, чтобы один человек мог оставить только один отзыв.</p>
+      <button class="btn grad full" type="button" data-auth-open="login">Войти</button>
+      <button class="btn ghost full" type="button" data-auth-open="register" style="margin-top:8px">Создать аккаунт</button>`;
+    gate.querySelectorAll('[data-auth-open]').forEach(b=>b.addEventListener('click',()=>openAuthModal(b.dataset.authOpen)));
     gate.classList.remove('hidden'); formWrap.classList.add('hidden');
-    if(window.google && google.accounts && google.accounts.id && isConfigured(CONFIG.GOOGLE_CLIENT_ID)){
-      google.accounts.id.renderButton($('#gButtonSlotReviews'),{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',locale:'ru'});
-    }
     return;
   }
   gate.classList.add('hidden');
-  if(hasReviewed(user.sub)){
-    formWrap.innerHTML='<div class="notice">✓ Вы уже оставили отзыв. Спасибо, что помогаете другим клиентам!</div>';
+  if(MY_REVIEW){
+    formWrap.innerHTML = MY_REVIEW.approved
+      ? '<div class="notice">✓ Ваш отзыв опубликован. Спасибо, что помогаете другим клиентам!</div>'
+      : '<div class="notice">⏳ Ваш отзыв отправлен на модерацию — опубликую его после проверки.</div>';
   } else {
     formWrap.innerHTML=reviewFormTemplate(user);
     bindReviewForm(user);
   }
   formWrap.classList.remove('hidden');
 }
-function addLocalReviewCache(r){
-  const list=JSON.parse(localStorage.getItem('news92_reviews_cache')||'[]');
-  list.push(r); localStorage.setItem('news92_reviews_cache',JSON.stringify(list));
-}
 function renderReviewList(list){
   const root=$('#reviewGrid'); if(!root) return; root.innerHTML='';
-  if(!list.length){ root.innerHTML='<article class="card"><h3>Пока нет отзывов</h3><p>Станьте первым, кто оставит отзыв — войдите через Google на этой вкладке.</p></article>'; return; }
+  if(!list.length){ root.innerHTML='<article class="card"><h3>Пока нет отзывов</h3><p>Станьте первым, кто оставит отзыв — для этого нужен аккаунт на сайте.</p></article>'; return; }
   list.slice().reverse().slice(0,60).forEach(r=>{
     const c=document.createElement('article'); c.className='card review-card';
-    const date=r.createdAt?new Date(r.createdAt).toLocaleDateString('ru-RU'):'';
-    c.innerHTML=`<div class="review-head">${r.picture?`<img src="${esc(r.picture)}" alt="">`:''}<b>${esc(r.name)}</b><span class="review-date">${esc(date)}</span></div>
+    const date=r.createdAt?new Date(r.createdAt).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}):'';
+    const initial=(r.name||'?').trim().charAt(0).toUpperCase();
+    c.innerHTML=`<div class="review-head">${r.picture
+        ? `<img src="${esc(r.picture)}" alt="">`
+        : `<span class="avatar-fallback" style="width:30px;height:30px;font-size:13px">${esc(initial)}</span>`}<b>${esc(r.name)}</b><span class="review-date">${esc(date)}</span></div>
+      ${r.service?`<span class="tag">${esc(r.service)}</span>`:''}
       <div class="review-stars">${'★'.repeat(Number(r.rating)||5)}${'☆'.repeat(5-(Number(r.rating)||5))}</div>
       <p>${esc(r.text)}</p>`;
     root.appendChild(c);
@@ -1234,17 +1569,20 @@ function renderReviewList(list){
     $('#reviewsStars') && ($('#reviewsStars').textContent='пока нет оценок');
   }
 }
-async function loadReviews(forceFetch){
+async function loadReviews(){
   const cache=JSON.parse(localStorage.getItem('news92_reviews_cache')||'[]');
-  renderReviewList(cache);
-  if(!isConfigured(CONFIG.ORDER_ENDPOINT)) return;
+  renderReviewList(cache);                       // сразу показываем прошлый результат
+  const sb=initSupabase(); if(!sb) return;
   try{
-    const res=await fetch(CONFIG.ORDER_ENDPOINT+'?type=reviews'); if(!res.ok) return;
-    const data=await res.json();
-    if(data && data.ok && Array.isArray(data.reviews)){
-      localStorage.setItem('news92_reviews_cache',JSON.stringify(data.reviews));
-      renderReviewList(data.reviews);
-    }
+    /* публично видны только одобренные отзывы — это же правило продублировано в RLS */
+    const { data, error } = await sb.from('reviews')
+      .select('username,avatar_url,rating,text,service,created_at')
+      .eq('approved', true).order('created_at', { ascending:false }).limit(60);
+    if(error || !data) return;
+    const list = data.map(r=>({ name:r.username, picture:r.avatar_url, rating:r.rating, text:r.text, service:r.service, createdAt:r.created_at })).reverse();
+    localStorage.setItem('news92_reviews_cache', JSON.stringify(list));
+    renderReviewList(list);
+    if(getUser()) { await loadMyReview(); renderReviewGate(); }
   }catch(e){ /* остаёмся на локальном кэше */ }
 }
 
@@ -1272,50 +1610,49 @@ window.addEventListener('scroll',()=>{
 $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 /* ================== мои заказы (статусы приходят с сервера) ================== */
-const STATUS_CLASS = { 'Новая':'st-new', 'В работе':'st-work', 'На проверке':'st-check', 'Готово':'st-done', 'Отменена':'st-cancel' };
+const STATUS_LABEL = { new:'Новая', in_progress:'В работе', completed:'Готово', cancelled:'Отменена' };
+const STATUS_CLASS = { new:'st-new', in_progress:'st-work', completed:'st-done', cancelled:'st-cancel' };
+
 async function loadMyOrders(){
   const gate=$('#ordersGate'), list=$('#ordersList'); if(!gate||!list) return;
   const user=getUser();
-  if(!user){ gate.classList.remove('hidden'); list.innerHTML=''; return; }
+  if(!user){
+    gate.classList.remove('hidden'); list.innerHTML='';
+    return;
+  }
   gate.classList.add('hidden');
 
-  if(!isConfigured(CONFIG.ORDER_ENDPOINT)){
+  const sb=initSupabase();
+  if(!sb){
     list.innerHTML='<article class="card"><h3>Раздел скоро заработает</h3><p>Отслеживание заказов включится, когда администратор закончит настройку.</p></article>';
     return;
   }
-  const cred=getCred();
-  if(!cred){
-    list.innerHTML='<article class="card"><h3>Сессия истекла</h3><p>Войдите через Google ещё раз, чтобы увидеть свои заказы.</p></article>';
-    refreshAuth(); return;
-  }
   list.innerHTML='<article class="card"><h3>Загружаем…</h3><p>Секунду, забираем статусы ваших заявок.</p></article>';
-  try{
-    const res=await fetch(CONFIG.ORDER_ENDPOINT+'?type=my_orders&credential='+encodeURIComponent(cred));
-    const data=await res.json();
-    if(!data || !data.ok){
-      list.innerHTML='<article class="card"><h3>Не удалось загрузить</h3><p>Попробуйте обновить страницу или войти заново.</p></article>';
-      if(data && data.error==='auth_required') refreshAuth();
-      return;
-    }
-    if(!data.orders.length){
-      list.innerHTML='<article class="card"><h3>Заказов пока нет</h3><p>Оформите заявку — она появится здесь со статусом.</p><button class="btn full" type="button" data-order="Индивидуальный проект">Оформить заявку</button></article>';
-      list.querySelector('[data-order]')?.addEventListener('click',()=>order('Индивидуальный проект',''));
-      return;
-    }
-    list.innerHTML='';
-    data.orders.forEach(o=>{
-      const c=document.createElement('article');
-      c.className='card order-card';
-      const cls=STATUS_CLASS[o.status]||'st-new';
-      const date=o.createdAt?new Date(o.createdAt).toLocaleDateString('ru-RU'):'';
-      c.innerHTML=`<div class="order-head"><span class="order-num">${esc(o.number||'')}</span><span class="order-status ${cls}">${esc(o.status||'Новая')}</span></div>
-        <h4>${esc(o.service)}</h4>
-        <div class="order-meta">${o.price?esc(o.price)+' ₽ · ':''}${esc(date)}</div>`;
-      list.appendChild(c);
-    });
-  }catch(e){
-    list.innerHTML='<article class="card"><h3>Нет связи</h3><p>Проверьте интернет и попробуйте ещё раз.</p></article>';
+
+  /* RLS отдаёт только собственные заявки — чужие сюда физически не попадут */
+  const { data, error } = await sb.from('orders')
+    .select('id,service,description,price,status,created_at')
+    .order('created_at', { ascending:false }).limit(50);
+
+  if(error){
+    list.innerHTML='<article class="card"><h3>Не удалось загрузить</h3><p>Попробуйте обновить страницу или войти заново.</p></article>';
+    console.warn('[orders]', error); return;
   }
+  if(!data.length){
+    list.innerHTML='<article class="card"><h3>Заявок пока нет</h3><p>Оформите заявку — она появится здесь со статусом.</p><button class="btn full" type="button" id="ordersEmptyCta">Оформить заявку</button></article>';
+    $('#ordersEmptyCta')?.addEventListener('click',()=>order('Индивидуальный проект',''));
+    return;
+  }
+  list.innerHTML='';
+  data.forEach(o=>{
+    const c=document.createElement('article'); c.className='card order-card';
+    const cls=STATUS_CLASS[o.status]||'st-new', label=STATUS_LABEL[o.status]||'Новая';
+    const date=o.created_at?new Date(o.created_at).toLocaleDateString('ru-RU'):'';
+    c.innerHTML=`<div class="order-head"><span class="order-num">№ ${esc(String(o.id).slice(0,8))}</span><span class="order-status ${cls}">${esc(label)}</span></div>
+      <h4>${esc(o.service)}</h4>
+      <div class="order-meta">${o.price?esc(o.price)+' ₽ · ':''}${esc(date)}</div>`;
+    list.appendChild(c);
+  });
 }
 
 /* ================== 3D-витрина (барабан услуг) ================== */
@@ -1467,8 +1804,8 @@ if (activePromo && PROMOS[activePromo]) {
   $('#promoMsg').textContent = `Промокод применён: −${PROMOS[activePromo].off}% (${PROMOS[activePromo].label})`;
   $('#promoMsg').className = 'promo-msg ok';
 }
-recalc(); renderSearch(); initTilt(); initReveal(); renderAuthState(); loadReviews(); initRing(); initHeroFx(); initBackdrop();
+recalc(); renderSearch(); initTilt(); initReveal(); updateAuthUI(); loadReviews(); initRing(); initHeroFx(); initBackdrop();
 renderMyOrders(); tickCooldown();
-window.addEventListener('load', initGoogleAuth);
+initAuth();   // восстанавливает сессию Supabase и следит за входом/выходом
 </script>
 </body></html>
