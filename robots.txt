@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://news92-tg.github.io/Design-Studio/sitemap.xml
