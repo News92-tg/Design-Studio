@@ -289,6 +289,27 @@ a{text-decoration:none;color:inherit}
 .ring-controls{display:flex;gap:7px}
 .ring-controls .icon-btn{border:1px solid var(--line);background:#141a38;font-size:16px}
 
+/* ==== живой фон ==== */
+#bgfx{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.bg-grid{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:68px 68px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%);
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%)}
+
+/* ==== мои заказы ==== */
+.order-card{display:flex;flex-direction:column;gap:8px}
+.order-head{display:flex;align-items:center;gap:10px}
+.order-num{font-size:11px;font-weight:900;color:var(--muted);letter-spacing:.5px}
+.order-status{margin-left:auto;padding:5px 10px;border-radius:999px;font-size:10px;font-weight:900}
+.st-new{background:rgba(91,108,255,.16);color:#aab4ff}
+.st-work{background:rgba(224,188,124,.16);color:var(--gold2)}
+.st-check{background:rgba(124,92,255,.16);color:#c3b0ff}
+.st-done{background:rgba(63,207,148,.16);color:var(--ok)}
+.st-cancel{background:rgba(255,107,122,.14);color:#ffa3ad}
+.order-card h4{font-size:15px}
+.order-meta{font-size:11px;color:var(--muted)}
+
 /* ==== полоса акции с таймером ==== */
 .promo-bar{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;
   padding:12px 16px;border-bottom:1px solid rgba(224,188,124,.22);
@@ -379,6 +400,8 @@ a{text-decoration:none;color:inherit}
 </style>
 </head>
 <body>
+<canvas id="bgfx" aria-hidden="true"></canvas>
+<div class="bg-grid" aria-hidden="true"></div>
 <div class="progress" id="progress"></div>
 
 <div class="promo-bar" id="promoBar">
@@ -398,8 +421,10 @@ a{text-decoration:none;color:inherit}
     <a href="#design" data-scroll="#design">Дизайн</a>
     <a href="#sites" data-scroll="#sites">Сайты</a>
     <a href="#games" data-scroll="#games">2D-игры</a>
+    <a href="#code" data-scroll="#code">Код</a>
     <a href="#calculator" data-scroll="#calculator">Цены</a>
     <button type="button" data-tab="reviews">Отзывы</button>
+    <button type="button" data-tab="orders" id="navOrders" class="hidden">Мои заказы</button>
   </nav>
   <div class="actions">
     <div id="gButtonSlotHeader"></div>
@@ -414,8 +439,10 @@ a{text-decoration:none;color:inherit}
   <a href="#design" data-scroll="#design">🎨 Дизайн</a>
   <a href="#sites" data-scroll="#sites">💻 Сайты</a>
   <a href="#games" data-scroll="#games">🎮 2D-игры</a>
+  <a href="#code" data-scroll="#code">⌨️ Программирование</a>
   <a href="#calculator" data-scroll="#calculator">🧮 Калькулятор</a>
   <button type="button" data-tab="reviews">⭐ Отзывы</button>
+  <button type="button" data-tab="orders" class="hidden" id="drawerOrders">📦 Мои заказы</button>
   <button type="button" data-order="Индивидуальный проект">📝 Оформить заявку</button>
 </div>
 
@@ -564,8 +591,20 @@ a{text-decoration:none;color:inherit}
     </div>
   </div></section>
 
+  <section class="section reveal" id="code"><div class="container">
+    <div class="section-head"><div><span class="sec-index">07 — КОД</span><h2>Программирование</h2><p>Скрипты, боты и учебные проекты. Задачи разбираю с объяснением решения — так, чтобы вы могли повторить и защитить работу сами.</p></div></div>
+    <div class="grid">
+      <article class="card"><span class="tag">РАЗБОР</span><div class="price">200 ₽</div><h3>Задача по программированию</h3><p>Python, C++ или Pascal: рабочее решение плюс объяснение, почему оно устроено именно так.</p><ul class="list"><li>Рабочий код с комментариями</li><li>Разбор логики по шагам</li><li>Ответы на вопросы по решению</li></ul><button class="btn full" type="button" data-order="Задача по программированию" data-price="200">Заказать</button></article>
+      <article class="card"><span class="tag">ПОИСК</span><div class="price">200 ₽</div><h3>Найти ошибку в коде</h3><p>Ваш код не работает или падает — найду причину и объясню, как чинить такое самому.</p><ul class="list"><li>Поиск и исправление ошибки</li><li>Объяснение причины</li><li>Проверка на ваших данных</li></ul><button class="btn full" type="button" data-order="Поиск ошибки в коде" data-price="200">Заказать</button></article>
+      <article class="card"><span class="tag gold">ПОЛЕЗНОЕ</span><div class="price">400 ₽</div><h3>Скрипт-автоматизация</h3><p>Рутина, которую делает программа: собрать данные, переименовать файлы, разложить таблицу.</p><ul class="list"><li>Скрипт под вашу задачу</li><li>Инструкция по запуску</li><li>Небольшая доработка после сдачи</li></ul><button class="btn full grad" type="button" data-order="Скрипт-автоматизация" data-price="400">Заказать</button></article>
+      <article class="card"><span class="tag gold">ХИТ</span><div class="price">500 ₽</div><h3>Telegram-бот</h3><p>Бот с меню и кнопками: приём заявок, ответы на частые вопросы, рассылка по подписчикам.</p><ul class="list"><li>Кнопки и команды</li><li>Приём сообщений вам в личку</li><li>Помощь с запуском на хостинге</li></ul><button class="btn full grad" type="button" data-order="Telegram-бот" data-price="500">Заказать</button></article>
+      <article class="card"><span class="tag">УЧЁБА</span><div class="price">600 ₽</div><h3>Учебный проект на Python</h3><p>Проект с понятной структурой, комментариями и README — чтобы разобраться и защитить.</p><ul class="list"><li>Код с комментариями</li><li>README с описанием</li><li>Созвон-разбор перед сдачей</li></ul><button class="btn full" type="button" data-order="Учебный проект на Python" data-price="600">Заказать</button></article>
+      <article class="card"><span class="tag">GITHUB</span><div class="price">150 ₽</div><h3>Оформление на GitHub</h3><p>Приведу репозиторий в приличный вид: структура, README, описание, публикация страницы.</p><ul class="list"><li>README с описанием проекта</li><li>Порядок в файлах</li><li>Публикация через GitHub Pages</li></ul><button class="btn full" type="button" data-order="Оформление на GitHub" data-price="150">Заказать</button></article>
+    </div>
+  </div></section>
+
   <section class="section reveal" id="calculator"><div class="container">
-    <div class="section-head"><div><span class="sec-index">07 — ЦЕНА</span><h2>Калькулятор со скидками</h2><p>Посчитайте стоимость с учётом объёма, срочности и промокода — и сразу отправьте заявку.</p></div></div>
+    <div class="section-head"><div><span class="sec-index">08 — ЦЕНА</span><h2>Калькулятор со скидками</h2><p>Посчитайте стоимость с учётом объёма, срочности и промокода — и сразу отправьте заявку.</p></div></div>
     <div class="calc">
       <div class="card">
         <div class="field"><label for="calcService">Услуга</label><select id="calcService">
@@ -592,6 +631,14 @@ a{text-decoration:none;color:inherit}
             <option value="350" selected>Сайт-визитка · 350 ₽</option>
             <option value="700">Лендинг · 700 ₽</option>
             <option value="1200">Полноценный сайт · 1200 ₽</option>
+          </optgroup>
+          <optgroup label="Программирование">
+            <option value="150">Оформление на GitHub · 150 ₽</option>
+            <option value="200">Задача по программированию · 200 ₽</option>
+            <option value="200">Поиск ошибки в коде · 200 ₽</option>
+            <option value="400">Скрипт-автоматизация · 400 ₽</option>
+            <option value="500">Telegram-бот · 500 ₽</option>
+            <option value="600">Учебный проект на Python · 600 ₽</option>
           </optgroup>
           <optgroup label="2D-игры">
             <option value="350">Лёгкая 2D-игра · 350 ₽</option>
@@ -636,7 +683,7 @@ a{text-decoration:none;color:inherit}
   </div></section>
 
   <section class="section reveal" id="faq"><div class="container">
-    <div class="section-head"><div><span class="sec-index">08 — ВОПРОСЫ</span><h2>Частые вопросы</h2></div></div>
+    <div class="section-head"><div><span class="sec-index">09 — ВОПРОСЫ</span><h2>Частые вопросы</h2></div></div>
     <div class="faq">
       <div class="faq-item"><button type="button" data-faq>Как проходит заказ?</button><div class="answer">Вы выбираете услугу и оставляете контакт. Я связываюсь с вами в Telegram, уточняю детали, называю точную цену и срок. После согласования беру предоплату 50%, остальное — когда работа принята.</div></div>
       <div class="faq-item"><button type="button" data-faq>Сколько правок входит в цену?</button><div class="answer">Два круга правок. Это значит: показываю вариант, вы собираете замечания одним списком, я вношу их. Так дважды. Дальнейшие доработки — по отдельной договорённости, обычно от 100 ₽.</div></div>
@@ -671,6 +718,21 @@ a{text-decoration:none;color:inherit}
 
     <div class="section-head" style="margin-top:40px"><div><h2>Все отзывы</h2></div></div>
     <div class="grid" id="reviewGrid"></div>
+  </div>
+</section>
+
+<section id="tab-orders" class="tab-panel">
+  <section class="reviews-hero container">
+    <h2 class="serif">Мои заказы</h2>
+    <p>Здесь видно, на каком этапе каждая ваша заявка. Статус обновляется по мере работы.</p>
+  </section>
+  <div class="container">
+    <div class="gate-card hidden" id="ordersGate">
+      <h3>Войдите, чтобы видеть свои заказы</h3>
+      <p>Заявки привязываются к Google-аккаунту, с которого вы их оформили.</p>
+      <div id="gButtonSlotOrders"></div>
+    </div>
+    <div class="grid" id="ordersList"></div>
   </div>
 </section>
 
@@ -734,6 +796,7 @@ function showTab(name){
   document.body.dataset.tab=name;
   $('#drawer').classList.remove('show');
   if(name==='reviews'){ renderAuthState(); loadReviews(true); }
+  if(name==='orders'){ renderAuthState(); loadMyOrders(); }
   window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
 }
 $$('[data-tab]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();showTab(b.dataset.tab)}));
@@ -749,6 +812,10 @@ const searchData=[
  ['✈️','Оформление Telegram-канала','200 ₽','#showcase'],
  ['📄','Резюме с вёрсткой','200 ₽','#showcase'],
  ['🛠','Правки на готовом сайте','200 ₽','#showcase'],
+ ['⌨️','Программирование','Скрипты, боты, проекты','#code'],
+ ['🤖','Telegram-бот','500 ₽','#code'],
+ ['🐍','Учебный проект на Python','600 ₽','#code'],
+ ['🔍','Поиск ошибки в коде','200 ₽','#code'],
  ['🎨','Карточки товаров','От 100 ₽','#design'],['💻','Сайт-визитка','От 350 ₽','#sites'],
  ['🚀','Лендинг','От 700 ₽','#sites'],['🎮','2D-игры','От 350 ₽','#games'],
  ['🧾','Как проходит работа','Этапы и предоплата','#process'],
@@ -975,7 +1042,7 @@ $('#orderForm').addEventListener('submit',async e=>{
   if(cooldownLeft()>0){toast('Подождите немного','Новая заявка будет доступна через '+fmtLeft(cooldownLeft())+'. Это защита от спама.',true);return}
   if(ordersToday()>=DAILY_LIMIT){toast('Лимит на сегодня','Можно отправить не больше '+DAILY_LIMIT+' заявок в сутки. Напишите в Telegram, если нужно срочно.',true);return}
   const selected=JSON.parse(localStorage.getItem('news92_selected')||'{}');
-  const payload={type:'site_order',source:'news92-studio',id:Date.now(),service:selected.service||'Индивидуальный проект',price:selected.price||'',promo:activePromo||'',name,contact,message,createdAt:new Date().toISOString()};
+  const payload={type:'site_order',source:'news92-studio',id:Date.now(),service:selected.service||'Индивидуальный проект',price:selected.price||'',promo:activePromo||'',name,contact,message,credential:getCred()||'',createdAt:new Date().toISOString()};
   const old='Отправить заявку'; btn.disabled=true; btn.textContent='Отправляем...';
   const result=await sendToBackend(payload);
   localStorage.setItem('news92_order_cooldown',String(Date.now()));
@@ -1002,17 +1069,35 @@ function decodeJwt(token){
   }catch(e){ return null; }
 }
 function getUser(){ try{return JSON.parse(localStorage.getItem('news92_user')||'null')}catch{return null} }
+/* Google-токен живёт около часа. Держим его отдельно и проверяем срок:
+   сервер принимает только живой токен, поэтому подделать чужой аккаунт нельзя. */
+function getCred(){
+  const u=getUser(), c=localStorage.getItem('news92_cred');
+  if(!u||!c) return null;
+  if(!u.exp || u.exp < Date.now()+30000) return null;
+  return c;
+}
+function credExpired(){ const u=getUser(); return !!u && (!u.exp || u.exp < Date.now()+30000); }
+function refreshAuth(){
+  if(window.google && google.accounts && google.accounts.id){
+    try{ google.accounts.id.prompt(); }catch(e){}
+  }
+}
 function handleCredentialResponse(resp){
   const payload=decodeJwt(resp.credential); if(!payload) return;
-  const user={sub:payload.sub,name:payload.name||'Гость',email:payload.email||'',picture:payload.picture||''};
+  const user={sub:payload.sub,name:payload.name||'Гость',email:payload.email||'',picture:payload.picture||'',exp:(Number(payload.exp)||0)*1000};
   localStorage.setItem('news92_user',JSON.stringify(user));
+  localStorage.setItem('news92_cred',resp.credential);
   renderAuthState();
+  if(document.body.dataset.tab==='orders') loadMyOrders();
   toast('Добро пожаловать',`Вы вошли как ${user.name}`);
 }
 function signOut(){
   localStorage.removeItem('news92_user');
+  localStorage.removeItem('news92_cred');
   if(window.google && google.accounts) google.accounts.id.disableAutoSelect();
   renderAuthState();
+  if(document.body.dataset.tab==='orders') showTab('home');
   toast('Вы вышли','До встречи!');
 }
 function renderAuthState(){
@@ -1024,6 +1109,8 @@ function renderAuthState(){
   } else {
     chip.classList.add('hidden'); headerSlot.classList.remove('hidden');
   }
+  $('#navOrders')?.classList.toggle('hidden',!user);
+  $('#drawerOrders')?.classList.toggle('hidden',!user);
   renderReviewGate();
 }
 function initGoogleAuth(){
@@ -1033,10 +1120,13 @@ function initGoogleAuth(){
     if(window.google && google.accounts && google.accounts.id){
       clearInterval(t);
       google.accounts.id.initialize({client_id:CONFIG.GOOGLE_CLIENT_ID, callback:handleCredentialResponse, auto_select:false});
-      const headerSlot=$('#gButtonSlotHeader'), reviewsSlot=$('#gButtonSlotReviews');
+      const headerSlot=$('#gButtonSlotHeader'), reviewsSlot=$('#gButtonSlotReviews'), ordersSlot=$('#gButtonSlotOrders');
       if(headerSlot) google.accounts.id.renderButton(headerSlot,{theme:'filled_black',size:'medium',shape:'pill',text:'signin',locale:'ru'});
       if(reviewsSlot) google.accounts.id.renderButton(reviewsSlot,{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',locale:'ru'});
+      if(ordersSlot) google.accounts.id.renderButton(ordersSlot,{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',locale:'ru'});
       renderAuthState();
+      /* если пользователь уже входил, но токен протух — тихо обновляем сессию */
+      if(credExpired()) refreshAuth();
     } else if(++tries>60){ clearInterval(t); }
   },100);
 }
@@ -1067,10 +1157,14 @@ function bindReviewForm(user){
     e.preventDefault();
     const text=$('#reviewText').value.trim();
     if(!text){ toast('Заполните отзыв','Напишите пару слов о работе.',true); return; }
+    const cred=getCred();
+    if(!cred){ toast('Сессия истекла','Войдите через Google ещё раз — и отзыв отправится.',true); refreshAuth(); renderReviewGate(); return; }
     const btn=e.target.querySelector('button[type="submit"]'); const old=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...';
-    const payload={type:'review',googleId:user.sub,name:user.name,rating,text,createdAt:new Date().toISOString()};
+    /* имя и аккаунт сервер берёт из проверенного токена, а не из этого запроса */
+    const payload={type:'review',credential:cred,rating,text,createdAt:new Date().toISOString()};
     const result=await sendToBackend(payload);
     btn.disabled=false; btn.textContent=old;
+    if(result.error==='auth_required'){ toast('Нужен повторный вход','Google-сессия устарела, войдите ещё раз.',true); refreshAuth(); return; }
     if(result.ok || result.error==='already_submitted'){
       markReviewed(user.sub);
       addLocalReviewCache({name:user.name,picture:user.picture,rating,text,createdAt:payload.createdAt});
@@ -1095,7 +1189,14 @@ function renderReviewGate(){
     gate.classList.remove('hidden'); formWrap.classList.add('hidden'); return;
   }
   const user=getUser();
-  if(!user){ gate.classList.remove('hidden'); formWrap.classList.add('hidden'); return; }
+  if(!user){
+    gate.innerHTML='<h3>Войдите, чтобы оставить отзыв</h3><p>Вход нужен, чтобы один человек мог оставить только один отзыв.</p><div id="gButtonSlotReviews"></div>';
+    gate.classList.remove('hidden'); formWrap.classList.add('hidden');
+    if(window.google && google.accounts && google.accounts.id && isConfigured(CONFIG.GOOGLE_CLIENT_ID)){
+      google.accounts.id.renderButton($('#gButtonSlotReviews'),{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',locale:'ru'});
+    }
+    return;
+  }
   gate.classList.add('hidden');
   if(hasReviewed(user.sub)){
     formWrap.innerHTML='<div class="notice">✓ Вы уже оставили отзыв. Спасибо, что помогаете другим клиентам!</div>';
@@ -1169,6 +1270,53 @@ window.addEventListener('scroll',()=>{
   $('#toTop').classList.toggle('show', h.scrollTop>500);
 });
 $('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ================== мои заказы (статусы приходят с сервера) ================== */
+const STATUS_CLASS = { 'Новая':'st-new', 'В работе':'st-work', 'На проверке':'st-check', 'Готово':'st-done', 'Отменена':'st-cancel' };
+async function loadMyOrders(){
+  const gate=$('#ordersGate'), list=$('#ordersList'); if(!gate||!list) return;
+  const user=getUser();
+  if(!user){ gate.classList.remove('hidden'); list.innerHTML=''; return; }
+  gate.classList.add('hidden');
+
+  if(!isConfigured(CONFIG.ORDER_ENDPOINT)){
+    list.innerHTML='<article class="card"><h3>Раздел скоро заработает</h3><p>Отслеживание заказов включится, когда администратор закончит настройку.</p></article>';
+    return;
+  }
+  const cred=getCred();
+  if(!cred){
+    list.innerHTML='<article class="card"><h3>Сессия истекла</h3><p>Войдите через Google ещё раз, чтобы увидеть свои заказы.</p></article>';
+    refreshAuth(); return;
+  }
+  list.innerHTML='<article class="card"><h3>Загружаем…</h3><p>Секунду, забираем статусы ваших заявок.</p></article>';
+  try{
+    const res=await fetch(CONFIG.ORDER_ENDPOINT+'?type=my_orders&credential='+encodeURIComponent(cred));
+    const data=await res.json();
+    if(!data || !data.ok){
+      list.innerHTML='<article class="card"><h3>Не удалось загрузить</h3><p>Попробуйте обновить страницу или войти заново.</p></article>';
+      if(data && data.error==='auth_required') refreshAuth();
+      return;
+    }
+    if(!data.orders.length){
+      list.innerHTML='<article class="card"><h3>Заказов пока нет</h3><p>Оформите заявку — она появится здесь со статусом.</p><button class="btn full" type="button" data-order="Индивидуальный проект">Оформить заявку</button></article>';
+      list.querySelector('[data-order]')?.addEventListener('click',()=>order('Индивидуальный проект',''));
+      return;
+    }
+    list.innerHTML='';
+    data.orders.forEach(o=>{
+      const c=document.createElement('article');
+      c.className='card order-card';
+      const cls=STATUS_CLASS[o.status]||'st-new';
+      const date=o.createdAt?new Date(o.createdAt).toLocaleDateString('ru-RU'):'';
+      c.innerHTML=`<div class="order-head"><span class="order-num">${esc(o.number||'')}</span><span class="order-status ${cls}">${esc(o.status||'Новая')}</span></div>
+        <h4>${esc(o.service)}</h4>
+        <div class="order-meta">${o.price?esc(o.price)+' ₽ · ':''}${esc(date)}</div>`;
+      list.appendChild(c);
+    });
+  }catch(e){
+    list.innerHTML='<article class="card"><h3>Нет связи</h3><p>Проверьте интернет и попробуйте ещё раз.</p></article>';
+  }
+}
 
 /* ================== 3D-витрина (барабан услуг) ================== */
 function initRing(){
@@ -1251,6 +1399,52 @@ function initHeroFx(){
   });
 }
 
+/* ================== живой фон: медленные светящиеся частицы ================== */
+function initBackdrop(){
+  const cv=$('#bgfx'); if(!cv) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ cv.remove(); return; }
+  const ctx=cv.getContext('2d'); if(!ctx) return;
+  let w=0,h=0,dots=[],raf=null,running=false;
+  const DPR=Math.min(window.devicePixelRatio||1,2);
+  const count=()=>window.innerWidth<700?12:26;
+
+  function resize(){
+    w=cv.clientWidth; h=cv.clientHeight;
+    cv.width=Math.floor(w*DPR); cv.height=Math.floor(h*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function seed(){
+    dots=Array.from({length:count()},()=>({
+      x:Math.random()*w, y:Math.random()*h,
+      r:16+Math.random()*44,
+      vx:(Math.random()-.5)*.14, vy:(Math.random()-.5)*.14,
+      a:.05+Math.random()*.1,
+      gold:Math.random()<.28
+    }));
+  }
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    for(const d of dots){
+      d.x+=d.vx; d.y+=d.vy;
+      if(d.x<-d.r) d.x=w+d.r; if(d.x>w+d.r) d.x=-d.r;
+      if(d.y<-d.r) d.y=h+d.r; if(d.y>h+d.r) d.y=-d.r;
+      const g=ctx.createRadialGradient(d.x,d.y,0,d.x,d.y,d.r);
+      g.addColorStop(0, d.gold?`rgba(224,188,124,${d.a})`:`rgba(110,126,255,${d.a})`);
+      g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=g;
+      ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,Math.PI*2); ctx.fill();
+    }
+    raf=requestAnimationFrame(frame);
+  }
+  function start(){ if(running) return; running=true; raf=requestAnimationFrame(frame); }
+  function stop(){ running=false; if(raf) cancelAnimationFrame(raf); raf=null; }
+
+  resize(); seed(); start();
+  let t=null;
+  window.addEventListener('resize',()=>{ clearTimeout(t); t=setTimeout(()=>{resize();seed();},200); });
+  document.addEventListener('visibilitychange',()=>{ document.hidden?stop():start(); });
+}
+
 /* ================== пасхалка: 5 кликов по логотипу ================== */
 (function initLogoEgg(){
   const logo=$('#logo3d'); if(!logo) return;
@@ -1273,7 +1467,7 @@ if (activePromo && PROMOS[activePromo]) {
   $('#promoMsg').textContent = `Промокод применён: −${PROMOS[activePromo].off}% (${PROMOS[activePromo].label})`;
   $('#promoMsg').className = 'promo-msg ok';
 }
-recalc(); renderSearch(); initTilt(); initReveal(); renderAuthState(); loadReviews(); initRing(); initHeroFx();
+recalc(); renderSearch(); initTilt(); initReveal(); renderAuthState(); loadReviews(); initRing(); initHeroFx(); initBackdrop();
 renderMyOrders(); tickCooldown();
 window.addEventListener('load', initGoogleAuth);
 </script>
