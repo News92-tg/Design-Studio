@@ -4,91 +4,936 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>News_92 Studio — дизайн, сайты и 2D-игры</title>
-<meta name="description" content="News_92 Studio — доступный дизайн, сайты и лёгкие 2D-игры на заказ.">
-<meta name="theme-color" content="#0c1024">
+<meta name="description" content="News_92 Studio — доступный премиальный дизайн, сайты и лёгкие 2D-игры на заказ. Понятные цены, аккуратное оформление, помощь на каждом этапе.">
+<meta name="theme-color" content="#0a0d1f">
+<link rel="canonical" href="https://news92-tg.github.io/Design-Studio/">
+
+<!-- Open Graph / соцсети -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="News_92 Studio">
+<meta property="og:title" content="News_92 Studio — дизайн, сайты и 2D-игры">
+<meta property="og:description" content="Доступный премиальный дизайн, сайты и лёгкие 2D-игры на заказ. Понятные цены и аккуратное оформление.">
+<meta property="og:url" content="https://news92-tg.github.io/Design-Studio/">
+<meta property="og:image" content="https://news92-tg.github.io/Design-Studio/og-image.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="News_92 Studio — дизайн, сайты и 2D-игры">
+<meta name="twitter:description" content="Доступный премиальный дизайн, сайты и лёгкие 2D-игры на заказ.">
+<meta name="twitter:image" content="https://news92-tg.github.io/Design-Studio/og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "News_92 Studio",
+  "url": "https://news92-tg.github.io/Design-Studio/",
+  "description": "Дизайн, сайты и лёгкие 2D-игры на заказ.",
+  "areaServed": "RU",
+  "priceRange": "100–1200 RUB",
+  "sameAs": ["https://t.me/news_92"]
+}
+</script>
+
 <style>
-:root{--bg:#080b18;--bg2:#0d1230;--card:#11162b;--card2:#151c38;--text:#f7f8ff;--muted:#a7aed0;--line:#242d52;--a:#6575ff;--a2:#8a61ff;--ok:#42d39b;--r:20px;--shadow:0 24px 80px rgba(0,0,0,.28)}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Manrope,Arial,sans-serif;background:radial-gradient(circle at 20% 0%,#17204e 0,transparent 33%),radial-gradient(circle at 90% 15%,#25124e 0,transparent 30%),var(--bg);color:var(--text);line-height:1.5;min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.
-container{width:min(1120px,calc(100% - 28px));margin:auto}.hidden{display:none!important}.muted{color:var(--muted)}
-.header{position:sticky;top:0;z-index:50;background:rgba(8,11,24,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}.nav{height:64px;display:flex;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:9px;font-weight:900;font-size:14px;white-space:nowrap}.brand i{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--a),var(--a2));font-style:normal;box-shadow:0 10px 30px rgba(101,117,255,.32)}.menu{display:flex;gap:6px;margin-left:auto}.menu a,.icon-btn{padding:9px 11px;border:0;border-radius:11px;background:transparent;color:var(--muted);font-size:12px;font-weight:800}.menu a:hover,.icon-btn:hover{background:#161c38;color:#fff}.actions{display:flex;gap:7px}.icon-btn{width:38px;height:38px;display:grid;place-items:center}.mobile-btn{display:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:46px;padding:0 17px;border:0;border-radius:13px;background:var(--a);color:#fff;font-weight:900;font-size:12px;box-shadow:0 12px 28px rgba(101,117,255,.25);transition:.18s}.btn:hover{transform:translateY(-2px);background:#7583ff}.btn.dark{background:#151926;box-shadow:none;border:1px solid var(--line)}.btn.grad{background:linear-gradient(135deg,var(--a),var(--a2))}.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}.btn:disabled{opacity:.55;transform:none;cursor:wait}
-.hero{padding:70px 0 46px}.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:9px 12px;border-radius:999px;background:rgba(101,117,255,.13);border:1px solid rgba(101,117,255,.35);color:#c7ceff;font-size:11px;font-weight:900}.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:34px;align-items:end}.hero h1{font-size:clamp(42px,7vw,78px);line-height:.98;letter-spacing:-4px;margin-top:16px;max-width:850px}.hero h1 span{color:#7484ff}.hero p{margin-top:18px;max-width:690px;color:var(--muted);font-size:15px;line-height:1.75}.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.hero-card{padding:20px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));box-shadow:var(--shadow)}.hero-card strong{display:block;font-size:32px}.hero-card p{font-size:12px;margin:6px 0 15px}
-.section{padding:52px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px}.section-head h2{font-size:32px;letter-spacing:-1.8px}.section-head p{max-width:600px;color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:rgba(17,22,43,.88);border:1px solid var(--line);border-radius:var(--r);padding:19px;box-shadow:0 12px 45px rgba(0,0,0,.16)}.card:hover{border-color:#3d4a83}.tag{display:inline-flex;padding:6px 8px;border-radius:999px;background:#1c2447;color:#bfc6ff;font-size:9px;font-weight:900}.price{font-size:24px;font-weight:900;color:#8d9bff;margin:11px 0 4px}.card h3{font-size:18px}.card p{color:var(--muted);font-size:12px;line-height:1.6;margin:8px 0 14px}.list{display:grid;gap:6px;list-style:none;margin-bottom:15px}.list li{font-size:11px;color:#ccd1e6}.list li:before{content:'✓';color:var(--ok);font-weight:900;margin-right:7px}.full{width:100%}
-.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.game{overflow:hidden;padding:0}.game-art{height:150px;background:radial-gradient(circle at 75% 20%,#7b8cff,transparent 30%),linear-gradient(135deg,#101428,#2b3154);display:grid;place-items:center}.game:nth-child(2) .game-art{background:radial-gradient(circle at 20% 15%,#7fc8ff,transparent 28%),linear-gradient(135deg,#10171d,#2e4a5b)}.game:nth-child(3) .game-art{background:radial-gradient(circle at 80% 20%,#d895dd,transparent 30%),linear-gradient(135deg,#17131e,#4e3354)}.game-art b{padding:14px 17px;border-radius:18px;background:rgba(255,255,255,.92);color:#151a30;font-size:20px;box-shadow:0 18px 35px rgba(0,0,0,.22)}.game-body{padding:18px}.choice{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px}.calc .card{display:grid;gap:11px}.field{display:grid;gap:6px}.field label{font-size:11px;color:#c6cce3;font-weight:800}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#0c1124;color:#fff;border-radius:12px;padding:11px 12px;outline:none}.field textarea{min-height:100px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#6372ff}.total{padding:16px;border:1px solid #34407a;background:#121a38;border-radius:15px}.total small{display:block;color:var(--muted);font-size:10px}.total strong{display:block;margin-top:2px;font-size:30px}
-.faq{display:grid;gap:8px}.faq button{width:100%;text-align:left;background:#11162b;border:1px solid var(--line);color:#fff;border-radius:14px;padding:14px;font-weight:900;font-size:12px}.faq .answer{display:none;padding:0 14px 14px;color:var(--muted);font-size:12px}.faq .open .answer{display:block}.faq .open button{border-color:#5260a1}
-.footer{padding:40px 0 65px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:11px}.footer a{color:#dfe3ff}
-.drawer{display:none;position:fixed;inset:64px 10px auto;z-index:60;background:#0d1228;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow)}.drawer.show{display:grid}.drawer a,.drawer button{padding:12px;border:0;background:transparent;color:#fff;text-align:left;border-radius:11px;font-size:12px;font-weight:800}.drawer a:hover,.drawer button:hover{background:#171e3b}
-.overlay{position:fixed;inset:0;z-index:100;background:rgba(2,4,12,.72);backdrop-filter:blur(7px);display:none;align-items:flex-start;justify-content:center;padding:70px 14px 20px}.overlay.show{display:flex}.modal{width:min(640px,100%);max-height:calc(100vh - 90px);overflow:auto;background:#0f1530;border:1px solid #303b69;border-radius:22px;padding:20px;box-shadow:var(--shadow)}.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:15px}.modal-head h3{font-size:22px}.close{width:38px;height:38px;border:1px solid var(--line);background:#171d39;color:#fff;border-radius:11px}.summary{margin-bottom:13px;padding:11px 12px;border-radius:12px;background:#171e3c;color:#cbd1ea;font-size:11px}.form-grid{display:grid;gap:10px}.search-results{display:grid;gap:7px;margin-top:12px}.search-item{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#11162b;color:#fff;border-radius:12px;padding:12px}.search-item strong{display:block;font-size:12px}.search-item span{display:block;margin-top:2px;color:var(--muted);font-size:10px}.toast{position:fixed;right:14px;bottom:14px;z-index:200;display:none;width:min(360px,calc(100% - 28px));padding:13px 14px;border:1px solid #3a477e;background:#101631;border-radius:15px;box-shadow:var(--shadow)}.toast.show{display:block}.toast strong{display:block;font-size:12px}.toast span{display:block;color:var(--muted);font-size:10px;margin-top:2px}
-@media(max-width:850px){.menu{display:none}.mobile-btn{display:grid}.hero{padding-top:44px}.hero-grid{grid-template-columns:1fr}.hero-card{display:none}.grid,.game-grid{grid-template-columns:1fr}.calc{grid-template-columns:1fr}.container{width:min(100% - 20px,720px)}.section{padding:38px 0}.section-head{align-items:start}.section-head h2{font-size:26px}.hero h1{letter-spacing:-2.6px}.btn{min-height:48px}.hero-actions .btn{flex:1 1 180px}.card{padding:16px}}
-@media(max-width:420px){.brand{font-size:13px}.brand i{width:34px;height:34px}.nav{height:58px}.drawer{inset:58px 7px auto}.hero{padding:34px 0 30px}.hero h1{font-size:43px}.hero p{font-size:13px}.section-head h2{font-size:24px}.choice{grid-template-columns:1fr}.btn{font-size:11px;padding:0 13px}}
+:root{
+  --bg:#07091a;--bg2:#0c1030;--card:#10142b;--card2:#141a38;--text:#f7f8ff;--muted:#a7aed0;
+  --line:#242d52;--line2:#323d70;--a:#6575ff;--a2:#8a61ff;--gold:#e3c17a;--gold2:#f3dca0;
+  --ok:#42d39b;--bad:#ff6b7a;--r:20px;--r-lg:26px;
+  --shadow:0 24px 80px rgba(0,0,0,.32);--shadow-lg:0 30px 100px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+body{font-family:Manrope,Arial,sans-serif;background:
+  radial-gradient(circle at 15% -5%,#1a2360 0,transparent 32%),
+  radial-gradient(circle at 92% 10%,#2c1359 0,transparent 30%),
+  radial-gradient(circle at 50% 100%,#0f1840 0,transparent 40%),
+  var(--bg);color:var(--text);line-height:1.55;min-height:100vh;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.serif{font-family:'Playfair Display',serif}
+.container{width:min(1140px,calc(100% - 28px));margin:auto}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* прогресс-бар прокрутки */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--a),var(--gold));z-index:300;transition:width .1s linear}
+
+/* шапка */
+.header{position:sticky;top:0;z-index:50;background:rgba(7,9,26,.72);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{height:68px;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:14px;white-space:nowrap}
+.brand i{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--a),var(--a2));font-style:normal;box-shadow:0 12px 30px rgba(101,117,255,.35);font-size:16px}
+.menu{display:flex;gap:4px;margin-left:auto}
+.menu a,.menu button,.icon-btn{padding:9px 12px;border:0;border-radius:11px;background:transparent;color:var(--muted);font-size:12px;font-weight:800;transition:.15s}
+.menu a:hover,.menu button:hover,.icon-btn:hover{background:#161c38;color:#fff}
+.menu .is-active{color:#fff;background:#161c38}
+.actions{display:flex;gap:8px;align-items:center}
+.icon-btn{width:38px;height:38px;display:grid;place-items:center;flex:none}
+.mobile-btn{display:none}
+.user-chip{display:flex;align-items:center;gap:7px;padding:5px 10px 5px 5px;border-radius:999px;background:#141a38;border:1px solid var(--line)}
+.user-chip img{width:26px;height:26px;border-radius:50%;display:block}
+.user-chip span{font-size:11px;font-weight:800;max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.user-chip button{background:transparent;border:0;color:var(--muted);font-size:13px;padding:2px 3px}
+#gButtonSlotHeader{display:flex;align-items:center}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:46px;padding:0 18px;border:0;border-radius:13px;background:var(--a);color:#fff;font-weight:900;font-size:12px;box-shadow:0 14px 30px rgba(101,117,255,.28);transition:.18s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-2px);background:#7583ff;box-shadow:0 18px 36px rgba(101,117,255,.4)}
+.btn:active{transform:translateY(0)}
+.btn.dark{background:#151926;box-shadow:none;border:1px solid var(--line)}
+.btn.dark:hover{border-color:var(--line2)}
+.btn.grad{background:linear-gradient(135deg,var(--a),var(--a2))}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#241a05;box-shadow:0 14px 30px rgba(227,193,122,.28)}
+.btn.gold:hover{background:linear-gradient(135deg,var(--gold2),var(--gold))}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
+.btn:disabled{opacity:.55;transform:none;cursor:wait}
+.full{width:100%}
+
+/* герой */
+.hero{padding:76px 0 50px;position:relative}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:9px 13px;border-radius:999px;background:rgba(101,117,255,.14);border:1px solid rgba(101,117,255,.36);color:#c7ceff;font-size:11px;font-weight:900}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(66,211,155,.25)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+.hero h1{font-size:clamp(40px,6.6vw,74px);line-height:1;letter-spacing:-3px;margin-top:18px;max-width:850px}
+.hero h1 span{background:linear-gradient(135deg,#8b98ff,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin-top:18px;max-width:640px;color:var(--muted);font-size:15px;line-height:1.75}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero-stats{display:flex;gap:22px;margin-top:30px;flex-wrap:wrap}
+.hero-stats b{display:block;font-size:22px}
+.hero-stats span{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.hero-card{padding:22px;border:1px solid var(--line);border-radius:var(--r-lg);background:linear-gradient(155deg,rgba(255,255,255,.09),rgba(255,255,255,.02));box-shadow:var(--shadow-lg);will-change:transform;transform-style:preserve-3d}
+.hero-card strong{display:block;font-size:34px}
+.hero-card p{font-size:12px;margin:6px 0 16px;color:var(--muted)}
+.hero-card .stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:8px}
+
+/* блоки */
+.section{padding:56px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.section-head h2{font-size:32px;letter-spacing:-1.6px}
+.section-head p{max-width:600px;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+
+/* карточки премиум + 3D наклон */
+.card{background:linear-gradient(160deg,rgba(20,26,56,.92),rgba(15,19,42,.92));border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:0 14px 46px rgba(0,0,0,.2);position:relative;transition:border-color .2s,box-shadow .2s;will-change:transform;transform-style:preserve-3d;display:flex;flex-direction:column}
+.card:hover{border-color:#3d4a83;box-shadow:0 22px 60px rgba(20,25,60,.4)}
+.card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(120deg,rgba(255,255,255,.06),transparent 40%);pointer-events:none;opacity:0;transition:opacity .2s}
+.card:hover::after{opacity:1}
+.tag{display:inline-flex;padding:6px 9px;border-radius:999px;background:#1c2447;color:#bfc6ff;font-size:9px;font-weight:900;letter-spacing:.4px;align-self:flex-start}
+.tag.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#241a05}
+.price{font-size:25px;font-weight:900;color:#8d9bff;margin:12px 0 4px}
+.card h3{font-size:18px}
+.card p{color:var(--muted);font-size:12px;line-height:1.6;margin:8px 0 14px}
+.list{display:grid;gap:6px;list-style:none;margin-bottom:16px}
+.list li{font-size:11px;color:#ccd1e6}
+.list li:before{content:'✓';color:var(--ok);font-weight:900;margin-right:7px}
+.card .btn{margin-top:auto}
+
+/* скролл-появление */
+.reveal{opacity:0;transform:translateY(22px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+
+/* игры */
+.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.game{overflow:hidden;padding:0}
+.game-art{height:154px;background:radial-gradient(circle at 75% 20%,#7b8cff,transparent 30%),linear-gradient(135deg,#101428,#2b3154);display:grid;place-items:center;position:relative}
+.game-art::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.35));}
+.game:nth-child(2) .game-art{background:radial-gradient(circle at 20% 15%,#7fc8ff,transparent 28%),linear-gradient(135deg,#10171d,#2e4a5b)}
+.game:nth-child(3) .game-art{background:radial-gradient(circle at 80% 20%,#d895dd,transparent 30%),linear-gradient(135deg,#17131e,#4e3354)}
+.game-art b{padding:14px 18px;border-radius:18px;background:rgba(255,255,255,.94);color:#151a30;font-size:20px;box-shadow:0 18px 35px rgba(0,0,0,.25);z-index:1}
+.game-body{padding:19px;display:flex;flex-direction:column;flex:1}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:auto}
+
+/* калькулятор */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.calc .card{display:grid;gap:12px}
+.field{display:grid;gap:6px}
+.field label{font-size:11px;color:#c6cce3;font-weight:800}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#0b1024;color:#fff;border-radius:12px;padding:12px 13px;outline:none;transition:border-color .15s}
+.field textarea{min-height:100px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--a)}
+.field .hint{font-size:10px;color:var(--muted)}
+.total{padding:18px;border:1px solid #34407a;background:linear-gradient(160deg,#141c3e,#101736);border-radius:16px}
+.total small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.total strong{display:block;margin-top:3px;font-size:32px}
+
+/* faq */
+.faq{display:grid;gap:9px}
+.faq button{width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:#fff;border-radius:14px;padding:15px;font-weight:900;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.faq button:after{content:'+';font-size:16px;color:var(--muted);transition:transform .2s}
+.faq .open button:after{transform:rotate(45deg)}
+.faq .answer{display:none;padding:0 15px 15px;color:var(--muted);font-size:12px;line-height:1.6}
+.faq .open .answer{display:block}
+.faq .open button{border-color:#5260a1}
+
+/* вкладки (Главная / Отзывы) */
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* отзывы */
+.reviews-hero{padding:44px 0 10px;text-align:center}
+.reviews-hero h2{font-size:38px;letter-spacing:-1.6px}
+.reviews-hero p{max-width:560px;margin:12px auto 0;color:var(--muted);font-size:13px}
+.rating-summary{display:flex;justify-content:center;gap:26px;margin:26px 0 8px;flex-wrap:wrap}
+.rating-summary .big{font-size:44px;font-weight:900}
+.rating-summary .stars{color:var(--gold);font-size:16px;letter-spacing:3px}
+.gate-card{max-width:460px;margin:26px auto 0;padding:26px;border:1px solid var(--line);border-radius:var(--r-lg);background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.015));text-align:center;box-shadow:var(--shadow)}
+.gate-card h3{font-size:18px;margin-bottom:8px}
+.gate-card p{font-size:12px;color:var(--muted);margin-bottom:16px}
+#gButtonSlotReviews{display:flex;justify-content:center;margin-top:6px}
+.review-form-wrap{max-width:520px;margin:26px auto 0}
+.review-form-wrap .card{text-align:left}
+.review-author{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.review-author img{width:34px;height:34px;border-radius:50%}
+.review-author b{font-size:13px}
+.stars-input{display:flex;gap:6px;font-size:22px}
+.stars-input button{background:none;border:0;color:#3a4066;padding:0}
+.stars-input button.on{color:var(--gold)}
+.notice{padding:14px;border-radius:12px;background:rgba(66,211,155,.12);border:1px solid rgba(66,211,155,.35);color:#bdf3dd;font-size:12px;text-align:center}
+.review-card{display:flex;flex-direction:column;gap:8px}
+.review-head{display:flex;align-items:center;gap:9px}
+.review-head img{width:30px;height:30px;border-radius:50%}
+.review-head b{font-size:13px}
+.review-stars{color:var(--gold);font-size:12px;letter-spacing:2px}
+.review-date{font-size:10px;color:var(--muted);margin-left:auto}
+
+/* футер / контакты */
+.footer{padding:44px 0 70px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:11px}
+.footer a{color:#dfe3ff}
+.footer-grid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+/* плавающие кнопки */
+.float-btns{position:fixed;right:16px;bottom:16px;z-index:120;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.fab{width:46px;height:46px;border-radius:50%;background:#141a38;border:1px solid var(--line);color:#fff;display:grid;place-items:center;box-shadow:var(--shadow);font-size:17px;opacity:0;transform:translateY(10px) scale(.9);pointer-events:none;transition:.2s}
+.fab.show{opacity:1;transform:none;pointer-events:auto}
+.fab.tg{background:linear-gradient(135deg,#2fa9e0,#1c7fbd);opacity:1;transform:none;pointer-events:auto}
+
+/* мобильное меню, модалки, тост — из исходной версии, доработано */
+.drawer{display:none;position:fixed;inset:68px 10px auto;z-index:60;background:#0d1228;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow-lg)}
+.drawer.show{display:grid}
+.drawer a,.drawer button{padding:12px;border:0;background:transparent;color:#fff;text-align:left;border-radius:11px;font-size:12px;font-weight:800}
+.drawer a:hover,.drawer button:hover{background:#171e3b}
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(2,4,12,.74);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:70px 14px 20px}
+.overlay.show{display:flex}
+.modal{width:min(640px,100%);max-height:calc(100vh - 90px);overflow:auto;background:#0f1530;border:1px solid #303b69;border-radius:22px;padding:22px;box-shadow:var(--shadow-lg)}
+.modal-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}
+.modal-head h3{font-size:22px}
+.close{width:38px;height:38px;border:1px solid var(--line);background:#171d39;color:#fff;border-radius:11px;flex:none}
+.summary{margin-bottom:14px;padding:12px 13px;border-radius:12px;background:#171e3c;color:#cbd1ea;font-size:11px}
+.form-grid{display:grid;gap:11px}
+.search-results{display:grid;gap:7px;margin-top:12px}
+.search-item{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#11162b;color:#fff;border-radius:12px;padding:12px}
+.search-item strong{display:block;font-size:12px}
+.search-item span{display:block;margin-top:2px;color:var(--muted);font-size:10px}
+.toast{position:fixed;right:14px;bottom:14px;z-index:200;display:none;width:min(360px,calc(100% - 28px));padding:14px 15px;border:1px solid #3a477e;background:#101631;border-radius:15px;box-shadow:var(--shadow-lg)}
+.toast.show{display:block}
+.toast.err{border-color:rgba(255,107,122,.5)}
+.toast strong{display:block;font-size:12px}
+.toast span{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+
+/* ==== 3D-логотип с переливом ==== */
+.logo3d{width:38px;height:38px;flex:none;perspective:300px;display:block;margin:0 5px}
+.logo3d-inner{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;animation:spinY 12s linear infinite}
+.logo3d:hover .logo3d-inner{animation-duration:3.5s}
+.logo3d-inner.turbo{animation-duration:.55s}
+.lf{position:absolute;inset:0;display:grid;place-items:center;border-radius:7px;font-weight:900;font-size:15px;color:#fff;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:linear-gradient(135deg,#5566ff,#7d4fff 24%,#c9a45f 46%,#2f9fd8 66%,#5566ff);background-size:190% 190%;
+  animation:irid 6.5s ease-in-out infinite;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 10px 26px rgba(101,117,255,.4);
+  text-shadow:0 1px 4px rgba(0,0,0,.35)}
+.lf::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 34%,rgba(255,255,255,.42) 47%,rgba(255,255,255,0) 60%);background-size:260% 100%;animation:shine 3.6s linear infinite;pointer-events:none}
+.lf1{transform:translateZ(19px)}
+.lf2{transform:rotateY(90deg) translateZ(19px)}
+.lf3{transform:rotateY(180deg) translateZ(19px)}
+.lf4{transform:rotateY(270deg) translateZ(19px)}
+@keyframes spinY{to{transform:rotateY(360deg)}}
+@keyframes irid{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes shine{0%{background-position:190% 0}100%{background-position:-90% 0}}
+
+/* ==== орбы и параллакс в герое ==== */
+.hero{overflow:hidden}
+.hero>.container{position:relative;z-index:1}
+.orbs{position:absolute;inset:-12% -6%;pointer-events:none;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(64px);opacity:.5;will-change:transform;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.o1{width:330px;height:330px;left:-50px;top:-40px;background:radial-gradient(circle,#4b5bff,transparent 70%)}
+.o2{width:290px;height:290px;right:4%;top:10%;background:radial-gradient(circle,#8a61ff,transparent 70%)}
+.o3{width:250px;height:250px;left:36%;bottom:-70px;background:radial-gradient(circle,#e3c17a,transparent 70%);opacity:.26}
+
+/* ==== 3D-витрина услуг ==== */
+.stage{position:relative;height:440px;perspective:1250px;perspective-origin:50% 45%;user-select:none;touch-action:pan-y;margin-top:8px}
+.ring{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .85s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.ring.dragging{transition:none}
+.ring-card{position:absolute;left:50%;top:50%;width:232px;height:308px;margin:-154px 0 0 -116px;transform-style:preserve-3d;cursor:pointer;transition:opacity .35s}
+.ring-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.2,.8,.2,1)}
+.ring-card.flipped .ring-inner{transform:rotateY(180deg)}
+.rface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px;padding:20px;display:flex;flex-direction:column;gap:5px;
+  border:1px solid var(--line2);background:linear-gradient(160deg,rgba(28,35,74,.96),rgba(14,18,40,.96));box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.rface.back{transform:rotateY(180deg);background:linear-gradient(160deg,rgba(38,30,66,.97),rgba(16,18,42,.97))}
+.rface h4{font-size:17px}
+.rface .rprice{font-size:26px;font-weight:900;color:#9aa6ff;margin-top:8px}
+.rface p{font-size:11px;color:var(--muted);line-height:1.6}
+.rface .list{margin:8px 0 0}
+.rface .btn{margin-top:auto}
+.rface .flip-hint{margin-top:auto;font-size:10px;color:var(--muted);text-align:center;letter-spacing:.3px}
+.ring-glow{position:absolute;left:50%;top:74%;width:440px;height:130px;margin-left:-220px;border-radius:50%;background:radial-gradient(ellipse,rgba(101,117,255,.34),transparent 70%);filter:blur(24px);pointer-events:none}
+.stage-wrap{overflow:hidden;padding-bottom:2px}
+.stage-hint{margin-top:4px;text-align:center;font-size:10px;color:var(--muted)}
+.ring-controls{display:flex;gap:7px}
+.ring-controls .icon-btn{border:1px solid var(--line);background:#141a38;font-size:16px}
+
+@media(max-width:850px){
+  .stage{height:400px}
+  .ring-card{width:202px;height:282px;margin:-141px 0 0 -101px}
+  .menu{display:none}.mobile-btn{display:grid}
+  .hero{padding-top:46px}.hero-grid{grid-template-columns:1fr}.hero-card{display:none}
+  .grid,.game-grid{grid-template-columns:1fr}.calc{grid-template-columns:1fr}
+  .container{width:min(100% - 20px,720px)}
+  .section{padding:40px 0}.section-head{align-items:start}.section-head h2{font-size:26px}
+  .hero h1{letter-spacing:-2.4px}.btn{min-height:48px}.hero-actions .btn{flex:1 1 180px}
+  .card{padding:17px}.user-chip span{max-width:60px}
+}
+@media(max-width:420px){
+  .brand{font-size:13px}.brand i{width:34px;height:34px}.nav{height:60px}
+  .drawer{inset:60px 7px auto}.hero{padding:36px 0 30px}.hero h1{font-size:42px}
+  .hero p{font-size:13px}.section-head h2{font-size:24px}.choice{grid-template-columns:1fr}
+  .btn{font-size:11px;padding:0 13px}.reviews-hero h2{font-size:28px}
+  .logo3d{transform:scale(.9)}
+  .stage{height:372px}
+  .ring-card{width:182px;height:264px;margin:-132px 0 0 -91px}
+  .rface{padding:16px;border-radius:20px}
+}
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
+
 <header class="header"><div class="container nav">
-<a class="brand" href="#top"><i>N</i><span>News_92 Studio</span></a>
-<nav class="menu"><a href="#design">Дизайн</a><a href="#sites">Сайты</a><a href="#games">2D-игры</a><a href="#calculator">Цены</a><a href="#reviews">Отзывы</a></nav>
-<div class="actions"><button class="icon-btn" type="button" data-search-open aria-label="Поиск">⌕</button><button class="icon-btn mobile-btn" type="button" data-menu aria-label="Меню">☰</button><button class="btn dark" type="button" data-order="Индивидуальный проект">Заказать</button></div>
+  <a class="brand" href="#" data-tab="home">
+    <span class="logo3d" id="logo3d" aria-hidden="true"><span class="logo3d-inner">
+      <span class="lf lf1">N</span><span class="lf lf2">92</span><span class="lf lf3">N</span><span class="lf lf4">✦</span>
+    </span></span>
+    <span>News_92 Studio</span>
+  </a>
+  <nav class="menu" id="mainMenu">
+    <a href="#design" data-scroll="#design">Дизайн</a>
+    <a href="#sites" data-scroll="#sites">Сайты</a>
+    <a href="#games" data-scroll="#games">2D-игры</a>
+    <a href="#calculator" data-scroll="#calculator">Цены</a>
+    <button type="button" data-tab="reviews">Отзывы</button>
+  </nav>
+  <div class="actions">
+    <div id="gButtonSlotHeader"></div>
+    <div class="user-chip hidden" id="userChip"></div>
+    <button class="icon-btn" type="button" data-search-open aria-label="Поиск">🔎</button>
+    <button class="icon-btn mobile-btn" type="button" data-menu aria-label="Меню">☰</button>
+    <button class="btn dark" type="button" data-order="Индивидуальный проект">Заказать</button>
+  </div>
 </div></header>
-<div class="drawer" id="drawer"><a href="#design">🎨 Дизайн</a><a href="#sites">💻 Сайты</a><a href="#games">🎮 2D-игры</a><a href="#calculator">🧮 Калькулятор</a><a href="#reviews">⭐ Отзывы</a><button type="button" data-order="Индивидуальный проект">📝 Оформить заявку</button></div>
-<main id="top">
-<section class="hero"><div class="container hero-grid"><div><div class="eyebrow">● Дизайн · сайты · 2D-игры · запуск</div><h1>Создаём проекты, которые выглядят <span>дороже своей цены.</span></h1><p>Доступный дизайн и сайты для небольших проектов, услуг, магазинов и личных страниц. Понятные цены, аккуратное оформление и помощь на каждом этапе.</p><div class="hero-actions"><button class="btn" type="button" data-scroll="#sites">💻 Создание сайтов</button><button class="btn dark" type="button" data-scroll="#design">🎨 Заказать дизайн</button><button class="btn grad" type="button" data-scroll="#games">🎮 Заказать игру</button></div></div><aside class="hero-card"><strong>350 ₽</strong><p>стартовая цена за сайт-визитку</p><button class="btn full" type="button" data-order="Сайт-визитка" data-price="350">Выбрать проект</button></aside></div></section>
-<section class="section" id="design"><div class="container"><div class="section-head"><div><h2>Дизайн</h2><p>Карточки, презентации, баннеры и обложки без лишнего усложнения.</p></div></div><div class="grid">
-<article class="card"><span class="tag">LITE</span><div class="price">100 ₽</div><h3>Карточка товара Lite</h3><p>Чистая подача товара с базовой композицией.</p><ul class="list"><li>Название и цена</li><li>Фото и композиция</li><li>Подготовка к публикации</li></ul><button class="btn full" type="button" data-order="Карточка товара Lite" data-price="100">Заказать</button></article>
-<article class="card"><span class="tag">STANDARD</span><div class="price">150 ₽</div><h3>Карточка товара</h3><p>Более выразительное оформление и акцент на продукте.</p><ul class="list"><li>Продуманная иерархия</li><li>Работа с фото</li><li>Акцент на преимуществах</li></ul><button class="btn full" type="button" data-order="Карточка товара" data-price="150">Заказать</button></article>
-<article class="card"><span class="tag">PREMIUM</span><div class="price">250 ₽</div><h3>Карточка товара Premium</h3><p>Более сложный визуал для сильной подачи.</p><ul class="list"><li>Сложная композиция</li><li>Обработка изображения</li><li>Premium-визуал</li></ul><button class="btn full" type="button" data-order="Карточка товара Premium" data-price="250">Заказать</button></article>
-</div></div></section>
-<section class="section" id="sites"><div class="container"><div class="section-head"><div><h2>Сайты</h2><p>От компактной визитки до полноценной страницы с интерактивом.</p></div></div><div class="grid">
-<article class="card"><span class="tag">01</span><div class="price">350 ₽</div><h3>Сайт-визитка</h3><p>Небольшой современный сайт для человека, специалиста или услуги.</p><ul class="list"><li>1 основная страница</li><li>Адаптация под телефон</li><li>Кнопки связи</li></ul><button class="btn full" type="button" data-order="Сайт-визитка" data-price="350">Выбрать</button></article>
-<article class="card"><span class="tag">02 · ПОПУЛЯРНОЕ</span><div class="price">700 ₽</div><h3>Лендинг</h3><p>Одностраничный сайт с продуманной структурой и акцентом на действие.</p><ul class="list"><li>Продающая структура</li><li>Несколько смысловых блоков</li><li>Мобильная версия</li></ul><button class="btn full" type="button" data-order="Лендинг" data-price="700">Выбрать</button></article>
-<article class="card"><span class="tag">03</span><div class="price">1200 ₽</div><h3>Полноценный сайт</h3><p>Несколько разделов, навигация, адаптив и формы.</p><ul class="list"><li>Несколько страниц</li><li>Адаптивная верстка</li><li>Формы и интерактив</li></ul><button class="btn full" type="button" data-order="Полноценный сайт" data-price="1200">Выбрать</button></article>
-</div></div></section>
-<section class="section" id="games"><div class="container"><div class="section-head"><div><h2>2D-игры</h2><p>Лёгкие браузерные и ПК-игры: кликеры, раннеры, аркады и собственные идеи.</p></div></div><div class="game-grid">
-<article class="card game"><div class="game-art"><b>2D · READY</b></div><div class="game-body"><span class="tag">СТАРТ</span><div class="price">350 ₽</div><h3>Лёгкая 2D-игра</h3><p>1 основная механика, счёт, базовые экраны.</p><div class="choice"><button class="btn" type="button" data-order="Лёгкая 2D-игра · офлайн" data-price="350">Офлайн · 350 ₽</button><button class="btn grad" type="button" data-order="Лёгкая 2D-игра · онлайн" data-price="550">Онлайн · 550 ₽</button></div></div></article>
-<article class="card game"><div class="game-art"><b>ARCADE</b></div><div class="game-body"><span class="tag">ПОПУЛЯРНОЕ</span><div class="price">650 ₽</div><h3>2D Arcade</h3><p>До 3 механик, уровни или раунды, победа и поражение.</p><div class="choice"><button class="btn" type="button" data-order="2D Arcade · офлайн" data-price="650">Офлайн · 650 ₽</button><button class="btn grad" type="button" data-order="2D Arcade · онлайн" data-price="850">Онлайн · 850 ₽</button></div></div></article>
-<article class="card game"><div class="game-art"><b>CUSTOM</b></div><div class="game-body"><span class="tag">СВОЯ ИДЕЯ</span><div class="price">900 ₽</div><h3>Игра под свой вкус</h3><p>Индивидуальная механика, сцены, визуальный стиль.</p><div class="choice"><button class="btn" type="button" data-order="Игра под свой вкус · офлайн" data-price="900">Офлайн · 900 ₽</button><button class="btn grad" type="button" data-order="Игра под свой вкус · онлайн" data-price="1100">Онлайн · 1100 ₽</button></div></div></article>
-</div></div></section>
-<section class="section" id="calculator"><div class="container"><div class="section-head"><div><h2>Калькулятор</h2><p>Предварительно рассчитайте проект и сразу отправьте заявку.</p></div></div><div class="calc"><div class="card"><div class="field"><label for="calcService">Услуга</label><select id="calcService"><option value="100">Дизайн · 100 ₽</option><option value="350">Сайт-визитка · 350 ₽</option><option value="700">Лендинг · 700 ₽</option><option value="1200">Полноценный сайт · 1200 ₽</option><option value="350">Лёгкая 2D-игра · 350 ₽</option><option value="650">2D Arcade · 650 ₽</option><option value="900">Игра под свой вкус · 900 ₽</option></select></div><div class="field"><label for="calcQty">Количество</label><input id="calcQty" type="number" min="1" max="100" value="1"></div><div class="field"><label for="calcExtra">Дополнительно</label><select id="calcExtra"><option value="0">Нет · +0 ₽</option><option value="200">Онлайн-режим · +200 ₽</option><option value="150">Дополнительная настройка · +150 ₽</option></select></div></div><div class="card"><div class="total"><small>Итого</small><strong id="total">100 ₽</strong></div><p class="muted" style="font-size:11px">Расчёт предварительный. Итог зависит от сложности и объёма материалов.</p><button class="btn full" type="button" id="calcOrder">Заказать по расчёту</button></div></div></div></section>
-<section class="section" id="reviews"><div class="container"><div class="section-head"><div><h2>Отзывы</h2><p>Отзывы сохраняются на устройстве. Для серверных отзывов можно подключить аккаунт позже.</p></div><button class="btn dark" type="button" data-review-open>Оставить отзыв</button></div><div class="grid" id="reviewGrid"></div></div></section>
-<section class="section" id="faq"><div class="container"><div class="section-head"><div><h2>Частые вопросы</h2></div></div><div class="faq"><div class="faq-item"><button type="button" data-faq>Как проходит заказ?</button><div class="answer">Вы выбираете услугу, оставляете имя и контакт. Заявка уходит в систему, после чего мы связываемся с вами.</div></div><div class="faq-item"><button type="button" data-faq>Можно ли сделать сайт под телефон?</button><div class="answer">Да. Все новые сайты в этой версии страницы рассчитаны на мобильные устройства.</div></div><div class="faq-item"><button type="button" data-faq>Онлайн-режим игры входит в цену?</button><div class="answer">Нет. Для игр онлайн-режим подключается отдельно, +200 ₽.</div></div></div></div></section>
+
+<div class="drawer" id="drawer">
+  <a href="#design" data-scroll="#design">🎨 Дизайн</a>
+  <a href="#sites" data-scroll="#sites">💻 Сайты</a>
+  <a href="#games" data-scroll="#games">🎮 2D-игры</a>
+  <a href="#calculator" data-scroll="#calculator">🧮 Калькулятор</a>
+  <button type="button" data-tab="reviews">⭐ Отзывы</button>
+  <button type="button" data-order="Индивидуальный проект">📝 Оформить заявку</button>
+</div>
+
+<main>
+<section id="tab-home" class="tab-panel active">
+
+  <section class="hero" id="top">
+    <div class="orbs" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+    <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Дизайн · сайты · 2D-игры · запуск</div>
+      <h1>Создаём проекты, которые выглядят <span>дороже своей цены.</span></h1>
+      <p>Доступный дизайн и сайты для небольших проектов, услуг, магазинов и личных страниц. Понятные цены, аккуратное оформление и помощь на каждом этапе.</p>
+      <div class="hero-actions">
+        <button class="btn" type="button" data-scroll="#sites">💻 Создание сайтов</button>
+        <button class="btn dark" type="button" data-scroll="#design">🎨 Заказать дизайн</button>
+        <button class="btn gold" type="button" data-scroll="#games">🎮 Заказать игру</button>
+      </div>
+      <div class="hero-stats">
+        <div><b id="statReviews">—</b><span>отзывов клиентов</span></div>
+        <div><b id="statRating">—</b><span>средний рейтинг</span></div>
+        <div><b>24 ч</b><span>среднее время ответа</span></div>
+      </div>
+    </div>
+    <aside class="hero-card" id="heroCard">
+      <div class="stars">★★★★★</div>
+      <strong>350 ₽</strong>
+      <p>стартовая цена за сайт-визитку</p>
+      <button class="btn full" type="button" data-order="Сайт-визитка" data-price="350">Выбрать проект</button>
+    </aside>
+  </div></section>
+
+  <section class="section reveal" id="showcase"><div class="container">
+    <div class="section-head">
+      <div><h2>3D-витрина</h2><p>Покрутите барабан мышью или свайпом и нажмите на услугу — карточка развернётся и покажет, что входит.</p></div>
+      <div class="ring-controls">
+        <button class="icon-btn" type="button" data-ring="-1" aria-label="Предыдущая услуга">‹</button>
+        <button class="icon-btn" type="button" data-ring="1" aria-label="Следующая услуга">›</button>
+      </div>
+    </div>
+    <div class="stage-wrap">
+    <div class="stage" id="stage">
+      <div class="ring-glow"></div>
+      <div class="ring" id="ring">
+
+        <article class="ring-card"><div class="ring-inner">
+          <div class="rface"><span class="tag">LITE</span><div class="rprice">100 ₽</div><h4>Карточка товара</h4><p>Чистая подача товара с базовой композицией.</p><div class="flip-hint">нажмите, чтобы развернуть</div></div>
+          <div class="rface back"><h4>Что входит</h4><ul class="list"><li>Название и цена</li><li>Фото и композиция</li><li>Подготовка к публикации</li></ul><button class="btn full" type="button" data-order="Карточка товара Lite" data-price="100">Заказать</button></div>
+        </div></article>
+
+        <article class="ring-card"><div class="ring-inner">
+          <div class="rface"><span class="tag gold">PREMIUM</span><div class="rprice">250 ₽</div><h4>Карточка Premium</h4><p>Сложный визуал для сильной подачи товара.</p><div class="flip-hint">нажмите, чтобы развернуть</div></div>
+          <div class="rface back"><h4>Что входит</h4><ul class="list"><li>Сложная композиция</li><li>Обработка изображения</li><li>Premium-визуал</li></ul><button class="btn full gold" type="button" data-order="Карточка товара Premium" data-price="250">Заказать</button></div>
+        </div></article>
+
+        <article class="ring-card"><div class="ring-inner">
+          <div class="rface"><span class="tag">САЙТ · 01</span><div class="rprice">350 ₽</div><h4>Сайт-визитка</h4><p>Компактный современный сайт для специалиста или услуги.</p><div class="flip-hint">нажмите, чтобы развернуть</div></div>
+          <div class="rface back"><h4>Что входит</h4><ul class="list"><li>1 основная страница</li><li>Адаптация под телефон</li><li>Кнопки связи</li></ul><button class="btn full" type="button" data-order="Сайт-визитка" data-price="350">Заказать</button></div>
+        </div></article>
+
+        <article class="ring-card"><div class="ring-inner">
+          <div class="rface"><span class="tag gold">ПОПУЛЯРНОЕ</span><div class="rprice">700 ₽</div><h4>Лендинг</h4><p>Одностраничный сайт с продающей структурой.</p><div class="flip-hint">нажмите, чтобы развернуть</div></div>
+          <div class="rface back"><h4>Что входит</h4><ul class="list"><li>Продающая структура</li><li>Несколько смысловых блоков</li><li>Мобильная версия</li></ul><button class="btn full grad" type="button" data-order="Лендинг" data-price="700">Заказать</button></div>
+        </div></article>
+
+        <article class="ring-card"><div class="ring-inner">
+          <div class="rface"><span class="tag">САЙТ · 03</span><div class="rprice">1200 ₽</div><h4>Полноценный сайт</h4><p>Несколько разделов, навигация, адаптив и формы.</p><div class="flip-hint">нажмите, чтобы развернуть</div></div>
+          <div class="rface back"><h4>Что входит</h4><ul class="list"><li>Несколько страниц</li><li>Адаптивная вёрстка</li><li>Формы и интерактив</li></ul><button class="btn full" type="button" data-order="Полноценный сайт" data-price="1200">Заказать</button></div>
+        </div></article>
+
+        <article class="ring-card"><div class="ring-inner">
+          <div class="rface"><span class="tag">ИГРА</span><div class="rprice">650 ₽</div><h4>2D Arcade</h4><p>До 3 механик, уровни или раунды, победа и поражение.</p><div class="flip-hint">нажмите, чтобы развернуть</div></div>
+          <div class="rface back"><h4>Что входит</h4><ul class="list"><li>До 3 механик</li><li>Уровни или раунды</li><li>Экраны победы и поражения</li></ul><button class="btn full grad" type="button" data-order="2D Arcade · офлайн" data-price="650">Заказать</button></div>
+        </div></article>
+
+      </div>
+    </div>
+    <div class="stage-hint">Потяните мышью · свайпните · нажмите на карточку</div>
+    </div>
+  </div></section>
+
+  <section class="section reveal" id="design"><div class="container">
+    <div class="section-head"><div><h2>Дизайн</h2><p>Карточки, презентации, баннеры и обложки без лишнего усложнения.</p></div></div>
+    <div class="grid">
+      <article class="card"><span class="tag">LITE</span><div class="price">100 ₽</div><h3>Карточка товара Lite</h3><p>Чистая подача товара с базовой композицией.</p><ul class="list"><li>Название и цена</li><li>Фото и композиция</li><li>Подготовка к публикации</li></ul><button class="btn full" type="button" data-order="Карточка товара Lite" data-price="100">Заказать</button></article>
+      <article class="card"><span class="tag">STANDARD</span><div class="price">150 ₽</div><h3>Карточка товара</h3><p>Более выразительное оформление и акцент на продукте.</p><ul class="list"><li>Продуманная иерархия</li><li>Работа с фото</li><li>Акцент на преимуществах</li></ul><button class="btn full" type="button" data-order="Карточка товара" data-price="150">Заказать</button></article>
+      <article class="card"><span class="tag gold">PREMIUM</span><div class="price">250 ₽</div><h3>Карточка товара Premium</h3><p>Более сложный визуал для сильной подачи.</p><ul class="list"><li>Сложная композиция</li><li>Обработка изображения</li><li>Premium-визуал</li></ul><button class="btn full" type="button" data-order="Карточка товара Premium" data-price="250">Заказать</button></article>
+    </div>
+  </div></section>
+
+  <section class="section reveal" id="sites"><div class="container">
+    <div class="section-head"><div><h2>Сайты</h2><p>От компактной визитки до полноценной страницы с интерактивом.</p></div></div>
+    <div class="grid">
+      <article class="card"><span class="tag">01</span><div class="price">350 ₽</div><h3>Сайт-визитка</h3><p>Небольшой современный сайт для человека, специалиста или услуги.</p><ul class="list"><li>1 основная страница</li><li>Адаптация под телефон</li><li>Кнопки связи</li></ul><button class="btn full" type="button" data-order="Сайт-визитка" data-price="350">Выбрать</button></article>
+      <article class="card"><span class="tag gold">02 · ПОПУЛЯРНОЕ</span><div class="price">700 ₽</div><h3>Лендинг</h3><p>Одностраничный сайт с продуманной структурой и акцентом на действие.</p><ul class="list"><li>Продающая структура</li><li>Несколько смысловых блоков</li><li>Мобильная версия</li></ul><button class="btn full" type="button" data-order="Лендинг" data-price="700">Выбрать</button></article>
+      <article class="card"><span class="tag">03</span><div class="price">1200 ₽</div><h3>Полноценный сайт</h3><p>Несколько разделов, навигация, адаптив и формы.</p><ul class="list"><li>Несколько страниц</li><li>Адаптивная верстка</li><li>Формы и интерактив</li></ul><button class="btn full" type="button" data-order="Полноценный сайт" data-price="1200">Выбрать</button></article>
+    </div>
+  </div></section>
+
+  <section class="section reveal" id="games"><div class="container">
+    <div class="section-head"><div><h2>2D-игры</h2><p>Лёгкие браузерные и ПК-игры: кликеры, раннеры, аркады и собственные идеи.</p></div></div>
+    <div class="game-grid">
+      <article class="card game"><div class="game-art"><b>2D · READY</b></div><div class="game-body"><span class="tag">СТАРТ</span><div class="price">350 ₽</div><h3>Лёгкая 2D-игра</h3><p>1 основная механика, счёт, базовые экраны.</p><div class="choice"><button class="btn" type="button" data-order="Лёгкая 2D-игра · офлайн" data-price="350">Офлайн · 350 ₽</button><button class="btn grad" type="button" data-order="Лёгкая 2D-игра · онлайн" data-price="550">Онлайн · 550 ₽</button></div></div></article>
+      <article class="card game"><div class="game-art"><b>ARCADE</b></div><div class="game-body"><span class="tag gold">ПОПУЛЯРНОЕ</span><div class="price">650 ₽</div><h3>2D Arcade</h3><p>До 3 механик, уровни или раунды, победа и поражение.</p><div class="choice"><button class="btn" type="button" data-order="2D Arcade · офлайн" data-price="650">Офлайн · 650 ₽</button><button class="btn grad" type="button" data-order="2D Arcade · онлайн" data-price="850">Онлайн · 850 ₽</button></div></div></article>
+      <article class="card game"><div class="game-art"><b>CUSTOM</b></div><div class="game-body"><span class="tag">СВОЯ ИДЕЯ</span><div class="price">900 ₽</div><h3>Игра под свой вкус</h3><p>Индивидуальная механика, сцены, визуальный стиль.</p><div class="choice"><button class="btn" type="button" data-order="Игра под свой вкус · офлайн" data-price="900">Офлайн · 900 ₽</button><button class="btn grad" type="button" data-order="Игра под свой вкус · онлайн" data-price="1100">Онлайн · 1100 ₽</button></div></div></article>
+    </div>
+  </div></section>
+
+  <section class="section reveal" id="calculator"><div class="container">
+    <div class="section-head"><div><h2>Калькулятор</h2><p>Предварительно рассчитайте проект и сразу отправьте заявку.</p></div></div>
+    <div class="calc">
+      <div class="card">
+        <div class="field"><label for="calcService">Услуга</label><select id="calcService">
+          <option value="100">Дизайн · 100 ₽</option>
+          <option value="350">Сайт-визитка · 350 ₽</option>
+          <option value="700">Лендинг · 700 ₽</option>
+          <option value="1200">Полноценный сайт · 1200 ₽</option>
+          <option value="350">Лёгкая 2D-игра · 350 ₽</option>
+          <option value="650">2D Arcade · 650 ₽</option>
+          <option value="900">Игра под свой вкус · 900 ₽</option>
+        </select></div>
+        <div class="field"><label for="calcQty">Количество</label><input id="calcQty" type="number" min="1" max="100" value="1"></div>
+        <div class="field"><label for="calcExtra">Дополнительно</label><select id="calcExtra">
+          <option value="0">Нет · +0 ₽</option>
+          <option value="200">Онлайн-режим · +200 ₽</option>
+          <option value="150">Дополнительная настройка · +150 ₽</option>
+        </select></div>
+      </div>
+      <div class="card">
+        <div class="total"><small>Итого</small><strong id="total">100 ₽</strong></div>
+        <p class="muted" style="font-size:11px">Расчёт предварительный. Итог зависит от сложности и объёма материалов.</p>
+        <button class="btn full" type="button" id="calcOrder">Заказать по расчёту</button>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section reveal" id="faq"><div class="container">
+    <div class="section-head"><div><h2>Частые вопросы</h2></div></div>
+    <div class="faq">
+      <div class="faq-item"><button type="button" data-faq>Как проходит заказ?</button><div class="answer">Вы выбираете услугу, оставляете имя и контакт. Заявка уходит в систему, после чего мы связываемся с вами.</div></div>
+      <div class="faq-item"><button type="button" data-faq>Можно ли сделать сайт под телефон?</button><div class="answer">Да. Все новые сайты в этой версии страницы рассчитаны на мобильные устройства.</div></div>
+      <div class="faq-item"><button type="button" data-faq>Онлайн-режим игры входит в цену?</button><div class="answer">Нет. Для игр онлайн-режим подключается отдельно, +200 ₽.</div></div>
+      <div class="faq-item"><button type="button" data-faq>Как оставить отзыв?</button><div class="answer">Перейдите во вкладку «Отзывы», войдите через Google-аккаунт и оставьте отзыв — один отзыв на один аккаунт.</div></div>
+    </div>
+  </div></section>
+
+</section>
+
+<section id="tab-reviews" class="tab-panel">
+  <section class="reviews-hero container">
+    <h2 class="serif">Отзывы клиентов</h2>
+    <p>Реальные отзывы людей, которые уже заказывали дизайн, сайты и игры. Чтобы оставить свой — войдите через Google.</p>
+    <div class="rating-summary">
+      <div><div class="big" id="reviewsBig">—</div><div class="stars" id="reviewsStars">★★★★★</div></div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="gate-card hidden" id="reviewGate">
+      <h3>Войдите, чтобы оставить отзыв</h3>
+      <p>Вход нужен, чтобы один человек мог оставить только один отзыв.</p>
+      <div id="gButtonSlotReviews"></div>
+    </div>
+
+    <div class="review-form-wrap hidden" id="reviewFormWrap"></div>
+
+    <div class="section-head" style="margin-top:40px"><div><h2>Все отзывы</h2></div></div>
+    <div class="grid" id="reviewGrid"></div>
+  </div>
+</section>
+
 </main>
-<footer class="footer"><div class="container">News_92 Studio · <a href="https://t.me/news_92" target="_blank" rel="noopener">@news_92</a> · <button class="icon-btn" type="button" data-order="Индивидуальный проект">Заказать проект</button></div></footer>
-<div class="overlay" id="searchOverlay"><div class="modal"><div class="modal-head"><h3>Поиск по сайту</h3><button class="close" type="button" data-close="searchOverlay">×</button></div><div class="field"><input id="searchInput" placeholder="Например: лендинг, дизайн, игра..."></div><div class="search-results" id="searchResults"></div></div></div>
-<div class="overlay" id="orderOverlay"><div class="modal"><div class="modal-head"><h3>Заявка</h3><button class="close" type="button" data-close="orderOverlay">×</button></div><div class="summary" id="orderSummary">Выбранный проект: Индивидуальный проект</div><form id="orderForm" class="form-grid"><div class="field"><label for="orderName">Ваше имя</label><input id="orderName" required autocomplete="name"></div><div class="field"><label for="orderContact">Телефон / Telegram / VK</label><input id="orderContact" required autocomplete="tel"></div><div class="field"><label for="orderMessage">Комментарий</label><textarea id="orderMessage" required></textarea></div><button class="btn grad" type="submit">Отправить заявку</button></form></div></div>
-<div class="overlay" id="reviewOverlay"><div class="modal"><div class="modal-head"><h3>Новый отзыв</h3><button class="close" type="button" data-close="reviewOverlay">×</button></div><form id="reviewForm" class="form-grid"><div class="field"><label for="reviewName">Имя</label><input id="reviewName" required></div><div class="field"><label for="reviewText">Отзыв</label><textarea id="reviewText" required></textarea></div><button class="btn" type="submit">Сохранить отзыв</button></form></div></div>
+
+<footer class="footer"><div class="container footer-grid">
+  <span>News_92 Studio · <a href="https://t.me/news_92" target="_blank" rel="noopener">@news_92</a></span>
+  <button class="icon-btn" type="button" data-order="Индивидуальный проект">Заказать проект</button>
+</div></footer>
+
+<div class="float-btns">
+  <button class="fab" id="toTop" type="button" aria-label="Наверх">↑</button>
+  <a class="fab tg" href="https://t.me/news_92" target="_blank" rel="noopener" aria-label="Написать в Telegram">✈</a>
+</div>
+
+<div class="overlay" id="searchOverlay"><div class="modal">
+  <div class="modal-head"><h3>Поиск по сайту</h3><button class="close" type="button" data-close="searchOverlay">×</button></div>
+  <div class="field"><input id="searchInput" placeholder="Например: лендинг, дизайн, игра..."></div>
+  <div class="search-results" id="searchResults"></div>
+</div></div>
+
+<div class="overlay" id="orderOverlay"><div class="modal">
+  <div class="modal-head"><h3>Заявка</h3><button class="close" type="button" data-close="orderOverlay">×</button></div>
+  <div class="summary" id="orderSummary">Выбранный проект: Индивидуальный проект</div>
+  <form id="orderForm" class="form-grid">
+    <div class="field"><label for="orderName">Ваше имя</label><input id="orderName" required autocomplete="name"></div>
+    <div class="field"><label for="orderContact">Телефон / Telegram / VK</label><input id="orderContact" required autocomplete="tel"></div>
+    <div class="field"><label for="orderMessage">Комментарий</label><textarea id="orderMessage" required></textarea></div>
+    <button class="btn grad" type="submit">Отправить заявку</button>
+  </form>
+</div></div>
+
 <div class="toast" id="toast"><strong id="toastTitle"></strong><span id="toastText"></span></div>
+
 <script>
 'use strict';
-const ENDPOINT='https://script.google.com/macros/s/AKfycbyxuax2i6S_m3PXp3G17uF_BwZjoV8yaoVUzKPFhowO3vEx28a5Arrr9daOKrfmgm7hZ/exec';
+
+/* ================== НАСТРОЙКИ (заполните после деплоя — см. SETUP.md) ================== */
+const CONFIG = {
+  // URL веб-приложения Google Apps Script (Code.gs). Обрабатывает заявки и отзывы, шлёт их в Telegram.
+  ORDER_ENDPOINT: 'ВСТАВЬТЕ_URL_APPS_SCRIPT_СЮДА',
+  // Client ID из Google Cloud Console (OAuth 2.0 → Web application).
+  GOOGLE_CLIENT_ID: 'ВСТАВЬТЕ_GOOGLE_CLIENT_ID_СЮДА.apps.googleusercontent.com'
+};
+function isConfigured(v){ return !!v && !/ВСТАВЬТЕ/.test(v); }
+
+/* ================== мелкие утилиты ================== */
 const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-function toast(title,text){$('#toastTitle').textContent=title;$('#toastText').textContent=text;$('#toast').classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>$('#toast').classList.remove('show'),3200)}
+function toast(title,text,isErr){const t=$('#toast');$('#toastTitle').textContent=title;$('#toastText').textContent=text;t.classList.toggle('err',!!isErr);t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),3600)}
 function open(id){$('#'+id)?.classList.add('show');document.body.style.overflow='hidden'}
 function close(id){$('#'+id)?.classList.remove('show');if(!$$('.overlay.show').length)document.body.style.overflow=''}
-function order(service='Индивидуальный проект',price=''){localStorage.setItem('news92_selected',JSON.stringify({service,price}));$('#orderSummary').innerHTML=`Выбранный проект: <strong>${esc(service)}</strong>${price?` — <strong>${esc(price)} ₽</strong>`:''}`;const msg=$('#orderMessage');if(!msg.value.trim())msg.value=`Здравствуйте! Хочу заказать: ${service}.`;open('orderOverlay');setTimeout(()=>$('#orderName')?.focus(),80)}
+
+/* ================== вкладки: Главная / Отзывы ================== */
+function showTab(name){
+  $$('.tab-panel').forEach(p=>p.classList.remove('active'));
+  $('#tab-'+name)?.classList.add('active');
+  $$('#mainMenu [data-tab]').forEach(b=>b.classList.toggle('is-active', b.dataset.tab===name));
+  document.body.dataset.tab=name;
+  $('#drawer').classList.remove('show');
+  if(name==='reviews'){ renderAuthState(); loadReviews(true); }
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+}
+$$('[data-tab]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();showTab(b.dataset.tab)}));
+$$('[data-scroll]').forEach(b=>b.addEventListener('click',()=>{
+  if(document.body.dataset.tab!=='home') showTab('home');
+  requestAnimationFrame(()=>$(b.dataset.scroll)?.scrollIntoView({behavior:'smooth'}));
+  $('#drawer').classList.remove('show');
+}));
+
+/* ================== поиск ================== */
 const searchData=[
- ['🎨','Дизайн','Карточки и презентации','#design'],['💻','Сайт-визитка','От 350 ₽','#sites'],['🚀','Лендинг','От 700 ₽','#sites'],['🎮','2D-игры','От 350 ₽','#games'],['🧮','Калькулятор','Рассчитать проект','#calculator'],['⭐','Отзывы','Мнения клиентов','#reviews'],['❓','FAQ','Частые вопросы','#faq']
+ ['✨','3D-витрина','Услуги в 3D-барабане','#showcase'],
+ ['🎨','Дизайн','Карточки и презентации','#design'],['💻','Сайт-визитка','От 350 ₽','#sites'],
+ ['🚀','Лендинг','От 700 ₽','#sites'],['🎮','2D-игры','От 350 ₽','#games'],
+ ['🧮','Калькулятор','Рассчитать проект','#calculator'],['⭐','Отзывы','Мнения клиентов','__reviews'],
+ ['❓','FAQ','Частые вопросы','#faq']
 ];
-function renderSearch(q=''){const root=$('#searchResults'),needle=q.trim().toLowerCase();root.innerHTML='';const data=searchData.filter(x=>(x[1]+' '+x[2]).toLowerCase().includes(needle));if(!data.length){root.innerHTML='<div class="muted" style="padding:14px;text-align:center;font-size:11px">Ничего не найдено</div>';return}data.forEach(x=>{const b=document.createElement('button');b.type='button';b.className='search-item';b.innerHTML=`<strong>${x[0]} ${esc(x[1])}</strong><span>${esc(x[2])}</span>`;b.onclick=()=>{$(x[3])?.scrollIntoView({behavior:'smooth'});close('searchOverlay')};root.appendChild(b)})}
-function recalc(){const base=Number($('#calcService').value)||0,qty=Math.max(1,Math.min(100,Number($('#calcQty').value)||1)),extra=Number($('#calcExtra').value)||0;$('#calcQty').value=qty;const total=base*qty+extra;$('#total').textContent=total.toLocaleString('ru-RU')+' ₽';return total}
-function loadReviews(){const list=JSON.parse(localStorage.getItem('news92_reviews')||'[]'),root=$('#reviewGrid');root.innerHTML='';if(!list.length){root.innerHTML='<article class="card"><h3>Пока нет отзывов</h3><p>Оставьте первый отзыв после заказа.</p></article>';return}list.slice(-6).reverse().forEach(r=>{const c=document.createElement('article');c.className='card';c.innerHTML=`<span class="tag">★ ${esc(r.rating||5)}/5</span><h3 style="margin-top:10px">${esc(r.name)}</h3><p>${esc(r.text)}</p>`;root.appendChild(c)})}
-$$('[data-scroll]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.scroll)?.scrollIntoView({behavior:'smooth'})));
-$$('[data-order]').forEach(b=>b.addEventListener('click',()=>order(b.dataset.order,b.dataset.price||'')));
+function renderSearch(q=''){
+  const root=$('#searchResults'),needle=q.trim().toLowerCase();root.innerHTML='';
+  const data=searchData.filter(x=>(x[1]+' '+x[2]).toLowerCase().includes(needle));
+  if(!data.length){root.innerHTML='<div class="muted" style="padding:14px;text-align:center;font-size:11px">Ничего не найдено</div>';return}
+  data.forEach(x=>{const b=document.createElement('button');b.type='button';b.className='search-item';
+    b.innerHTML=`<strong>${x[0]} ${esc(x[1])}</strong><span>${esc(x[2])}</span>`;
+    b.onclick=()=>{close('searchOverlay'); if(x[3]==='__reviews'){showTab('reviews')} else {showTab('home');requestAnimationFrame(()=>$(x[3])?.scrollIntoView({behavior:'smooth'}))}};
+    root.appendChild(b)})
+}
 $$('[data-search-open]').forEach(b=>b.addEventListener('click',()=>{open('searchOverlay');$('#searchInput').value='';renderSearch();setTimeout(()=>$('#searchInput').focus(),80)}));
 $('#searchInput').addEventListener('input',e=>renderSearch(e.target.value));
 $$('[data-close]').forEach(b=>b.addEventListener('click',()=>close(b.dataset.close)));
 $$('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)close(o.id)}));
 $$('[data-menu]').forEach(b=>b.addEventListener('click',()=>$('#drawer').classList.toggle('show')));
-$$('#drawer a').forEach(a=>a.addEventListener('click',()=>$('#drawer').classList.remove('show')));
 $$('[data-faq]').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));
-['#calcService','#calcQty','#calcExtra'].forEach(s=>$(s).addEventListener('input',recalc));$('#calcOrder').addEventListener('click',()=>{const total=recalc(),service=$('#calcService').selectedOptions[0].textContent.trim();order(`${service} — расчёт`,total)});
-$('#orderForm').addEventListener('submit',async e=>{e.preventDefault();const btn=$('#orderForm button[type="submit"]'),name=$('#orderName').value.trim(),contact=$('#orderContact').value.trim(),message=$('#orderMessage').value.trim();if(!name||!contact||!message){toast('Заполните форму','Имя, контакт и комментарий обязательны.');return}if(Number(localStorage.getItem('news92_order_cooldown')||0)+60000>Date.now()){toast('Подождите немного','Для защиты от спама новая заявка доступна через минуту.');return}const selected=JSON.parse(localStorage.getItem('news92_selected')||'{}');const payload={type:'site_order',source:'news92-studio',id:Date.now(),service:selected.service||'Индивидуальный проект',price:selected.price||'',name,contact,email:'',message,createdAt:new Date().toISOString()};const old=btn.textContent;btn.disabled=true;btn.textContent='Отправляем...';try{await fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),keepalive:true});const orders=JSON.parse(localStorage.getItem('news92_orders')||'[]');orders.push({...payload,pending:true});localStorage.setItem('news92_orders',JSON.stringify(orders));localStorage.setItem('news92_order_cooldown',String(Date.now()));close('orderOverlay');e.target.reset();toast('Заявка отправлена','Заявка передана. Мы свяжемся с вами.')}catch(err){console.error(err);toast('Ошибка отправки','Проверьте соединение и попробуйте ещё раз.')}finally{btn.disabled=false;btn.textContent=old}});
-$('[data-review-open]').addEventListener('click',()=>open('reviewOverlay'));
-$('#reviewForm').addEventListener('submit',e=>{e.preventDefault();const name=$('#reviewName').value.trim(),text=$('#reviewText').value.trim();if(!name||!text){toast('Заполните форму','Укажите имя и текст отзыва.');return}const list=JSON.parse(localStorage.getItem('news92_reviews')||'[]');list.push({name,text,rating:5,createdAt:new Date().toISOString()});localStorage.setItem('news92_reviews',JSON.stringify(list));loadReviews();close('reviewOverlay');e.target.reset();toast('Отзыв сохранён','Спасибо за отзыв.')});
 window.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.overlay.show').forEach(x=>close(x.id))});
-recalc();renderSearch();loadReviews();
+
+/* ================== калькулятор ================== */
+function recalc(){
+  const base=Number($('#calcService').value)||0, qty=Math.max(1,Math.min(100,Number($('#calcQty').value)||1)), extra=Number($('#calcExtra').value)||0;
+  $('#calcQty').value=qty; const total=base*qty+extra; $('#total').textContent=total.toLocaleString('ru-RU')+' ₽'; return total;
+}
+['#calcService','#calcQty','#calcExtra'].forEach(s=>$(s).addEventListener('input',recalc));
+$('#calcOrder').addEventListener('click',()=>{const total=recalc(),service=$('#calcService').selectedOptions[0].textContent.trim();order(`${service} — расчёт`,total)});
+
+/* ================== заявки: отправка на бэкенд + очередь на случай сбоя ================== */
+function order(service='Индивидуальный проект',price=''){
+  localStorage.setItem('news92_selected',JSON.stringify({service,price}));
+  $('#orderSummary').innerHTML=`Выбранный проект: <strong>${esc(service)}</strong>${price?` — <strong>${esc(price)} ₽</strong>`:''}`;
+  const msg=$('#orderMessage'); if(!msg.value.trim())msg.value=`Здравствуйте! Хочу заказать: ${service}.`;
+  const user=getUser();
+  if(user && !$('#orderContact').value.trim()) $('#orderContact').value=user.email||'';
+  if(user && !$('#orderName').value.trim()) $('#orderName').value=user.name||'';
+  open('orderOverlay'); setTimeout(()=>$('#orderName')?.focus(),80);
+}
+$$('[data-order]').forEach(b=>b.addEventListener('click',()=>order(b.dataset.order,b.dataset.price||'')));
+
+async function sendToBackend(payload){
+  if(!isConfigured(CONFIG.ORDER_ENDPOINT)) return {ok:false, error:'not_configured'};
+  try{
+    const res=await fetch(CONFIG.ORDER_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+    if(!res.ok) return {ok:false, error:'http_'+res.status};
+    const data=await res.json().catch(()=>null);
+    if(!data) return {ok:false, error:'bad_response'};
+    return data;
+  }catch(err){ return {ok:false, error:'network'}; }
+}
+function queuePayload(payload){const q=JSON.parse(localStorage.getItem('news92_pending')||'[]');q.push(payload);localStorage.setItem('news92_pending',JSON.stringify(q));}
+async function flushPending(){
+  const q=JSON.parse(localStorage.getItem('news92_pending')||'[]'); if(!q.length) return;
+  const remain=[]; let sent=0;
+  for(const p of q){ const r=await sendToBackend(p); if(r.ok) sent++; else remain.push(p); }
+  localStorage.setItem('news92_pending',JSON.stringify(remain));
+  if(sent) toast('Заявки отправлены','Ранее отложенные заявки успешно доставлены.');
+}
+window.addEventListener('online',flushPending);
+window.addEventListener('load',()=>setTimeout(flushPending,1200));
+
+$('#orderForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=$('#orderForm button[type="submit"]'),name=$('#orderName').value.trim(),contact=$('#orderContact').value.trim(),message=$('#orderMessage').value.trim();
+  if(!name||!contact||!message){toast('Заполните форму','Имя, контакт и комментарий обязательны.',true);return}
+  if(Number(localStorage.getItem('news92_order_cooldown')||0)+60000>Date.now()){toast('Подождите немного','Для защиты от спама новая заявка доступна через минуту.',true);return}
+  const selected=JSON.parse(localStorage.getItem('news92_selected')||'{}');
+  const payload={type:'site_order',source:'news92-studio',id:Date.now(),service:selected.service||'Индивидуальный проект',price:selected.price||'',name,contact,message,createdAt:new Date().toISOString()};
+  const old=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...';
+  const result=await sendToBackend(payload);
+  localStorage.setItem('news92_order_cooldown',String(Date.now()));
+  if(result.ok){
+    close('orderOverlay'); e.target.reset(); toast('Заявка отправлена','Заявка передана. Мы свяжемся с вами.');
+  } else if(result.error==='not_configured'){
+    queuePayload(payload); close('orderOverlay'); e.target.reset();
+    toast('Заявка сохранена','Отправка ещё настраивается — заявка уйдёт автоматически, как только всё будет готово.');
+  } else {
+    queuePayload(payload); close('orderOverlay'); e.target.reset();
+    toast('Заявка сохранена','Не удалось отправить сразу — попробуем ещё раз автоматически.',true);
+  }
+  btn.disabled=false; btn.textContent=old;
+});
+
+/* ================== вход через Google ================== */
+function decodeJwt(token){
+  try{
+    const base=token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+    const json=decodeURIComponent(atob(base).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+    return JSON.parse(json);
+  }catch(e){ return null; }
+}
+function getUser(){ try{return JSON.parse(localStorage.getItem('news92_user')||'null')}catch{return null} }
+function handleCredentialResponse(resp){
+  const payload=decodeJwt(resp.credential); if(!payload) return;
+  const user={sub:payload.sub,name:payload.name||'Гость',email:payload.email||'',picture:payload.picture||''};
+  localStorage.setItem('news92_user',JSON.stringify(user));
+  renderAuthState();
+  toast('Добро пожаловать',`Вы вошли как ${user.name}`);
+}
+function signOut(){
+  localStorage.removeItem('news92_user');
+  if(window.google && google.accounts) google.accounts.id.disableAutoSelect();
+  renderAuthState();
+  toast('Вы вышли','До встречи!');
+}
+function renderAuthState(){
+  const user=getUser(), chip=$('#userChip'), headerSlot=$('#gButtonSlotHeader');
+  if(user){
+    chip.innerHTML=`${user.picture?`<img src="${esc(user.picture)}" alt="">`:''}<span>${esc(user.name.split(' ')[0])}</span><button type="button" data-signout title="Выйти">⏻</button>`;
+    chip.classList.remove('hidden'); headerSlot.classList.add('hidden');
+    chip.querySelector('[data-signout]')?.addEventListener('click',signOut);
+  } else {
+    chip.classList.add('hidden'); headerSlot.classList.remove('hidden');
+  }
+  renderReviewGate();
+}
+function initGoogleAuth(){
+  if(!isConfigured(CONFIG.GOOGLE_CLIENT_ID)) return;
+  let tries=0;
+  const t=setInterval(()=>{
+    if(window.google && google.accounts && google.accounts.id){
+      clearInterval(t);
+      google.accounts.id.initialize({client_id:CONFIG.GOOGLE_CLIENT_ID, callback:handleCredentialResponse, auto_select:false});
+      const headerSlot=$('#gButtonSlotHeader'), reviewsSlot=$('#gButtonSlotReviews');
+      if(headerSlot) google.accounts.id.renderButton(headerSlot,{theme:'filled_black',size:'medium',shape:'pill',text:'signin',locale:'ru'});
+      if(reviewsSlot) google.accounts.id.renderButton(reviewsSlot,{theme:'filled_black',size:'large',shape:'pill',text:'signin_with',locale:'ru'});
+      renderAuthState();
+    } else if(++tries>60){ clearInterval(t); }
+  },100);
+}
+
+/* ================== отзывы: вкладка, лимит 1 на аккаунт, сервер + локальный кэш ================== */
+function hasReviewed(sub){ return !!localStorage.getItem('news92_reviewed_'+sub); }
+function markReviewed(sub){ localStorage.setItem('news92_reviewed_'+sub,'1'); }
+
+function reviewFormTemplate(user){
+  return `<article class="card">
+    <div class="review-author">${user.picture?`<img src="${esc(user.picture)}" alt="">`:''}<b>${esc(user.name)}</b></div>
+    <form id="reviewForm" class="form-grid">
+      <div class="field"><label>Оценка</label><div class="stars-input" id="starsInput">
+        ${[1,2,3,4,5].map(n=>`<button type="button" data-star="${n}">★</button>`).join('')}
+      </div></div>
+      <div class="field"><label for="reviewText">Отзыв</label><textarea id="reviewText" required placeholder="Расскажите, как прошла работа"></textarea></div>
+      <button class="btn grad" type="submit">Отправить отзыв</button>
+    </form>
+  </article>`;
+}
+function bindReviewForm(user){
+  let rating=5;
+  const starsWrap=$('#starsInput');
+  function paintStars(){ $$('#starsInput [data-star]').forEach(b=>b.classList.toggle('on', Number(b.dataset.star)<=rating)); }
+  paintStars();
+  starsWrap.addEventListener('click',e=>{const b=e.target.closest('[data-star]'); if(!b)return; rating=Number(b.dataset.star); paintStars();});
+  $('#reviewForm').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const text=$('#reviewText').value.trim();
+    if(!text){ toast('Заполните отзыв','Напишите пару слов о работе.',true); return; }
+    const btn=e.target.querySelector('button[type="submit"]'); const old=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...';
+    const payload={type:'review',googleId:user.sub,name:user.name,rating,text,createdAt:new Date().toISOString()};
+    const result=await sendToBackend(payload);
+    btn.disabled=false; btn.textContent=old;
+    if(result.ok || result.error==='already_submitted'){
+      markReviewed(user.sub);
+      addLocalReviewCache({name:user.name,picture:user.picture,rating,text,createdAt:payload.createdAt});
+      renderReviewGate();
+      loadReviews();
+      toast('Спасибо!','Ваш отзыв сохранён.');
+    } else if(result.error==='not_configured'){
+      toast('Отзывы скоро заработают','Приём отзывов ещё настраивается администратором сайта.',true);
+    } else {
+      toast('Не удалось отправить','Попробуйте ещё раз чуть позже.',true);
+    }
+  });
+}
+function renderReviewGate(){
+  const gate=$('#reviewGate'), formWrap=$('#reviewFormWrap'); if(!gate||!formWrap) return;
+  if(!isConfigured(CONFIG.GOOGLE_CLIENT_ID)){
+    gate.innerHTML='<h3>Вход через Google скоро будет доступен</h3><p>Пока отзывы можно только посмотреть ниже.</p>';
+    gate.classList.remove('hidden'); formWrap.classList.add('hidden'); return;
+  }
+  const user=getUser();
+  if(!user){ gate.classList.remove('hidden'); formWrap.classList.add('hidden'); return; }
+  gate.classList.add('hidden');
+  if(hasReviewed(user.sub)){
+    formWrap.innerHTML='<div class="notice">✓ Вы уже оставили отзыв. Спасибо, что помогаете другим клиентам!</div>';
+  } else {
+    formWrap.innerHTML=reviewFormTemplate(user);
+    bindReviewForm(user);
+  }
+  formWrap.classList.remove('hidden');
+}
+function addLocalReviewCache(r){
+  const list=JSON.parse(localStorage.getItem('news92_reviews_cache')||'[]');
+  list.push(r); localStorage.setItem('news92_reviews_cache',JSON.stringify(list));
+}
+function renderReviewList(list){
+  const root=$('#reviewGrid'); if(!root) return; root.innerHTML='';
+  if(!list.length){ root.innerHTML='<article class="card"><h3>Пока нет отзывов</h3><p>Станьте первым, кто оставит отзыв — войдите через Google на этой вкладке.</p></article>'; return; }
+  list.slice().reverse().slice(0,60).forEach(r=>{
+    const c=document.createElement('article'); c.className='card review-card';
+    const date=r.createdAt?new Date(r.createdAt).toLocaleDateString('ru-RU'):'';
+    c.innerHTML=`<div class="review-head">${r.picture?`<img src="${esc(r.picture)}" alt="">`:''}<b>${esc(r.name)}</b><span class="review-date">${esc(date)}</span></div>
+      <div class="review-stars">${'★'.repeat(Number(r.rating)||5)}${'☆'.repeat(5-(Number(r.rating)||5))}</div>
+      <p>${esc(r.text)}</p>`;
+    root.appendChild(c);
+  });
+  const avg=list.length?(list.reduce((s,r)=>s+(Number(r.rating)||5),0)/list.length):5;
+  $('#statReviews') && ($('#statReviews').textContent=String(list.length));
+  $('#statRating') && ($('#statRating').textContent=avg.toFixed(1));
+  $('#reviewsBig') && ($('#reviewsBig').textContent=avg.toFixed(1));
+}
+async function loadReviews(forceFetch){
+  const cache=JSON.parse(localStorage.getItem('news92_reviews_cache')||'[]');
+  renderReviewList(cache);
+  if(!isConfigured(CONFIG.ORDER_ENDPOINT)) return;
+  try{
+    const res=await fetch(CONFIG.ORDER_ENDPOINT+'?type=reviews'); if(!res.ok) return;
+    const data=await res.json();
+    if(data && data.ok && Array.isArray(data.reviews)){
+      localStorage.setItem('news92_reviews_cache',JSON.stringify(data.reviews));
+      renderReviewList(data.reviews);
+    }
+  }catch(e){ /* остаёмся на локальном кэше */ }
+}
+
+/* ================== 3D-наклон карточек, скролл-появление, прогресс, «наверх» ================== */
+function initTilt(){
+  if(window.matchMedia('(pointer:coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  $$('.card, .hero-card').forEach(el=>{
+    el.addEventListener('mousemove',e=>{
+      const r=el.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+      el.style.transform=`perspective(800px) rotateX(${(-py*7).toFixed(2)}deg) rotateY(${(px*7).toFixed(2)}deg)`;
+    });
+    el.addEventListener('mouseleave',()=>{ el.style.transform=''; });
+  });
+}
+function initReveal(){
+  if(!('IntersectionObserver' in window)){ $$('.reveal').forEach(el=>el.classList.add('in')); return; }
+  const io=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
+  $$('.reveal').forEach(el=>io.observe(el));
+}
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+  $('#progress').style.width=(max>0?(h.scrollTop/max*100):0)+'%';
+  $('#toTop').classList.toggle('show', h.scrollTop>500);
+});
+$('#toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ================== 3D-витрина (барабан услуг) ================== */
+function initRing(){
+  const stage=$('#stage'), ring=$('#ring'); if(!stage||!ring) return;
+  const cards=$$('#ring .ring-card'), n=cards.length, step=360/n;
+  let radius=330, angle=0, auto=null, dragging=false, startX=0, startAngle=0, moved=0;
+
+  function apply(){
+    ring.style.transform=`translateZ(${-radius}px) rotateY(${angle}deg)`;
+    cards.forEach((c,i)=>{
+      const a=(i*step+angle)*Math.PI/180, k=Math.cos(a);
+      c.style.opacity=(0.2+0.8*Math.max(0,k)).toFixed(2);
+      c.style.pointerEvents=k>0.35?'auto':'none';
+    });
+  }
+  function layout(){
+    const w=window.innerWidth;
+    radius = w<560 ? 245 : (w<900 ? 290 : 330);
+    cards.forEach((c,i)=>{ c.style.transform=`rotateY(${i*step}deg) translateZ(${radius}px)`; });
+    apply();
+  }
+  function closeAll(){ cards.forEach(c=>c.classList.remove('flipped')); }
+  function rotate(dir){ angle-=dir*step; closeAll(); apply(); }
+  function restart(){
+    clearInterval(auto);
+    auto=setInterval(()=>{
+      if(document.hidden || dragging) return;
+      if(cards.some(c=>c.classList.contains('flipped'))) return;
+      if(document.body.dataset.tab==='reviews') return;
+      angle-=step; apply();
+    },4500);
+  }
+
+  $$('[data-ring]').forEach(b=>b.addEventListener('click',()=>{rotate(Number(b.dataset.ring));restart()}));
+  stage.addEventListener('mouseenter',()=>clearInterval(auto));
+  stage.addEventListener('mouseleave',restart);
+
+  stage.addEventListener('pointerdown',e=>{
+    dragging=true; moved=0; startX=e.clientX; startAngle=angle;
+    ring.classList.add('dragging'); clearInterval(auto);
+  });
+  stage.addEventListener('pointermove',e=>{
+    if(!dragging) return;
+    const dx=e.clientX-startX; moved=Math.max(moved,Math.abs(dx));
+    angle=startAngle+dx*0.28; apply();
+  });
+  function endDrag(){
+    if(!dragging) return;
+    dragging=false; ring.classList.remove('dragging');
+    angle=Math.round(angle/step)*step; apply(); restart();
+  }
+  window.addEventListener('pointerup',endDrag);
+  window.addEventListener('pointercancel',endDrag);
+
+  cards.forEach(card=>card.addEventListener('click',e=>{
+    if(e.target.closest('[data-order]')) return;
+    if(moved>6) return;
+    const was=card.classList.contains('flipped');
+    closeAll(); if(!was) card.classList.add('flipped');
+  }));
+
+  window.addEventListener('resize',layout);
+  layout(); restart();
+}
+
+/* ================== параллакс в герое + «магнитные» кнопки ================== */
+function initHeroFx(){
+  if(window.matchMedia('(pointer:coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const hero=document.querySelector('.hero'), orbs=$$('.orb');
+  if(hero) hero.addEventListener('mousemove',e=>{
+    const r=hero.getBoundingClientRect(), px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+    orbs.forEach((o,i)=>{ const k=(i+1)*16; o.style.transform=`translate(${(px*k).toFixed(1)}px,${(py*k).toFixed(1)}px)`; });
+  });
+  $$('.hero-actions .btn').forEach(b=>{
+    b.addEventListener('mousemove',e=>{
+      const r=b.getBoundingClientRect();
+      b.style.transform=`translate(${(((e.clientX-r.left)/r.width-.5)*10).toFixed(1)}px,${(((e.clientY-r.top)/r.height-.5)*6-2).toFixed(1)}px)`;
+    });
+    b.addEventListener('mouseleave',()=>{ b.style.transform=''; });
+  });
+}
+
+/* ================== пасхалка: 5 кликов по логотипу ================== */
+(function initLogoEgg(){
+  const logo=$('#logo3d'); if(!logo) return;
+  let clicks=0, timer=null;
+  logo.addEventListener('click',()=>{
+    clicks++; clearTimeout(timer); timer=setTimeout(()=>clicks=0,1200);
+    if(clicks>=5){
+      clicks=0;
+      const inner=logo.querySelector('.logo3d-inner');
+      inner.classList.add('turbo');
+      toast('Секретный режим 🎉','Логотип разогнался — вернётся сам через несколько секунд.');
+      setTimeout(()=>inner.classList.remove('turbo'),6000);
+    }
+  });
+})();
+
+/* ================== старт ================== */
+recalc(); renderSearch(); initTilt(); initReveal(); renderAuthState(); loadReviews(); initRing(); initHeroFx();
+window.addEventListener('load', initGoogleAuth);
 </script>
 </body></html>
