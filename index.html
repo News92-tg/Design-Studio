@@ -1057,9 +1057,9 @@ function order(service='Индивидуальный проект',price=''){
 $$('[data-order]').forEach(b=>b.addEventListener('click',()=>order(b.dataset.order,b.dataset.price||'')));
 
 async function sendToBackend(payload){
-  if(!isConfigured(CONFIG.ORDER_ENDPOINT)) return {ok:false, error:'not_configured'};
+  if(!isConfigured(https://script.google.com/macros/s/AKfycbwo87UZe5rTlEfUmGLNDI3JtaXEV4NI_arqM2xskz7DW6Vhdn-8uno6YZS1x1lT8krT/exec)) return {ok:false, error:'not_configured'};
   try{
-    const res=await fetch(CONFIG.ORDER_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+    const res=await fetch(https://script.google.com/macros/s/AKfycbwo87UZe5rTlEfUmGLNDI3JtaXEV4NI_arqM2xskz7DW6Vhdn-8uno6YZS1x1lT8krT/exec,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
     if(!res.ok) return {ok:false, error:'http_'+res.status};
     const data=await res.json().catch(()=>null);
     if(!data) return {ok:false, error:'bad_response'};
