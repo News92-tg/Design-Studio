@@ -413,6 +413,9 @@ a{text-decoration:none;color:inherit}
 
 /* ==== портфолио ==== */
 .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.work{text-decoration:none;color:inherit;transition:border-color .2s,transform .2s}
+.work:hover{border-color:#4a58a0;transform:translateY(-3px)}
+.work-go{font-style:normal;font-size:11.5px;font-weight:800;color:#8d9bff;margin-left:8px;white-space:nowrap}
 .work{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(14,17,32,.7);display:flex;flex-direction:column}
 .work-shot{aspect-ratio:16/10;background:linear-gradient(135deg,#12162a,#1b2140);display:grid;place-items:center;color:var(--muted);font-size:11px;text-align:center;padding:14px}
 .work-shot img{width:100%;height:100%;object-fit:cover;display:block}
@@ -692,23 +695,31 @@ a{text-decoration:none;color:inherit}
   <section class="section reveal" id="works"><div class="container">
     <div class="section-head"><div><span class="sec-index">03 — РАБОТЫ</span><h2>Примеры работ</h2><p>Живые проекты, которые можно открыть и посмотреть.</p></div></div>
     <div class="work-grid">
-      <article class="work">
+      <a class="work" href="#top" data-scroll="#top">
         <div class="work-shot" style="background:linear-gradient(135deg,#141a3a,#241a3f)"><b style="font-size:20px;color:#fff">News_92 Studio</b></div>
-        <div class="work-body"><h4>Этот сайт</h4><p>Сайт-визитка студии: 3D-витрина услуг, калькулятор, отзывы, приём заявок.</p></div>
-      </article>
+        <div class="work-body"><h4>Этот сайт <i class="work-go">смотреть →</i></h4><p>Сайт-визитка студии: 3D-витрина услуг, калькулятор, отзывы, приём заявок, вход через Google.</p></div>
+      </a>
       <!-- Чтобы добавить работу: замените содержимое .work-shot на <img src="works/имя-файла.jpg" alt="">
            и впишите название с описанием ниже. Файлы кладите в папку works/ в репозитории. -->
       <!-- Как добавить работу: положите скриншот в папку works/ и замените содержимое
            .work-shot на <img src="works/имя-файла.jpg" alt="">, а ниже впишите название
            и одну строку о задаче. Три-четыре примера работают сильнее любого текста о себе. -->
-      <article class="work">
+      <a class="work" href="warmed/" target="_blank" rel="noopener">
         <div class="work-shot" style="background:linear-gradient(135deg,#1a1430,#2a1d3f)"><b style="font-size:17px;color:#fff">WARMED</b></div>
-        <div class="work-body"><h4>Браузерная игра WARMED</h4><p>Постапокалиптическая survival-игра: экономика, крафт, бои, сохранения. Один HTML-файл.</p></div>
-      </article>
-      <article class="work">
+        <div class="work-body"><h4>Игра WARMED <i class="work-go">играть →</i></h4><p>Метро от первого лица: выживание, инвентарь, диалоги и мутанты. Запускается в браузере, на телефоне — сенсорное управление.</p></div>
+      </a>
+      <a class="work" href="#showcase" data-scroll="#showcase">
         <div class="work-shot" style="background:linear-gradient(135deg,#12203a,#16344a)"><b style="font-size:17px;color:#fff">3D-витрина</b></div>
-        <div class="work-body"><h4>Интерактивный барабан услуг</h4><p>3D-карусель на чистом CSS и JS: вращение мышью и свайпом, разворот карточек, без библиотек.</p></div>
-      </article>
+        <div class="work-body"><h4>Интерактивный барабан <i class="work-go">покрутить →</i></h4><p>3D-карусель на чистом CSS и JS: вращение мышью и свайпом, разворот карточек, без библиотек.</p></div>
+      </a>
+      <a class="work" href="promo-posters/" target="_blank" rel="noopener">
+        <div class="work-shot" style="background:linear-gradient(135deg,#1b1040,#3a1250)"><b style="font-size:17px;color:#fff">Рекламные креативы</b></div>
+        <div class="work-body"><h4>Постеры для соцсетей <i class="work-go">открыть →</i></h4><p>Пять вертикальных макетов 1080×1920 под сторис и TikTok. Рисуются кодом, тексты и цены меняются за минуту.</p></div>
+      </a>
+      <a class="work" href="presentation/" target="_blank" rel="noopener">
+        <div class="work-shot" style="background:linear-gradient(135deg,#0f1330,#1d2a52)"><b style="font-size:17px;color:#fff">Презентация</b></div>
+        <div class="work-body"><h4>Презентация студии <i class="work-go">листать →</i></h4><p>Девять слайдов формата 16:9, которые сохраняются в PDF прямо из браузера.</p></div>
+      </a>
     </div>
   </div></section>
 
