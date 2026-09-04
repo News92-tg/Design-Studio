@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Рекламные постеры News_92 Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0c16;color:#eef0f8;font-family:Manrope,Arial,sans-serif;padding:26px 16px 80px;
+     display:flex;flex-direction:column;align-items:center;gap:20px}
+h1{font-size:19px;letter-spacing:-.3px}
+.sub{color:#8b90a8;font-size:12.5px;text-align:center;max-width:620px;line-height:1.7}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+button{font-family:inherit;font-weight:800;font-size:12.5px;letter-spacing:.5px;color:#fff;
+       background:linear-gradient(135deg,#6575ff,#8a61ff);border:0;border-radius:11px;
+       padding:0 20px;min-height:46px;cursor:pointer}
+button.ghost{background:#161a2e;border:1px solid #2a3160}
+.sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;width:min(1100px,100%)}
+.item{background:#11162b;border:1px solid #242d52;border-radius:14px;padding:12px}
+.item canvas{width:100%;height:auto;display:block;border-radius:8px;background:#000}
+.item .cap{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}
+.item .cap b{font-size:12px}
+.item .cap a{font-size:11px;color:#8d9bff;text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+
+<h1>Рекламные постеры</h1>
+<p class="sub">Вертикальные 1080×1920 — для сторис, TikTok и Telegram. Нажмите на картинку, чтобы скачать её отдельно, или «Скачать все» одним махом.</p>
+<div class="row">
+  <button id="dl">Скачать все</button>
+  <button class="ghost" id="re">Перерисовать</button>
+</div>
+
+<div class="sheet" id="sheet"></div>
+
+<script>
+const W=1080, H=1920;
+const C={ bg1:'#0b0d1f', bg2:'#1a1140', accent:'#6575ff', accent2:'#b455ff',
+          cyan:'#25e0f0', gold:'#e0bc7c', white:'#ffffff', mute:'#a9b0d0' };
+
+/* ---------- помощники рисования ---------- */
+function rr(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+function bgGradient(ctx, from, to){
+  const g=ctx.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,from); g.addColorStop(1,to);
+  ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+}
+function orb(ctx,x,y,r,color,alpha){
+  const g=ctx.createRadialGradient(x,y,0,x,y,r);
+  g.addColorStop(0,color); g.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.globalAlpha=alpha; ctx.fillStyle=g;
+  ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+  ctx.globalAlpha=1;
+}
+function grid(ctx,alpha){
+  ctx.strokeStyle=`rgba(255,255,255,${alpha})`; ctx.lineWidth=1;
+  for(let x=0;x<W;x+=90){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for(let y=0;y<H;y+=90){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+}
+function gradText(ctx, text, x, y, size, from, to, weight=800){
+  ctx.font=`${weight} ${size}px Manrope, Arial`;
+  const w=ctx.measureText(text).width;
+  const g=ctx.createLinearGradient(x,0,x+w,0);
+  g.addColorStop(0,from); g.addColorStop(1,to);
+  ctx.fillStyle=g; ctx.fillText(text,x,y);
+  return w;
+}
+function wrap(ctx, text, x, y, maxW, lh, size, color, weight=500){
+  ctx.font=`${weight} ${size}px Manrope, Arial`; ctx.fillStyle=color;
+  const words=text.split(' '); let line='', yy=y;
+  for(const w of words){
+    const t=line?line+' '+w:w;
+    if(ctx.measureText(t).width>maxW && line){ ctx.fillText(line,x,yy); line=w; yy+=lh; }
+    else line=t;
+  }
+  if(line) ctx.fillText(line,x,yy);
+  return yy+lh;
+}
+function pill(ctx,x,y,text,size,fill,textColor,padX=26,h=0){
+  ctx.font=`800 ${size}px Manrope, Arial`;
+  const w=ctx.measureText(text).width, ph=h||size+30;
+  ctx.fillStyle=fill; rr(ctx,x,y,w+padX*2,ph,ph/2); ctx.fill();
+  ctx.fillStyle=textColor; ctx.fillText(text,x+padX,y+ph/2+size*0.35);
+  return w+padX*2;
+}
+function brandMark(ctx,x,y,s){
+  const g=ctx.createLinearGradient(x,y,x+s,y+s);
+  g.addColorStop(0,C.accent); g.addColorStop(1,C.accent2);
+  ctx.fillStyle=g; rr(ctx,x,y,s,s,s*0.28); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.font=`800 ${s*0.52}px Manrope, Arial`;
+  ctx.textAlign='center'; ctx.fillText('N', x+s/2, y+s*0.68); ctx.textAlign='left';
+}
+function footer(ctx, dark=false){
+  brandMark(ctx,80,H-190,84);
+  ctx.fillStyle=dark?'#2a2f4a':C.white; ctx.font='800 40px Manrope, Arial';
+  ctx.fillText('News_92 Studio',190,H-135);
+  ctx.fillStyle=dark?'#6b7290':C.mute; ctx.font='600 30px Manrope, Arial';
+  ctx.fillText('@news_92 · заказ в Telegram',190,H-92);
+}
+
+/* ---------- постеры ---------- */
+const POSTERS=[
+{ name:'01-hook', title:'Хук: «мне 17»', draw(ctx){
+  bgGradient(ctx,'#0b0d1f','#241041');
+  orb(ctx,180,300,560,C.accent,.55); orb(ctx,940,760,520,C.accent2,.4);
+  orb(ctx,540,1500,600,C.cyan,.16);
+  grid(ctx,.03);
+  ctx.textAlign='left';
+  pill(ctx,80,300,'ДИЗАЙН · САЙТЫ · ИГРЫ',30,'rgba(255,255,255,.1)',C.white);
+  ctx.fillStyle=C.white; ctx.font='800 132px Manrope, Arial';
+  ctx.fillText('МНЕ 17,',80,560);
+  ctx.fillText('И Я ДЕЛАЮ',80,700);
+  gradText(ctx,'САЙТЫ',80,840,132,'#8fa0ff','#d9a6ff');
+  wrap(ctx,'С нуля, без студии и вложений. Беру недорого, потому что коплю на образование и собираю портфолио.',80,960,900,56,34,C.mute);
+  const g=ctx.createLinearGradient(80,0,700,0); g.addColorStop(0,C.accent); g.addColorStop(1,C.accent2);
+  ctx.fillStyle=g; rr(ctx,80,1180,520,110,55); ctx.fill();
+  ctx.fillStyle=C.white; ctx.font='800 46px Manrope, Arial';
+  ctx.fillText('от 350 ₽ за сайт',122,1250);
+  footer(ctx);
+}},
+
+{ name:'02-price', title:'Цена: 350 ₽', draw(ctx){
+  bgGradient(ctx,'#07091a','#101a3d');
+  orb(ctx,900,320,600,C.accent,.45); orb(ctx,140,1400,560,C.cyan,.2);
+  grid(ctx,.035);
+  ctx.textAlign='left';
+  ctx.fillStyle=C.mute; ctx.font='800 34px Manrope, Arial';
+  ctx.fillText('САЙТ-ВИЗИТКА ПОД КЛЮЧ',80,300);
+  gradText(ctx,'350 ₽',80,560,210,'#7c8cff','#25e0f0');
+  ctx.fillStyle=C.white; ctx.font='800 54px Manrope, Arial';
+  ctx.fillText('и он уже в интернете',80,650);
+  const items=['Современная страница под ваш проект','Адаптация под телефон','Кнопки связи и форма заявки','Публикация и настройка домена','Две правки уже в цене'];
+  let y=800;
+  items.forEach(t=>{
+    const g=ctx.createLinearGradient(80,0,110,0); g.addColorStop(0,C.accent); g.addColorStop(1,C.cyan);
+    ctx.fillStyle=g; rr(ctx,80,y-26,14,14,4); ctx.fill();
+    ctx.fillStyle=C.white; ctx.font='600 36px Manrope, Arial';
+    ctx.fillText(t,124,y); y+=78;
+  });
+  ctx.fillStyle='rgba(255,255,255,.07)'; rr(ctx,80,1330,920,150,26); ctx.fill();
+  ctx.strokeStyle='rgba(124,140,255,.4)'; ctx.lineWidth=2; rr(ctx,80,1330,920,150,26); ctx.stroke();
+  ctx.fillStyle=C.gold; ctx.font='800 40px Manrope, Arial';
+  ctx.fillText('Первый заказ — скидка 20%',120,1400);
+  ctx.fillStyle=C.mute; ctx.font='600 30px Manrope, Arial';
+  ctx.fillText('промокод START20',120,1445);
+  footer(ctx);
+}},
+
+{ name:'03-3d', title:'3D в браузере', draw(ctx){
+  bgGradient(ctx,'#05060f','#1b0f2e');
+  orb(ctx,540,700,720,C.accent2,.42); orb(ctx,200,1500,520,C.accent,.3);
+  ctx.textAlign='left';
+  pill(ctx,80,280,'РЕДКО КТО ТАК УМЕЕТ',30,'rgba(255,255,255,.1)',C.white);
+  ctx.fillStyle=C.white; ctx.font='800 116px Manrope, Arial';
+  ctx.fillText('3D ПРЯМО',80,520);
+  gradText(ctx,'НА САЙТЕ',80,650,116,'#8fa0ff','#25e0f0');
+  wrap(ctx,'Не картинка, а живая сцена: вращается, реагирует на движение и работает даже с телефона.',80,760,900,56,34,C.mute);
+  // условная 3D-сцена
+  const bx=80, by=930, bw=920, bh=560;
+  ctx.fillStyle='rgba(255,255,255,.05)'; rr(ctx,bx,by,bw,bh,28); ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.14)'; ctx.lineWidth=2; rr(ctx,bx,by,bw,bh,28); ctx.stroke();
+  ctx.save(); rr(ctx,bx,by,bw,bh,28); ctx.clip();
+  orb(ctx,bx+bw/2,by+bh/2,340,C.accent,.5);
+  // куб в перспективе
+  const cx=bx+bw/2, cy=by+bh/2, s=150;
+  const top=[[cx,cy-s*1.05],[cx+s,cy-s*0.5],[cx,cy],[cx-s,cy-s*0.5]];
+  const left=[[cx-s,cy-s*0.5],[cx,cy],[cx,cy+s*0.95],[cx-s,cy+s*0.45]];
+  const right=[[cx+s,cy-s*0.5],[cx,cy],[cx,cy+s*0.95],[cx+s,cy+s*0.45]];
+  const face=(pts,fill)=>{ ctx.beginPath(); ctx.moveTo(...pts[0]); pts.slice(1).forEach(p=>ctx.lineTo(...p)); ctx.closePath(); ctx.fillStyle=fill; ctx.fill(); };
+  face(top,'rgba(140,155,255,.95)'); face(left,'rgba(80,95,220,.9)'); face(right,'rgba(55,65,170,.9)');
+  ctx.restore();
+  ctx.fillStyle=C.mute; ctx.font='600 30px Manrope, Arial';
+  ctx.fillText('от 1800 ₽ · сцена, логотип или товар в объёме',80,1560);
+  footer(ctx);
+}},
+
+{ name:'04-services', title:'Все услуги', draw(ctx){
+  bgGradient(ctx,'#080a18','#151033');
+  orb(ctx,980,240,520,C.accent,.35); orb(ctx,120,1660,520,C.accent2,.3);
+  grid(ctx,.03);
+  ctx.textAlign='left';
+  ctx.fillStyle=C.white; ctx.font='800 96px Manrope, Arial';
+  ctx.fillText('ЧТО МОЖНО',80,300);
+  gradText(ctx,'ЗАКАЗАТЬ',80,405,96,'#8fa0ff','#d9a6ff');
+  const rows=[['Карточка товара','от 100 ₽'],['Логотип','500 ₽'],['Сайт-визитка','350 ₽'],
+              ['Лендинг','700 ₽'],['Telegram-бот','500 ₽'],['2D-игра','от 350 ₽'],
+              ['3D-визуализация','1800 ₽'],['3D-сцена на сайт','3500 ₽']];
+  let y=560;
+  rows.forEach(([n,p],i)=>{
+    ctx.fillStyle=i%2?'rgba(255,255,255,.04)':'rgba(255,255,255,.07)';
+    rr(ctx,80,y,920,110,20); ctx.fill();
+    ctx.fillStyle=C.white; ctx.font='700 40px Manrope, Arial';
+    ctx.fillText(n,124,y+68);
+    ctx.textAlign='right';
+    ctx.font='800 42px Manrope, Arial';
+    const g=ctx.createLinearGradient(700,0,960,0); g.addColorStop(0,'#8fa0ff'); g.addColorStop(1,'#25e0f0');
+    ctx.fillStyle=g; ctx.fillText(p,960,y+68);
+    ctx.textAlign='left';
+    y+=126;
+  });
+  footer(ctx);
+}},
+
+{ name:'05-promo', title:'Скидка 20%', draw(ctx){
+  bgGradient(ctx,'#160b2e','#3a1250');
+  orb(ctx,540,540,700,C.accent2,.5); orb(ctx,540,1500,560,C.gold,.18);
+  ctx.textAlign='center';
+  ctx.fillStyle=C.gold; ctx.font='800 40px Manrope, Arial';
+  ctx.fillText('ПЕРВЫЙ ЗАКАЗ',W/2,420);
+  ctx.fillStyle=C.white; ctx.font='800 260px Manrope, Arial';
+  ctx.fillText('−20%',W/2,700);
+  ctx.font='700 46px Manrope, Arial'; ctx.fillStyle=C.mute;
+  ctx.fillText('на любую услугу студии',W/2,790);
+  // купон
+  ctx.setLineDash([16,12]); ctx.strokeStyle=C.gold; ctx.lineWidth=4;
+  rr(ctx,180,920,720,220,28); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle=C.gold; ctx.font='800 34px Manrope, Arial';
+  ctx.fillText('ПРОМОКОД',W/2,1000);
+  ctx.fillStyle=C.white; ctx.font='800 110px Manrope, Arial';
+  ctx.fillText('START20',W/2,1105);
+  ctx.fillStyle=C.mute; ctx.font='600 34px Manrope, Arial';
+  ctx.fillText('Назовите его при заказе — скидка применится сразу',W/2,1250);
+  ctx.textAlign='left';
+  footer(ctx);
+}},
+];
+
+/* ---------- отрисовка ---------- */
+async function render(){
+  await document.fonts.load('800 100px Manrope');
+  await document.fonts.load('600 40px Manrope');
+  const sheet=document.getElementById('sheet'); sheet.innerHTML='';
+  window.__canvases=[];
+  POSTERS.forEach(p=>{
+    const wrapEl=document.createElement('div'); wrapEl.className='item';
+    const cv=document.createElement('canvas'); cv.width=W; cv.height=H;
+    const ctx=cv.getContext('2d');
+    ctx.textBaseline='alphabetic';
+    p.draw(ctx);
+    wrapEl.appendChild(cv);
+    const cap=document.createElement('div'); cap.className='cap';
+    cap.innerHTML=`<b>${p.title}</b><a href="#">скачать</a>`;
+    cap.querySelector('a').onclick=e=>{ e.preventDefault(); save(cv,p.name); };
+    cv.style.cursor='pointer'; cv.onclick=()=>save(cv,p.name);
+    wrapEl.appendChild(cap);
+    sheet.appendChild(wrapEl);
+    window.__canvases.push({name:p.name, cv});
+  });
+}
+function save(cv,name){
+  cv.toBlob(b=>{
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(b); a.download=`news92-${name}.png`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+  },'image/png');
+}
+document.getElementById('dl').onclick=()=>window.__canvases.forEach((c,i)=>setTimeout(()=>save(c.cv,c.name),i*400));
+document.getElementById('re').onclick=render;
+render();
+</script>
+</body>
+</html>
