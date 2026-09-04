@@ -442,11 +442,45 @@ a{text-decoration:none;color:inherit}
 .my-order{display:flex;justify-content:space-between;gap:10px;font-size:11px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .my-order span{color:var(--muted)}
 
+/* ==== «что ещё можно заказать» ==== */
+.more-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.more-item{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,rgba(24,31,70,.7),rgba(15,20,46,.75));color:var(--text);font-family:inherit;cursor:pointer;transition:border-color .2s,transform .2s}
+.more-item:hover{border-color:#4a58a0;transform:translateY(-2px)}
+.more-item b{font-size:13.5px;font-weight:800}
+.more-item span{font-size:11.5px;color:var(--muted);line-height:1.5}
+.more-item i{margin-top:6px;font-style:normal;font-weight:900;font-size:14px;color:#8d9bff}
+
+/* ==== блок «обо мне» ==== */
+.story-card{border:1px solid rgba(109,92,255,.34);border-radius:var(--r-lg);padding:30px 32px;background:linear-gradient(150deg,rgba(109,92,255,.16),rgba(180,85,255,.07) 50%,rgba(255,255,255,.02))}
+.story-text h2{font-size:30px;letter-spacing:-1px;margin-bottom:14px}
+.story-text p{color:var(--muted);font-size:13.5px;line-height:1.8;max-width:760px;margin-bottom:12px}
+.story-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+@media(max-width:850px){
+  .more-grid{grid-template-columns:1fr 1fr}
+  .story-card{padding:22px 18px}
+  .story-text h2{font-size:24px}
+}
+@media(max-width:480px){ .more-grid{grid-template-columns:1fr} }
+
 .demo-card{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .demo-card h3{margin-top:9px}
 .demo-card p{max-width:560px;margin-top:6px}
 .demo-card .btn{white-space:nowrap;flex:none}
 .charity-note{color:var(--muted);font-size:11.5px;line-height:1.7;margin-top:16px}
+
+/* ==== шапка на телефоне ====
+   В вошедшем состоянии в строку не помещалось: бренду и кнопкам нужно
+   ~476px, а на телефоне доступно ~355 — кнопка «Заказать» уезжала за экран.
+   Убираем дубли: заказ есть в меню и на каждой карточке, имя — в профиле. */
+@media(max-width:600px){
+  .actions > .btn[data-order]{display:none}
+  #userChip > span:not([class]){display:none}     /* оставляем аватар и стрелку */
+  #userChip{padding-left:4px;padding-right:4px;gap:4px}
+  .brand > span:last-child{font-size:13px}
+}
+@media(max-width:380px){
+  .brand > span:last-child{display:none}          /* совсем узкие: только логотип */
+}
 
 /* ==== мобильная производительность прокрутки ====
    На телефоне самые дорогие эффекты — backdrop-filter, большие blur-фильтры
@@ -518,6 +552,7 @@ a{text-decoration:none;color:inherit}
     <a href="#sites" data-scroll="#sites">Сайты</a>
     <a href="#games" data-scroll="#games">2D-игры</a>
     <a href="#code" data-scroll="#code">Код</a>
+    <a href="#threed" data-scroll="#threed">3D</a>
     <a href="#calculator" data-scroll="#calculator">Цены</a>
     <a href="#charity" data-scroll="#charity">Фондам</a>
     <button type="button" data-tab="reviews">Отзывы</button>
@@ -541,6 +576,9 @@ a{text-decoration:none;color:inherit}
   <a href="#games" data-scroll="#games">🎮 2D-игры</a>
   <a href="#code" data-scroll="#code">⌨️ Программирование</a>
   <a href="#calculator" data-scroll="#calculator">🧮 Калькулятор</a>
+  <a href="#threed" data-scroll="#threed">🧊 3D и анимация</a>
+  <a href="#more" data-scroll="#more">➕ Ещё услуги</a>
+  <a href="#story" data-scroll="#story">👋 Обо мне</a>
   <a href="#charity" data-scroll="#charity">🤝 Помощь фондам</a>
   <button type="button" data-tab="reviews">⭐ Отзывы</button>
   <button type="button" data-tab="orders" class="hidden" id="drawerOrders">📦 Мои заказы</button>
@@ -718,8 +756,36 @@ a{text-decoration:none;color:inherit}
     </div>
   </div></section>
 
+
+  <section class="section reveal" id="threed"><div class="container">
+    <div class="section-head"><div><span class="sec-index">08 — 3D</span><h2>3D и анимация</h2><p>Объёмная графика — самое дорогое, что я делаю, и самое заметное. Такие вещи выделяют бренд среди плоских картинок конкурентов.</p></div></div>
+    <div class="grid">
+      <article class="card"><span class="tag gold">ПРЕМИУМ</span><div class="price">2500 ₽</div><h3>3D-логотип с анимацией</h3><p>Ваш логотип в объёме: вращение, блики, металл или стекло. Готовый ролик для шапки сайта, заставки видео или сторис.</p><ul class="list"><li>Объёмная модель по вашему логотипу</li><li>Анимация 5–8 секунд, прозрачный фон</li><li>Видео и картинка в высоком качестве</li></ul><button class="btn full grad" type="button" data-order="3D-логотип с анимацией" data-price="2500">Заказать</button></article>
+      <article class="card"><span class="tag">ТОВАР</span><div class="price">1800 ₽</div><h3>3D-визуализация товара</h3><p>Товар показан объёмно и со всех сторон — то, что невозможно снять на телефон. Хорошо работает на маркетплейсах.</p><ul class="list"><li>Модель товара по фото и размерам</li><li>3–5 ракурсов со светом</li><li>Вращение 360° по желанию</li></ul><button class="btn full" type="button" data-order="3D-визуализация товара" data-price="1800">Заказать</button></article>
+      <article class="card"><span class="tag gold">СИЛЬНО</span><div class="price">3500 ₽</div><h3>3D-сцена для сайта</h3><p>Живая объёмная сцена прямо на странице: вращается, реагирует на курсор. Как демо игры на этом сайте — только под ваш бренд.</p><ul class="list"><li>Сцена, встроенная в ваш сайт</li><li>Работает и на телефоне</li><li>Настройка цветов под бренд</li></ul><button class="btn full grad" type="button" data-order="3D-сцена для сайта" data-price="3500">Заказать</button></article>
+    </div>
+  </div></section>
+
+  <section class="section reveal" id="more"><div class="container">
+    <div class="section-head"><div><span class="sec-index">10 — ЕЩЁ</span><h2>Что ещё можно заказать</h2><p>Небольшие задачи, которые делаю быстро. Если вашей задачи в списке нет — напишите, скорее всего возьмусь.</p></div></div>
+    <div class="more-grid">
+      <button class="more-item" type="button" data-order="Логотип" data-price="500"><b>Логотип</b><span>простой и понятный знак</span><i>500 ₽</i></button>
+      <button class="more-item" type="button" data-order="Оформление Telegram-канала" data-price="400"><b>Оформление Telegram-канала</b><span>аватар, обложка, описание</span><i>400 ₽</i></button>
+      <button class="more-item" type="button" data-order="Презентация" data-price="600"><b>Презентация</b><span>до 10 слайдов, единый стиль</span><i>600 ₽</i></button>
+      <button class="more-item" type="button" data-order="Резюме и сопроводительное письмо" data-price="350"><b>Резюме</b><span>оформление и текст</span><i>350 ₽</i></button>
+      <button class="more-item" type="button" data-order="Тексты для сайта" data-price="400"><b>Тексты для сайта</b><span>описания услуг и разделов</span><i>400 ₽</i></button>
+      <button class="more-item" type="button" data-order="Рекламный баннер" data-price="300"><b>Рекламный баннер</b><span>для соцсетей и досок</span><i>300 ₽</i></button>
+      <button class="more-item" type="button" data-order="Favicon и иконки" data-price="200"><b>Favicon и иконки</b><span>значок сайта и набор иконок</span><i>200 ₽</i></button>
+      <button class="more-item" type="button" data-order="Таблица с автоматизацией" data-price="700"><b>Умная таблица</b><span>Google Sheets со считалкой</span><i>700 ₽</i></button>
+      <button class="more-item" type="button" data-order="Починить чужой сайт" data-price="500"><b>Починить чужой сайт</b><span>правки и сломанная вёрстка</span><i>500 ₽</i></button>
+      <button class="more-item" type="button" data-order="Обложка для видео" data-price="250"><b>Обложка для видео</b><span>превью для YouTube и Shorts</span><i>250 ₽</i></button>
+      <button class="more-item" type="button" data-order="Приглашение или афиша" data-price="350"><b>Афиша, приглашение</b><span>событие, день рождения</span><i>350 ₽</i></button>
+      <button class="more-item" type="button" data-order="Индивидуальный проект"><b>Своя задача</b><span>опишите — обсудим цену</span><i>?</i></button>
+    </div>
+  </div></section>
+
   <section class="section reveal" id="calculator"><div class="container">
-    <div class="section-head"><div><span class="sec-index">08 — ЦЕНА</span><h2>Калькулятор со скидками</h2><p>Посчитайте стоимость с учётом объёма, срочности и промокода — и сразу отправьте заявку.</p></div></div>
+    <div class="section-head"><div><span class="sec-index">09 — ЦЕНА</span><h2>Калькулятор со скидками</h2><p>Посчитайте стоимость с учётом объёма, срочности и промокода — и сразу отправьте заявку.</p></div></div>
     <div class="calc">
       <div class="card">
         <div class="field"><label for="calcService">Услуга</label><select id="calcService">
@@ -797,8 +863,25 @@ a{text-decoration:none;color:inherit}
     </div>
   </div></section>
 
+
+  <section class="section reveal" id="story"><div class="container">
+    <div class="story-card">
+      <div class="story-text">
+        <span class="sec-index">ОБО МНЕ</span>
+        <h2>Мне 17, и я делаю это сам</h2>
+        <p>Я из России. Всё, что вы видите на этом сайте, собрано мной с нуля — без студии за спиной, без вложений и без команды. Учился по ходу дела: сначала простые карточки, потом сайты, теперь 3D и игры.</p>
+        <p>Цены здесь ниже рыночных осознанно. Мне сейчас важнее опыт и репутация, чем заработок: каждый выполненный заказ — это ещё одна работа в портфолио и ещё один человек, который может меня посоветовать.</p>
+        <p>Деньги с заказов я откладываю на образование и на то, чтобы сделать счастливым отца. Так что если закажете даже что-то небольшое — вы вкладываетесь не в абстрактную студию, а в конкретного человека, который очень старается.</p>
+        <div class="story-actions">
+          <button class="btn grad" type="button" data-order="Индивидуальный проект">Обсудить задачу</button>
+          <a class="btn ghost" href="https://t.me/news_92" target="_blank" rel="noopener">Написать лично</a>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
   <section class="section reveal" id="charity"><div class="container">
-    <div class="section-head"><div><span class="sec-index">09 — ПОМОЩЬ</span><h2>Помощь фондам</h2><p>Небольшая независимая мастерская, но даже маленький сайт может напомнить о важном. Ниже — проверенные российские фонды. Переход по ссылке не связан с заказом: это просто место, где можно узнать больше и помочь напрямую.</p></div></div>
+    <div class="section-head"><div><span class="sec-index">11 — ПОМОЩЬ</span><h2>Помощь фондам</h2><p>Небольшая независимая мастерская, но даже маленький сайт может напомнить о важном. Ниже — проверенные российские фонды. Переход по ссылке не связан с заказом: это просто место, где можно узнать больше и помочь напрямую.</p></div></div>
     <div class="grid">
       <article class="card"><span class="tag">С 1996 ГОДА</span><h3>Русфонд</h3><p>Один из крупнейших фондов страны: помощь тяжелобольным детям, сиротам и людям с инвалидностью, развитие донорства.</p><a class="btn full" href="https://rusfond.ru/" target="_blank" rel="noopener">Перейти на rusfond.ru</a></article>
       <article class="card"><span class="tag">ОНКОЛОГИЯ</span><h3>Подари жизнь</h3><p>Фонд Чулпан Хаматовой и Дины Корзун: лечение и реабилитация детей и молодых взрослых с онкологическими и гематологическими заболеваниями.</p><a class="btn full" href="https://podari-zhizn.ru/" target="_blank" rel="noopener">Перейти на podari-zhizn.ru</a></article>
@@ -808,7 +891,7 @@ a{text-decoration:none;color:inherit}
   </div></section>
 
   <section class="section reveal" id="faq"><div class="container">
-    <div class="section-head"><div><span class="sec-index">09 — ВОПРОСЫ</span><h2>Частые вопросы</h2></div></div>
+    <div class="section-head"><div><span class="sec-index">12 — ВОПРОСЫ</span><h2>Частые вопросы</h2></div></div>
     <div class="faq">
       <div class="faq-item"><button type="button" data-faq>Как проходит заказ?</button><div class="answer">Вы выбираете услугу и оставляете контакт. Я связываюсь с вами в Telegram, уточняю детали, называю точную цену и срок. После согласования беру предоплату 50%, остальное — когда работа принята.</div></div>
       <div class="faq-item"><button type="button" data-faq>Сколько правок входит в цену?</button><div class="answer">Два круга правок. Это значит: показываю вариант, вы собираете замечания одним списком, я вношу их. Так дважды. Дальнейшие доработки — по отдельной договорённости, обычно от 100 ₽.</div></div>
@@ -1016,7 +1099,7 @@ const searchData=[
  ['🧾','Как проходит работа','Этапы и предоплата','#process'],
  ['🖼','Примеры работ','Портфолио','#works'],
  ['🏷','Скидки и промокоды','До −35% при заказе от 3 позиций','#calculator'],
- ['🧮','Калькулятор','Рассчитать проект','#calculator'],['⭐','Отзывы','Мнения клиентов','__reviews'],
+ ['🧮','Калькулятор','Рассчитать проект','#calculator'],['🧊','3D и анимация','От 1800 ₽','#threed'],['➕','Ещё услуги','Мелкие задачи от 200 ₽','#more'],['👋','Обо мне','Кто делает эти проекты','#story'],['⭐','Отзывы','Мнения клиентов','__reviews'],
  ['❓','FAQ','Частые вопросы','#faq']
 ];
 function renderSearch(q=''){
