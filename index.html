@@ -841,6 +841,12 @@ a{text-decoration:none;color:inherit}
 
     <div class="review-form-wrap hidden" id="reviewFormWrap"></div>
 
+    <!-- виден только администратору; наполняется из renderModeration() -->
+    <div class="hidden" id="moderationBlock">
+      <div class="section-head" style="margin-top:40px"><div><h2>На модерации <span class="tag gold" id="modCount">0</span></h2><p>Эти отзывы видите только вы. Пока не одобрите — на сайте их нет.</p></div></div>
+      <div class="grid" id="moderationGrid"></div>
+    </div>
+
     <div class="section-head" style="margin-top:40px"><div><h2>Все отзывы</h2></div></div>
     <div class="grid" id="reviewGrid"></div>
   </div>
@@ -1149,7 +1155,7 @@ function order(service='Индивидуальный проект',price=''){
   const user=getUser();
   if(user && !$('#orderContact').value.trim()) $('#orderContact').value=user.email||'';
   if(user && !$('#orderName').value.trim()) $('#orderName').value=user.name||'';
-  renderMyOrders(); tickCooldown(); restoreDraft(); hideRescue();
+  renderMyOrders(); tickCooldown(); renderModeration(); restoreDraft(); hideRescue();
   open('orderOverlay'); setTimeout(()=>$('#orderName')?.focus(),80);
 }
 $$('[data-order]').forEach(b=>b.addEventListener('click',()=>order(b.dataset.order,b.dataset.price||'')));
@@ -1534,6 +1540,7 @@ function updateAuthUI(){
   $('#navOrders')?.classList.toggle('hidden',!user);
   $('#drawerOrders')?.classList.toggle('hidden',!user);
   renderReviewGate();
+  renderModeration();
 }
 const renderAuthState = updateAuthUI;   // прежнее имя функции продолжает работать
 
@@ -1683,6 +1690,59 @@ async function loadMyReview(){
   const { data } = await sb.from('reviews').select('*').eq('user_id', user.sub).maybeSingle();
   MY_REVIEW = data || null;
 }
+/* ================== модерация отзывов (только для владельца сайта) ==================
+   Блок виден лишь при входе под аккаунтом администратора. Это удобство, а не защита:
+   настоящая защита — в политиках Supabase, где право менять approved выдано
+   только этому user_id. Даже если кто-то подделает проверку в браузере,
+   база молча откажет. */
+const ADMIN_UID = 'b7ad6c3f-beff-4052-afa3-62cc89190f78';
+const isAdmin = () => { const u = getUser(); return !!u && u.sub === ADMIN_UID; };
+
+async function renderModeration(){
+  const block=$('#moderationBlock'), grid=$('#moderationGrid'); if(!block||!grid) return;
+  if(!isAdmin()){ block.classList.add('hidden'); return; }
+  const sb=initSupabase(); if(!sb) return;
+  const { data, error } = await sb.from('reviews')
+    .select('id,username,avatar_url,rating,text,service,created_at')
+    .eq('approved', false).order('created_at',{ascending:false});
+  if(error){
+    block.classList.remove('hidden');
+    grid.innerHTML='<article class="card"><h3>Не удалось загрузить</h3><p>Похоже, в Supabase ещё не выданы права на модерацию. Выполните SQL из инструкции.</p></article>';
+    return;
+  }
+  const list=data||[];
+  block.classList.remove('hidden');
+  $('#modCount').textContent = list.length;
+  if(!list.length){ grid.innerHTML='<article class="card"><h3>Пусто</h3><p>Новых отзывов на модерации нет.</p></article>'; return; }
+  grid.innerHTML='';
+  list.forEach(r=>{
+    const c=document.createElement('article'); c.className='card';
+    c.innerHTML=`<span class="tag">★ ${esc(r.rating)}/5${r.service?' · '+esc(r.service):''}</span>
+      <h3 style="margin-top:10px">${esc(r.username||'Без имени')}</h3>
+      <p>${esc(r.text)}</p>
+      <div class="choice">
+        <button class="btn grad" type="button" data-mod-ok="${r.id}">Одобрить</button>
+        <button class="btn ghost" type="button" data-mod-no="${r.id}">Удалить</button>
+      </div>`;
+    grid.appendChild(c);
+  });
+  grid.querySelectorAll('[data-mod-ok]').forEach(b=>b.addEventListener('click',()=>moderate(b.dataset.modOk,true,b)));
+  grid.querySelectorAll('[data-mod-no]').forEach(b=>b.addEventListener('click',()=>moderate(b.dataset.modNo,false,b)));
+}
+
+async function moderate(id, approve, btn){
+  const sb=initSupabase(); if(!sb) return;
+  const old=btn.textContent; btn.disabled=true; btn.textContent='...';
+  const { error } = approve
+    ? await sb.from('reviews').update({approved:true}).eq('id',id)
+    : await sb.from('reviews').delete().eq('id',id);
+  btn.disabled=false; btn.textContent=old;
+  if(error){ toast('Не получилось', 'База отклонила действие: '+error.message.slice(0,60), true); return; }
+  toast(approve?'Отзыв опубликован':'Отзыв удалён', approve?'Теперь его видят все посетители.':'Запись убрана из базы.');
+  await renderModeration();
+  await loadReviews();
+}
+
 function renderReviewGate(){
   const gate=$('#reviewGate'), formWrap=$('#reviewFormWrap'); if(!gate||!formWrap) return;
   if(!SUPABASE_READY()){

@@ -105,10 +105,27 @@ drop policy if exists reviews_delete_own on public.reviews;
 create policy reviews_delete_own on public.reviews
   for delete using (auth.uid() = user_id);
 
--- ВАЖНО: политики UPDATE для reviews нет вообще.
--- Поэтому обычный пользователь не может ни выставить себе approved = true,
--- ни поменять оценку или чужой user_id. Одобряете отзывы только вы —
--- через Supabase → Table editor → reviews → approved = true.
+-- ВАЖНО: обычной политики UPDATE для reviews нет.
+-- Поэтому пользователь не может ни выставить себе approved = true,
+-- ни поменять оценку или чужой user_id.
+
+-- --- модерация прямо на сайте ---
+-- Право одобрять и удалять отзывы выдано ровно одному аккаунту — владельцу.
+-- Именно это, а не проверка в браузере, защищает флаг approved: подделать
+-- условие в JS можно, но база откажет всем, кроме этого user_id.
+-- ЕСЛИ МЕНЯЕТЕ ВЛАДЕЛЬЦА: подставьте новый UID здесь и в ADMIN_UID в index.html.
+drop policy if exists reviews_select_admin on public.reviews;
+create policy reviews_select_admin on public.reviews
+  for select using (auth.uid() = 'b7ad6c3f-beff-4052-afa3-62cc89190f78');
+
+drop policy if exists reviews_update_admin on public.reviews;
+create policy reviews_update_admin on public.reviews
+  for update using (auth.uid() = 'b7ad6c3f-beff-4052-afa3-62cc89190f78')
+  with check  (auth.uid() = 'b7ad6c3f-beff-4052-afa3-62cc89190f78');
+
+drop policy if exists reviews_delete_admin on public.reviews;
+create policy reviews_delete_admin on public.reviews
+  for delete using (auth.uid() = 'b7ad6c3f-beff-4052-afa3-62cc89190f78');
 
 
 -- ------------------------------------------------------------
