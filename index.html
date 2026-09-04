@@ -14,12 +14,12 @@
 <meta property="og:title" content="News_92 Studio — дизайн, сайты и 2D-игры">
 <meta property="og:description" content="Доступный премиальный дизайн, сайты и лёгкие 2D-игры на заказ. Понятные цены и аккуратное оформление.">
 <meta property="og:url" content="https://news92-tg.github.io/Design-Studio/">
-<meta property="og:image" content="https://news92-tg.github.io/Design-Studio/og-image.png">
+<meta property="og:image" content="https://news92-tg.github.io/Design-Studio/og-image.jpg">
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="News_92 Studio — дизайн, сайты и 2D-игры">
 <meta name="twitter:description" content="Доступный премиальный дизайн, сайты и лёгкие 2D-игры на заказ.">
-<meta name="twitter:image" content="https://news92-tg.github.io/Design-Studio/og-image.png">
+<meta name="twitter:image" content="https://news92-tg.github.io/Design-Studio/og-image.jpg">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -391,6 +391,20 @@ a{text-decoration:none;color:inherit}
 .quick button:hover{background:var(--a);border-color:var(--a)}
 
 /* ==== процесс ==== */
+/* блок доверия */
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.trust-item{padding:16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,rgba(109,92,255,.10),rgba(37,224,240,.04));display:flex;gap:11px;align-items:flex-start}
+.trust-item .ti-ic{font-size:18px;line-height:1;flex:none;margin-top:1px}
+.trust-item b{display:block;font-size:13px;margin-bottom:3px}
+.trust-item span{font-size:12px;color:var(--muted);line-height:1.55}
+/* спасательный экран, если заявка не ушла */
+.rescue{border:1px solid rgba(255,107,138,.4);background:rgba(255,107,138,.07);border-radius:14px;padding:14px;margin-bottom:14px;font-size:13px;line-height:1.6}
+.rescue h4{font-size:14px;margin-bottom:6px;color:var(--bad)}
+.rescue .why{color:var(--muted);font-size:12px;margin:6px 0 12px;word-break:break-word}
+.rescue-actions{display:flex;flex-wrap:wrap;gap:8px}
+.rescue-actions .btn{min-height:40px;font-size:11px;flex:1 1 auto}
+.rescue pre{display:none;white-space:pre-wrap;font:inherit;font-size:12px;color:var(--text);background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:10px;user-select:all}
+.rescue.manual pre{display:block}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:s}
 .step{padding:20px 18px;border:1px solid var(--line);border-radius:14px;background:rgba(14,17,32,.6);position:relative}
 .step:before{counter-increment:s;content:counter(s,decimal-leading-zero);display:block;font-size:30px;font-weight:700;font-family:'Space Grotesk',Manrope,sans-serif;background:linear-gradient(135deg,var(--a),var(--c));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
@@ -431,6 +445,7 @@ a{text-decoration:none;color:inherit}
 @media(max-width:850px){
   .quick-grid{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,1fr)}
+  .trust{grid-template-columns:repeat(2,1fr)}
   .work-grid{grid-template-columns:1fr}
   .section{padding:52px 0}
   .section-head h2{font-size:29px}
@@ -601,6 +616,12 @@ a{text-decoration:none;color:inherit}
       <div class="step"><h4>Согласование</h4><p>Обсуждаем задачу, сроки и цену. Договорились — беру предоплату 50%.</p></div>
       <div class="step"><h4>Работа</h4><p>Делаю первый вариант и показываю его вам. В цену входят 2 круга правок.</p></div>
       <div class="step"><h4>Передача</h4><p>Отдаю готовые файлы, остаток оплаты — после того, как вы всё приняли.</p></div>
+    </div>
+    <div class="trust">
+      <div class="trust-item"><span class="ti-ic">💳</span><div><b>Половина — в конце</b><span>Предоплата 50%. Остаток вы платите только после того, как приняли работу.</span></div></div>
+      <div class="trust-item"><span class="ti-ic">✏️</span><div><b>2 круга правок в цене</b><span>Не «одна мелкая правка», а два полноценных круга — они уже посчитаны в стоимости.</span></div></div>
+      <div class="trust-item"><span class="ti-ic">🔒</span><div><b>Цена не растёт по ходу</b><span>Сумму фиксируем до старта. Дороже станет, только если вы сами добавите объём.</span></div></div>
+      <div class="trust-item"><span class="ti-ic">📦</span><div><b>Файлы остаются у вас</b><span>Передаю исходники: дальше правьте сами или отдайте другому исполнителю.</span></div></div>
     </div>
   </div></section>
 
@@ -822,6 +843,17 @@ a{text-decoration:none;color:inherit}
   <div class="modal-head"><h3>Заявка</h3><button class="close" type="button" data-close="orderOverlay">×</button></div>
   <div class="summary" id="orderSummary">Выбранный проект: Индивидуальный проект</div>
   <div class="cooldown-note hidden" id="cooldownNote">⏳ Следующую заявку можно отправить через <b id="cooldownLeft">—</b></div>
+  <div class="rescue hidden" id="rescue">
+    <h4>Заявка не ушла на сервер</h4>
+    <div>Она сохранена в этом браузере и уйдёт сама, как только связь восстановится. Но чтобы не ждать — отправьте её напрямую, это займёт полминуты.</div>
+    <div class="why" id="rescueWhy"></div>
+    <div class="rescue-actions">
+      <button class="btn" type="button" id="rescueCopy">Скопировать текст заявки</button>
+      <a class="btn ghost" id="rescueTg" href="https://t.me/news_92" target="_blank" rel="noopener">Открыть Telegram</a>
+      <button class="btn dark" type="button" id="rescueRetry">Попробовать снова</button>
+    </div>
+    <pre id="rescueText"></pre>
+  </div>
   <form id="orderForm" class="form-grid">
     <div class="field"><label for="orderName">Ваше имя</label><input id="orderName" required autocomplete="name"></div>
     <div class="field"><label for="orderContact">Телефон / Telegram / VK</label><input id="orderContact" required autocomplete="tel"></div>
@@ -1076,7 +1108,7 @@ function order(service='Индивидуальный проект',price=''){
   const user=getUser();
   if(user && !$('#orderContact').value.trim()) $('#orderContact').value=user.email||'';
   if(user && !$('#orderName').value.trim()) $('#orderName').value=user.name||'';
-  renderMyOrders(); tickCooldown();
+  renderMyOrders(); tickCooldown(); restoreDraft(); hideRescue();
   open('orderOverlay'); setTimeout(()=>$('#orderName')?.focus(),80);
 }
 $$('[data-order]').forEach(b=>b.addEventListener('click',()=>order(b.dataset.order,b.dataset.price||'')));
@@ -1087,7 +1119,7 @@ async function sendToBackend(payload){
     const res=await fetch(CONFIG.ORDER_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
     if(!res.ok) return {ok:false, error:'http_'+res.status};
     const data=await res.json().catch(()=>null);
-    if(!data) return {ok:false, error:'bad_response'};
+    if(!data) return {ok:false, error: res.ok ? 'bad_response' : ('http_'+res.status)};
     return data;
   }catch(err){ return {ok:false, error:'network'}; }
 }
@@ -1097,8 +1129,80 @@ async function flushPending(){
   const remain=[]; let sent=0;
   for(const p of q){ const r=await sendToBackend(p); if(r.ok) sent++; else remain.push(p); }
   localStorage.setItem('news92_pending',JSON.stringify(remain));
-  if(sent) toast('Заявки отправлены','Ранее отложенные заявки успешно доставлены.');
+  if(sent){ hideRescue(); toast('Заявки отправлены','Ранее отложенные заявки успешно доставлены.'); }
 }
+const ERR_RU = {
+  not_configured: 'В настройках сайта не указан адрес сервера отправки.',
+  network:        'Браузер не смог достучаться до сервера — возможно, пропала сеть.',
+  bad_response:   'Сервер ответил чем-то, что не похоже на ответ скрипта.',
+  http_401:       'Сервер требует вход в Google. В настройках развёртывания нужно открыть доступ «Все».',
+  http_403:       'Сервер закрыт для посторонних. В настройках развёртывания нужен доступ «Все».',
+  unknown_type:   'Сервер работает, но на нём старая версия скрипта — она не понимает такие заявки.',
+  'BOT_TOKEN или CHAT_ID не заданы': 'Сервер работает, но не знает, куда слать: не заданы BOT_TOKEN и CHAT_ID.'
+};
+function explainError(code){
+  if(!code) return '';
+  if(ERR_RU[code]) return ERR_RU[code];
+  if(String(code).startsWith('http_')) return 'Сервер ответил кодом ' + String(code).slice(5) + '.';
+  return 'Ответ сервера: ' + code;
+}
+function orderAsText(p){
+  return ['Заявка с сайта News_92 Studio',
+    'Услуга: ' + p.service + (p.price ? ' — ' + p.price + ' ₽' : ''),
+    p.promo ? 'Промокод: ' + p.promo : '',
+    'Имя: ' + p.name,
+    'Контакт: ' + p.contact,
+    'Комментарий: ' + p.message].filter(Boolean).join('\n');
+}
+let RESCUE_PAYLOAD = null;
+function showRescue(payload, code){
+  RESCUE_PAYLOAD = payload;
+  $('#rescueText').textContent = orderAsText(payload);
+  $('#rescueWhy').textContent = explainError(code);
+  $('#rescue').classList.remove('hidden');
+}
+function hideRescue(){ $('#rescue')?.classList.add('hidden'); RESCUE_PAYLOAD = null; }
+
+document.addEventListener('click', async e => {
+  if(e.target.id === 'rescueCopy'){
+    const t = orderAsText(RESCUE_PAYLOAD || {});
+    try{ await navigator.clipboard.writeText(t); toast('Скопировано','Вставьте текст в Telegram — я отвечу так же быстро.'); }
+    catch{ $('#rescue').classList.add('manual'); toast('Не вышло скопировать','Текст заявки показан ниже — выделите и скопируйте вручную.',true); }
+  }
+  if(e.target.id === 'rescueRetry'){
+    const b = e.target; b.disabled = true; b.textContent = 'Отправляем...';
+    const r = RESCUE_PAYLOAD ? await sendToBackend(RESCUE_PAYLOAD) : {ok:false,error:'network'};
+    b.disabled = false; b.textContent = 'Попробовать снова';
+    if(r.ok){
+      const q = JSON.parse(localStorage.getItem('news92_pending')||'[]');
+      localStorage.setItem('news92_pending', JSON.stringify(q.filter(x => x.id !== RESCUE_PAYLOAD.id)));
+      hideRescue(); close('orderOverlay');
+      toast('Заявка отправлена','Дошла со второй попытки. Отвечу в Telegram.');
+    } else {
+      $('#rescueWhy').textContent = explainError(r.error);
+      toast('Пока не проходит','Заявка по-прежнему в очереди — отправьте текстом в Telegram.',true);
+    }
+  }
+});
+
+/* черновик заявки: чтобы случайно закрытая форма не стоила клиента */
+const DRAFT_KEY = 'news92_draft';
+function saveDraft(){
+  const d = {name:$('#orderName')?.value||'', contact:$('#orderContact')?.value||'', message:$('#orderMessage')?.value||''};
+  if(d.name||d.contact||d.message) localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+  else localStorage.removeItem(DRAFT_KEY);
+}
+function restoreDraft(){
+  let d; try{ d = JSON.parse(localStorage.getItem(DRAFT_KEY)||'null'); }catch{ d = null; }
+  if(!d) return;
+  if(d.name && !$('#orderName').value) $('#orderName').value = d.name;
+  if(d.contact && !$('#orderContact').value) $('#orderContact').value = d.contact;
+  if(d.message && !$('#orderMessage').value.trim()) $('#orderMessage').value = d.message;
+}
+['#orderName','#orderContact','#orderMessage'].forEach(sel=>{
+  $(sel)?.addEventListener('input', saveDraft);
+});
+
 window.addEventListener('online',flushPending);
 window.addEventListener('load',()=>setTimeout(flushPending,1200));
 
@@ -1187,13 +1291,12 @@ $('#orderForm').addEventListener('submit',async e=>{
   pushOrderLog({ at: Date.now(), service: payload.service });
   renderMyOrders();
   if(result.ok){
-    close('orderOverlay'); e.target.reset(); toast('Заявка отправлена','Заявка передана. Отвечу в Telegram в течение дня.');
-  } else if(result.error==='not_configured'){
-    queuePayload(payload); close('orderOverlay'); e.target.reset();
-    toast('Заявка сохранена','Отправка ещё настраивается — заявка уйдёт автоматически, как только всё будет готово.');
+    hideRescue(); close('orderOverlay'); e.target.reset(); localStorage.removeItem(DRAFT_KEY);
+    toast('Заявка отправлена','Заявка передана. Отвечу в Telegram в течение дня.');
   } else {
-    queuePayload(payload); close('orderOverlay'); e.target.reset();
-    toast('Заявка сохранена','Не удалось отправить сразу — попробуем ещё раз автоматически.',true);
+    queuePayload(payload);
+    showRescue(payload, result.error);
+    toast('Заявка не ушла','Она сохранена — ниже способ отправить её напрямую.',true);
   }
   btn.textContent=old; tickCooldown();
 });
