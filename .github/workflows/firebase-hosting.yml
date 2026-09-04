@@ -18,7 +18,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      # Секрет с сервисным аккаунтом Firebase может быть не задан — тогда деплой
+      # пропускаем, а не роняем сборку. Сайт при этом продолжает выходить
+      # на GitHub Pages, а Actions не краснеет на каждый пуш.
+      - name: Проверить, задан ли секрет Firebase
+        id: secret
+        run: |
+          if [ -n "${{ secrets.FIREBASE_SERVICE_ACCOUNT_NEWS_92 }}" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::FIREBASE_SERVICE_ACCOUNT_NEWS_92 не задан — деплой в Firebase пропущен."
+          fi
+
       - name: Deploy to Firebase Hosting
+        if: steps.secret.outputs.ready == 'true'
         uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"

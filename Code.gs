@@ -12,6 +12,7 @@
  *      BOT_TOKEN — токен бота от @BotFather
  *      CHAT_ID   — ваш chat_id от @userinfobot
  *      SHEET_ID  — (необязательно) ID таблицы Google Sheets для дубля заявок
+ *                  (подойдёт и старое имя ORDERS_SPREADSHEET_ID)
  * 3. «Развернуть» → «Новое развёртывание» → «Веб-приложение»:
  *      Выполнять от имени: Я
  *      У кого есть доступ: Все
@@ -48,9 +49,11 @@ function sendTelegram(text) {
   return { ok: !!body.ok, error: body.ok ? null : JSON.stringify(body) };
 }
 
-/** Необязательный дубль заявок в таблицу — удобно, если Telegram потеряется. */
+/** Необязательный дубль заявок в таблицу — удобно, если Telegram потеряется.
+ *  Название свойства принимаем в обоих вариантах: раньше оно называлось
+ *  ORDERS_SPREADSHEET_ID, и из-за несовпадения имени запись молча не работала. */
 function logToSheet(data) {
-  const id = getProp('SHEET_ID');
+  const id = getProp('SHEET_ID') || getProp('ORDERS_SPREADSHEET_ID');
   if (!id) return;
   const ss = SpreadsheetApp.openById(id);
   let sheet = ss.getSheetByName('Orders');
