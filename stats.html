@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Статистика — News_92 Studio</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+:root{--bg:#080b18;--card:#11162b;--line:#242d52;--text:#f7f8ff;--muted:#a7aed0;--a:#6575ff;--a2:#8a61ff;--cy:#25e0f0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Manrope,Arial,sans-serif;padding:26px 16px 70px;
+     display:flex;flex-direction:column;align-items:center;gap:18px}
+.wrap{width:min(880px,100%);display:flex;flex-direction:column;gap:18px}
+h1{font-size:23px;letter-spacing:-.6px}
+.muted{color:var(--muted);font-size:12.5px;line-height:1.7}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.btn{font-family:inherit;font-weight:800;font-size:12.5px;color:#fff;border:0;border-radius:11px;
+     background:linear-gradient(135deg,var(--a),var(--a2));padding:0 18px;min-height:44px;cursor:pointer}
+.btn.ghost{background:#151926;border:1px solid var(--line)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.tile b{display:block;font-size:30px;letter-spacing:-1px}
+.tile span{display:block;font-size:11.5px;color:var(--muted);margin-top:5px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+td.n{text-align:right;font-weight:800;color:#8d9bff}
+.bar{height:9px;border-radius:5px;background:linear-gradient(90deg,var(--a),var(--cy));min-width:3px}
+.row-bar{display:flex;align-items:center;gap:10px}
+.row-bar span{width:78px;font-size:12px;color:var(--muted);flex:none}
+.row-bar b{width:38px;text-align:right;font-size:12.5px}
+.hint{font-size:11.5px;color:var(--muted);line-height:1.7}
+.hint code{color:#8d9bff}
+@media(max-width:640px){.tiles{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <h1>Статистика заходов</h1>
+    <p class="muted">Страница видна только владельцу. Данные обезличенные: метка источника, страница и откуда пришли.</p>
+  </div>
+
+  <div class="card" id="gate">
+    <p class="muted" style="margin-bottom:12px">Войдите тем же аккаунтом, что и на сайте.</p>
+    <button class="btn" id="login">Войти через Google</button>
+  </div>
+
+  <div id="panel" style="display:none;flex-direction:column;gap:18px">
+    <div class="tiles">
+      <div class="tile"><b id="tToday">—</b><span>сегодня</span></div>
+      <div class="tile"><b id="t7">—</b><span>за 7 дней</span></div>
+      <div class="tile"><b id="t30">—</b><span>за 30 дней</span></div>
+      <div class="tile"><b id="tAll">—</b><span>всего</span></div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:15px;margin-bottom:12px">Откуда приходят</h3>
+      <div id="sources"></div>
+      <p class="hint" style="margin-top:12px">Метка берётся из ссылки: <code>?a=1</code>, <code>?a=2</code> и так далее. Дайте каждому аккаунту свою — и будет видно, какой работает.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:15px;margin-bottom:12px">По дням</h3>
+      <div id="days"></div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:15px;margin-bottom:12px">Последние заходы</h3>
+      <table><thead><tr><th>Когда</th><th>Источник</th><th>Откуда пришли</th></tr></thead><tbody id="recent"></tbody></table>
+    </div>
+
+    <div style="display:flex;gap:8px"><button class="btn ghost" id="reload">Обновить</button><button class="btn ghost" id="logout">Выйти</button></div>
+  </div>
+</div>
+
+<script>
+const CONFIG={
+  SUPABASE_URL:'https://vlssqestytvxpzssrxrz.supabase.co',
+  SUPABASE_ANON_KEY:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsc3NxZXN0eXR2eHB6c3NyeHJ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0NTE4MTMsImV4cCI6MjEwNDAyNzgxM30.051hXYEV68lgYupTGXtE7ghnxjxU5K8EV0rGXOtGxaU'
+};
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const SB=window.supabase.createClient(CONFIG.SUPABASE_URL,CONFIG.SUPABASE_ANON_KEY,
+  {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+
+$('#login').onclick=()=>SB.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});
+$('#logout').onclick=async()=>{ await SB.auth.signOut(); location.reload(); };
+$('#reload').onclick=()=>load();
+
+function dayKey(d){ return d.toISOString().slice(0,10); }
+function human(iso){
+  const d=new Date(iso), now=new Date();
+  const sameDay=d.toDateString()===now.toDateString();
+  const t=d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+  return sameDay ? 'сегодня '+t : d.toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit'})+' '+t;
+}
+function refHost(r){
+  if(!r) return 'прямо';
+  try{ return new URL(r).hostname.replace(/^www\./,''); }catch(e){ return r.slice(0,24); }
+}
+
+async function load(){
+  const { data:{ session } } = await SB.auth.getSession();
+  if(!session){ $('#gate').style.display='block'; $('#panel').style.display='none'; return; }
+  $('#gate').style.display='none'; $('#panel').style.display='flex';
+
+  const { data, error } = await SB.from('visits')
+    .select('created_at,source,referrer').order('created_at',{ascending:false}).limit(5000);
+
+  if(error){
+    $('#panel').innerHTML='<div class="card"><h3 style="font-size:15px">Нет доступа к статистике</h3>'+
+      '<p class="hint" style="margin-top:8px">База отказала: '+esc(error.message)+
+      '. Скорее всего не выполнен SQL с таблицей visits, либо вы вошли не тем аккаунтом.</p></div>';
+    return;
+  }
+
+  const rows=data||[];
+  const now=Date.now(), day=86400000;
+  const cnt=(ms)=>rows.filter(r=>now-new Date(r.created_at).getTime()<=ms).length;
+  $('#tToday').textContent=rows.filter(r=>new Date(r.created_at).toDateString()===new Date().toDateString()).length;
+  $('#t7').textContent=cnt(7*day);
+  $('#t30').textContent=cnt(30*day);
+  $('#tAll').textContent=rows.length;
+
+  // источники
+  const bySrc={};
+  rows.forEach(r=>{ const k=r.source||'прямой заход'; bySrc[k]=(bySrc[k]||0)+1; });
+  const srcList=Object.entries(bySrc).sort((a,b)=>b[1]-a[1]);
+  const max=srcList.length?srcList[0][1]:1;
+  $('#sources').innerHTML = srcList.length
+    ? srcList.map(([k,v])=>`<div class="row-bar" style="margin-bottom:8px"><span>${esc(k)}</span>
+        <div class="bar" style="width:${Math.max(3,Math.round(v/max*100))}%"></div><b>${v}</b></div>`).join('')
+    : '<p class="hint">Пока ни одного захода.</p>';
+
+  // по дням (14 дней)
+  const byDay={};
+  rows.forEach(r=>{ const k=dayKey(new Date(r.created_at)); byDay[k]=(byDay[k]||0)+1; });
+  const days=[];
+  for(let i=13;i>=0;i--){ const d=new Date(now-i*day); const k=dayKey(d); days.push([k,byDay[k]||0]); }
+  const dmax=Math.max(1,...days.map(d=>d[1]));
+  $('#days').innerHTML = days.map(([k,v])=>`<div class="row-bar" style="margin-bottom:7px">
+      <span>${k.slice(8)}.${k.slice(5,7)}</span>
+      <div class="bar" style="width:${Math.max(2,Math.round(v/dmax*100))}%;opacity:${v?1:.25}"></div><b>${v}</b></div>`).join('');
+
+  // последние
+  $('#recent').innerHTML = rows.slice(0,25).map(r=>
+    `<tr><td>${esc(human(r.created_at))}</td><td>${esc(r.source||'прямой')}</td><td class="n">${esc(refHost(r.referrer))}</td></tr>`
+  ).join('') || '<tr><td colspan="3" class="hint">Пусто</td></tr>';
+}
+
+SB.auth.onAuthStateChange(()=>load());
+load();
+</script>
+</body>
+</html>

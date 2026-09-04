@@ -98,6 +98,25 @@ function brandMark(ctx,x,y,s){
   ctx.fillStyle='#fff'; ctx.font=`800 ${s*0.52}px Manrope, Arial`;
   ctx.textAlign='center'; ctx.fillText('N', x+s/2, y+s*0.68); ctx.textAlign='left';
 }
+/* Подсказка вверху: в TikTok кликабельной ссылки в самом ролике нет,
+   поэтому зрителю надо прямо сказать, куда идти. */
+function topHint(ctx, text='ССЫЛКА В ОПИСАНИИ'){
+  ctx.save();
+  ctx.textAlign='center';
+  ctx.font='800 34px Manrope, Arial';
+  const w=ctx.measureText(text).width, padX=34, h=80, bw=w+padX*2, x=(W-bw)/2, y=112;
+  ctx.fillStyle='rgba(255,255,255,.12)';
+  rr(ctx,x,y,bw,h,h/2); ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.3)'; ctx.lineWidth=2;
+  rr(ctx,x,y,bw,h,h/2); ctx.stroke();
+  ctx.fillStyle='#fff';
+  ctx.fillText(text, W/2, y+h/2+12);
+  // стрелка вниз под плашкой
+  ctx.font='800 40px Manrope, Arial';
+  ctx.fillStyle='rgba(255,255,255,.55)';
+  ctx.fillText('↓', W/2, y+h+46);
+  ctx.restore();
+}
 function footer(ctx, dark=false){
   brandMark(ctx,80,H-190,84);
   ctx.fillStyle=dark?'#2a2f4a':C.white; ctx.font='800 40px Manrope, Arial';
@@ -113,6 +132,7 @@ const POSTERS=[
   orb(ctx,180,300,560,C.accent,.55); orb(ctx,940,760,520,C.accent2,.4);
   orb(ctx,540,1500,600,C.cyan,.16);
   grid(ctx,.03);
+  topHint(ctx);
   ctx.textAlign='left';
   pill(ctx,80,300,'ДИЗАЙН · САЙТЫ · ИГРЫ',30,'rgba(255,255,255,.1)',C.white);
   ctx.fillStyle=C.white; ctx.font='800 132px Manrope, Arial';
@@ -131,6 +151,7 @@ const POSTERS=[
   bgGradient(ctx,'#07091a','#101a3d');
   orb(ctx,900,320,600,C.accent,.45); orb(ctx,140,1400,560,C.cyan,.2);
   grid(ctx,.035);
+  topHint(ctx);
   ctx.textAlign='left';
   ctx.fillStyle=C.mute; ctx.font='800 34px Manrope, Arial';
   ctx.fillText('САЙТ-ВИЗИТКА ПОД КЛЮЧ',80,300);
@@ -157,6 +178,7 @@ const POSTERS=[
 { name:'03-3d', title:'3D в браузере', draw(ctx){
   bgGradient(ctx,'#05060f','#1b0f2e');
   orb(ctx,540,700,720,C.accent2,.42); orb(ctx,200,1500,520,C.accent,.3);
+  topHint(ctx);
   ctx.textAlign='left';
   pill(ctx,80,280,'РЕДКО КТО ТАК УМЕЕТ',30,'rgba(255,255,255,.1)',C.white);
   ctx.fillStyle=C.white; ctx.font='800 116px Manrope, Arial';
@@ -186,6 +208,7 @@ const POSTERS=[
   bgGradient(ctx,'#080a18','#151033');
   orb(ctx,980,240,520,C.accent,.35); orb(ctx,120,1660,520,C.accent2,.3);
   grid(ctx,.03);
+  topHint(ctx);
   ctx.textAlign='left';
   ctx.fillStyle=C.white; ctx.font='800 96px Manrope, Arial';
   ctx.fillText('ЧТО МОЖНО',80,300);
@@ -212,6 +235,7 @@ const POSTERS=[
 { name:'05-promo', title:'Скидка 20%', draw(ctx){
   bgGradient(ctx,'#160b2e','#3a1250');
   orb(ctx,540,540,700,C.accent2,.5); orb(ctx,540,1500,560,C.gold,.18);
+  topHint(ctx);
   ctx.textAlign='center';
   ctx.fillStyle=C.gold; ctx.font='800 40px Manrope, Arial';
   ctx.fillText('ПЕРВЫЙ ЗАКАЗ',W/2,420);

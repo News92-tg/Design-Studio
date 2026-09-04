@@ -1249,7 +1249,7 @@ function order(service='Индивидуальный проект',price=''){
   const user=getUser();
   if(user && !$('#orderContact').value.trim()) $('#orderContact').value=user.email||'';
   if(user && !$('#orderName').value.trim()) $('#orderName').value=user.name||'';
-  renderMyOrders(); tickCooldown(); renderModeration(); restoreDraft(); hideRescue();
+  renderMyOrders(); tickCooldown(); restoreDraft(); hideRescue();
   open('orderOverlay'); setTimeout(()=>$('#orderName')?.focus(),80);
 }
 $$('[data-order]').forEach(b=>b.addEventListener('click',()=>order(b.dataset.order,b.dataset.price||'')));
@@ -1784,6 +1784,34 @@ async function loadMyReview(){
   const { data } = await sb.from('reviews').select('*').eq('user_id', user.sub).maybeSingle();
   MY_REVIEW = data || null;
 }
+/* ================== счётчик заходов ==================
+   Пишем только обезличенное: метку рекламного источника из ?a=, страницу
+   и referrer. Ни IP, ни личных данных — этого хватает, чтобы понять,
+   какая реклама работает. Один заход на вкладку, чтобы обновление
+   страницы не накручивало цифры. */
+function trackVisit(){
+  // Метку источника сохраняем всегда и первым делом — даже если заход уже
+  // посчитан: человек мог вернуться по другой ссылке, и важно знать последнюю.
+  const tag = new URL(location.href).searchParams.get('a');
+  if(tag){ try{ localStorage.setItem('news92_src', tag.slice(0,20)); }catch(e){} }
+
+  const sb = initSupabase(); if(!sb) return;
+  try{ if(sessionStorage.getItem('news92_visit_logged')) return; }catch(e){}
+
+  let source = tag;
+  if(!source){ try{ source = localStorage.getItem('news92_src'); }catch(e){} }
+  sb.from('visits').insert({
+    source: source || 'прямой заход',
+    path: location.pathname.slice(0,120),
+    referrer: (document.referrer || '').slice(0,200)
+  }).then(res=>{
+    // Supabase не бросает исключение на ошибке базы, а возвращает её в res.error.
+    // Отмечаем заход учтённым только если он правда записался — иначе при
+    // временном сбое посещение потерялось бы навсегда.
+    if(res && !res.error){ try{ sessionStorage.setItem('news92_visit_logged','1'); }catch(e){} }
+  }, ()=>{ /* статистика не должна мешать сайту работать */ });
+}
+
 /* ================== модерация отзывов (только для владельца сайта) ==================
    Блок виден лишь при входе под аккаунтом администратора. Это удобство, а не защита:
    настоящая защита — в политиках Supabase, где право менять approved выдано
@@ -2168,7 +2196,7 @@ if (activePromo && PROMOS[activePromo]) {
   $('#promoMsg').className = 'promo-msg ok';
 }
 recalc(); renderSearch(); initTilt(); initReveal(); updateAuthUI(); loadReviews(); initRing(); initHeroFx(); initBackdrop();
-renderMyOrders(); tickCooldown();
+renderMyOrders(); tickCooldown(); renderModeration(); trackVisit();
 initAuth();   // восстанавливает сессию Supabase и следит за входом/выходом
 </script>
 </body></html>

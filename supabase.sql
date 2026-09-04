@@ -199,3 +199,32 @@ create policy avatars_delete_own on storage.objects
 --   where schemaname = 'public' and tablename in ('profiles','reviews','orders');
 -- В колонке rowsecurity у всех трёх должно быть true.
 -- ------------------------------------------------------------
+
+
+-- ------------------------------------------------------------
+-- 6. АНАЛИТИКА ЗАХОДОВ
+-- ------------------------------------------------------------
+-- Считаем только обезличенное: метку источника, страницу и откуда пришли.
+-- Ни IP, ни личных данных здесь нет — этого достаточно, чтобы понять,
+-- какая реклама приводит людей, и не нужно ничего просить у посетителя.
+create table if not exists public.visits (
+  id         bigint generated always as identity primary key,
+  created_at timestamptz not null default now(),
+  source     text,          -- метка из ?a= : какой аккаунт привёл
+  path       text,          -- какая страница открылась
+  referrer   text           -- откуда пришли, если браузер сказал
+);
+
+create index if not exists visits_day_idx on public.visits (created_at desc);
+
+alter table public.visits enable row level security;
+
+-- Записать свой заход может кто угодно...
+drop policy if exists visits_insert_any on public.visits;
+create policy visits_insert_any on public.visits
+  for insert with check (true);
+
+-- ...а читать статистику — только владелец.
+drop policy if exists visits_select_admin on public.visits;
+create policy visits_select_admin on public.visits
+  for select using (auth.uid() = 'b7ad6c3f-beff-4052-afa3-62cc89190f78');
