@@ -178,6 +178,7 @@ body{font-family:'Courier New',ui-monospace,Consolas,monospace;color:var(--text)
       <div class="row"><span>Оружие: нож / пистолет</span><b>1 / 2</b></div>
       <div class="row"><span>Атака / выстрел</span><b>ЛКМ</b></div>
     </div>
+    <button class="btn full hidden" id="continueBtn">Продолжить сохранённую игру</button>
     <button class="btn full" id="enterBtn">Войти в метро</button>
   </div>
 </div>
@@ -866,6 +867,7 @@ const state = {
 const inventory = []; // {id,name,icon,type,count,use}
 
 function addItem(id,name,icon,type,count,use,body){
+  SFX.pickup();
   const ex = inventory.find(i=>i.id===id);
   if(ex){ ex.count+=count; } else { inventory.push({id,name,icon,type,count,use,body}); }
   renderInventory();
@@ -910,6 +912,8 @@ function renderIntro(){
 function showBriefing(){
   el('introPanel').classList.add('hidden');
   el('briefingPanel').classList.remove('hidden');
+  if(hasSave()) el('continueBtn').classList.remove('hidden');
+  el('enterBtn').textContent = hasSave() ? 'Начать заново' : 'Войти в метро';
 }
 el('introNext').onclick = ()=>{
   introIdx++;
@@ -987,6 +991,9 @@ function updateHUD(){
 
 /* ================= interactables ================= */
 const interactables = []; // {mesh, type, distance check via mesh.position, onInteract, prompt}
+// Подобранное держим отдельным списком: сама запись из interactables удаляется
+// сразу при подборе, и по ней потом уже ничего не сохранить.
+const takenUids = new Set();
 const raycaster = new THREE.Raycaster();
 const REACH = 3.2;
 
@@ -1009,11 +1016,14 @@ function spawnItem(x,z,{icon,name,id,type,count,use,color=0xffe08a,shape='box',b
   grp.add(mesh); grp.position.set(x,0,z);
   world.add(grp);
   const rec = {
-    mesh: grp, spin:true, prompt:`<b>E</b> — поднять: ${name}`,
+    mesh: grp, spin:true, uid:`${id}@${x.toFixed(1)},${z.toFixed(1)}`,
+    prompt:`<b>E</b> — поднять: ${name}`,
     onInteract(){
       addItem(id,name,icon,type,count,use,body);
+      takenUids.add(rec.uid);
       world.remove(grp);
       interactables.splice(interactables.indexOf(rec),1);
+      saveGame();
     }
   };
   interactables.push(rec);
@@ -1137,12 +1147,41 @@ function showEndScreen(){
   unlockView();
 }
 
+
+/* ================= торговля =================
+   Деньги в игре были, а тратить их было не на что — теперь Игорь торгует. */
+const GOODS = [
+  {id:'bandage', name:'Бинт',          icon:'🩹', type:'medicine', price:25, make:()=>healFn(28,'bandage')},
+  {id:'can',     name:'Консервы',      icon:'🥫', type:'food',     price:20, make:()=>feedFn(35,'can','Вы поели')},
+  {id:'water',   name:'Фляга воды',    icon:'💧', type:'water',    price:15, make:()=>drinkFn(40,'water')},
+  {id:'ammo9',   name:'Патроны 9мм',   icon:'🔸', type:'ammo',     price:30, count:6, make:()=>null},
+];
+function openTrade(){
+  const rows = GOODS.map(g=>({
+    label: `${g.icon} ${g.name}${g.count?` ×${g.count}`:''} — ${g.price}`,
+    action(){
+      if(state.money < g.price){ toast('Не хватает денег'); SFX.click(); return; }
+      state.money -= g.price;
+      addItem(g.id, g.name, g.icon, g.type, g.count||1, g.make(), null);
+      updateHUD(); saveGame();
+      toast(`Куплено: ${g.name}`, );
+      openTrade();                 // остаёмся в лавке, чтобы взять ещё
+    }
+  }));
+  rows.push({label:'Закончить торг', action:closeDialog});
+  openDialog('Игорь · торговля',
+    `«Смотри, что есть. Цены не мои — общие по станции».
+
+У вас: ${state.money} патронов-денег.`,
+    rows);
+}
+
 const npcInteract = {
   mesh: npc, prompt:'<b>E</b> — поговорить: Игорь',
   onInteract(){
     if(quest.state==='intro'){
       openDialog('Игорь', '«Врач... наконец-то. Это ведь я передал весточку через связного. Прости, что коротко — сеть ненадёжна, а сказать нужно было о твоём брате.\n\nНо сперва — у меня рана гноится, а бинтов нет ни одного. Принеси хотя бы пару, и поговорим спокойно.»', [
-        {label:'Хорошо, поищу бинты', action(){ quest.state='active'; setQuestUI(); closeDialog(); toast('Задание получено: найти бинты'); }},
+        {label:'Хорошо, поищу бинты', action(){ quest.state='active'; setQuestUI(); closeDialog(); saveGame(); toast('Задание получено: найти бинты'); }},
         {label:'Расскажи о брате сейчас', action(){ closeDialog(); toast('«Сначала рана. Потом — разговор», — качает головой Игорь.'); }},
       ]);
     } else if(quest.state==='active'){
@@ -1156,7 +1195,7 @@ const npcInteract = {
             toast('+40, +8 репутации');
             setTimeout(()=>{
               openDialog('Игорь', '«Теперь слушай. В южном туннеле завелась тварь — уже двоих курьеров изувечила, я сам еле унёс ноги. Пока она там, я со станции не сдвинусь и говорить о твоём брате спокойно не смогу — мысли не о том.\n\nПройди туннель, разберись с ней. Тогда расскажу всё, что знаю.»', [
-                {label:'Договорились', action(){ quest.state='hunt'; setQuestUI(); closeDialog(); toast('Задание получено: зачистить туннель'); }},
+                {label:'Договорились', action(){ quest.state='hunt'; setQuestUI(); closeDialog(); saveGame(); toast('Задание получено: зачистить туннель'); }},
               ]);
             }, 250);
           }},
@@ -1174,6 +1213,7 @@ const npcInteract = {
         ]);
       } else {
         openDialog('Игорь', '«Она всё ещё там, я слышу вой по ночам. Будь осторожен — целься в голову, у неё крепкая шкура».', [
+          {label:'Купить припасы', action: openTrade},
           {label:'Понял', action:closeDialog},
         ]);
       }
@@ -1187,6 +1227,7 @@ const npcInteract = {
       ]);
     } else {
       openDialog('Игорь', '«Держись, Врач. Метро без таких, как ты, давно бы вымерло. «Руины» ждут — когда будешь готов».', [
+        {label:'Что продаёшь?', action: openTrade},
         {label:'Пойду', action:closeDialog},
       ]);
     }
@@ -1280,20 +1321,32 @@ function buildMutant(){
   g.userData.eyeLight = eyeLight;
   return g;
 }
-const mutant = {
-  mesh: buildMutant(),
-  hp: 70, maxHp: 70,
-  state:'patrol', patrolA:new THREE.Vector3(0,0,-46), patrolB:new THREE.Vector3(0,0,-30),
-  patrolTarget:null, speed:1.4, chaseSpeed:3.1, alive:true, attackCd:0, dead:false,
-};
-mutant.mesh.position.copy(mutant.patrolA);
-mutant.patrolTarget = mutant.patrolB;
-world.add(mutant.mesh);
+/* Один мутант на всю станцию делал её пустой: убил — и до конца игры тихо.
+   Теперь их несколько, у каждого свой участок и своя скорость. */
+function spawnMutant({a, b, hp=70, speed=1.4, chase=3.1, respawn=75000}){
+  const m = {
+    mesh: buildMutant(), hp, maxHp:hp,
+    state:'patrol', patrolA:a, patrolB:b, patrolTarget:b,
+    speed, chaseSpeed:chase, alive:true, attackCd:0, respawnMs:respawn
+  };
+  m.mesh.position.copy(a);
+  world.add(m.mesh);
+  return m;
+}
+const V = (x,z)=>new THREE.Vector3(x,0,z);
 
-function respawnMutant(){
-  mutant.hp = mutant.maxHp; mutant.alive=true; mutant.dead=false;
-  mutant.state='patrol'; mutant.mesh.position.copy(mutant.patrolA);
-  mutant.mesh.visible = true;
+// первый — сюжетный: именно его просит убрать Игорь
+const mutant = spawnMutant({a:V(0,-46), b:V(0,-30)});
+const mutants = [
+  mutant,
+  spawnMutant({a:V(-4,44), b:V(4,28), hp:55, speed:1.7, chase:3.4}),   // северный тоннель
+  spawnMutant({a:V(5,10),  b:V(-5,-4), hp:90, speed:1.1, chase:2.7}),  // бродит по перрону
+];
+
+function respawnMutant(m){
+  m.hp = m.maxHp; m.alive = true;
+  m.state = 'patrol'; m.mesh.position.copy(m.patrolA);
+  m.mesh.scale.set(1,1,1); m.mesh.visible = true;
 }
 
 /* ================= interaction raycast / prompt loop ================= */
@@ -1329,7 +1382,9 @@ function onKeyDown(e){
   if(e.code==='KeyF'){
     state.flashlightOn = !state.flashlightOn;
     flashlight.intensity = state.flashlightOn ? 55 : 0;
+    SFX.click();
   }
+  if(e.code==='KeyM'){ toast(SFX.toggle() ? 'Звук выключен' : 'Звук включён'); }
   if(e.code==='Digit1'){ setWeapon('knife'); }
   if(e.code==='Digit2'){ if(countItem('pistol')>0) setWeapon('pistol'); else toast('Пистолет ещё не найден'); }
   if(e.code==='Escape'){
@@ -1358,47 +1413,184 @@ addEventListener('mousedown', e=>{
   if(state.attackCooldown>0) return;
   performAttack();
 });
-function mutantCenter(){
-  return mutant.mesh.position.clone().add(new THREE.Vector3(0,1.05,0));
+function mutantCenter(m){
+  return m.mesh.position.clone().add(new THREE.Vector3(0,1.05,0));
+}
+/* Ищем того, в кого игрок реально целится: ближайшего живого в секторе взгляда. */
+function targetUnderCrosshair(maxDist, minDot){
+  const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
+  let best=null, bestD=maxDist;
+  for(const m of mutants){
+    if(!m.alive) continue;
+    const c = mutantCenter(m);
+    const d = camera.position.distanceTo(c);
+    if(d>bestD) continue;
+    if(c.sub(camera.position).normalize().dot(fwd) > minDot){ best=m; bestD=d; }
+  }
+  return best;
 }
 function performAttack(){
   if(state.weapon==='knife'){
     state.attackCooldown = 0.5;
     knifeMesh.rotation.x -= 1.1;
-    const center = mutantCenter();
-    const dist = camera.position.distanceTo(center);
-    const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
-    const toM = center.sub(camera.position).normalize();
-    if(mutant.alive && dist<2.8 && toM.dot(fwd)>0.6){
-      hitMutant(24);
-    }
+    SFX.swing();
+    const t = targetUnderCrosshair(2.8, 0.6);
+    if(t) hitMutant(t, 24);
   } else if(state.weapon==='pistol'){
-    if(countItem('ammo9')<=0){ toast('Нет патронов'); return; }
+    if(countItem('ammo9')<=0){ toast('Нет патронов'); SFX.click(); return; }
     state.attackCooldown = 0.32;
     removeItem('ammo9',1);
-    const center = mutantCenter();
-    const dist = camera.position.distanceTo(center);
-    const fwd = new THREE.Vector3(); camera.getWorldDirection(fwd);
-    const toM = center.sub(camera.position).normalize();
-    if(mutant.alive && dist<40 && toM.dot(fwd)>0.965){
-      hitMutant(34);
-    }
+    SFX.shot();
+    const t = targetUnderCrosshair(40, 0.965);
+    if(t) hitMutant(t, 34);
     updateHUD();
   }
 }
-function hitMutant(dmg){
-  mutant.hp -= dmg;
+function hitMutant(m, dmg){
+  m.hp -= dmg;
+  SFX.hit();
   hitmarker.style.opacity=1; setTimeout(()=>hitmarker.style.opacity=0,110);
-  if(mutant.hp<=0 && mutant.alive){
-    mutant.alive=false; mutant.state='dead';
-    mutant.mesh.scale.set(1,0.15,1); mutant.mesh.position.y=0;
+  if(m.hp<=0 && m.alive){
+    m.alive=false; m.state='dead';
+    m.mesh.scale.set(1,0.15,1); m.mesh.position.y=0;
+    SFX.kill();
     toast('Мутант повержен');
     addItem('flesh','Мутантья плоть','🧟','misc',1,null);
     state.money += 10; updateHUD();
-    if(quest.state==='hunt'){ setQuestUI(); toast('Туннель зачищен — вернитесь к Игорю'); }
-    setTimeout(respawnMutant, 90000);
+    if(m===mutant && quest.state==='hunt'){ setQuestUI(); toast('Туннель зачищен — вернитесь к Игорю'); }
+    setTimeout(()=>respawnMutant(m), m.respawnMs);
+    saveGame();
   }
 }
+/* ================= сохранение =================
+   Вкладку на телефоне закрывают постоянно, и терять полчаса игры обидно.
+   Храним только своё состояние: позицию, показатели, рюкзак и стадию сюжета. */
+const SAVE_KEY = 'warmed_save_v1';
+function saveGame(){
+  try{
+    localStorage.setItem(SAVE_KEY, JSON.stringify({
+      v:1, t:Date.now(),
+      pos:[+playerPos.x.toFixed(2), +playerPos.z.toFixed(2)],
+      stats:{h:state.health, hu:state.hunger, th:state.thirst, en:state.energy},
+      money:state.money, rep:state.rep, weapon:state.weapon,
+      quest:quest.state, dogFound:dogFoundSpecial,
+      inv:inventory.map(i=>({id:i.id, n:i.name, ic:i.icon, t:i.type, c:i.count, b:i.body})),
+      taken:[...takenUids]
+    }));
+  }catch(e){ /* приватный режим — играем без сохранений */ }
+}
+function hasSave(){ try{ return !!localStorage.getItem(SAVE_KEY); }catch(e){ return false; } }
+function clearSave(){ try{ localStorage.removeItem(SAVE_KEY); }catch(e){} }
+function loadGame(){
+  let d=null;
+  try{ d = JSON.parse(localStorage.getItem(SAVE_KEY)||'null'); }catch(e){}
+  if(!d || d.v!==1) return false;
+
+  playerPos.set(d.pos[0], 0, d.pos[1]);
+  camera.position.set(d.pos[0], EYE_HEIGHT, d.pos[1]);
+  Object.assign(state, {health:d.stats.h, hunger:d.stats.hu, thirst:d.stats.th,
+                        energy:d.stats.en, money:d.money, rep:d.rep});
+  quest.state = d.quest || 'intro';
+  dogFoundSpecial = !!d.dogFound;
+
+  inventory.length = 0;
+  (d.inv||[]).forEach(i=>{
+    // функцию «использовать» восстанавливаем по типу: в JSON её не сохранить
+    let use = null;
+    if(i.id==='bandage') use = healFn(28,'bandage');
+    else if(i.id==='can') use = feedFn(35,'can','Вы поели');
+    else if(i.id==='water') use = drinkFn(40,'water');
+    inventory.push({id:i.id, name:i.n, icon:i.ic, type:i.t, count:i.c, use, body:i.b});
+  });
+
+  // убираем с пола то, что уже подобрано
+  takenUids.clear();
+  (d.taken||[]).forEach(u=>takenUids.add(u));
+  interactables.slice().forEach(it=>{
+    if(it.uid && takenUids.has(it.uid)){
+      world.remove(it.mesh);
+      interactables.splice(interactables.indexOf(it),1);
+    }
+  });
+
+  setWeapon(d.weapon==='pistol' && countItem('pistol')>0 ? 'pistol' : 'knife');
+  renderInventory(); setQuestUI(); updateHUD();
+  return true;
+}
+
+/* ================= звук =================
+   Всё синтезируется в браузере: ни одного звукового файла, значит игра
+   остаётся одним HTML и не тянет мегабайты. Контекст запускается по клику
+   «Войти в метро» — раньше браузер звук всё равно не разрешит. */
+const SFX = (()=>{
+  let ctx=null, master=null, muted=false;
+  function init(){
+    if(ctx) return;
+    ctx = new (window.AudioContext||window.webkitAudioContext)();
+    master = ctx.createGain(); master.gain.value = 0.5;
+    const comp = ctx.createDynamicsCompressor();
+    comp.threshold.value=-16; comp.ratio.value=6;
+    master.connect(comp); comp.connect(ctx.destination);
+    ambient();
+  }
+  function noise(dur){
+    const len=Math.max(1,Math.floor(ctx.sampleRate*dur));
+    const b=ctx.createBuffer(1,len,ctx.sampleRate), d=b.getChannelData(0);
+    for(let i=0;i<len;i++) d[i]=Math.random()*2-1;
+    return b;
+  }
+  function burst(t,{dur=.2,gain=.3,type='lowpass',from=1200,to=200,q=1}={}){
+    const s=ctx.createBufferSource(); s.buffer=noise(dur);
+    const f=ctx.createBiquadFilter(); f.type=type; f.Q.value=q;
+    f.frequency.setValueAtTime(from,t); f.frequency.exponentialRampToValueAtTime(Math.max(40,to),t+dur);
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(gain,t); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    s.connect(f); f.connect(g); g.connect(master); s.start(t); s.stop(t+dur);
+  }
+  function tone(t,f0,{dur=.2,gain=.2,type='sine',to=null}={}){
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type=type; o.frequency.setValueAtTime(f0,t);
+    if(to) o.frequency.exponentialRampToValueAtTime(Math.max(20,to),t+dur);
+    g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(gain,t+.01);
+    g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t+dur+.03);
+  }
+  function ambient(){
+    // низкий гул тоннеля + редкая капель, чтобы тишина не давила пустотой
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='sine'; o.frequency.value=44;
+    g.gain.value=.10; o.connect(g); g.connect(master); o.start();
+    const lfo=ctx.createOscillator(), lg=ctx.createGain();
+    lfo.frequency.value=.07; lg.gain.value=.05;
+    lfo.connect(lg); lg.connect(g.gain); lfo.start();
+    (function drip(){
+      const wait = 4000+Math.random()*9000;
+      setTimeout(()=>{ if(ctx && !muted) tone(ctx.currentTime, 900+Math.random()*500,{dur:.18,gain:.05,type:'sine',to:300}); drip(); }, wait);
+    })();
+  }
+  const api = {
+    init,
+    get muted(){ return muted; },
+    toggle(){ if(!ctx) return false; muted=!muted; master.gain.value = muted?0:0.5; return muted; },
+    step(){ if(!ctx||muted) return; burst(ctx.currentTime,{dur:.09,gain:.14,from:600,to:120}); },
+    swing(){ if(!ctx||muted) return; burst(ctx.currentTime,{dur:.16,gain:.18,type:'bandpass',from:1800,to:500,q:1.4}); },
+    shot(){ if(!ctx||muted) return; const t=ctx.currentTime;
+      burst(t,{dur:.22,gain:.5,from:5000,to:300}); tone(t,180,{dur:.22,gain:.45,to:50}); },
+    hit(){ if(!ctx||muted) return; const t=ctx.currentTime;
+      burst(t,{dur:.09,gain:.3,type:'bandpass',from:2200,q:2}); tone(t,320,{dur:.1,gain:.2,to:160}); },
+    kill(){ if(!ctx||muted) return; const t=ctx.currentTime;
+      tone(t,220,{dur:.5,gain:.25,type:'sawtooth',to:60}); burst(t,{dur:.4,gain:.25,from:900,to:80}); },
+    hurt(){ if(!ctx||muted) return; const t=ctx.currentTime;
+      tone(t,140,{dur:.35,gain:.4,to:45}); burst(t,{dur:.25,gain:.3,from:700,to:120}); },
+    pickup(){ if(!ctx||muted) return; const t=ctx.currentTime;
+      tone(t,660,{dur:.1,gain:.16,type:'triangle'}); tone(t+.07,990,{dur:.14,gain:.13,type:'triangle'}); },
+    growl(){ if(!ctx||muted) return; const t=ctx.currentTime;
+      tone(t,90,{dur:.8,gain:.3,type:'sawtooth',to:55}); burst(t+.05,{dur:.6,gain:.15,from:400,to:90}); },
+    click(){ if(!ctx||muted) return; tone(ctx.currentTime,520,{dur:.06,gain:.1,type:'square'}); },
+  };
+  return api;
+})();
+
 /* ================= movement + AI + survival loop ================= */
 const clock = new THREE.Clock();
 let lastTime = 0;
@@ -1409,20 +1601,27 @@ function resumePlay(){
   if(IS_TOUCH) el('touchUI').classList.remove('hidden');
   lockView();
 }
-function startGame(){
+function startGame(continueSave){
+  SFX.init();                       // звук разрешён только после действия игрока
+  if(continueSave) loadGame(); else clearSave();
   state.screen='playing';
   startScreen.classList.add('hidden');
   if(IS_TOUCH){ el('touchUI').classList.remove('hidden'); el('crosshair').style.opacity='.5'; }
   lockView();
+  saveGame();
+  // автосохранение: раз в 15 секунд, пока идёт игра
+  clearInterval(startGame.timer);
+  startGame.timer = setInterval(()=>{ if(state.screen==='playing') saveGame(); }, 15000);
 }
-el('enterBtn').onclick = startGame;
+el('enterBtn').onclick = ()=>startGame(false);
+el('continueBtn').onclick = ()=>startGame(true);
 el('resumeBtn').onclick = resumePlay;
 el('endCloseBtn').onclick = ()=>{ endScreen.classList.add('hidden'); if(state.screen==='playing') lockView(); };
 el('respawnBtn').onclick = ()=>{
   state.health=100; state.hunger=70; state.thirst=65; state.energy=100;
   playerPos.set(0,0,-6); velocity.set(0,0,0);
   deathScreen.classList.add('hidden');
-  updateHUD();
+  updateHUD(); saveGame();
   resumePlay();
 };
 
@@ -1500,6 +1699,8 @@ function updateMovement(dt, sprinting){
   playerPos.copy(next);
 
   state.distSinceStep += moved;
+  // шаг примерно каждые 1.7 метра — на слух совпадает с покачиванием камеры
+  if(state.distSinceStep - (state.lastStepAt||0) > 1.7){ state.lastStepAt = state.distSinceStep; SFX.step(); }
   let bob=0;
   if(dir.lengthSq()>0){
     bob = Math.sin(state.distSinceStep*6)*0.035;
@@ -1508,38 +1709,42 @@ function updateMovement(dt, sprinting){
 }
 
 function updateMutant(dt){
-  if(!mutant.alive) return;
-  const m = mutant.mesh;
+  for(const mob of mutants) updateOneMutant(mob, dt);
+}
+function updateOneMutant(mob, dt){
+  if(!mob.alive) return;
+  const m = mob.mesh;
   const distToPlayer = playerPos.distanceTo(m.position);
   const eyeLight = m.userData.eyeLight;
 
-  if(mutant.state==='patrol'){
+  if(mob.state==='patrol'){
     eyeLight.intensity = 2.5+Math.sin(performance.now()*0.004)*0.8;
-    const target = mutant.patrolTarget;
+    const target = mob.patrolTarget;
     const d = m.position.distanceTo(target);
-    if(d<0.6){ mutant.patrolTarget = mutant.patrolTarget===mutant.patrolA?mutant.patrolB:mutant.patrolA; }
+    if(d<0.6){ mob.patrolTarget = mob.patrolTarget===mob.patrolA?mob.patrolB:mob.patrolA; }
     const toT = target.clone().sub(m.position); toT.y=0; toT.normalize();
-    m.position.addScaledVector(toT, mutant.speed*dt);
+    m.position.addScaledVector(toT, mob.speed*dt);
     m.lookAt(m.position.clone().add(toT));
-    if(distToPlayer<11){ mutant.state='chase'; }
-  } else if(mutant.state==='chase'){
+    if(distToPlayer<11){ mob.state='chase'; SFX.growl(); }   // рык предупреждает игрока
+  } else if(mob.state==='chase'){
     eyeLight.intensity = 8+Math.sin(performance.now()*0.02)*2;
     const toP = playerPos.clone().sub(m.position); toP.y=0;
     const d = toP.length(); toP.normalize();
-    if(d>1.4){ m.position.addScaledVector(toP, mutant.chaseSpeed*dt); }
+    if(d>1.4){ m.position.addScaledVector(toP, mob.chaseSpeed*dt); }
     m.lookAt(new THREE.Vector3(playerPos.x, m.position.y, playerPos.z));
     if(d<1.6){
-      mutant.attackCd -= dt;
-      if(mutant.attackCd<=0){
-        mutant.attackCd = 1.1;
+      mob.attackCd -= dt;
+      if(mob.attackCd<=0){
+        mob.attackCd = 1.1;
         state.health = Math.max(0, state.health-14);
+        SFX.hurt();
         dmgFlash.style.transition='none'; dmgFlash.style.opacity=0.55;
         requestAnimationFrame(()=>{ dmgFlash.style.transition='opacity .5s'; dmgFlash.style.opacity=0; });
         updateHUD();
         if(state.health<=0) die('РАСТЕРЗАН МУТАНТОМ');
       }
     }
-    if(distToPlayer>19){ mutant.state='patrol'; mutant.patrolTarget = m.position.z<0?mutant.patrolA:mutant.patrolB; }
+    if(distToPlayer>19){ mob.state='patrol'; mob.patrolTarget = m.position.z<0?mob.patrolA:mob.patrolB; }
   }
 }
 
