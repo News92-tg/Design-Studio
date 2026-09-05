@@ -418,7 +418,8 @@ a{text-decoration:none;color:inherit}
 .work:hover{border-color:#4a58a0;transform:translateY(-3px)}
 .work-go{font-style:normal;font-size:11.5px;font-weight:800;color:#8d9bff;margin-left:8px;white-space:nowrap}
 .work{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(14,17,32,.7);display:flex;flex-direction:column}
-.work-shot{aspect-ratio:16/10;background:linear-gradient(135deg,#12162a,#1b2140);display:grid;place-items:center;color:var(--muted);font-size:11px;text-align:center;padding:14px}
+.work-shot img{width:100%;height:100%;object-fit:cover;display:block}
+.work-shot{aspect-ratio:16/10;overflow:hidden;background:linear-gradient(135deg,#12162a,#1b2140);display:grid;place-items:center;color:var(--muted);font-size:11px;text-align:center;padding:14px}
 .work-shot img{width:100%;height:100%;object-fit:cover;display:block}
 .work-body{padding:14px}
 .work-body h4{font-size:13px}
@@ -697,7 +698,7 @@ a{text-decoration:none;color:inherit}
     <div class="section-head"><div><span class="sec-index">03 — РАБОТЫ</span><h2>Примеры работ</h2><p>Живые проекты, которые можно открыть и посмотреть.</p></div></div>
     <div class="work-grid">
       <a class="work" href="#top" data-scroll="#top">
-        <div class="work-shot" style="background:linear-gradient(135deg,#141a3a,#241a3f)"><b style="font-size:20px;color:#fff">News_92 Studio</b></div>
+        <div class="work-shot"><img src="works/work-site.jpg" alt="Главная страница News_92 Studio" decoding="async" width="640" height="405"></div>
         <div class="work-body"><h4>Этот сайт <i class="work-go">смотреть →</i></h4><p>Сайт-визитка студии: 3D-витрина услуг, калькулятор, отзывы, приём заявок, вход через Google.</p></div>
       </a>
       <!-- Чтобы добавить работу: замените содержимое .work-shot на <img src="works/имя-файла.jpg" alt="">
@@ -706,7 +707,7 @@ a{text-decoration:none;color:inherit}
            .work-shot на <img src="works/имя-файла.jpg" alt="">, а ниже впишите название
            и одну строку о задаче. Три-четыре примера работают сильнее любого текста о себе. -->
       <a class="work" href="warmed/" target="_blank" rel="noopener">
-        <div class="work-shot" style="background:linear-gradient(135deg,#1a1430,#2a1d3f)"><b style="font-size:17px;color:#fff">WARMED</b></div>
+        <div class="work-shot"><img src="works/work-warmed.jpg" alt="Кадр из игры WARMED" decoding="async" width="640" height="614"></div>
         <div class="work-body"><h4>Игра WARMED <i class="work-go">играть →</i></h4><p>Метро от первого лица: выживание, инвентарь, диалоги и мутанты. Запускается в браузере, на телефоне — сенсорное управление.</p></div>
       </a>
       <a class="work" href="#showcase" data-scroll="#showcase">
@@ -714,11 +715,11 @@ a{text-decoration:none;color:inherit}
         <div class="work-body"><h4>Интерактивный барабан <i class="work-go">покрутить →</i></h4><p>3D-карусель на чистом CSS и JS: вращение мышью и свайпом, разворот карточек, без библиотек.</p></div>
       </a>
       <a class="work" href="promo-posters/" target="_blank" rel="noopener">
-        <div class="work-shot" style="background:linear-gradient(135deg,#1b1040,#3a1250)"><b style="font-size:17px;color:#fff">Рекламные креативы</b></div>
+        <div class="work-shot"><img src="works/work-posters.jpg" alt="Рекламные постеры для соцсетей" decoding="async" width="640" height="400"></div>
         <div class="work-body"><h4>Постеры для соцсетей <i class="work-go">открыть →</i></h4><p>Пять вертикальных макетов 1080×1920 под сторис и TikTok. Рисуются кодом, тексты и цены меняются за минуту.</p></div>
       </a>
       <a class="work" href="presentation/" target="_blank" rel="noopener">
-        <div class="work-shot" style="background:linear-gradient(135deg,#0f1330,#1d2a52)"><b style="font-size:17px;color:#fff">Презентация</b></div>
+        <div class="work-shot"><img src="works/work-deck.jpg" alt="Слайд презентации студии" decoding="async" width="640" height="592"></div>
         <div class="work-body"><h4>Презентация студии <i class="work-go">листать →</i></h4><p>Девять слайдов формата 16:9, которые сохраняются в PDF прямо из браузера.</p></div>
       </a>
     </div>
@@ -1898,7 +1899,16 @@ function renderReviewGate(){
 }
 function renderReviewList(list){
   const root=$('#reviewGrid'); if(!root) return; root.innerHTML='';
-  if(!list.length){ root.innerHTML='<article class="card"><h3>Пока нет отзывов</h3><p>Станьте первым, кто оставит отзыв — для этого нужен аккаунт на сайте.</p></article>'; return; }
+  // Пустой раздел отзывов подрывает доверие сильнее, чем его отсутствие,
+  // поэтому объясняем честно: студия молодая, а отзывы настоящие и проверяются.
+  if(!list.length){ root.innerHTML=`<article class="card">
+      <h3>Отзывов пока нет — и я их не выдумываю</h3>
+      <p>Студия молодая, первые заказы только идут. Здесь появятся только настоящие отзывы от людей с подтверждённым аккаунтом: один человек — один отзыв, накрутить нельзя.</p>
+      <p>Хотите быть первым? Закажите что-нибудь небольшое — за отзыв сделаю скидку на следующую работу.</p>
+      <button class="btn full grad" type="button" data-order="Индивидуальный проект">Оставить заявку</button>
+    </article>`;
+    root.querySelectorAll('[data-order]').forEach(b=>b.addEventListener('click',()=>order(b.dataset.order,b.dataset.price||'')));
+    return; }
   list.slice().reverse().slice(0,60).forEach(r=>{
     const c=document.createElement('article'); c.className='card review-card';
     const date=r.createdAt?new Date(r.createdAt).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}):'';
